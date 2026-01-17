@@ -42,13 +42,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 3rem;
 }
 
 .nav-brand {
@@ -74,32 +73,28 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Lora', serif;
     color: var(--text-dark);
     font-weight: 700;
-    white-space: nowrap;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 0.25rem;
-    flex-wrap: nowrap;
+    gap: 0.5rem;
 }
 
 .nav-item {
     position: relative;
-    white-space: nowrap;
 }
 
 .nav-menu a {
     text-decoration: none;
     color: var(--text-light);
-    padding: 0.5rem 0.85rem;
+    padding: 0.5rem 1rem;
     border-radius: 2rem;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
     display: block;
     font-family: 'Inter', sans-serif;
-    white-space: nowrap;
 }
 
 .nav-menu > .nav-item > a:hover,
