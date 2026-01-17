@@ -4,6 +4,70 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ========================================
+    // 0. ANIMATED PENCIL MARKS BACKGROUND
+    // ========================================
+    function createPencilMarks() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+
+        const container = document.createElement('div');
+        container.className = 'pencil-marks';
+        hero.insertBefore(container, hero.firstChild);
+
+        // Define different pencil stroke paths (handwritten style)
+        const strokePaths = [
+            'M 10,30 Q 40,10 70,30',  // Curved stroke
+            'M 20,20 L 80,20',          // Horizontal line
+            'M 30,15 Q 50,40 70,15',    // Wave
+            'M 40,10 L 40,50',          // Vertical line
+            'M 15,25 Q 30,35 45,25 Q 60,15 75,25', // Double wave
+            'M 20,30 C 30,10 50,10 60,30', // Bezier curve
+            'M 25,20 L 35,30 L 45,20 L 55,30', // Zigzag
+            'M 30,25 Q 50,15 70,25',    // Simple arc
+        ];
+
+        // Create 12-15 random pencil marks
+        const numMarks = 12 + Math.floor(Math.random() * 4);
+
+        for (let i = 0; i < numMarks; i++) {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.classList.add('pencil-mark');
+
+            // Random size and position
+            const size = 80 + Math.random() * 40;
+            const left = Math.random() * 95; // Keep within bounds
+            const top = Math.random() * 90;
+
+            svg.setAttribute('width', size);
+            svg.setAttribute('height', size);
+            svg.style.left = left + '%';
+            svg.style.top = top + '%';
+
+            // Random rotation for variety
+            const rotation = Math.random() * 360;
+            svg.style.transform = `rotate(${rotation}deg)`;
+
+            // Create path
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const randomPath = strokePaths[Math.floor(Math.random() * strokePaths.length)];
+            path.setAttribute('d', randomPath);
+
+            svg.appendChild(path);
+            container.appendChild(svg);
+
+            // Animate with delay
+            const delay = i * 200 + Math.random() * 500; // Stagger the animations
+            const duration = 1 + Math.random(); // 1-2 seconds
+
+            setTimeout(() => {
+                svg.style.animation = `drawPencil ${duration}s ease-out forwards`;
+            }, delay);
+        }
+    }
+
+    createPencilMarks();
+
+    // ========================================
     // 1. INTERSECTION OBSERVER - Fade-in animations
     // ========================================
     const observerOptions = {
