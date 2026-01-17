@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1.25rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,17 +58,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-brand .quill-icon {
+    font-size: 1.5rem;
+    color: #ff7518;
+    line-height: 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    line-height: 1;
-}
-
-.nav-brand .quill-icon img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    display: block;
 }
 
 .nav-brand h1 {
@@ -78,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     margin: 0;
     padding: 0;
-    line-height: 1;
+    line-height: 1.5rem;
     display: flex;
     align-items: center;
 }
@@ -107,12 +101,12 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     font-family: 'Inter', sans-serif;
-    line-height: 1;
+    line-height: 1.5rem;
 }
 
 .nav-menu > .nav-item > a:hover,
