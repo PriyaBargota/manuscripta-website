@@ -35,10 +35,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Navigation */
 .navbar {
     background-color: var(--bg-white);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-bottom: 3px solid #f0f0f0;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100;
 }
 
 .nav-container {
@@ -57,22 +57,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-brand .quill-icon {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
+    font-size: 1.8rem;
+    color: #ff7518;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-brand .quill-icon img {
-    width: 100%;
-    height: 100%;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 }
 
 .nav-brand h1 {
     font-size: 1.5rem;
     font-family: 'Lora', serif;
-    color: var(--text-dark);
+    color: #404040;
     font-weight: 700;
+    margin: 0;
 }
 
 .nav-menu {
@@ -80,28 +83,33 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     list-style: none;
     gap: 1.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-item {
     position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav-menu a {
     text-decoration: none;
-    color: var(--text-light);
+    color: #666;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     transition: all 0.3s ease;
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600;
     display: block;
     font-family: 'Inter', sans-serif;
 }
 
 .nav-menu > .nav-item > a:hover,
 .nav-menu > .nav-item > a.active {
-    background-color: var(--hover-bg);
-    color: var(--primary-color);
+    background-color: #fff6ed;
+    color: #ff7518;
 }
 
 /* Dropdown Menu Styles */
@@ -109,14 +117,14 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--bg-white);
+    background-color: #ffffff;
     list-style: none;
     padding: 0.75rem;
     margin: 0;
     min-width: 240px;
     border-radius: 1rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border-color);
+    border: 1px solid #f0f0f0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -132,19 +140,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .dropdown-menu li {
     margin: 0.25rem 0;
+    list-style: none;
+    padding: 0;
 }
 
 .dropdown-menu a {
     padding: 0.6rem 1rem;
-    color: var(--text-light);
+    color: #666;
     font-size: 0.9rem;
+    font-weight: 600;
     border-radius: 0.75rem;
     transition: all 0.3s ease;
 }
 
 .dropdown-menu a:hover {
-    background-color: var(--hover-bg);
-    color: var(--primary-color);
+    background-color: #fff6ed;
+    color: #ff7518;
     transform: translateX(5px);
 }
 
