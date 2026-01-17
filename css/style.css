@@ -61,11 +61,12 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
 }
 
 .nav-brand .quill-icon img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
     display: block;
 }
@@ -78,6 +79,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 .nav-menu {
@@ -106,7 +109,8 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
     font-size: 0.95rem;
     font-weight: 600;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     font-family: 'Inter', sans-serif;
     line-height: 1;
 }
