@@ -57,8 +57,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-brand .quill-icon {
-    font-size: 1.5rem;
-    color: var(--primary-color);
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.nav-brand .quill-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .nav-brand h1 {
