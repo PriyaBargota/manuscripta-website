@@ -96,46 +96,93 @@
         </div>
     </nav>
 
+    <div class="page-header">
+        <h1>Design</h1>
+        <p>System architecture, UI/UX design principles, and interface design for Manuscripta's dual-app platform.</p>
+    </div>
+
     <main>
-        <div class="content-page">
-            <h1>System Design</h1>
-            
-            <h2>Architecture Overview</h2>
-            <p>
-                [Describe the overall system architecture - client-server model, microservices, etc.]
-            </p>
+        <div class="doc-layout">
+            <aside class="doc-toc">
+                <h3>On This Page</h3>
+                <ul>
+                    <li><a href="#overall">Overall System Design</a></li>
+                    <li><a href="#frontend">Front-End Architecture</a></li>
+                    <li><a href="#backend">Back-End Architecture</a></li>
+                    <li><a href="#database">Database Design</a></li>
+                    <li><a href="#api">API Design</a></li>
+                    <li><a href="#principles">Design Principles</a></li>
+                    <li><a href="#sketches">Sketches</a></li>
+                    <li><a href="#prototypes">Prototypes</a></li>
+                    <li><a href="#final-ui">Final UI</a></li>
+                </ul>
+            </aside>
 
-            <h2>System Components</h2>
-            <h3>Android Application (Frontend)</h3>
-            <ul>
-                <li>MVVM Architecture</li>
-                <li>Room Database for local storage</li>
-                <li>UI Components and Activities</li>
-            </ul>
+            <div class="doc-content">
+                <h2 id="overall">Overall System Design</h2>
+                <p>[Describe the overall system architecture - client-server model, microservices, etc.]</p>
 
-            <h3>Spring Boot Backend</h3>
-            <ul>
-                <li>RESTful API endpoints</li>
-                <li>Database management</li>
-                <li>AI integration</li>
-            </ul>
+                <h2 id="frontend">Front-End Architecture</h2>
+                <h3>Android Application</h3>
+                <ul>
+                    <li>MVVM Architecture</li>
+                    <li>Room Database for local storage</li>
+                    <li>UI Components and Activities</li>
+                </ul>
 
-            <h3>Database Design</h3>
-            <p>[Describe your database schema, entities, and relationships]</p>
+                <h2 id="backend">Back-End Architecture</h2>
+                <h3>Spring Boot Backend</h3>
+                <ul>
+                    <li>RESTful API endpoints</li>
+                    <li>Database management</li>
+                    <li>AI integration</li>
+                </ul>
 
-            <h2>Architecture Diagrams</h2>
-            <p>[Add system architecture diagrams, component diagrams, sequence diagrams, etc.]</p>
+                <h2 id="database">Database Design</h2>
+                <p>[Describe your database schema, entities, and relationships]</p>
 
-            <h2>Design Decisions</h2>
-            <p>[Explain key design decisions and trade-offs]</p>
+                <h2 id="api">API Design</h2>
+                <p>[API endpoints and data flow]</p>
 
-            <h2>Technology Stack</h2>
-            <ul>
-                <li>Frontend: Android (Kotlin/Java), MVVM, Room</li>
-                <li>Backend: Spring Boot, Java</li>
-                <li>Database: [Your database choice]</li>
-                <li>AI Integration: [Your AI model/service]</li>
-            </ul>
+                <h2 id="principles">Design Principles</h2>
+                <p>
+                    Design principles guide interface creation to ensure clarity, consistency, and minimal cognitive load for users. For Manuscripta's dual-app system serving neurodiverse students and teachers, we prioritized the following:
+                </p>
+
+                <h3>Simplicity</h3>
+                <p>
+                    Interfaces minimized visual clutter and distractions. For students with autism, the E-ink display shows only essential elements—content and navigation. Teacher interface focuses on core tasks: content generation, distribution, and monitoring.
+                </p>
+
+                <h3>Consistency</h3>
+                <p>
+                    Visual elements maintain predictable behavior across both applications. Consistent typography, button styles, and layout patterns reduce learning curves and prevent confusion.
+                </p>
+
+                <h3>Accessibility</h3>
+                <p>
+                    High contrast ratios (7:1 minimum) for E-ink displays, adjustable text sizes, and optional text-to-speech ensure students with varying sensory and cognitive needs can interact comfortably. Reading level adjustments support comprehension across ability levels.
+                </p>
+
+                <h3>Feedback</h3>
+                <p>
+                    Real-time feedback informs users of system status. Students see immediate handwriting recognition responses. Teachers receive live progress updates and help request notifications. Loading states and confirmation messages maintain transparency.
+                </p>
+
+                <h3>Error Tolerance</h3>
+                <p>
+                    System handles mistakes gracefully. Auto-save prevents work loss during network drops. Teachers can regenerate content if initial AI output doesn't meet needs. Students can request help without penalty.
+                </p>
+
+                <h2 id="sketches">Sketches</h2>
+                <p>[Initial design sketches and wireframes]</p>
+
+                <h2 id="prototypes">Prototypes</h2>
+                <p>[Interactive prototypes and mockups]</p>
+
+                <h2 id="final-ui">Final UI</h2>
+                <p>[Final user interface designs and screenshots]</p>
+            </div>
         </div>
     </main>
 
