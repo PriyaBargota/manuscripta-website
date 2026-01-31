@@ -797,6 +797,89 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+/* Use Case Tables */
+.use-case-table {
+    background-color: white;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.use-case-header {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    background-color: white;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.use-case-id {
+    background-color: var(--primary-color);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.use-case-title {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2C2C2C;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.use-case-body {
+    padding: 0;
+}
+
+.use-case-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    border-bottom: 1px solid #f5f5f5;
+    min-height: 50px;
+}
+
+.use-case-row:last-child {
+    border-bottom: none;
+}
+
+.use-case-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    padding: 15px 20px;
+    background-color: #fafafa;
+    display: flex;
+    align-items: flex-start;
+}
+
+.use-case-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #555;
+    padding: 15px 20px;
+    line-height: 1.6;
+}
+
+.use-case-content ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.use-case-content ol li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
 /* Legacy Content Page Support (fallback) */
 .content-page {
     max-width: 900px;
@@ -995,5 +1078,33 @@ html {
     .persona-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .use-case-header {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .use-case-id {
+        font-size: 14px;
+        padding: 15px 10px;
+    }
+
+    .use-case-title {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .use-case-row {
+        grid-template-columns: 1fr;
+    }
+
+    .use-case-label {
+        border-bottom: none;
+        padding: 12px 15px 0 15px;
+        background-color: white;
+    }
+
+    .use-case-content {
+        padding: 0 15px 12px 15px;
     }
 }
