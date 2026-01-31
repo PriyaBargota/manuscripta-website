@@ -882,7 +882,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sketch Images */
 .sketch-image {
-    margin: 25px 0;
+    margin: 15px 0;
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
@@ -893,6 +893,23 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: auto;
     display: block;
+}
+
+/* Sketch Comparison Layout */
+.sketch-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 25px 0;
+}
+
+.sketch-column h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2C2C2C;
+    margin: 0 0 15px 0;
+    text-align: center;
 }
 
 /* Issue Tables */
@@ -1181,6 +1198,11 @@ html {
     }
 
     .sketch-image {
-        margin: 20px 0;
+        margin: 15px 0;
+    }
+
+    .sketch-comparison {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
