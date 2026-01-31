@@ -173,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #ff7518 0%, #ff8c3d 50%, #ffb366 100%);
+    background: linear-gradient(135deg, #5a5a5a 0%, #787878 50%, #9a9a9a 100%);
     padding: 5rem 2rem;
     color: white;
     text-align: center;
@@ -396,6 +396,52 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--bg-white);
 }
 
+/* Video Demonstration Section */
+.video-demo {
+    padding: 4rem 2rem;
+    background-color: var(--bg-light);
+}
+
+.video-demo h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.video-demo p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    background-color: var(--bg-white);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+}
+
 .about p {
     font-family: 'Inter', sans-serif;
     font-size: 1.15rem;
@@ -449,6 +495,53 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
     color: var(--text-light);
     font-weight: 500;
+}
+
+/* Timeline Section */
+.timeline {
+    padding: 4rem 2rem;
+    background-color: var(--bg-white);
+}
+
+.timeline h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.timeline p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timeline-chart {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timeline-chart:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.timeline-chart img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1rem;
 }
 
 /* Team Section */
@@ -526,7 +619,185 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
 }
 
-/* Content Pages */
+/* Documentation Pages - Modern Two-Column Layout */
+
+/* Page Header with Gradient */
+.page-header {
+    background: linear-gradient(135deg, #ff7518 0%, #ff8c3d 100%);
+    color: white;
+    padding: 60px;
+    margin: 0;
+}
+
+.page-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 15px 0;
+}
+
+.page-header p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Documentation Layout Container */
+.doc-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 60px;
+    background-color: var(--bg-white);
+}
+
+/* Table of Contents - Left Column */
+.doc-toc {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    height: fit-content;
+}
+
+.doc-toc h3 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2C2C2C;
+    margin: 0 0 20px 0;
+}
+
+.doc-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.doc-toc li {
+    margin-bottom: 8px;
+}
+
+.doc-toc a {
+    display: block;
+    padding: 10px 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.doc-toc a:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+.doc-toc a.active {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Main Content - Right Column */
+.doc-content {
+    min-width: 0;
+}
+
+.doc-content h2 {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #2C2C2C;
+    margin: 30px 0 20px 0;
+    scroll-margin-top: 100px;
+}
+
+.doc-content h2:first-child {
+    margin-top: 0;
+}
+
+.doc-content h3 {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #2C2C2C;
+    margin: 25px 0 15px 0;
+}
+
+.doc-content h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 20px 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.doc-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.doc-content ul,
+.doc-content ol {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.doc-content li {
+    margin-bottom: 0.75rem;
+    color: #555;
+}
+
+.doc-content strong {
+    color: #2C2C2C;
+    font-weight: 600;
+}
+
+/* Persona Cards */
+.persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.persona-card {
+    background-color: var(--bg-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.persona-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.persona-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Legacy Content Page Support (fallback) */
 .content-page {
     max-width: 900px;
     margin: 2rem auto;
@@ -683,5 +954,46 @@ html {
 
     .content-page h2 {
         font-size: 1.5rem;
+    }
+
+    /* Documentation responsive */
+    .page-header {
+        padding: 40px 20px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+    .doc-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .doc-toc {
+        position: static;
+        border-bottom: 1px solid #E8E8E8;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .doc-content h2 {
+        font-size: 24px;
+    }
+
+    .doc-content p,
+    .doc-content ul,
+    .doc-content ol {
+        font-size: 14px;
+    }
+
+    .persona-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }

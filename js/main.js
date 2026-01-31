@@ -234,13 +234,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // 5. SMOOTH SCROLL TO SECTIONS
     // ========================================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            if (href === '#') return;
+
+            // Extract the hash part (e.g., "index.html#timeline" -> "#timeline")
+            const hashIndex = href.indexOf('#');
+            if (hashIndex === -1 || href === '#') return;
+
+            const hash = href.substring(hashIndex);
+            const pageUrl = href.substring(0, hashIndex);
+
+            // Only handle if it's the same page or no page specified
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const targetPage = pageUrl.split('/').pop() || currentPage;
+
+            if (targetPage !== currentPage && pageUrl !== '') return;
 
             e.preventDefault();
-            const target = document.querySelector(href);
+            const target = document.querySelector(hash);
 
             if (target) {
                 const offsetTop = target.offsetTop - 80; // Account for fixed nav
@@ -364,6 +376,50 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+
+    // ========================================
+    // 11. DOCUMENTATION TOC ACTIVE STATE
+    // ========================================
+    function updateActiveTocLink() {
+        const tocLinks = document.querySelectorAll('.doc-toc a');
+        if (tocLinks.length === 0) return;
+
+        const sections = Array.from(tocLinks).map(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                return document.querySelector(href);
+            }
+            return null;
+        }).filter(section => section !== null);
+
+        function updateActive() {
+            const scrollPosition = window.scrollY + 150; // Offset for header
+
+            let currentSection = null;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollPosition >= sectionTop) {
+                    currentSection = section;
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (currentSection && href === '#' + currentSection.id) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Update on scroll
+        window.addEventListener('scroll', updateActive);
+        // Initial update
+        updateActive();
+    }
+
+    updateActiveTocLink();
 
 });
 
