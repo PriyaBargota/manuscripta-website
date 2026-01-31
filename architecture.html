@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluation - Manuscripta</title>
+    <title>System Architecture - Manuscripta</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -57,7 +57,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="architecture.html">System Architecture</a>
+                    <a href="architecture.html" class="active">System Architecture</a>
                     <ul class="dropdown-menu">
                         <li><a href="architecture.html#overall">Overall System Design</a></li>
                         <li><a href="architecture.html#frontend">Front-End Architecture</a></li>
@@ -83,9 +83,6 @@
                         <li><a href="testing.html#uat">User Acceptance Testing</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="evaluation.html" class="active">Evaluation</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a href="appendices.html">Appendices</a>
                     <ul class="dropdown-menu">
@@ -99,43 +96,50 @@
         </div>
     </nav>
 
+    <div class="page-header">
+        <h1>System Architecture</h1>
+        <p>Technical architecture, system design, and implementation details for Manuscripta's dual-app platform.</p>
+    </div>
+
     <main>
-        <div class="content-page">
-            <h1>Project Evaluation</h1>
-            
-            <h2>Achievement of Objectives</h2>
-            <p>
-                [Evaluate how well the project met its initial objectives and requirements]
-            </p>
+        <div class="doc-layout">
+            <aside class="doc-toc">
+                <h3>On This Page</h3>
+                <ul>
+                    <li><a href="#overall">Overall System Design</a></li>
+                    <li><a href="#frontend">Front-End Architecture</a></li>
+                    <li><a href="#backend">Back-End Architecture</a></li>
+                    <li><a href="#database">Database Design</a></li>
+                    <li><a href="#api">API Design</a></li>
+                </ul>
+            </aside>
 
-            <h2>Success Metrics</h2>
-            <p>[Discuss quantitative and qualitative success metrics]</p>
-            <ul>
-                <li>User satisfaction scores</li>
-                <li>Performance benchmarks</li>
-                <li>Feature completion rate</li>
-            </ul>
+            <div class="doc-content">
+                <h2 id="overall">Overall System Design</h2>
+                <p>[Describe the overall system architecture - client-server model, microservices, etc.]</p>
 
-            <h2>Strengths</h2>
-            <p>[What worked well in the project]</p>
+                <h2 id="frontend">Front-End Architecture</h2>
+                <h3>Android Application</h3>
+                <ul>
+                    <li>MVVM Architecture</li>
+                    <li>Room Database for local storage</li>
+                    <li>UI Components and Activities</li>
+                </ul>
 
-            <h2>Limitations</h2>
-            <p>[Current limitations and areas for improvement]</p>
+                <h2 id="backend">Back-End Architecture</h2>
+                <h3>Spring Boot Backend</h3>
+                <ul>
+                    <li>RESTful API endpoints</li>
+                    <li>Database management</li>
+                    <li>AI integration</li>
+                </ul>
 
-            <h2>Lessons Learned</h2>
-            <p>[Key takeaways from the development process]</p>
+                <h2 id="database">Database Design</h2>
+                <p>[Describe your database schema, entities, and relationships]</p>
 
-            <h2>Future Work</h2>
-            <p>[Potential enhancements and next steps]</p>
-            <ul>
-                <li>Feature expansion</li>
-                <li>Performance optimization</li>
-                <li>Scalability improvements</li>
-                <li>Additional device support</li>
-            </ul>
-
-            <h2>Conclusion</h2>
-            <p>[Final thoughts on the project and its outcomes]</p>
+                <h2 id="api">API Design</h2>
+                <p>[API endpoints and data flow]</p>
+            </div>
         </div>
     </main>
 
