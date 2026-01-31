@@ -890,9 +890,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sketch-image img {
-    width: 100%;
+    max-width: 75%;
     height: auto;
     display: block;
+    margin: 0 auto;
     image-rendering: high-quality;
     image-rendering: -webkit-optimize-contrast;
     backface-visibility: hidden;
