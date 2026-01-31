@@ -880,6 +880,68 @@ h1, h2, h3, h4, h5, h6 {
     color: #555;
 }
 
+/* Sketch Images */
+.sketch-image {
+    margin: 25px 0;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sketch-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Issue Tables */
+.issue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-family: 'Inter', sans-serif;
+}
+
+.issue-table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.issue-table thead th {
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.issue-table tbody tr {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.issue-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.issue-table tbody td {
+    padding: 15px 20px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    vertical-align: top;
+}
+
+.issue-table tbody td:last-child {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 16px;
+}
+
 /* Legacy Content Page Support (fallback) */
 .content-page {
     max-width: 900px;
@@ -1106,5 +1168,19 @@ html {
 
     .use-case-content {
         padding: 0 15px 12px 15px;
+    }
+
+    .issue-table {
+        font-size: 13px;
+    }
+
+    .issue-table thead th,
+    .issue-table tbody td {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+    .sketch-image {
+        margin: 20px 0;
     }
 }
