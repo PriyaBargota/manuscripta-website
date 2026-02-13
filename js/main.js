@@ -269,15 +269,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 6. NAVBAR SCROLL EFFECT
     // ========================================
     let lastScroll = 0;
-    const navbar = document.querySelector('.navbar');
+    const navContainer = document.querySelector('.nav-container');
 
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > 100) {
-            navbar.style.boxShadow = '0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04), 0 0 0 1px rgba(0, 0, 0, 0.04)';
-        } else {
-            navbar.style.boxShadow = '';
+        if (navContainer) {
+            if (currentScroll > 100) {
+                navContainer.style.boxShadow = '0 4px 24px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0, 0, 0, 0.04)';
+            } else {
+                navContainer.style.boxShadow = '';
+            }
         }
 
         lastScroll = currentScroll;
@@ -332,33 +334,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add a class to body when page is fully loaded
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
-    });
-
-
-    // ========================================
-    // 9. DROPDOWN ACCESSIBILITY
-    // ========================================
-    // Ensure dropdowns work on touch devices
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        const menu = dropdown.querySelector('.dropdown-menu');
-
-        if (!link || !menu) return;
-
-        // On touch devices, first tap opens dropdown, second tap follows link
-        let touched = false;
-        link.addEventListener('touchstart', function(e) {
-            if (!touched) {
-                e.preventDefault();
-                touched = true;
-                dropdown.classList.add('open');
-
-                setTimeout(() => {
-                    touched = false;
-                    dropdown.classList.remove('open');
-                }, 3000);
-            }
-        });
     });
 
 
@@ -448,12 +423,6 @@ rippleStyles.textContent = `
             transform: scale(2);
             opacity: 0;
         }
-    }
-
-    .dropdown.open .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
     }
 `;
 document.head.appendChild(rippleStyles);

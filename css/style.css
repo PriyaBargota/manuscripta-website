@@ -244,54 +244,6 @@ textarea:focus-visible {
     opacity: 1;
 }
 
-/* Dropdown Menu Styles */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--bg-surface);
-    list-style: none;
-    padding: 8px;
-    margin: 0;
-    min-width: 240px;
-    border-radius: 12px;
-    box-shadow: var(--shadow-elevated);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-    z-index: 30;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu li {
-    margin: 2px 0;
-    list-style: none;
-    padding: 0;
-}
-
-.dropdown-menu a {
-    padding: 10px 16px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: color 0.2s ease, background-color 0.2s ease;
-    min-height: 40px;
-}
-
-.dropdown-menu a:hover {
-    background-color: var(--color-gray-100);
-    color: var(--text-primary);
-    transform: none;
-}
-
 /* ============================================
    HERO SECTION
    ============================================ */
@@ -1657,10 +1609,6 @@ html {
         font-size: 13px;
         padding: 6px 10px;
         min-height: 40px;
-    }
-
-    .dropdown-menu {
-        min-width: 200px;
     }
 
     .hero {
