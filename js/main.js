@@ -275,9 +275,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentScroll = window.pageYOffset;
 
         if (currentScroll > 100) {
-            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)';
+            navbar.style.boxShadow = '0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04), 0 0 0 1px rgba(0, 0, 0, 0.04)';
         } else {
-            navbar.style.boxShadow = 'none';
+            navbar.style.boxShadow = '';
         }
 
         lastScroll = currentScroll;

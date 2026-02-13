@@ -1,5 +1,5 @@
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* Reset and Base Styles */
 * {
@@ -9,18 +9,21 @@
 }
 
 :root {
-    /* Brand */
-    --color-brand-green: #2D5A3D;
-    --color-brand-green-dark: #1E3D2A;
-    --color-brand-green-light: #3D7A52;
-    --color-brand-orange: #E07A3D;
-    --color-brand-orange-dark: #C56A30;
-    --color-brand-orange-light: #F09A5D;
+    /* Brand - aligned with React reference UI */
+    --color-brand-green: #15502E;
+    --color-brand-green-dark: #0D3B1F;
+    --color-brand-green-light: #1D6B3C;
+    --color-brand-orange: #FF6106;
+    --color-brand-orange-dark: #E55605;
+    --color-brand-orange-light: #FEE3DA;
+    --color-brand-yellow: #FFE782;
+    --color-brand-blue: #ABD8F9;
+    --color-brand-cream: #F8F7F5;
 
     /* Neutrals */
     --color-white: #FFFFFF;
-    --color-gray-50: #F9FAFB;
-    --color-gray-100: #F3F4F6;
+    --color-gray-50: #F8F7F5;
+    --color-gray-100: #F3F3F3;
     --color-gray-200: #E5E7EB;
     --color-gray-300: #D1D5DB;
     --color-gray-400: #9CA3AF;
@@ -37,15 +40,19 @@
     --color-info: #3B82F6;
 
     /* Semantic Aliases */
-    --bg-primary: var(--color-gray-50);
+    --bg-primary: var(--color-brand-cream);
     --bg-surface: var(--color-white);
-    --text-primary: var(--color-gray-900);
-    --text-secondary: var(--color-gray-600);
-    --border-color: var(--color-gray-200);
+    --text-primary: #212631;
+    --text-secondary: #14201E;
+    --border-color: rgba(0, 0, 0, 0.06);
+
+    /* Shadows */
+    --shadow-soft: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
@@ -118,26 +125,38 @@ textarea:focus-visible {
 }
 
 /* ============================================
-   NAVIGATION
+   NAVIGATION - Floating pill navbar
    ============================================ */
 .navbar {
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    padding: 20px 24px 0;
+    background: transparent;
+    pointer-events: none;
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 64px;
+    min-height: 72px;
     flex-wrap: wrap;
     gap: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 16px;
+    box-shadow: var(--shadow-elevated), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: auto;
+    transition: box-shadow 0.3s ease;
 }
 
 .nav-brand {
@@ -199,14 +218,15 @@ textarea:focus-visible {
 .nav-menu a {
     text-decoration: none;
     color: var(--text-secondary);
+    opacity: 0.7;
     padding: 8px 16px;
-    border-radius: 6px;
-    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 10px;
+    transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
     font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     line-height: 1.5;
     min-height: 44px;
 }
@@ -214,12 +234,14 @@ textarea:focus-visible {
 .nav-menu > .nav-item > a:hover {
     background-color: var(--color-gray-100);
     color: var(--text-primary);
+    opacity: 1;
 }
 
 .nav-menu > .nav-item > a.active {
-    background-color: var(--color-brand-orange);
-    color: white;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    background-color: rgba(255, 97, 6, 0.12);
+    color: var(--color-brand-orange);
+    font-weight: 600;
+    opacity: 1;
 }
 
 /* Dropdown Menu Styles */
@@ -232,9 +254,9 @@ textarea:focus-visible {
     padding: 8px;
     margin: 0;
     min-width: 240px;
-    border-radius: 6px;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-elevated);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -259,7 +281,7 @@ textarea:focus-visible {
     color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: color 0.2s ease, background-color 0.2s ease;
     min-height: 40px;
 }
@@ -366,7 +388,7 @@ textarea:focus-visible {
     margin-bottom: 32px;
     color: rgba(255, 255, 255, 0.95);
     max-width: 700px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .btn-primary {
@@ -377,13 +399,13 @@ textarea:focus-visible {
     background-color: var(--color-brand-orange);
     color: white;
     padding: 12px 24px;
-    border-radius: 6px;
+    border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
     font-size: 16px;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    font-family: 'Inter', sans-serif;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: var(--shadow-soft);
+    font-family: 'IBM Plex Sans', sans-serif;
     border: none;
     cursor: pointer;
     min-height: 44px;
@@ -391,7 +413,8 @@ textarea:focus-visible {
 
 .btn-primary:hover {
     background-color: var(--color-brand-orange-dark);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-1px);
 }
 
 /* Button Component System */
@@ -400,13 +423,13 @@ textarea:focus-visible {
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     padding: 8px 16px;
     font-size: 14px;
     cursor: pointer;
     border: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     min-height: 44px;
 }
 
@@ -517,10 +540,10 @@ textarea:focus-visible {
 .feature-card {
     background-color: var(--bg-surface);
     padding: 24px;
-    border-radius: 8px;
-    border: none;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: var(--shadow-soft);
     cursor: pointer;
     opacity: 0;
     transform: translateY(20px);
@@ -539,19 +562,19 @@ textarea:focus-visible {
 
 .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
 }
 
 .feature-icon {
     width: 64px;
     height: 64px;
-    border-radius: 8px;
+    border-radius: 16px;
     background: linear-gradient(135deg, var(--color-brand-green), var(--color-brand-green-light));
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 24px;
-    box-shadow: 0 4px 6px -1px rgba(45, 90, 61, 0.3);
+    box-shadow: 0 4px 12px -2px rgba(21, 80, 46, 0.3);
 }
 
 .feature-icon svg {
@@ -571,7 +594,7 @@ textarea:focus-visible {
 .feature-card p {
     color: var(--text-secondary);
     line-height: 1.7;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
 }
 
@@ -599,7 +622,7 @@ textarea:focus-visible {
 }
 
 .video-demo p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -617,8 +640,8 @@ textarea:focus-visible {
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border-radius: 16px;
+    box-shadow: var(--shadow-elevated);
     background-color: var(--bg-surface);
 }
 
@@ -632,7 +655,7 @@ textarea:focus-visible {
 }
 
 .about p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -663,14 +686,15 @@ textarea:focus-visible {
     text-align: center;
     padding: 24px;
     background-color: var(--bg-surface);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
 }
 
 .stat-number {
@@ -682,7 +706,7 @@ textarea:focus-visible {
 }
 
 .stat-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
     color: var(--text-secondary);
     font-weight: 500;
@@ -704,7 +728,7 @@ textarea:focus-visible {
 }
 
 .timeline p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -720,13 +744,14 @@ textarea:focus-visible {
     margin: 0 auto;
     background-color: var(--bg-surface);
     padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .timeline-chart:hover {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
     transform: translateY(-2px);
 }
 
@@ -757,10 +782,10 @@ textarea:focus-visible {
     text-align: center;
     padding: 32px 24px;
     background-color: var(--bg-surface);
-    border-radius: 8px;
-    border: none;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: var(--shadow-soft);
     opacity: 0;
     transform: translateY(20px);
 }
@@ -771,7 +796,7 @@ textarea:focus-visible {
 
 .team-member:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
 }
 
 .member-avatar {
@@ -811,7 +836,7 @@ textarea:focus-visible {
 
 .team-member p {
     color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
 }
 
@@ -837,7 +862,7 @@ textarea:focus-visible {
 }
 
 .page-header p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
@@ -884,11 +909,11 @@ textarea:focus-visible {
 .doc-toc a {
     display: block;
     padding: 10px 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 10px;
     border-left: 3px solid transparent;
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -932,7 +957,7 @@ textarea:focus-visible {
 }
 
 .doc-content h4 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: var(--color-brand-green);
@@ -942,7 +967,7 @@ textarea:focus-visible {
 }
 
 .doc-content p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 15px;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -951,7 +976,7 @@ textarea:focus-visible {
 
 .doc-content ul,
 .doc-content ol {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 15px;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -981,14 +1006,15 @@ textarea:focus-visible {
 
 .persona-card {
     background-color: var(--bg-surface);
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .persona-card:hover {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
     transform: translateY(-2px);
 }
 
@@ -1003,11 +1029,11 @@ textarea:focus-visible {
    ============================================ */
 .use-case-table {
     background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
     overflow: hidden;
     margin: 24px 0;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    box-shadow: var(--shadow-soft);
 }
 
 .use-case-header {
@@ -1020,7 +1046,7 @@ textarea:focus-visible {
 .use-case-id {
     background-color: var(--color-brand-green);
     color: white;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     font-weight: 700;
     padding: 16px;
@@ -1055,7 +1081,7 @@ textarea:focus-visible {
 }
 
 .use-case-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-secondary);
@@ -1066,7 +1092,7 @@ textarea:focus-visible {
 }
 
 .use-case-content {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
     color: var(--text-secondary);
     padding: 12px 16px;
@@ -1089,9 +1115,10 @@ textarea:focus-visible {
 .sketch-image {
     margin: 12px 0;
     background-color: var(--bg-surface);
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .sketch-image img {
@@ -1115,7 +1142,7 @@ textarea:focus-visible {
 }
 
 .sketch-column h4 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-primary);
@@ -1131,10 +1158,10 @@ textarea:focus-visible {
     border-collapse: collapse;
     margin: 24px 0;
     background-color: var(--bg-surface);
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    font-family: 'Inter', sans-serif;
+    box-shadow: var(--shadow-soft);
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .issue-table thead {
@@ -1180,9 +1207,9 @@ textarea:focus-visible {
     margin: 32px auto;
     padding: 24px;
     background-color: var(--bg-surface);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    border: none;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .content-page h1 {
@@ -1203,7 +1230,7 @@ textarea:focus-visible {
     font-weight: 600;
     cursor: pointer;
     padding: 12px;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: background-color 0.2s ease;
 }
 
@@ -1245,7 +1272,7 @@ textarea:focus-visible {
 }
 
 .content-page h4 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: var(--color-brand-green);
@@ -1258,7 +1285,7 @@ textarea:focus-visible {
     margin-bottom: 16px;
     line-height: 1.8;
     color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 15px;
 }
 
@@ -1271,7 +1298,7 @@ textarea:focus-visible {
 .content-page li {
     margin-bottom: 8px;
     color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     line-height: 1.8;
     font-size: 15px;
 }
@@ -1292,14 +1319,15 @@ textarea:focus-visible {
    ============================================ */
 .card {
     background-color: var(--bg-surface);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
     padding: 24px;
-    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-elevated);
 }
 
 .card__header {
@@ -1332,7 +1360,7 @@ textarea:focus-visible {
     font-size: 12px;
     font-weight: 600;
     border-radius: 9999px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .badge--success {
@@ -1369,7 +1397,7 @@ textarea:focus-visible {
     border-radius: 9999px;
     background-color: var(--color-gray-100);
     color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 /* ============================================
@@ -1380,11 +1408,11 @@ textarea:focus-visible {
     width: 100%;
     padding: 8px 16px;
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: var(--text-primary);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 10px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     min-height: 44px;
 }
@@ -1392,7 +1420,7 @@ textarea:focus-visible {
 .input:focus {
     outline: none;
     border-color: var(--color-brand-green);
-    box-shadow: 0 0 0 2px rgba(45, 90, 61, 0.2);
+    box-shadow: 0 0 0 2px rgba(21, 80, 46, 0.15);
 }
 
 .form-group {
@@ -1405,14 +1433,14 @@ textarea:focus-visible {
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: 4px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .form-helper {
     font-size: 12px;
     color: var(--color-gray-400);
     margin-top: 4px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 /* ============================================
@@ -1450,7 +1478,7 @@ textarea:focus-visible {
     justify-content: center;
     width: 44px;
     height: 44px;
-    border-radius: 6px;
+    border-radius: 10px;
     border: none;
     background: none;
     cursor: pointer;
@@ -1475,7 +1503,7 @@ textarea:focus-visible {
     background-color: var(--color-brand-green);
     color: white;
     font-weight: 600;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .avatar--sm {
@@ -1609,9 +1637,14 @@ html {
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 12px 12px 0;
+    }
+
     .nav-container {
         padding: 0 16px;
         min-height: 64px;
+        border-radius: 14px;
     }
 
     .nav-menu {
@@ -1651,7 +1684,7 @@ html {
     .content-page {
         padding: 16px;
         margin: 16px;
-        border-radius: 8px;
+        border-radius: 14px;
     }
 
     .content-page h1 {
