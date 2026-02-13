@@ -799,7 +799,7 @@ textarea:focus-visible {
 /* Documentation Layout Container - Card style matching React app */
 .doc-layout {
     max-width: 1200px;
-    margin: 24px auto 0;
+    margin: 24px auto;
     background-color: var(--bg-surface);
     border-radius: 16px;
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -1431,8 +1431,8 @@ textarea:focus-visible {
    FOOTER
    ============================================ */
 footer {
-    background-color: var(--color-gray-800);
-    color: white;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     text-align: center;
     padding: 32px;
     margin-top: 0;
@@ -1440,7 +1440,7 @@ footer {
 
 footer p {
     margin: 4px 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     font-size: 14px;
 }
 
