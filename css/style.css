@@ -1497,6 +1497,10 @@ a.nav-brand:focus-visible {
 .content-page ol {
     margin-left: 2rem;
     margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
 }
 
 .content-page li {
