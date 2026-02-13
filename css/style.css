@@ -798,78 +798,16 @@ textarea:focus-visible {
 
 /* Documentation Layout Container - Card style matching React app */
 .doc-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 24px auto 0;
     background-color: var(--bg-surface);
     border-radius: 16px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: var(--shadow-soft);
     overflow: hidden;
-    min-height: calc(100vh - 160px);
 }
 
-/* Table of Contents - Left Sidebar */
-.doc-toc {
-    position: sticky;
-    top: 0;
-    align-self: start;
-    height: fit-content;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    background-color: rgba(249, 250, 251, 0.5);
-    border-right: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 16px 12px;
-}
-
-.doc-toc h3 {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--color-gray-500);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0 0 12px 0;
-    padding: 8px 12px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.doc-toc ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.doc-toc li {
-    margin-bottom: 2px;
-}
-
-.doc-toc a {
-    display: block;
-    padding: 8px 12px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-radius: 8px;
-    border-left: 3px solid transparent;
-    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.doc-toc a:hover {
-    background-color: var(--color-gray-100);
-    color: var(--color-brand-green);
-}
-
-.doc-toc a.active {
-    background-color: var(--color-gray-100);
-    color: var(--color-brand-green);
-    border-left-color: var(--color-brand-green);
-    font-weight: 600;
-}
-
-/* Main Content - Right Column */
+/* Main Content */
 .doc-content {
     min-width: 0;
     padding: 48px;
@@ -1658,16 +1596,7 @@ html {
 
     /* Documentation responsive */
     .doc-layout {
-        grid-template-columns: 1fr;
         margin: 12px;
-        min-height: auto;
-    }
-
-    .doc-toc {
-        position: static;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        max-height: none;
     }
 
     .doc-content {
