@@ -4,7 +4,48 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ========================================
-    // 0. ANIMATED PENCIL MARKS BACKGROUND
+    // 0a. RESPONSIVE NAV TOGGLE (hamburger)
+    // ========================================
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open', isOpen);
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close menu when a link is clicked (mobile UX)
+        navMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Reset menu state when resizing past breakpoint
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 900) {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // ========================================
+    // 0b. ANIMATED PENCIL MARKS BACKGROUND
     // ========================================
     function createPencilMarks() {
         const hero = document.querySelector('.hero');
