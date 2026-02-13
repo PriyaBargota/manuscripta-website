@@ -796,58 +796,43 @@ textarea:focus-visible {
    DOCUMENTATION PAGES
    ============================================ */
 
-/* Page Header with Gradient */
-.page-header {
-    background: linear-gradient(135deg, var(--color-brand-green-dark) 0%, var(--color-brand-green) 50%, var(--color-brand-green-light) 100%);
-    color: white;
-    padding: 48px;
-    max-width: 1280px;
-    margin: 8px auto 0;
-    border-radius: 16px;
-}
-
-.page-header h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 36px;
-    font-weight: 800;
-    font-variation-settings: 'opsz' 24, 'SOFT' 0, 'WONK' 0;
-    color: white;
-    margin: 0 0 12px 0;
-}
-
-.page-header p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-    line-height: 1.6;
-}
-
-/* Documentation Layout Container */
+/* Documentation Layout Container - Card style matching React app */
 .doc-layout {
     display: grid;
-    grid-template-columns: 256px 1fr;
-    gap: 48px;
+    grid-template-columns: 280px 1fr;
     max-width: 1280px;
-    margin: 0 auto;
-    padding: 48px;
-    background-color: var(--bg-primary);
+    margin: 24px auto 0;
+    background-color: var(--bg-surface);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    min-height: calc(100vh - 160px);
 }
 
-/* Table of Contents - Left Column */
+/* Table of Contents - Left Sidebar */
 .doc-toc {
     position: sticky;
-    top: 80px;
+    top: 0;
     align-self: start;
     height: fit-content;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background-color: rgba(249, 250, 251, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 16px 12px;
 }
 
 .doc-toc h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 16px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px 0;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .doc-toc ul {
@@ -857,17 +842,17 @@ textarea:focus-visible {
 }
 
 .doc-toc li {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .doc-toc a {
     display: block;
-    padding: 10px 16px;
+    padding: 8px 12px;
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 8px;
     border-left: 3px solid transparent;
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -887,6 +872,32 @@ textarea:focus-visible {
 /* Main Content - Right Column */
 .doc-content {
     min-width: 0;
+    padding: 48px;
+}
+
+/* Inline Page Header within doc-content */
+.doc-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.doc-header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 800;
+    font-variation-settings: 'opsz' 24, 'SOFT' 0, 'WONK' 0;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.doc-header p {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    color: var(--color-gray-500);
+    margin: 0;
+    line-height: 1.6;
 }
 
 .doc-content h2 {
@@ -898,7 +909,7 @@ textarea:focus-visible {
     scroll-margin-top: 100px;
 }
 
-.doc-content h2:first-child {
+.doc-content h2:first-of-type {
     margin-top: 0;
 }
 
@@ -1646,31 +1657,29 @@ html {
     }
 
     /* Documentation responsive */
-    .page-header {
-        padding: 32px 16px;
-        margin: 4px 12px 0;
-        border-radius: 14px;
-    }
-
-    .page-header h1 {
-        font-size: 24px;
-    }
-
-    .page-header p {
-        font-size: 14px;
-    }
-
     .doc-layout {
         grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 24px 16px;
+        margin: 12px;
+        min-height: auto;
     }
 
     .doc-toc {
         position: static;
+        border-right: none;
         border-bottom: 1px solid var(--border-color);
-        padding-bottom: 16px;
-        margin-bottom: 16px;
+        max-height: none;
+    }
+
+    .doc-content {
+        padding: 24px 16px;
+    }
+
+    .doc-header h1 {
+        font-size: 24px;
+    }
+
+    .doc-header p {
+        font-size: 14px;
     }
 
     .doc-content h2 {
