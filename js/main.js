@@ -275,9 +275,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentScroll = window.pageYOffset;
 
         if (currentScroll > 100) {
-            navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)';
         } else {
-            navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
+            navbar.style.boxShadow = 'none';
         }
 
         lastScroll = currentScroll;
@@ -437,7 +437,7 @@ rippleStyles.textContent = `
     .ripple {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255, 117, 24, 0.3);
+        background: rgba(45, 90, 61, 0.3);
         transform: scale(0);
         animation: ripple-animation 0.6s ease-out;
         pointer-events: none;
