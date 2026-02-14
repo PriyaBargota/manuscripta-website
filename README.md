@@ -15,4 +15,4 @@
 
 ---
 
-This site serves as the final project report for [Manuscripta](https://github.com/raphaellith/Manuscripta), an AI-powered classroom orchestration platform built for e-ink devices. It covers the full development lifecycle — from initial research and requirements through to architecture, implementation, testing, and evaluation.
+This site serves as the final project report for [Manuscripta](https://github.com/raphaellith/Manuscripta), an AI-powered classroom orchestration platform built for e-ink devices. It covers the full development lifecycle, from initial research and requirements through to architecture, implementation, testing and evaluation.
