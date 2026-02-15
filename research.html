@@ -7,148 +7,91 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main" class="sr-only focus-visible">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
+            <a href="index.html" class="nav-brand">
                 <span class="quill-icon">
                     <img src="images/quill.JPG" alt="Quill">
                 </span>
                 <h1>Manuscripta</h1>
-            </div>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <ul class="nav-menu">
-                <li class="nav-item dropdown">
-                    <a href="index.html">Home</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html#about">About the Project</a></li>
-                        <li><a href="index.html#demo-video">Video Demonstration</a></li>
-                        <li><a href="index.html#features">Key Features</a></li>
-                        <li><a href="index.html#timeline">Project Timeline</a></li>
-                        <li><a href="index.html#team">Development Team</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="requirements.html">Requirements</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="requirements.html#context">Context & Motivation</a></li>
-                        <li><a href="requirements.html#aims">Project Aims</a></li>
-                        <li><a href="requirements.html#research">User Research</a></li>
-                        <li><a href="requirements.html#personas">Personas</a></li>
-                        <li><a href="requirements.html#interactions">User Interactions</a></li>
-                        <li><a href="requirements.html#moscow">MoSCoW Requirement List</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="research.html" class="active">Research</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="research.html#related-projects">Related Projects Review</a></li>
-                        <li><a href="research.html#technology">Technology Review</a></li>
-                        <li><a href="research.html#ai-integration">AI Integration</a></li>
-                        <li><a href="research.html#decisions">Summary of Technical Decisions</a></li>
-                        <li><a href="research.html#references">References</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="design.html">UI Design</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="design.html#principles">Design Principles</a></li>
-                        <li><a href="design.html#sketches">Sketches</a></li>
-                        <li><a href="design.html#prototypes">Prototypes</a></li>
-                        <li><a href="design.html#final-ui">Final UI</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="architecture.html">System Architecture</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="architecture.html#overall">Overall System Design</a></li>
-                        <li><a href="architecture.html#frontend">Front-End Architecture</a></li>
-                        <li><a href="architecture.html#backend">Back-End Architecture</a></li>
-                        <li><a href="architecture.html#database">Database Design</a></li>
-                        <li><a href="architecture.html#api">API Design</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="implementation.html">Implementation</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="implementation.html#summary">Project Summary and Features</a></li>
-                        <li><a href="implementation.html#frontend">Frontend & User Interaction</a></li>
-                        <li><a href="implementation.html#backend">Backend: Database & AI Integration</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="testing.html">Testing</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="testing.html#strategy">Testing Strategy</a></li>
-                        <li><a href="testing.html#unit">Unit Testing</a></li>
-                        <li><a href="testing.html#integration">Integration Testing</a></li>
-                        <li><a href="testing.html#uat">User Acceptance Testing</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
+                    <a href="evaluation.html">Evaluation</a>
+                </li>
+                <li class="nav-item">
                     <a href="appendices.html">Appendices</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="appendices.html#deployment">Setup & Getting Started</a></li>
-                        <li><a href="appendices.html#blog">Developer Updates</a></li>
-                        <li><a href="appendices.html#videos">Monthly Videos</a></li>
-                        <li><a href="appendices.html#github">GitHub Repository</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="page-header">
-        <h1>Background Research</h1>
-        <p>Literature, technology, and market analysis shaping Manuscripta's technical direction.</p>
-    </div>
-
-    <main>
+    <main id="main">
         <div class="doc-layout">
-            <aside class="doc-toc">
-                <h3>On This Page</h3>
-                <ul>
-                    <li><a href="#literature">Literature Review</a></li>
-                    <li><a href="#technology">Technology Analysis</a></li>
-                    <li><a href="#competitive">Competitive Analysis</a></li>
-                    <li><a href="#market">Market Research</a></li>
-                    <li><a href="#findings">Key Findings</a></li>
-                </ul>
-            </aside>
-
             <div class="doc-content">
+                <div class="doc-header">
+                    <h1>Background Research</h1>
+                    <p>Literature review, technology analysis, and competitive research informing Manuscripta's design decisions.</p>
+                </div>
+
                 <h2 id="literature">Literature Review</h2>
-            <p>
-                [Discuss existing research on educational technology, E-ink devices, and AI in education]
-            </p>
+                <p>
+                    [Discuss existing research on educational technology, E-ink devices, and AI in education]
+                </p>
 
-            <h2 id="technology">Technology Analysis</h2>
-            <h3>E-ink Technology</h3>
-            <p>[Research on E-ink displays and their applications in education]</p>
+                <h2 id="technology">Technology Analysis</h2>
+                <h3>E-ink Technology</h3>
+                <p>[Research on E-ink displays and their applications in education]</p>
 
-            <h3>AI Models for Education</h3>
-            <p>[Research on AI-powered educational content generation]</p>
+                <h3>AI Models for Education</h3>
+                <p>[Research on AI-powered educational content generation]</p>
 
-            <h3>Mobile Development Frameworks</h3>
-            <p>[Analysis of Android development approaches - MVVM, Room, etc.]</p>
+                <h3>Mobile Development Frameworks</h3>
+                <p>[Analysis of Android development approaches - MVVM, Room, etc.]</p>
 
-            <h2 id="competitive">Competitive Analysis</h2>
-            <p>[Analysis of similar products or platforms]</p>
-            <ul>
-                <li>Product 1: [Description and comparison]</li>
-                <li>Product 2: [Description and comparison]</li>
-            </ul>
+                <h2 id="competitive">Competitive Analysis</h2>
+                <p>[Analysis of similar products or platforms]</p>
+                <ul>
+                    <li>Product 1: [Description and comparison]</li>
+                    <li>Product 2: [Description and comparison]</li>
+                </ul>
 
-            <h2 id="market">Market Research</h2>
-            <p>[Research on potential users, market size, and adoption challenges]</p>
+                <h2 id="market">Market Research</h2>
+                <p>[Research on potential users, market size, and adoption challenges]</p>
 
-            <h2 id="findings">Key Findings</h2>
-            <p>[Summarize the most important findings from your research]</p>
+                <h2 id="findings">Key Findings</h2>
+                <p>[Summarize the most important findings from your research]</p>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Manuscripta Team - UCL Computer Science</p>
+            <p>&copy; 2025-2026 Manuscripta Team - UCL Computer Science</p>
             <p>Systems Engineering Project</p>
         </div>
     </footer>

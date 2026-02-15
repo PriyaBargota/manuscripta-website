@@ -4,7 +4,48 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ========================================
-    // 0. ANIMATED PENCIL MARKS BACKGROUND
+    // 0a. RESPONSIVE NAV TOGGLE (hamburger)
+    // ========================================
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open', isOpen);
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close menu when a link is clicked (mobile UX)
+        navMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Reset menu state when resizing past breakpoint
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 900) {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // ========================================
+    // 0b. ANIMATED PENCIL MARKS BACKGROUND
     // ========================================
     function createPencilMarks() {
         const hero = document.querySelector('.hero');
@@ -269,15 +310,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 6. NAVBAR SCROLL EFFECT
     // ========================================
     let lastScroll = 0;
-    const navbar = document.querySelector('.navbar');
+    const navContainer = document.querySelector('.nav-container');
 
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > 100) {
-            navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
+        if (navContainer) {
+            if (currentScroll > 100) {
+                navContainer.style.boxShadow = '0 4px 24px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0, 0, 0, 0.04)';
+            } else {
+                navContainer.style.boxShadow = '';
+            }
         }
 
         lastScroll = currentScroll;
@@ -332,33 +375,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add a class to body when page is fully loaded
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
-    });
-
-
-    // ========================================
-    // 9. DROPDOWN ACCESSIBILITY
-    // ========================================
-    // Ensure dropdowns work on touch devices
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        const menu = dropdown.querySelector('.dropdown-menu');
-
-        if (!link || !menu) return;
-
-        // On touch devices, first tap opens dropdown, second tap follows link
-        let touched = false;
-        link.addEventListener('touchstart', function(e) {
-            if (!touched) {
-                e.preventDefault();
-                touched = true;
-                dropdown.classList.add('open');
-
-                setTimeout(() => {
-                    touched = false;
-                    dropdown.classList.remove('open');
-                }, 3000);
-            }
-        });
     });
 
 
@@ -421,6 +437,134 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateActiveTocLink();
 
+
+    // ========================================
+    // 12. DOCUMENT SECTIONS & TABLE OF CONTENTS
+    // ========================================
+    function initDocSections() {
+        const docContent = document.querySelector('.doc-content');
+        if (!docContent) return;
+
+        // Get all direct-child h2 elements
+        const allH2s = Array.from(docContent.querySelectorAll(':scope > h2'));
+        if (allH2s.length === 0) return;
+
+        // Collect section data before modifying DOM
+        const sectionsData = allH2s.map(function(h2) {
+            return { id: h2.id, text: h2.textContent.trim() };
+        });
+
+        // Wrap each h2 + following content in a doc-section
+        allH2s.forEach(function(h2, index) {
+            var section = document.createElement('div');
+            section.className = 'doc-section';
+            if (index % 2 === 1) {
+                section.classList.add('doc-section--alt');
+            }
+
+            h2.parentNode.insertBefore(section, h2);
+            section.appendChild(h2);
+
+            // Move all following siblings until next h2 or existing doc-section
+            while (
+                section.nextElementSibling &&
+                section.nextElementSibling.tagName !== 'H2' &&
+                !section.nextElementSibling.classList.contains('doc-section')
+            ) {
+                section.appendChild(section.nextElementSibling);
+            }
+        });
+
+        docContent.classList.add('has-sections');
+
+        // Build Table of Contents dropdown
+        var docHeader = docContent.querySelector('.doc-header');
+        if (!docHeader || sectionsData.length < 2) return;
+
+        var tocWrapper = document.createElement('div');
+        tocWrapper.className = 'toc-wrapper';
+
+        var tocButton = document.createElement('button');
+        tocButton.className = 'toc-toggle';
+        tocButton.setAttribute('aria-expanded', 'false');
+        tocButton.setAttribute('aria-label', 'Table of contents');
+        tocButton.innerHTML = [
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">',
+            '  <line x1="3" y1="6" x2="21" y2="6"></line>',
+            '  <line x1="3" y1="12" x2="15" y2="12"></line>',
+            '  <line x1="3" y1="18" x2="18" y2="18"></line>',
+            '</svg>',
+            '<span>Contents</span>',
+            '<svg class="toc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">',
+            '  <polyline points="6 9 12 15 18 9"></polyline>',
+            '</svg>'
+        ].join('');
+
+        var tocMenu = document.createElement('div');
+        tocMenu.className = 'toc-menu';
+
+        var tocList = document.createElement('ol');
+        sectionsData.forEach(function(data) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + data.id;
+            a.textContent = data.text;
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.getElementById(data.id);
+                if (target) {
+                    var y = target.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+                tocMenu.classList.remove('open');
+                tocButton.setAttribute('aria-expanded', 'false');
+            });
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+
+        tocMenu.appendChild(tocList);
+        tocWrapper.appendChild(tocButton);
+        tocWrapper.appendChild(tocMenu);
+        document.body.appendChild(tocWrapper);
+
+        // Toggle dropdown
+        tocButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var isOpen = tocMenu.classList.toggle('open');
+            tocButton.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            if (!tocWrapper.contains(e.target)) {
+                tocMenu.classList.remove('open');
+                tocButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Highlight active section in TOC on scroll
+        var tocLinks = tocList.querySelectorAll('a');
+        function updateTocActive() {
+            var scrollPos = window.scrollY + 160;
+            var activeId = null;
+            sectionsData.forEach(function(data) {
+                var el = document.getElementById(data.id);
+                if (el && el.getBoundingClientRect().top + window.pageYOffset <= scrollPos) {
+                    activeId = data.id;
+                }
+            });
+            tocLinks.forEach(function(link) {
+                link.classList.toggle('toc-active', link.getAttribute('href') === '#' + activeId);
+            });
+        }
+
+        window.addEventListener('scroll', updateTocActive, { passive: true });
+        updateTocActive();
+    }
+
+    initDocSections();
+
 });
 
 
@@ -437,7 +581,7 @@ rippleStyles.textContent = `
     .ripple {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255, 117, 24, 0.3);
+        background: rgba(45, 90, 61, 0.3);
         transform: scale(0);
         animation: ripple-animation 0.6s ease-out;
         pointer-events: none;
@@ -448,12 +592,6 @@ rippleStyles.textContent = `
             transform: scale(2);
             opacity: 0;
         }
-    }
-
-    .dropdown.open .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
     }
 `;
 document.head.appendChild(rippleStyles);

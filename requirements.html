@@ -7,115 +7,57 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main" class="sr-only focus-visible">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
+            <a href="index.html" class="nav-brand">
                 <span class="quill-icon">
                     <img src="images/quill.JPG" alt="Quill">
                 </span>
                 <h1>Manuscripta</h1>
-            </div>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <ul class="nav-menu">
-                <li class="nav-item dropdown">
-                    <a href="index.html">Home</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html#about">About the Project</a></li>
-                        <li><a href="index.html#demo-video">Video Demonstration</a></li>
-                        <li><a href="index.html#features">Key Features</a></li>
-                        <li><a href="index.html#timeline">Project Timeline</a></li>
-                        <li><a href="index.html#team">Development Team</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="requirements.html" class="active">Requirements</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="requirements.html#context">Context & Motivation</a></li>
-                        <li><a href="requirements.html#aims">Project Aims</a></li>
-                        <li><a href="requirements.html#research">User Research</a></li>
-                        <li><a href="requirements.html#personas">Personas</a></li>
-                        <li><a href="requirements.html#interactions">User Interactions</a></li>
-                        <li><a href="requirements.html#moscow">MoSCoW Requirement List</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="research.html">Research</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="research.html#related-projects">Related Projects Review</a></li>
-                        <li><a href="research.html#technology">Technology Review</a></li>
-                        <li><a href="research.html#ai-integration">AI Integration</a></li>
-                        <li><a href="research.html#decisions">Summary of Technical Decisions</a></li>
-                        <li><a href="research.html#references">References</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="design.html">UI Design</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="design.html#principles">Design Principles</a></li>
-                        <li><a href="design.html#sketches">Sketches</a></li>
-                        <li><a href="design.html#prototypes">Prototypes</a></li>
-                        <li><a href="design.html#final-ui">Final UI</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="architecture.html">System Architecture</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="architecture.html#overall">Overall System Design</a></li>
-                        <li><a href="architecture.html#frontend">Front-End Architecture</a></li>
-                        <li><a href="architecture.html#backend">Back-End Architecture</a></li>
-                        <li><a href="architecture.html#database">Database Design</a></li>
-                        <li><a href="architecture.html#api">API Design</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="implementation.html">Implementation</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="implementation.html#summary">Project Summary and Features</a></li>
-                        <li><a href="implementation.html#frontend">Frontend & User Interaction</a></li>
-                        <li><a href="implementation.html#backend">Backend: Database & AI Integration</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="testing.html">Testing</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="testing.html#strategy">Testing Strategy</a></li>
-                        <li><a href="testing.html#unit">Unit Testing</a></li>
-                        <li><a href="testing.html#integration">Integration Testing</a></li>
-                        <li><a href="testing.html#uat">User Acceptance Testing</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
+                    <a href="evaluation.html">Evaluation</a>
+                </li>
+                <li class="nav-item">
                     <a href="appendices.html">Appendices</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="appendices.html#deployment">Setup & Getting Started</a></li>
-                        <li><a href="appendices.html#blog">Developer Updates</a></li>
-                        <li><a href="appendices.html#videos">Monthly Videos</a></li>
-                        <li><a href="appendices.html#github">GitHub Repository</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="page-header">
-        <h1>Requirements Analysis</h1>
-        <p>Defining the foundation for our sensory-friendly educational platform through comprehensive requirement gathering and analysis.</p>
-    </div>
-
-    <main>
+    <main id="main">
         <div class="doc-layout">
-            <aside class="doc-toc">
-                <h3>On This Page</h3>
-                <ul>
-                    <li><a href="#context">Context & Motivation</a></li>
-                    <li><a href="#aims">Project Aims</a></li>
-                    <li><a href="#research">User Research</a></li>
-                    <li><a href="#personas">Personas</a></li>
-                    <li><a href="#interactions">User Interactions</a></li>
-                    <li><a href="#moscow">MoSCoW Requirement List</a></li>
-                </ul>
-            </aside>
-
             <div class="doc-content">
+                <div class="doc-header">
+                    <h1>Requirements Analysis</h1>
+                    <p>Defining the foundation for our sensory-friendly educational platform through comprehensive requirement gathering and analysis.</p>
+                </div>
+
                 <h2 id="context">Context & Motivation</h2>
             <p>
                 Traditional tablets create sensory overload for students with autism through bright screens and visual distractions. SEN schools need distraction-free learning technology.
@@ -156,20 +98,30 @@
 
             <h3>Key Stakeholder Insights</h3>
 
-            <p><strong>Q: We are currently assuming an age range of 11–18. Is this representative of your cohorts?</strong></p>
-            <p><strong>A:</strong> Yes.</p>
+            <div class="subcard subcard--blue">
+                <p><strong>Q: We are currently assuming an age range of 11–18. Is this representative of your cohorts?</strong></p>
+                <p><strong>A:</strong> Yes.</p>
+            </div>
 
-            <p><strong>Q: How would the students interact with their e-ink tablets? Would they be answering queries with a stylus, by tapping multiple-choice options, by typing, or a mixture of these?</strong></p>
-            <p><strong>A:</strong> Mixture. Currently, we mostly use iPads and some Windows tablets, which allow for a variety of access needs, including touch with accommodations, stylus, head tracking, mouse and eye-gaze.</p>
+            <div class="subcard subcard--green">
+                <p><strong>Q: How would the students interact with their e-ink tablets? Would they be answering queries with a stylus, by tapping multiple-choice options, by typing, or a mixture of these?</strong></p>
+                <p><strong>A:</strong> Mixture. Currently, we mostly use iPads and some Windows tablets, which allow for a variety of access needs, including touch with accommodations, stylus, head tracking, mouse and eye-gaze.</p>
+            </div>
 
-            <p><strong>Q: What types of teaching material are most used in the classroom?</strong></p>
-            <p><strong>A:</strong> Worksheets and quizzes would be useful, also comprehension tasks – but mostly focused on non-fictional texts.</p>
+            <div class="subcard subcard--orange">
+                <p><strong>Q: What types of teaching material are most used in the classroom?</strong></p>
+                <p><strong>A:</strong> Worksheets and quizzes would be useful, also comprehension tasks – but mostly focused on non-fictional texts.</p>
+            </div>
 
-            <p><strong>Q: Would the system be allowed to record student data across a time period for the purposes of monitoring student performance and personalising feedback?</strong></p>
-            <p><strong>A:</strong> No identifiable data should be stored with a third party.</p>
+            <div class="subcard subcard--yellow">
+                <p><strong>Q: Would the system be allowed to record student data across a time period for the purposes of monitoring student performance and personalising feedback?</strong></p>
+                <p><strong>A:</strong> No identifiable data should be stored with a third party.</p>
+            </div>
 
-            <p><strong>Q: Would it be useful to teachers for the system to generate class-wide student performance reports?</strong></p>
-            <p><strong>A:</strong> This may be useful, but not essential, since for smaller class sizes, student performance is easier to track.</p>
+            <div class="subcard subcard--blue">
+                <p><strong>Q: Would it be useful to teachers for the system to generate class-wide student performance reports?</strong></p>
+                <p><strong>A:</strong> This may be useful, but not essential, since for smaller class sizes, student performance is easier to track.</p>
+            </div>
 
             <h2 id="personas">Personas</h2>
             <p>
@@ -341,91 +293,105 @@
 
             <h3>Functional Requirements</h3>
 
-            <h4>Must Have</h4>
-            <ul>
-                <li>AI-powered worksheet generation with customizable difficulty, question types, and learning objectives</li>
-                <li>Content distribution system pushing materials to up to 30 E-ink tablets simultaneously over local Wi-Fi</li>
-                <li>Real-time monitoring dashboard displaying anonymized student progress, completion rates, and help requests</li>
-                <li>Session management for creating, starting, pausing, and ending classroom sessions</li>
-                <li>Handwriting recognition with real-time feedback for stylus input on E-ink displays</li>
-                <li>Multiple-choice question interface with tap-to-select functionality</li>
-                <li>Help request button sending discreet alerts to teacher dashboard</li>
-                <li>Auto-save functionality preventing work loss during network disconnections</li>
-                <li>Local network communication with no cloud dependencies</li>
-                <li>Data encryption and anonymized student identification for privacy compliance</li>
-            </ul>
+            <div class="subcard subcard--green">
+                <h4>Must Have</h4>
+                <ul>
+                    <li>AI-powered worksheet generation with customizable difficulty, question types, and learning objectives</li>
+                    <li>Content distribution system pushing materials to up to 30 E-ink tablets simultaneously over local Wi-Fi</li>
+                    <li>Real-time monitoring dashboard displaying anonymized student progress, completion rates, and help requests</li>
+                    <li>Session management for creating, starting, pausing, and ending classroom sessions</li>
+                    <li>Handwriting recognition with real-time feedback for stylus input on E-ink displays</li>
+                    <li>Multiple-choice question interface with tap-to-select functionality</li>
+                    <li>Help request button sending discreet alerts to teacher dashboard</li>
+                    <li>Auto-save functionality preventing work loss during network disconnections</li>
+                    <li>Local network communication with no cloud dependencies</li>
+                    <li>Data encryption and anonymized student identification for privacy compliance</li>
+                </ul>
+            </div>
 
-            <h4>Should Have</h4>
-            <ul>
-                <li>Reading level adjustment tools to simplify content for different cognitive abilities</li>
-                <li>Text-to-speech functionality for students with reading difficulties</li>
-                <li>Adjustable text size and contrast settings for E-ink optimization</li>
-                <li>Historical progress tracking showing performance trends over multiple sessions</li>
-                <li>Offline mode allowing work completion during network drops with automatic sync</li>
-                <li>Content library with template storage for reusable worksheet structures</li>
-                <li>Export functionality for session data and progress reports</li>
-            </ul>
+            <div class="subcard subcard--blue">
+                <h4>Should Have</h4>
+                <ul>
+                    <li>Reading level adjustment tools to simplify content for different cognitive abilities</li>
+                    <li>Text-to-speech functionality for students with reading difficulties</li>
+                    <li>Adjustable text size and contrast settings for E-ink optimization</li>
+                    <li>Historical progress tracking showing performance trends over multiple sessions</li>
+                    <li>Offline mode allowing work completion during network drops with automatic sync</li>
+                    <li>Content library with template storage for reusable worksheet structures</li>
+                    <li>Export functionality for session data and progress reports</li>
+                </ul>
+            </div>
 
-            <h4>Could Have</h4>
-            <ul>
-                <li>AI chatbot assistant helping teachers refine content generation prompts</li>
-                <li>Parent portal providing anonymized progress summaries (opt-in only)</li>
-                <li>Multi-language support for content generation</li>
-                <li>Integration with school learning management systems (LMS)</li>
-                <li>Advanced analytics dashboard showing class-wide trends</li>
-                <li>Drawing tools for diagram-based questions (geometry, science)</li>
-                <li>Mobile teacher dashboard app for tablet or smartphone monitoring</li>
-            </ul>
+            <div class="subcard subcard--orange">
+                <h4>Could Have</h4>
+                <ul>
+                    <li>AI chatbot assistant helping teachers refine content generation prompts</li>
+                    <li>Parent portal providing anonymized progress summaries (opt-in only)</li>
+                    <li>Multi-language support for content generation</li>
+                    <li>Integration with school learning management systems (LMS)</li>
+                    <li>Advanced analytics dashboard showing class-wide trends</li>
+                    <li>Drawing tools for diagram-based questions (geometry, science)</li>
+                    <li>Mobile teacher dashboard app for tablet or smartphone monitoring</li>
+                </ul>
+            </div>
 
-            <h4>Won't Have</h4>
-            <ul>
-                <li>Cloud-based student data storage or processing (privacy requirement)</li>
-                <li>Social features or student-to-student communication (distraction avoidance)</li>
-                <li>Gamification elements like leaderboards or competitive features (reduces anxiety)</li>
-                <li>Video or multimedia content playback (E-ink limitation and sensory overload concern)</li>
-                <li>Automated grading or AI assessment of student work (teacher oversight required)</li>
-                <li>Biometric authentication or facial recognition (privacy concerns)</li>
-                <li>Third-party data collection or analytics tracking</li>
-            </ul>
+            <div class="subcard subcard--yellow">
+                <h4>Won't Have</h4>
+                <ul>
+                    <li>Cloud-based student data storage or processing (privacy requirement)</li>
+                    <li>Social features or student-to-student communication (distraction avoidance)</li>
+                    <li>Gamification elements like leaderboards or competitive features (reduces anxiety)</li>
+                    <li>Video or multimedia content playback (E-ink limitation and sensory overload concern)</li>
+                    <li>Automated grading or AI assessment of student work (teacher oversight required)</li>
+                    <li>Biometric authentication or facial recognition (privacy concerns)</li>
+                    <li>Third-party data collection or analytics tracking</li>
+                </ul>
+            </div>
 
             <h3>Non-Functional Requirements</h3>
 
-            <h4>Must Have</h4>
-            <ul>
-                <li>Handwriting recognition must respond within 2 seconds for real-time feedback</li>
-                <li>Content distribution to 30 devices must complete within 10 seconds</li>
-                <li>Dashboard updates must display with less than 3-second latency</li>
-                <li>All data transmission must use WPA3 encryption</li>
-                <li>System must comply with GDPR and UK Data Protection Act</li>
-                <li>Interface must be accessible for students aged 11-18 with varying cognitive abilities</li>
-                <li>E-ink displays must maintain minimum 7:1 contrast ratio for visibility</li>
-                <li>System must handle network disconnections without data loss</li>
-            </ul>
+            <div class="subcard subcard--green">
+                <h4>Must Have</h4>
+                <ul>
+                    <li>Handwriting recognition must respond within 2 seconds for real-time feedback</li>
+                    <li>Content distribution to 30 devices must complete within 10 seconds</li>
+                    <li>Dashboard updates must display with less than 3-second latency</li>
+                    <li>All data transmission must use WPA3 encryption</li>
+                    <li>System must comply with GDPR and UK Data Protection Act</li>
+                    <li>Interface must be accessible for students aged 11-18 with varying cognitive abilities</li>
+                    <li>E-ink displays must maintain minimum 7:1 contrast ratio for visibility</li>
+                    <li>System must handle network disconnections without data loss</li>
+                </ul>
+            </div>
 
-            <h4>Should Have</h4>
-            <ul>
-                <li>AI content generation should complete within 15 seconds</li>
-                <li>Student device battery life should last minimum 6 hours active use</li>
-                <li>Modular codebase architecture for easy feature additions post-project</li>
-                <li>Compatibility with common E-ink tablets (reMarkable, Boox, Kindle Scribe)</li>
-                <li>Updates deployable without full system reinstallation</li>
-                <li>Minimal teacher training required (under 30 minutes onboarding)</li>
-            </ul>
+            <div class="subcard subcard--blue">
+                <h4>Should Have</h4>
+                <ul>
+                    <li>AI content generation should complete within 15 seconds</li>
+                    <li>Student device battery life should last minimum 6 hours active use</li>
+                    <li>Modular codebase architecture for easy feature additions post-project</li>
+                    <li>Compatibility with common E-ink tablets (reMarkable, Boox, Kindle Scribe)</li>
+                    <li>Updates deployable without full system reinstallation</li>
+                    <li>Minimal teacher training required (under 30 minutes onboarding)</li>
+                </ul>
+            </div>
 
-            <h4>Could Have</h4>
-            <ul>
-                <li>Handwriting recognition achieving 95%+ accuracy for clear handwriting</li>
-                <li>Offline AI model running locally on teacher device</li>
-                <li>Multi-language interface support beyond English</li>
-                <li>Usage analytics for schools to assess platform effectiveness</li>
-            </ul>
+            <div class="subcard subcard--orange">
+                <h4>Could Have</h4>
+                <ul>
+                    <li>Handwriting recognition achieving 95%+ accuracy for clear handwriting</li>
+                    <li>Offline AI model running locally on teacher device</li>
+                    <li>Multi-language interface support beyond English</li>
+                    <li>Usage analytics for schools to assess platform effectiveness</li>
+                </ul>
+            </div>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Manuscripta Team - UCL Computer Science</p>
+            <p>&copy; 2025-2026 Manuscripta Team - UCL Computer Science</p>
             <p>Systems Engineering Project</p>
         </div>
     </footer>

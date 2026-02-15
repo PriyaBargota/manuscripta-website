@@ -7,141 +7,97 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main" class="sr-only focus-visible">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
+            <a href="index.html" class="nav-brand">
                 <span class="quill-icon">
                     <img src="images/quill.JPG" alt="Quill">
                 </span>
                 <h1>Manuscripta</h1>
-            </div>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <ul class="nav-menu">
-                <li class="nav-item dropdown">
-                    <a href="index.html">Home</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html#about">About the Project</a></li>
-                        <li><a href="index.html#demo-video">Video Demonstration</a></li>
-                        <li><a href="index.html#features">Key Features</a></li>
-                        <li><a href="index.html#timeline">Project Timeline</a></li>
-                        <li><a href="index.html#team">Development Team</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="requirements.html">Requirements</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="requirements.html#context">Context & Motivation</a></li>
-                        <li><a href="requirements.html#aims">Project Aims</a></li>
-                        <li><a href="requirements.html#research">User Research</a></li>
-                        <li><a href="requirements.html#personas">Personas</a></li>
-                        <li><a href="requirements.html#interactions">User Interactions</a></li>
-                        <li><a href="requirements.html#moscow">MoSCoW Requirement List</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="research.html">Research</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="research.html#related-projects">Related Projects Review</a></li>
-                        <li><a href="research.html#technology">Technology Review</a></li>
-                        <li><a href="research.html#ai-integration">AI Integration</a></li>
-                        <li><a href="research.html#decisions">Summary of Technical Decisions</a></li>
-                        <li><a href="research.html#references">References</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="design.html">UI Design</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="design.html#principles">Design Principles</a></li>
-                        <li><a href="design.html#sketches">Sketches</a></li>
-                        <li><a href="design.html#prototypes">Prototypes</a></li>
-                        <li><a href="design.html#final-ui">Final UI</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="architecture.html">System Architecture</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="architecture.html#overall">Overall System Design</a></li>
-                        <li><a href="architecture.html#frontend">Front-End Architecture</a></li>
-                        <li><a href="architecture.html#backend">Back-End Architecture</a></li>
-                        <li><a href="architecture.html#database">Database Design</a></li>
-                        <li><a href="architecture.html#api">API Design</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="implementation.html">Implementation</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="implementation.html#summary">Project Summary and Features</a></li>
-                        <li><a href="implementation.html#frontend">Frontend & User Interaction</a></li>
-                        <li><a href="implementation.html#backend">Backend: Database & AI Integration</a></li>
-                    </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="testing.html">Testing</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="testing.html#strategy">Testing Strategy</a></li>
-                        <li><a href="testing.html#unit">Unit Testing</a></li>
-                        <li><a href="testing.html#integration">Integration Testing</a></li>
-                        <li><a href="testing.html#uat">User Acceptance Testing</a></li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="evaluation.html" class="active">Evaluation</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a href="appendices.html">Appendices</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="appendices.html#deployment">Setup & Getting Started</a></li>
-                        <li><a href="appendices.html#blog">Developer Updates</a></li>
-                        <li><a href="appendices.html#videos">Monthly Videos</a></li>
-                        <li><a href="appendices.html#github">GitHub Repository</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <main>
-        <div class="content-page">
-            <h1>Project Evaluation</h1>
-            
-            <h2>Achievement of Objectives</h2>
-            <p>
-                [Evaluate how well the project met its initial objectives and requirements]
-            </p>
+    <main id="main">
+        <div class="doc-layout">
+            <div class="doc-content">
+                <div class="doc-header">
+                    <h1>Project Evaluation</h1>
+                    <p>Assessment of project outcomes, success metrics, and reflections on the Manuscripta development process.</p>
+                </div>
 
-            <h2>Success Metrics</h2>
-            <p>[Discuss quantitative and qualitative success metrics]</p>
-            <ul>
-                <li>User satisfaction scores</li>
-                <li>Performance benchmarks</li>
-                <li>Feature completion rate</li>
-            </ul>
+                <h2 id="objectives">Achievement of Objectives</h2>
+                <p>
+                    [Evaluate how well the project met its initial objectives and requirements]
+                </p>
 
-            <h2>Strengths</h2>
-            <p>[What worked well in the project]</p>
+                <h2 id="metrics">Success Metrics</h2>
+                <p>[Discuss quantitative and qualitative success metrics]</p>
+                <ul>
+                    <li>User satisfaction scores</li>
+                    <li>Performance benchmarks</li>
+                    <li>Feature completion rate</li>
+                </ul>
 
-            <h2>Limitations</h2>
-            <p>[Current limitations and areas for improvement]</p>
+                <h2 id="strengths">Strengths</h2>
+                <p>[What worked well in the project]</p>
 
-            <h2>Lessons Learned</h2>
-            <p>[Key takeaways from the development process]</p>
+                <h2 id="limitations">Limitations</h2>
+                <p>[Current limitations and areas for improvement]</p>
 
-            <h2>Future Work</h2>
-            <p>[Potential enhancements and next steps]</p>
-            <ul>
-                <li>Feature expansion</li>
-                <li>Performance optimization</li>
-                <li>Scalability improvements</li>
-                <li>Additional device support</li>
-            </ul>
+                <h2 id="lessons">Lessons Learned</h2>
+                <p>[Key takeaways from the development process]</p>
 
-            <h2>Conclusion</h2>
-            <p>[Final thoughts on the project and its outcomes]</p>
+                <h2 id="future">Future Work</h2>
+                <p>[Potential enhancements and next steps]</p>
+                <ul>
+                    <li>Feature expansion</li>
+                    <li>Performance optimization</li>
+                    <li>Scalability improvements</li>
+                    <li>Additional device support</li>
+                </ul>
+
+                <h2 id="conclusion">Conclusion</h2>
+                <p>[Final thoughts on the project and its outcomes]</p>
+            </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Manuscripta Team - UCL Computer Science</p>
+            <p>&copy; 2025-2026 Manuscripta Team - UCL Computer Science</p>
             <p>Systems Engineering Project</p>
         </div>
     </footer>
