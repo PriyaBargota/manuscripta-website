@@ -270,72 +270,6 @@ a.nav-brand:focus-visible {
     background-color: var(--color-brand-green);
 }
 
-/* ---- Dropdown menus ---- */
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-4px);
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    list-style: none;
-    padding: 6px;
-    margin: 0;
-    min-width: 210px;
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-    z-index: 50;
-}
-
-/* Bridge the gap between nav link and dropdown */
-.dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 0;
-    right: 0;
-    height: 8px;
-}
-
-.nav-item.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-}
-
-.dropdown-menu li {
-    margin: 0;
-    list-style: none;
-    padding: 0;
-}
-
-.dropdown-menu a {
-    padding: 7px 12px;
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: color 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
-    opacity: 0.75;
-    display: flex;
-    align-items: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    text-decoration: none;
-    min-height: 34px;
-    white-space: nowrap;
-}
-
-.dropdown-menu a:hover {
-    background-color: var(--color-gray-100);
-    color: var(--text-primary);
-    opacity: 1;
-}
 
 /* ---- Hamburger toggle button ---- */
 .nav-toggle {
@@ -425,9 +359,6 @@ a.nav-brand:focus-visible {
         border-radius: 2px;
     }
 
-    .dropdown-menu {
-        display: none;
-    }
 }
 
 /* ============================================
