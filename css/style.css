@@ -1674,6 +1674,175 @@ a.nav-brand:focus-visible {
     gap: 10px;
 }
 
+/* User Interactions Diagram */
+.user-flow-diagram {
+    margin: 24px 0;
+    background: var(--color-gray-50);
+    border-radius: 16px;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.user-flow-grid {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+}
+
+.user-flow-col {
+    flex: 1;
+    max-width: 480px;
+}
+
+.user-flow-title {
+    text-align: center;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 24px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    letter-spacing: 0.02em;
+}
+
+.user-flow-title--teacher { background: var(--color-brand-orange); }
+.user-flow-title--student { background: var(--color-brand-green); }
+
+.user-flow-actor {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.user-flow-actor--teacher { background: var(--color-brand-orange-light); }
+.user-flow-actor--student { background: rgba(21, 80, 46, 0.1); }
+
+.user-flow-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow-soft);
+}
+
+.user-flow-box--highlight {
+    border-color: var(--color-brand-orange);
+    background: var(--color-brand-orange-light);
+}
+
+.user-flow-arrow {
+    text-align: center;
+    color: var(--color-brand-orange);
+    font-size: 18px;
+    margin: 8px 0;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.user-flow-split {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.user-flow-split-box {
+    flex: 1;
+    background: var(--bg-surface);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--color-gray-600);
+    text-align: center;
+}
+
+.user-flow-split-box--a { border-color: var(--color-brand-orange); }
+.user-flow-split-box--b { border-color: var(--color-brand-green); }
+.user-flow-split-box--warn { border-color: var(--color-warning); background: #FFFBEB; }
+
+.user-flow-network {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+}
+
+.user-flow-network-label {
+    text-align: center;
+    color: var(--color-brand-orange);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.user-flow-network-bar {
+    height: 3px;
+    background: var(--color-brand-orange);
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.user-flow-network-cols {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.user-flow-network-side { flex: 1; text-align: center; }
+
+.user-flow-network-side-title {
+    color: var(--color-brand-orange);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.user-flow-network-side p {
+    color: var(--color-gray-500);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.user-flow-network-center {
+    background: var(--color-brand-green);
+    color: white;
+    padding: 20px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: var(--shadow-elevated);
+    white-space: nowrap;
+}
+
+.user-flow-network-center span {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .user-flow-grid {
+        flex-direction: column;
+    }
+    .user-flow-col { max-width: 100%; }
+    .user-flow-network-cols { flex-direction: column; }
+}
+
 /* Interview tabs */
 .interview-tabs {
     margin: 24px 0;
