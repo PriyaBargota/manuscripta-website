@@ -1845,6 +1845,58 @@ a.nav-brand:focus-visible {
     .user-flow-network-cols { flex-direction: column; }
 }
 
+/* Week accordion (Developer Updates) */
+.week-accordion {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.week-accordion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    background: var(--bg-surface);
+    transition: background 0.15s ease;
+}
+
+.week-accordion__header::-webkit-details-marker { display: none; }
+
+.week-accordion__header:hover {
+    background: var(--color-gray-50);
+}
+
+.week-accordion__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.week-accordion__chevron {
+    color: var(--color-gray-400);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.week-accordion[open] .week-accordion__chevron {
+    transform: rotate(180deg);
+}
+
+.week-accordion__content {
+    padding: 4px 20px 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.week-accordion__content h4 {
+    margin-top: 20px;
+}
+
 /* Interview tabs */
 .interview-tabs {
     margin: 24px 0;
