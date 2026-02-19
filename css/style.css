@@ -1872,10 +1872,12 @@ a.nav-brand:focus-visible {
 }
 
 .week-accordion__title {
-    font-size: 15px;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
     font-weight: 600;
     color: var(--text-primary);
-    font-family: 'IBM Plex Sans', sans-serif;
+    padding-left: 12px;
+    border-left: 3px solid var(--color-brand-blue);
 }
 
 .week-accordion__chevron {
