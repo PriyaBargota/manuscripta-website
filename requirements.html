@@ -151,18 +151,15 @@
 
             <h2 id="research">User Research</h2>
             <p>
-                To gather requirements for Manuscripta, we consulted two teachers and therapists from SEN schools (Marie-Louise Holmberg and Dan Cooper) via semi-structured email questionnaires. Direct interviews could not be arranged due to half-term breaks. We also engaged with Prof. Dean Mohamedally (UCL) for project supervision and guidance on sensory-friendly educational technology design.
-            </p>
-            <p>
-                These consultations informed our understanding of neurodiverse students' needs, classroom technology challenges, and E-ink deployment requirements.
+                We conducted stakeholder consultations through semi-structured interviews to validate requirements and understand user needs.
             </p>
 
             <h3>Key Stakeholder Insights</h3>
 
             <div class="interview-tabs">
                 <div class="interview-tab-buttons">
-                    <button class="interview-tab-btn active" data-tab="interview-1">Interview 1</button>
-                    <button class="interview-tab-btn" data-tab="interview-2">Interview 2</button>
+                    <button class="interview-tab-btn active" data-tab="interview-1">Initial Client Interview</button>
+                    <button class="interview-tab-btn" data-tab="interview-2">Technical Requirements Meeting</button>
                 </div>
 
                 <div class="interview-tab-panel active" id="interview-1">
@@ -193,7 +190,37 @@
                 </div>
 
                 <div class="interview-tab-panel" id="interview-2">
-                    <p class="interview-placeholder">Interview 2 content to be added.</p>
+                    <p>Following initial client feedback, we conducted a technical requirements meeting with Professor Dean Mohamedally (Supervisor) and Atia Rafiq (GP Trainer and Client) to validate our approach and explore technical feasibility.</p>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>Device Compatibility Beyond Android</strong></p>
+                        <p>Our system must support non-Android e-ink devices like reMarkable tablets that lack native REST APIs. We will implement email-based bidirectional communication where teachers send PDF worksheets to devices, students annotate responses, and return via the device's "Send to email" feature. Student identification will be maintained through unique identifiers in email titles or document signatures while preserving anonymity.</p>
+                    </div>
+
+                    <div class="subcard subcard--green">
+                        <p><strong>On-Device AI Requirements</strong></p>
+                        <p>The teacher application must use on-device AI processing via OpenVINO and Qualcomm Snapdragon technologies to maintain privacy compliance. No cloud-based AI processing is permitted for student data. All handwriting recognition, content generation, and assessment must occur locally on the teacher's Windows laptop.</p>
+                    </div>
+
+                    <div class="subcard subcard--orange">
+                        <p><strong>Handwriting Recognition Capabilities</strong></p>
+                        <p>The system must accurately parse multiple input types from returned PDFs: tick boxes for multiple-choice questions, handwritten text answers, and annotated diagrams. AI processing should handle varying handwriting quality across age groups (11–18) and provide automated feedback to teachers on student responses.</p>
+                    </div>
+
+                    <div class="subcard subcard--yellow">
+                        <p><strong>Content Accessibility Features</strong></p>
+                        <p>AI capabilities should include text summarisation for struggling readers, content translation for multilingual students, and reading level adjustment. These features support diverse cognitive abilities and language backgrounds in SEN classrooms.</p>
+                    </div>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>Real-Time Classroom Features</strong></p>
+                        <p>The reMarkable tablet demonstration revealed screen mirroring capabilities useful for teacher-led instruction. The system should support real-time display of teacher content for whole-class demonstrations while maintaining distraction-free student experiences.</p>
+                    </div>
+
+                    <div class="subcard subcard--green">
+                        <p><strong>Long-Term Data Ownership</strong></p>
+                        <p>Professor Mohamedally emphasised creating a "microdrive" model where student notes persist throughout their education as personal property. The AI should adapt to evolving handwriting patterns from early childhood, building personalised assessment history without cloud dependencies. Students own and control their educational materials.</p>
+                    </div>
                 </div>
             </div>
 
