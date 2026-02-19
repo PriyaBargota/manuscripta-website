@@ -1845,6 +1845,94 @@ a.nav-brand:focus-visible {
     .user-flow-network-cols { flex-direction: column; }
 }
 
+/* Developer Blog post cards */
+.blog-post {
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--color-brand-orange);
+}
+
+.blog-post__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    background: var(--bg-surface);
+    transition: background 0.15s ease;
+}
+
+.blog-post__header::-webkit-details-marker { display: none; }
+
+.blog-post__header:hover {
+    background: var(--color-brand-orange-light);
+}
+
+.blog-post__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.blog-post__week {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.blog-post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.blog-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--color-brand-orange-light);
+    color: var(--color-brand-orange);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.blog-post__chevron {
+    color: var(--color-gray-400);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.blog-post[open] .blog-post__chevron {
+    transform: rotate(180deg);
+}
+
+.blog-post[open] .blog-post__header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.blog-post__content {
+    padding: 24px 24px 28px;
+    background: var(--color-gray-50);
+    line-height: 1.75;
+}
+
+.blog-post__content h4 {
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+.blog-post__content > *:first-child {
+    margin-top: 0;
+}
+
 /* Interview tabs */
 .interview-tabs {
     margin: 24px 0;
