@@ -88,39 +88,79 @@
                 <li><strong>Demonstrate Real-World Impact:</strong> Validate the system through user testing with over 100 students at specialist SEN schools and present findings at the BETT education technology conference.</li>
             </ul>
 
-            <h2 id="research">User Research</h2>
+            <h2 id="research">User Interviews</h2>
             <p>
-                To gather requirements for Manuscripta, we consulted two teachers and therapists from SEN schools (Marie-Louise Holmberg and Dan Cooper) via semi-structured email questionnaires. Direct interviews could not be arranged due to half-term breaks. We also engaged with Prof. Dean Mohamedally (UCL) for project supervision and guidance on sensory-friendly educational technology design.
-            </p>
-            <p>
-                These consultations informed our understanding of neurodiverse students' needs, classroom technology challenges, and E-ink deployment requirements.
+                We conducted stakeholder consultations through semi-structured interviews to validate requirements and understand user needs.
             </p>
 
             <h3>Key Stakeholder Insights</h3>
 
-            <div class="subcard subcard--blue">
-                <p><strong>Q: We are currently assuming an age range of 11–18. Is this representative of your cohorts?</strong></p>
-                <p><strong>A:</strong> Yes.</p>
-            </div>
+            <div class="interview-tabs">
+                <div class="interview-tab-buttons">
+                    <button class="interview-tab-btn active" data-tab="interview-1">Initial Client Interview</button>
+                    <button class="interview-tab-btn" data-tab="interview-2">Technical Requirements Meeting</button>
+                </div>
 
-            <div class="subcard subcard--green">
-                <p><strong>Q: How would the students interact with their e-ink tablets? Would they be answering queries with a stylus, by tapping multiple-choice options, by typing, or a mixture of these?</strong></p>
-                <p><strong>A:</strong> Mixture. Currently, we mostly use iPads and some Windows tablets, which allow for a variety of access needs, including touch with accommodations, stylus, head tracking, mouse and eye-gaze.</p>
-            </div>
+                <div class="interview-tab-panel active" id="interview-1">
+                    <div class="subcard subcard--blue">
+                        <p><strong>Q: We are currently assuming an age range of 11–18. Is this representative of your cohorts?</strong></p>
+                        <p><strong>A:</strong> Yes.</p>
+                    </div>
 
-            <div class="subcard subcard--orange">
-                <p><strong>Q: What types of teaching material are most used in the classroom?</strong></p>
-                <p><strong>A:</strong> Worksheets and quizzes would be useful, also comprehension tasks – but mostly focused on non-fictional texts.</p>
-            </div>
+                    <div class="subcard subcard--green">
+                        <p><strong>Q: How would the students interact with their e-ink tablets? Would they be answering queries with a stylus, by tapping multiple-choice options, by typing, or a mixture of these?</strong></p>
+                        <p><strong>A:</strong> Mixture. Currently, we mostly use iPads and some Windows tablets, which allow for a variety of access needs, including touch with accommodations, stylus, head tracking, mouse and eye-gaze.</p>
+                    </div>
 
-            <div class="subcard subcard--yellow">
-                <p><strong>Q: Would the system be allowed to record student data across a time period for the purposes of monitoring student performance and personalising feedback?</strong></p>
-                <p><strong>A:</strong> No identifiable data should be stored with a third party.</p>
-            </div>
+                    <div class="subcard subcard--orange">
+                        <p><strong>Q: What types of teaching material are most used in the classroom?</strong></p>
+                        <p><strong>A:</strong> Worksheets and quizzes would be useful, also comprehension tasks – but mostly focused on non-fictional texts.</p>
+                    </div>
 
-            <div class="subcard subcard--blue">
-                <p><strong>Q: Would it be useful to teachers for the system to generate class-wide student performance reports?</strong></p>
-                <p><strong>A:</strong> This may be useful, but not essential, since for smaller class sizes, student performance is easier to track.</p>
+                    <div class="subcard subcard--yellow">
+                        <p><strong>Q: Would the system be allowed to record student data across a time period for the purposes of monitoring student performance and personalising feedback?</strong></p>
+                        <p><strong>A:</strong> No identifiable data should be stored with a third party.</p>
+                    </div>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>Q: Would it be useful to teachers for the system to generate class-wide student performance reports?</strong></p>
+                        <p><strong>A:</strong> This may be useful, but not essential, since for smaller class sizes, student performance is easier to track.</p>
+                    </div>
+                </div>
+
+                <div class="interview-tab-panel" id="interview-2">
+                    <p>Following initial client feedback, we conducted a technical requirements meeting with Professor Dean Mohamedally (Supervisor) and Atia Rafiq (GP Trainer and Client) to validate our approach and explore technical feasibility.</p>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>Device Compatibility Beyond Android</strong></p>
+                        <p>Our system must support non-Android e-ink devices like reMarkable tablets that lack native REST APIs. We will implement email-based bidirectional communication where teachers send PDF worksheets to devices, students annotate responses, and return via the device's "Send to email" feature. Student identification will be maintained through unique identifiers in email titles or document signatures while preserving anonymity.</p>
+                    </div>
+
+                    <div class="subcard subcard--green">
+                        <p><strong>On-Device AI Requirements</strong></p>
+                        <p>The teacher application must use on-device AI processing via OpenVINO and Qualcomm Snapdragon technologies to maintain privacy compliance. No cloud-based AI processing is permitted for student data. All handwriting recognition, content generation, and assessment must occur locally on the teacher's Windows laptop.</p>
+                    </div>
+
+                    <div class="subcard subcard--orange">
+                        <p><strong>Handwriting Recognition Capabilities</strong></p>
+                        <p>The system must accurately parse multiple input types from returned PDFs: tick boxes for multiple-choice questions, handwritten text answers, and annotated diagrams. AI processing should handle varying handwriting quality across age groups (11–18) and provide automated feedback to teachers on student responses.</p>
+                    </div>
+
+                    <div class="subcard subcard--yellow">
+                        <p><strong>Content Accessibility Features</strong></p>
+                        <p>AI capabilities should include text summarisation for struggling readers, content translation for multilingual students, and reading level adjustment. These features support diverse cognitive abilities and language backgrounds in SEN classrooms.</p>
+                    </div>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>Real-Time Classroom Features</strong></p>
+                        <p>The reMarkable tablet demonstration revealed screen mirroring capabilities useful for teacher-led instruction. The system should support real-time display of teacher content for whole-class demonstrations while maintaining distraction-free student experiences.</p>
+                    </div>
+
+                    <div class="subcard subcard--green">
+                        <p><strong>Long-Term Data Ownership</strong></p>
+                        <p>Professor Mohamedally emphasised creating a "microdrive" model where student notes persist throughout their education as personal property. The AI should adapt to evolving handwriting patterns from early childhood, building personalised assessment history without cloud dependencies. Students own and control their educational materials.</p>
+                    </div>
+                </div>
             </div>
 
             <h2 id="personas">Personas</h2>
@@ -137,7 +177,101 @@
                 </div>
             </div>
 
-            <h2 id="interactions">User Interactions</h2>
+            <h2 id="user-interactions">User Interactions</h2>
+            <p>This diagram illustrates how teachers and students interact with Manuscripta to complete core tasks: content creation, distribution, learning activities, and real-time monitoring.</p>
+
+            <div class="user-flow-diagram">
+                <div class="user-flow-grid">
+                    <!-- Teacher flow -->
+                    <div class="user-flow-col">
+                        <div class="user-flow-title user-flow-title--teacher">Teacher Workflow</div>
+
+                        <div class="user-flow-box">
+                            <div class="user-flow-actor user-flow-actor--teacher"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M0 19h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 19l1.5 2h5L16 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                            Open Content Generator
+                        </div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Input Topic, Difficulty Level, Age Group</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box user-flow-box--highlight">AI Generates Personalised Worksheet</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Review &amp; Edit Content</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Re-generate if needed</div>
+                            <div class="user-flow-split-box user-flow-split-box--b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Save to Library</div>
+                        </div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Select Target Student Devices</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box user-flow-box--highlight">Distribute via Local Wi-Fi Network</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Monitor Real-Time Progress on Dashboard</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a">View struggling students</div>
+                            <div class="user-flow-split-box user-flow-split-box--b">Respond to help requests</div>
+                        </div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Provide Targeted Support or Hints</div>
+                    </div>
+
+                    <!-- Student flow -->
+                    <div class="user-flow-col">
+                        <div class="user-flow-title user-flow-title--student">Student Workflow</div>
+
+                        <div class="user-flow-box">
+                            <div class="user-flow-actor user-flow-actor--student"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 11.5V17c0 0 2.5 2 6 2s6-2 6-2v-5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M22 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                            Receive Content on E-ink Tablet
+                        </div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Open Assigned Worksheet</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Read Question on E-ink Display</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box user-flow-box--highlight">Write Answer Using Stylus</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box user-flow-box--highlight">Handwriting Recognition Processes Input</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Receive Real-Time Feedback</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Continue to next question</div>
+                            <div class="user-flow-split-box user-flow-split-box--warn">Need help? Press button</div>
+                        </div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Complete All Questions</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Submit Worksheet</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box user-flow-box--highlight">Submission Sent to Teacher Dashboard</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Receive Confirmation Message</div>
+                    </div>
+                </div>
+
+                <!-- Bidirectional network section -->
+                <div class="user-flow-network">
+                    <div class="user-flow-network-label">Real-Time Bidirectional Communication</div>
+                    <div class="user-flow-network-bar"></div>
+                    <div class="user-flow-network-cols">
+                        <div class="user-flow-network-side">
+                            <div class="user-flow-network-side-title">Teacher <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Students</div>
+                            <p>Content Distribution<br>Hints &amp; Assistance<br>Screen Lock Commands</p>
+                        </div>
+                        <div class="user-flow-network-center">
+                            Local Wi-Fi Network
+                            <span>(No Cloud Storage)</span>
+                        </div>
+                        <div class="user-flow-network-side">
+                            <div class="user-flow-network-side-title">Students <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Teacher</div>
+                            <p>Progress Updates<br>Help Requests<br>Completed Submissions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="interactions">Use Cases</h2>
             <p>The following use cases illustrate how teachers and students interact with Manuscripta in typical classroom scenarios.</p>
 
             <div class="use-case-table">
