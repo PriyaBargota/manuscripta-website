@@ -1845,19 +1845,22 @@ a.nav-brand:focus-visible {
     .user-flow-network-cols { flex-direction: column; }
 }
 
-/* Week accordion (Developer Updates) */
-.week-accordion {
+/* Developer Blog post cards */
+.blog-post {
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    margin-bottom: 10px;
+    border-radius: 14px;
+    margin-bottom: 14px;
     overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--color-brand-orange);
 }
 
-.week-accordion__header {
+.blog-post__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px;
+    gap: 16px;
+    padding: 18px 20px;
     cursor: pointer;
     list-style: none;
     user-select: none;
@@ -1865,38 +1868,69 @@ a.nav-brand:focus-visible {
     transition: background 0.15s ease;
 }
 
-.week-accordion__header::-webkit-details-marker { display: none; }
+.blog-post__header::-webkit-details-marker { display: none; }
 
-.week-accordion__header:hover {
-    background: var(--color-gray-50);
+.blog-post__header:hover {
+    background: var(--color-brand-orange-light);
 }
 
-.week-accordion__title {
+.blog-post__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.blog-post__week {
     font-family: 'Fraunces', serif;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--text-primary);
-    padding-left: 12px;
-    border-left: 3px solid var(--color-brand-blue);
 }
 
-.week-accordion__chevron {
+.blog-post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.blog-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--color-brand-orange-light);
+    color: var(--color-brand-orange);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.blog-post__chevron {
     color: var(--color-gray-400);
     flex-shrink: 0;
     transition: transform 0.2s ease;
 }
 
-.week-accordion[open] .week-accordion__chevron {
+.blog-post[open] .blog-post__chevron {
     transform: rotate(180deg);
 }
 
-.week-accordion__content {
-    padding: 4px 20px 20px;
-    border-top: 1px solid var(--border-color);
+.blog-post[open] .blog-post__header {
+    border-bottom: 1px solid var(--border-color);
 }
 
-.week-accordion__content h4 {
-    margin-top: 20px;
+.blog-post__content {
+    padding: 24px 24px 28px;
+    background: var(--color-gray-50);
+    line-height: 1.75;
+}
+
+.blog-post__content h4 {
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+.blog-post__content > *:first-child {
+    margin-top: 0;
 }
 
 /* Interview tabs */
