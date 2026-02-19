@@ -1674,6 +1674,70 @@ a.nav-brand:focus-visible {
     gap: 10px;
 }
 
+/* Interview tabs */
+.interview-tabs {
+    margin: 24px 0;
+}
+
+.interview-tab-buttons {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--color-gray-200);
+    margin-bottom: 24px;
+}
+
+.interview-tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-gray-500);
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.interview-tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-brand-green);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.interview-tab-btn.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.interview-tab-btn.active::after {
+    opacity: 1;
+}
+
+.interview-tab-panel {
+    display: none;
+}
+
+.interview-tab-panel.active {
+    display: block;
+}
+
+.interview-placeholder {
+    padding: 32px;
+    background-color: var(--color-gray-50);
+    border-radius: 12px;
+    border: 2px dashed var(--color-gray-300);
+    color: var(--color-gray-500);
+    text-align: center;
+    font-size: 14px;
+}
+
 /* Grid layout for subcards */
 .subcard-grid {
     display: grid;
