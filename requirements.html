@@ -29,6 +29,7 @@
                         <li><a href="requirements.html#aims">Project Aims</a></li>
                         <li><a href="requirements.html#research">User Research</a></li>
                         <li><a href="requirements.html#personas">Personas</a></li>
+                        <li><a href="requirements.html#user-interactions">User Interactions</a></li>
                         <li><a href="requirements.html#interactions">Use Cases</a></li>
                         <li><a href="requirements.html#moscow">MoSCoW Requirement List</a></li>
                     </ul>
@@ -207,6 +208,100 @@
                 </div>
                 <div class="persona-card">
                     <img src="images/Persona_2.png" alt="Teacher Persona" class="persona-image">
+                </div>
+            </div>
+
+            <h2 id="user-interactions">User Interactions</h2>
+            <p>This diagram illustrates how teachers and students interact with Manuscripta to complete core tasks: content creation, distribution, learning activities, and real-time monitoring.</p>
+
+            <div class="user-flow-diagram">
+                <div class="user-flow-grid">
+                    <!-- Teacher flow -->
+                    <div class="user-flow-col">
+                        <div class="user-flow-title user-flow-title--teacher">Teacher Workflow</div>
+
+                        <div class="user-flow-box">
+                            <div class="user-flow-actor user-flow-actor--teacher">&#x1F4BB;</div>
+                            Open Content Generator
+                        </div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Input Topic, Difficulty Level, Age Group</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box user-flow-box--highlight">AI Generates Personalised Worksheet</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Review &amp; Edit Content</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a">&#x21BB; Re-generate if needed</div>
+                            <div class="user-flow-split-box user-flow-split-box--b">&#x2713; Save to Library</div>
+                        </div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Select Target Student Devices</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box user-flow-box--highlight">Distribute via Local Wi-Fi Network</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Monitor Real-Time Progress on Dashboard</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a">View struggling students</div>
+                            <div class="user-flow-split-box user-flow-split-box--b">Respond to help requests</div>
+                        </div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Provide Targeted Support or Hints</div>
+                    </div>
+
+                    <!-- Student flow -->
+                    <div class="user-flow-col">
+                        <div class="user-flow-title user-flow-title--student">Student Workflow</div>
+
+                        <div class="user-flow-box">
+                            <div class="user-flow-actor user-flow-actor--student">&#x1F393;</div>
+                            Receive Content on E-ink Tablet
+                        </div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Open Assigned Worksheet</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Read Question on E-ink Display</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box user-flow-box--highlight">Write Answer Using Stylus</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box user-flow-box--highlight">Handwriting Recognition Processes Input</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Receive Real-Time Feedback</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a">&#x21BB; Continue to next question</div>
+                            <div class="user-flow-split-box user-flow-split-box--warn">Need help? Press button</div>
+                        </div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Complete All Questions</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Submit Worksheet</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box user-flow-box--highlight">Submission Sent to Teacher Dashboard</div>
+                        <div class="user-flow-arrow">&#x2193;</div>
+                        <div class="user-flow-box">Receive Confirmation Message</div>
+                    </div>
+                </div>
+
+                <!-- Bidirectional network section -->
+                <div class="user-flow-network">
+                    <div class="user-flow-network-label">Real-Time Bidirectional Communication</div>
+                    <div class="user-flow-network-bar"></div>
+                    <div class="user-flow-network-cols">
+                        <div class="user-flow-network-side">
+                            <div class="user-flow-network-side-title">Teacher &#x2192; Students</div>
+                            <p>Content Distribution<br>Hints &amp; Assistance<br>Screen Lock Commands</p>
+                        </div>
+                        <div class="user-flow-network-center">
+                            Local Wi-Fi Network
+                            <span>(No Cloud Storage)</span>
+                        </div>
+                        <div class="user-flow-network-side">
+                            <div class="user-flow-network-side-title">Students &#x2192; Teacher</div>
+                            <p>Progress Updates<br>Help Requests<br>Completed Submissions</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
