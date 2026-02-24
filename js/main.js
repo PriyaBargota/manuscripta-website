@@ -565,6 +565,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initDocSections();
 
+    // ========================================
+    // INTERVIEW TABS
+    // ========================================
+    document.querySelectorAll('.interview-tab-buttons').forEach(function(buttonGroup) {
+        buttonGroup.querySelectorAll('.interview-tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const tabId = btn.getAttribute('data-tab');
+                const container = btn.closest('.interview-tabs');
+
+                container.querySelectorAll('.interview-tab-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                container.querySelectorAll('.interview-tab-panel').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+
+                btn.classList.add('active');
+                container.querySelector('#' + tabId).classList.add('active');
+            });
+        });
+    });
+
 });
 
 
