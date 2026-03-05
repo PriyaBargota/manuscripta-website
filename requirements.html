@@ -181,8 +181,15 @@
                         <p class="quote-card__attribution">— Teacher, Richard Cloudesley School</p>
                     </div>
                     <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>Based on this validation, we committed fully to e-ink tablets as our student device. We implemented kiosk mode on the Android app to lock students into Manuscripta during sessions, and designed the entire UI around a monochrome, low-distraction experience.</p>
+                        <h4 class="implementation-toggle collapsed">
+                            What we implemented
+                            <svg class="implementation-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </h4>
+                        <div class="implementation-content collapsed">
+                            <p>Based on this validation, we committed fully to e-ink tablets as our student device. We implemented kiosk mode on the Android app to lock students into Manuscripta during sessions, and designed the entire UI around a monochrome, low-distraction experience.</p>
+                        </div>
                     </div>
 
                     <div class="quote-card">
@@ -190,8 +197,15 @@
                         <p class="quote-card__attribution">— Teacher, Richard Cloudesley School</p>
                     </div>
                     <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We built a marking system where the teacher can review AI-suggested marks before they are finalised, with a manual override option available for every response.</p>
+                        <h4 class="implementation-toggle collapsed">
+                            What we implemented
+                            <svg class="implementation-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </h4>
+                        <div class="implementation-content collapsed">
+                            <p>We built a marking system where the teacher can review AI-suggested marks before they are finalised, with a manual override option available for every response.</p>
+                        </div>
                     </div>
 
                     <div class="quote-card">
@@ -199,8 +213,15 @@
                         <p class="quote-card__attribution">— Teacher, Richard Cloudesley School</p>
                     </div>
                     <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation so teachers can instantly gauge class-wide understanding.</p>
+                        <h4 class="implementation-toggle collapsed">
+                            What we implemented
+                            <svg class="implementation-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </h4>
+                        <div class="implementation-content collapsed">
+                            <p>We built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation so teachers can instantly gauge class-wide understanding.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -210,8 +231,15 @@
                         <p class="quote-card__attribution">— Microsoft Representative</p>
                     </div>
                     <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We took this on board as a recommendation for simplifying deployment of our on-device AI. This informed our approach to packaging the Windows application as a single self-contained installer.</p>
+                        <h4 class="implementation-toggle collapsed">
+                            What we implemented
+                            <svg class="implementation-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </h4>
+                        <div class="implementation-content collapsed">
+                            <p>We took this on board as a recommendation for simplifying deployment of our on-device AI. This informed our approach to packaging the Windows application as a single self-contained installer.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -221,8 +249,15 @@
                         <p class="quote-card__attribution">— UCL Teaching Assistant</p>
                     </div>
                     <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We added fixed device identification using a generated device ID that cannot be changed by the student, ensuring reliable tracking across sessions without compromising anonymity.</p>
+                        <h4 class="implementation-toggle collapsed">
+                            What we implemented
+                            <svg class="implementation-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </h4>
+                        <div class="implementation-content collapsed">
+                            <p>We added fixed device identification using a generated device ID that cannot be changed by the student, ensuring reliable tracking across sessions without compromising anonymity.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -494,76 +529,34 @@
             <div class="subcard subcard--green">
                 <h4>Must Have</h4>
                 <ul>
-                    <li class="requirement-item completed">AI-powered content generation for quizzes, worksheets, and polls
-                        <span class="requirement-note">Implemented via READING, WORKSHEET, and POLL material types with on-device AI (OpenVINO + Qualcomm AI Stack)</span>
-                    </li>
-                    <li class="requirement-item completed">Hierarchical lesson organization (Units → Lessons → Materials)
-                        <span class="requirement-note">Implemented in teacher application with nested folder structure for content management</span>
-                    </li>
-                    <li class="requirement-item completed">Rich text editor with tables, equations, images, and PDFs
-                        <span class="requirement-note">Markdown syntax with LaTeX support, image/PDF attachments via /attachments API</span>
-                    </li>
-                    <li class="requirement-item completed">Content distribution to up to 30 E-ink tablets over local Wi-Fi
-                        <span class="requirement-note">Via /distribution endpoint + TCP DISTRIBUTE_MATERIAL command for real-time push</span>
-                    </li>
-                    <li class="requirement-item completed">Real-time monitoring dashboard
-                        <span class="requirement-note">3-second heartbeat STATUS_UPDATE messages via TCP for live device tracking</span>
-                    </li>
-                    <li class="requirement-item completed">Session management (create, start, pause, cancel, end)
-                        <span class="requirement-note">5 session states: RECEIVED, ACTIVE, PAUSED, COMPLETED, CANCELLED tracked per device</span>
-                    </li>
-                    <li class="requirement-item completed">Kiosk mode with remote screen locking
-                        <span class="requirement-note">LOCK_SCREEN/UNLOCK_SCREEN TCP commands for classroom attention management</span>
-                    </li>
-                    <li class="requirement-item completed">Stylus input and annotation on E-ink displays
-                        <span class="requirement-note">Native Android stylus support for worksheet annotations and PDF markup</span>
-                    </li>
-                    <li class="requirement-item completed">Interactive quiz/worksheet/poll with immediate feedback
-                        <span class="requirement-note">MULTIPLE_CHOICE + WRITTEN_ANSWER question types with checkmark/X feedback</span>
-                    </li>
-                    <li class="requirement-item completed">Help request button ("Raise Hand")
-                        <span class="requirement-note">HAND_RAISED TCP message with HAND_ACK acknowledgment protocol</span>
-                    </li>
-                    <li class="requirement-item completed">AI text assistance (simplify, expand, summarize)
-                        <span class="requirement-note">Content transformation API for real-time text complexity adjustment</span>
-                    </li>
-                    <li class="requirement-item completed">Reading level adjustment tools
-                        <span class="requirement-note">Teacher (class-wide) and student (individual) levels via AI text processing</span>
-                    </li>
-                    <li class="requirement-item completed">Text-to-speech functionality
-                        <span class="requirement-note">Android accessibility feature, teacher-controlled via device configuration</span>
-                    </li>
-                    <li class="requirement-item completed">Vocabulary highlighting for key terms
-                        <span class="requirement-note">Vocabulary Terms JSON array field in MaterialEntity for teacher-defined terms</span>
-                    </li>
-                    <li class="requirement-item completed">Offline-first with auto-save and automatic sync
-                        <span class="requirement-note">Offline response queue + /responses/batch endpoint for reconnection sync</span>
-                    </li>
-                    <li class="requirement-item completed">Content library with hierarchical storage
-                        <span class="requirement-note">Windows app unit/lesson/material organization with template reuse capability</span>
-                    </li>
-                    <li class="requirement-item completed">Export session data and progress reports
-                        <span class="requirement-note">Local data export for teacher review and record-keeping</span>
-                    </li>
-                    <li class="requirement-item completed">Local network only (no cloud dependencies)
-                        <span class="requirement-note">UDP discovery + TCP/HTTP protocols exclusively on LAN, zero external connectivity</span>
-                    </li>
-                    <li class="requirement-item completed">Data encryption and anonymized student IDs
-                        <span class="requirement-note">DeviceId-based identification (no PII) + encrypted LAN for GDPR compliance</span>
-                    </li>
+                    <li class="requirement-item completed">AI-powered content generation for quizzes, worksheets, and polls <span class="requirement-note">READING, WORKSHEET, POLL types via OpenVINO + Qualcomm AI</span></li>
+                    <li class="requirement-item completed">Hierarchical lesson organization (Units → Lessons → Materials) <span class="requirement-note">Nested folder structure in teacher app</span></li>
+                    <li class="requirement-item completed">Content distribution to up to 30 E-ink tablets over local Wi-Fi <span class="requirement-note">/distribution API + TCP DISTRIBUTE_MATERIAL</span></li>
+                    <li class="requirement-item completed">Real-time monitoring dashboard <span class="requirement-note">3-second TCP heartbeat STATUS_UPDATE</span></li>
+                    <li class="requirement-item completed">Session management (create, start, pause, cancel, end) <span class="requirement-note">5 states: RECEIVED, ACTIVE, PAUSED, COMPLETED, CANCELLED</span></li>
+                    <li class="requirement-item completed">Kiosk mode with remote screen locking <span class="requirement-note">LOCK_SCREEN/UNLOCK_SCREEN TCP commands</span></li>
+                    <li class="requirement-item completed">Stylus input and annotation on E-ink displays <span class="requirement-note">Native Android stylus for worksheet/PDF markup</span></li>
+                    <li class="requirement-item completed">Interactive quiz/worksheet/poll with immediate feedback <span class="requirement-note">MULTIPLE_CHOICE + WRITTEN_ANSWER with checkmark/X</span></li>
+                    <li class="requirement-item completed">Help request button ("Raise Hand") <span class="requirement-note">HAND_RAISED TCP + HAND_ACK protocol</span></li>
+                    <li class="requirement-item completed">Reading level adjustment tools <span class="requirement-note">Teacher/student AI text processing</span></li>
+                    <li class="requirement-item completed">Offline-first with auto-save and automatic sync <span class="requirement-note">Offline queue + /responses/batch sync</span></li>
+                    <li class="requirement-item completed">Local network only (no cloud dependencies) <span class="requirement-note">UDP discovery + TCP/HTTP on LAN only</span></li>
+                    <li class="requirement-item completed">Data encryption and anonymized student IDs <span class="requirement-note">DeviceId-based (no PII) + encrypted LAN</span></li>
                 </ul>
             </div>
 
             <div class="subcard subcard--blue">
                 <h4>Should Have</h4>
                 <ul>
-                    <li>Reading level adjustment tools to simplify content for different cognitive abilities</li>
-                    <li>Text-to-speech functionality for students with reading difficulties</li>
+                    <li class="requirement-item completed">Rich text editor with tables, equations, images, PDFs <span class="requirement-note">Markdown + LaTeX + /attachments API</span></li>
+                    <li class="requirement-item completed">Vocabulary highlighting for key terms <span class="requirement-note">Vocabulary Terms JSON in MaterialEntity</span></li>
+                    <li class="requirement-item completed">Text-to-speech functionality <span class="requirement-note">Android ACC, teacher-controlled</span></li>
+                    <li class="requirement-item completed">Export session data and progress reports <span class="requirement-note">Local data export capability</span></li>
+                    <li class="requirement-item completed">AI text assistance (simplify, expand, summarize) <span class="requirement-note">Content transformation API</span></li>
+                    <li class="requirement-item completed">Seamless lesson-quiz navigation <span class="requirement-note">Toggle between content types</span></li>
                     <li>Adjustable text size and contrast settings for E-ink optimization</li>
                     <li>Historical progress tracking showing performance trends over multiple sessions</li>
-                    <li>Offline mode allowing work completion during network drops with automatic sync</li>
-                    <li>Content library with template storage for reusable worksheet structures</li>
-                    <li>Export functionality for session data and progress reports</li>
+                    <li>Differentiated material deployment to specific student groups</li>
                 </ul>
             </div>
 
