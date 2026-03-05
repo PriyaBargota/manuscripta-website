@@ -1605,6 +1605,35 @@ a.nav-brand:focus-visible {
     gap: 10px;
 }
 
+/* MoSCoW List Completed Items */
+.requirement-item {
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.requirement-item.completed {
+    list-style: none;
+    position: relative;
+    padding-left: 0;
+}
+
+.requirement-item.completed::before {
+    content: "✓";
+    color: var(--color-success);
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.requirement-note {
+    display: block;
+    font-size: 13px;
+    color: var(--color-gray-600);
+    margin-top: 4px;
+    font-style: italic;
+    line-height: 1.5;
+}
+
 /* User Interactions Diagram */
 .user-flow-diagram {
     margin: 24px 0;
