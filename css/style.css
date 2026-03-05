@@ -1830,6 +1830,65 @@ a.nav-brand:focus-visible {
     display: block;
 }
 
+/* Quote cards for showcase feedback */
+.quote-card {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-soft);
+    border-top: 4px solid var(--color-brand-green);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.quote-card:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-2px);
+}
+
+.quote-card__text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.quote-card__attribution {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-brand-green);
+    margin-bottom: 0;
+}
+
+.quote-card__implementation {
+    background-color: var(--color-gray-50);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 16px;
+    border-left: 4px solid var(--color-brand-green);
+}
+
+.quote-card__implementation h4 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-brand-green);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quote-card__implementation p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
 .interview-placeholder {
     padding: 32px;
     background-color: var(--color-gray-50);
