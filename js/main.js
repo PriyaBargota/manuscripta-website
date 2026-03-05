@@ -587,6 +587,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // ========================================
+    // COLLAPSIBLE IMPLEMENTATION SECTIONS (Accordion behavior)
+    // ========================================
+    document.querySelectorAll('.implementation-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const isCurrentlyCollapsed = this.classList.contains('collapsed');
+
+            // Close all implementation sections
+            document.querySelectorAll('.implementation-toggle').forEach(function(t) {
+                t.classList.add('collapsed');
+                if (t.nextElementSibling) {
+                    t.nextElementSibling.classList.add('collapsed');
+                }
+            });
+
+            // If the clicked section was collapsed, open it
+            if (isCurrentlyCollapsed) {
+                this.classList.remove('collapsed');
+                content.classList.remove('collapsed');
+            }
+        });
+    });
+
 });
 
 
