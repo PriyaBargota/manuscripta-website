@@ -1165,8 +1165,6 @@ a.nav-brand:focus-visible {
     border: 1px solid rgba(0, 0, 0, 0.04);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     box-shadow: var(--shadow-soft);
-    opacity: 0;
-    transform: translateY(20px);
 }
 
 .team-member.fade-in {
