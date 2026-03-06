@@ -51,18 +51,12 @@
     </nav>
 
     <main id="main">
-        <article class="report-page">
-            <div class="container">
+        <div class="doc-layout">
+            <div class="doc-content">
 
-                <!-- Page heading -->
-                <div class="page-header">
-                    <p class="section-eyebrow">Requirements</p>
-                    <h1 class="page-title">Project Background</h1>
-                </div>
-
-                <!-- 1. Background -->
-                <section class="report-section">
-                    <h2>1. Background</h2>
+                <!-- Background -->
+                <div>
+                    <h2>Background</h2>
                     <p>
                         Manuscripta was proposed by Professor Dean Mohamedally at UCL in collaboration with the National Autistic Society. The project originated from a practical concern raised by specialist SEN schools: students with autism and complex learning needs were struggling to maintain focus when using iPads in the classroom. While iPads offered the accessibility advantages of a large touchscreen and intuitive tap-based navigation, they also introduced significant distractions. Students were able to switch freely between applications, access the internet, and interact with content unrelated to their lessons, undermining the structured, low-stimulus environment that many autistic learners require.
                     </p>
@@ -72,11 +66,11 @@
                     <p>
                         The team was given this problem and asked to design and build a solution from first principles. There were no prescribed technologies or interfaces. The scope, architecture and implementation were determined entirely by the team, guided by ongoing input from project partners and stakeholder feedback.
                     </p>
-                </section>
+                </div>
 
-                <!-- 2. The Challenge -->
-                <section class="report-section">
-                    <h2>2. The Challenge</h2>
+                <!-- The Challenge -->
+                <div>
+                    <h2>The Challenge</h2>
                     <p>
                         The core challenge was to develop a digital learning ecosystem that preserved the accessibility benefits of tablet-based education while eliminating the sources of distraction and sensory overload that made iPads unsuitable for SEN classrooms. Any solution would need to meet three interdependent requirements simultaneously.
                     </p>
@@ -86,11 +80,11 @@
                     <p>
                         A further technical constraint was that commercially available E-ink devices, while ideal for their display characteristics, lack the computational power to run generative AI models locally. This ruled out a simple single-device solution and required the team to architect a system in which AI processing was decoupled from content consumption, running on the teacher's machine and distributing results to student devices over a local network.
                     </p>
-                </section>
+                </div>
 
-                <!-- 3. Our Approach -->
-                <section class="report-section">
-                    <h2>3. Our Approach</h2>
+                <!-- Our Approach -->
+                <div>
+                    <h2>Our Approach</h2>
                     <p>
                         Manuscripta addresses these challenges through a two-component system. The teacher application runs on a Windows laptop with an AI-capable chipset and uses IBM Granite, an on-device large language model, to generate educational materials including quizzes, worksheets and polls. The teacher can specify the topic, target age group and reading level, and the model produces content accordingly without any internet connection. Materials are then distributed to student devices over a local area network.
                     </p>
@@ -100,11 +94,11 @@
                     <p>
                         The teacher dashboard provides a live overview of all connected devices, showing each student's status and aggregating quiz and poll responses anonymously. All data remains on the local network and is never transmitted to external servers, ensuring that no personally identifiable student information is stored or processed beyond the classroom.
                     </p>
-                </section>
+                </div>
 
-                <!-- 4. Goals -->
-                <section class="report-section">
-                    <h2>4. Project Goals</h2>
+                <!-- Project Goals -->
+                <div>
+                    <h2>Project Goals</h2>
 
                     <h3>4.1 Educational Goals</h3>
                     <p>
@@ -120,19 +114,19 @@
                     <p>
                         From a technical perspective, the project aimed to demonstrate that a fully on-device AI pipeline could be integrated into a practical classroom tool without reliance on cloud infrastructure. This required selecting and integrating an appropriate on-device language model, designing a low-latency local network protocol capable of serving up to 30 simultaneous student devices, and building an Android application optimised for the constraints of E-ink hardware. The architecture was designed with modularity in mind, such that individual components including the networking layer and the AI content pipeline could be adapted for use in other educational or assistive technology contexts.
                     </p>
-                </section>
+                </div>
 
-                <!-- 5. Acknowledgements -->
-                <section class="report-section">
-                    <h2>5. Acknowledgements</h2>
+                <!-- Acknowledgements -->
+                <div>
+                    <h2>Acknowledgements</h2>
                     <p>
                         The team would like to thank Professor Dean Mohamedally (UCL) for his supervision and guidance throughout the project. We are grateful to Marie-Louise Holmberg and Mareli Smith of the National Autistic Society for their input on the needs of autistic learners and their feedback on the system's design. We also thank the two teachers from Richard Cloudesley School who participated in user testing and provided detailed feedback on the teacher application. Their practical perspective was invaluable in shaping the priorities of the system.
                     </p>
-                </section>
+                </div>
 
-                <!-- 6. Partners -->
-                <section class="report-section">
-                    <h2>6. Project Partners</h2>
+                <!-- Project Partners -->
+                <div>
+                    <h2>Project Partners</h2>
                     <div class="partners-block">
                         <div class="partners-row">
                             <div class="partner-logo">
@@ -163,13 +157,8 @@
                         <p><strong>Richard Cloudesley School</strong> — a specialist SEN school in London that participated in user testing and supplied E-ink devices used during development and evaluation.</p>
                         <p><strong>UCL</strong> — academic supervision provided by Professor Dean Mohamedally.</p>
                     </div>
-                </section>
+                </div>
 
-            </div>
-        </article>
-
-        <div class="doc-layout">
-            <div class="doc-content">
                 <div class="doc-header">
                     <h1>Requirements Analysis</h1>
                     <p>Defining the foundation for our sensory-friendly educational platform through comprehensive requirement gathering and analysis.</p>
@@ -716,64 +705,5 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
-
-    <style>
-    .report-page {
-        background: var(--color-cream, #F8F7F5);
-        padding: 80px 0;
-    }
-
-    .page-header {
-        margin-bottom: 56px;
-        padding-bottom: 32px;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .page-title {
-        font-family: 'Fraunces', serif;
-        font-size: 42px;
-        font-weight: 800;
-        color: var(--text-primary, #212631);
-        font-variation-settings: 'opsz' 24, 'SOFT' 0, 'WONK' 0;
-        margin-top: 8px;
-    }
-
-    .report-section {
-        margin-bottom: 56px;
-        max-width: 760px;
-    }
-
-    .report-section h2 {
-        font-family: 'Fraunces', serif;
-        font-size: 26px;
-        font-weight: 700;
-        color: var(--text-primary, #212631);
-        margin-bottom: 16px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid var(--color-brand-green, #15502E);
-        font-variation-settings: 'opsz' 18;
-    }
-
-    .report-section h3 {
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-size: 17px;
-        font-weight: 600;
-        color: var(--text-primary, #212631);
-        margin-top: 28px;
-        margin-bottom: 10px;
-    }
-
-    .report-section p {
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-size: 16px;
-        line-height: 1.85;
-        color: #3a3f4a;
-        margin-bottom: 16px;
-    }
-
-    .report-section p:last-child {
-        margin-bottom: 0;
-    }
-    </style>
 </body>
 </html>
