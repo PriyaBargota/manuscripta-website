@@ -191,61 +191,102 @@
         <section class="features" id="features">
             <div class="container">
                 <h2>Key Features</h2>
-                <div class="feature-grid">
 
-                    <!-- Feature 1: E-ink -->
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="5" y="2" width="14" height="20" rx="2"/>
-                                <line x1="9" y1="7" x2="15" y2="7"/>
-                                <line x1="9" y1="11" x2="15" y2="11"/>
-                                <line x1="9" y1="15" x2="12" y2="15"/>
-                            </svg>
+                <div class="feature-carousel">
+                    <button class="carousel-arrow carousel-arrow--prev" id="prevFeature" aria-label="Previous feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="feature-carousel-track">
+                        <!-- Feature 1: E-ink -->
+                        <div class="feature-slide active" data-feature="1">
+                            <div class="feature-image-placeholder">
+                                <!-- Image will be added here -->
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                                        <line x1="9" y1="7" x2="15" y2="7"/>
+                                        <line x1="9" y1="11" x2="15" y2="11"/>
+                                        <line x1="9" y1="15" x2="12" y2="15"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Distraction-Free E-ink</h3>
+                                <p>Monochromatic E-ink displays eliminate the bright colours, notifications, and visual noise of standard tablets, creating a calm, focused learning environment that is especially beneficial for students with autism and sensory sensitivities.</p>
+                            </div>
                         </div>
-                        <h3>Distraction-Free E-ink</h3>
-                        <p>Monochromatic E-ink displays eliminate the bright colours, notifications, and visual noise of standard tablets, creating a calm, focused learning environment that is especially beneficial for students with autism and sensory sensitivities.</p>
+
+                        <!-- Feature 2: AI Content Generation -->
+                        <div class="feature-slide" data-feature="2">
+                            <div class="feature-image-placeholder">
+                                <!-- Image will be added here -->
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z"/>
+                                        <line x1="9" y1="12" x2="15" y2="12"/>
+                                        <line x1="12" y1="9" x2="12" y2="15"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-content">
+                                <h3>On-Device AI Generation</h3>
+                                <p>Teachers generate personalised quizzes, worksheets, and polls in seconds using IBM Granite, running entirely on the teacher's laptop with no internet connection required. Adjust reading level, topic, and complexity with a few clicks.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: Classroom Monitoring -->
+                        <div class="feature-slide" data-feature="3">
+                            <div class="feature-image-placeholder">
+                                <!-- Image will be added here -->
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Real-Time Class Monitoring</h3>
+                                <p>A live dashboard shows every student's status at a glance: on task, needs help, or disconnected. Students can raise a discreet help request without interrupting the class, and teachers can lock screens or end sessions remotely.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 4: Privacy First -->
+                        <div class="feature-slide" data-feature="4">
+                            <div class="feature-image-placeholder">
+                                <!-- Image will be added here -->
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.5C17.5 22.15 21 17.25 21 12V6l-8-4z"/>
+                                        <polyline points="9 12 11 14 15 10"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Privacy-First by Design</h3>
+                                <p>Everything runs over a local Wi-Fi network with zero cloud dependencies. No student data ever leaves the school. All performance tracking is anonymised and GDPR-compliant, a hard requirement for our SEN school partners.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Feature 2: AI Content Generation -->
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z"/>
-                                <line x1="9" y1="12" x2="15" y2="12"/>
-                                <line x1="12" y1="9" x2="12" y2="15"/>
-                            </svg>
-                        </div>
-                        <h3>On-Device AI Generation</h3>
-                        <p>Teachers generate personalised quizzes, worksheets, and polls in seconds using IBM Granite, running entirely on the teacher's laptop with no internet connection required. Adjust reading level, topic, and complexity with a few clicks.</p>
-                    </div>
+                    <button class="carousel-arrow carousel-arrow--next" id="nextFeature" aria-label="Next feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
 
-                    <!-- Feature 3: Classroom Monitoring -->
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                                <rect x="14" y="14" width="7" height="7" rx="1"/>
-                            </svg>
-                        </div>
-                        <h3>Real-Time Class Monitoring</h3>
-                        <p>A live dashboard shows every student's status at a glance: on task, needs help, or disconnected. Students can raise a discreet help request without interrupting the class, and teachers can lock screens or end sessions remotely.</p>
-                    </div>
-
-                    <!-- Feature 4: Privacy First -->
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.5C17.5 22.15 21 17.25 21 12V6l-8-4z"/>
-                                <polyline points="9 12 11 14 15 10"/>
-                            </svg>
-                        </div>
-                        <h3>Privacy-First by Design</h3>
-                        <p>Everything runs over a local Wi-Fi network with zero cloud dependencies. No student data ever leaves the school. All performance tracking is anonymised and GDPR-compliant, a hard requirement for our SEN school partners.</p>
-                    </div>
-
+                <!-- Carousel indicators -->
+                <div class="carousel-indicators">
+                    <button class="indicator active" data-slide="0" aria-label="Feature 1"></button>
+                    <button class="indicator" data-slide="1" aria-label="Feature 2"></button>
+                    <button class="indicator" data-slide="2" aria-label="Feature 3"></button>
+                    <button class="indicator" data-slide="3" aria-label="Feature 4"></button>
                 </div>
             </div>
         </section>
