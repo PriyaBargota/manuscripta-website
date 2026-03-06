@@ -577,45 +577,6 @@ a.nav-brand:focus-visible {
     max-width: 100%;
     height: auto;
 }
-
-/* Badge row */
-.hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 40px;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 16px;
-    border-radius: 9999px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.hero-badge--main {
-    background: rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.95);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.hero-badge--partner {
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.12);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-
 /* Two-column hero body */
 .hero-body {
     display: grid;
@@ -922,7 +883,11 @@ a.nav-brand:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: 0 4px 12px -2px rgba(21, 80, 46, 0.3);
 }
 
@@ -983,17 +948,21 @@ a.nav-brand:focus-visible {
     background: linear-gradient(135deg, #f0f4f2 0%, #e8f0ec 100%);
     border-radius: 12px;
     margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    overflow: hidden;
     border: 1px solid rgba(21, 80, 46, 0.1);
+    position: relative;
 }
 
 .feature-image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .feature-content h3 {
