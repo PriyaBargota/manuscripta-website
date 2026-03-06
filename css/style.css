@@ -577,246 +577,26 @@ a.nav-brand:focus-visible {
     max-width: 100%;
     height: auto;
 }
-/* Two-column hero body */
-.hero-body {
-    display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 64px;
-    align-items: center;
-    width: 100%;
-    max-width: 1100px;
-    text-align: left;
-}
-
-.hero-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.hero-body .hero-title {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.hero-title-highlight {
-    color: var(--color-brand-yellow, #FFE782);
-}
-
-.hero-body .hero-description {
-    text-align: left;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 32px;
-    font-size: 17px;
-}
-
-/* CTA row */
-.hero-ctas {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-}
-
-.hero-btn-secondary {
+/* Project tag */
+.project-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.75);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    padding: 8px 0;
-}
-
-.hero-btn-secondary:hover {
-    color: #ffffff;
-}
-
-/* Device mockup */
-.hero-mockup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-.mockup-tablet {
-    width: 280px;
-    background: rgba(255,255,255,0.06);
-    border: 2px solid rgba(255,255,255,0.15);
-    border-radius: 20px;
-    padding: 12px 12px 20px;
-    box-shadow:
-        0 32px 64px rgba(0,0,0,0.4),
-        0 0 0 1px rgba(255,255,255,0.05),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-    backdrop-filter: blur(12px);
-}
-
-.mockup-screen {
-    background: #f0ede8;
-    border-radius: 10px;
-    overflow: hidden;
-    aspect-ratio: 3 / 4;
-}
-
-.mockup-screen-inner {
-    padding: 16px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.mockup-topbar {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 16px;
-}
-
-.mockup-topbar-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #c8c4bc;
-}
-
-.mockup-content-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    flex: 1;
-}
-
-.mockup-line {
-    border-radius: 3px;
-    height: 8px;
-    background: #d4d0c8;
-}
-
-.mockup-line--title {
-    height: 13px;
-    background: #1a1a1a;
-    width: 80%;
-    border-radius: 4px;
-    margin-bottom: 4px;
-}
-
-.mockup-line--text {
-    width: 100%;
-}
-
-.mockup-line--text.short {
-    width: 65%;
-}
-
-.mockup-line--gap {
-    height: 4px;
-    background: transparent;
-}
-
-.mockup-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin: 4px 0;
-}
-
-.mockup-option {
-    background: #e8e4dc;
-    border: 1.5px solid #c8c4bc;
-    border-radius: 6px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 600;
-    color: #555;
-}
-
-.mockup-option.active {
-    background: #1a1a1a;
-    border-color: #1a1a1a;
-    color: #f0ede8;
-}
-
-.mockup-submit {
-    margin-top: 4px;
-    background: #1a1a1a;
-    color: #f0ede8;
-    border-radius: 6px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-
-.mockup-bezel-bottom {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-}
-
-.mockup-home-btn {
-    width: 32px;
-    height: 4px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 9999px;
-}
-
-.mockup-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    gap: 8px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: rgba(255,255,255,0.45);
+    font-weight: 500;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.06);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    margin-bottom: 32px;
 }
 
-.mockup-label-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-brand-yellow, #FFE782);
-    opacity: 0.8;
-}
-
-/* Responsive hero */
-@media (max-width: 900px) {
-    .hero-body {
-        grid-template-columns: 1fr;
-        gap: 48px;
-        text-align: center;
-    }
-    .hero-text {
-        align-items: center;
-    }
-    .hero-body .hero-title {
-        text-align: center;
-    }
-    .hero-body .hero-description {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .hero-ctas {
-        justify-content: center;
-    }
-    .hero-mockup {
-        display: none;
-    }
+.project-tag svg {
+    opacity: 0.7;
 }
 
 /* ============================================
