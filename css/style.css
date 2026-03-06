@@ -815,56 +815,6 @@ a.nav-brand:focus-visible {
     text-align: left;
 }
 
-.stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
-}
-
-.stat-card {
-    background: var(--bg-surface);
-    border-radius: 16px;
-    padding: 24px 20px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid var(--border-color);
-    border-top: 4px solid transparent;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    text-align: center;
-}
-
-.stat-card:hover {
-    box-shadow: var(--shadow-elevated);
-    transform: translateY(-3px);
-}
-
-.stat-card:nth-child(1) { border-top-color: var(--color-brand-orange); }
-.stat-card:nth-child(2) { border-top-color: var(--color-brand-green); }
-.stat-card:nth-child(3) { border-top-color: var(--color-brand-blue); }
-.stat-card:nth-child(4) { border-top-color: var(--color-brand-yellow); }
-
-.stat-number {
-    font-family: 'Fraunces', serif;
-    font-size: 36px;
-    font-weight: 800;
-    font-variation-settings: 'opsz' 24, 'SOFT' 0, 'WONK' 0;
-    line-height: 1.1;
-    margin-bottom: 8px;
-}
-
-.stat-card:nth-child(1) .stat-number { color: var(--color-brand-orange); }
-.stat-card:nth-child(2) .stat-number { color: var(--color-brand-green); }
-.stat-card:nth-child(3) .stat-number { color: #3a88c8; }
-.stat-card:nth-child(4) .stat-number { color: #8a6f00; }
-
-.stat-desc {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 13px;
-    color: var(--color-gray-500);
-    line-height: 1.5;
-    font-weight: 500;
-}
-
 .partners-block {
     background: var(--bg-surface);
     border-radius: 16px;
@@ -965,23 +915,12 @@ a.nav-brand:focus-visible {
         gap: 20px;
     }
 
-    .stats-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
     .partners-row {
         gap: 24px;
     }
 
     .partner-divider {
         display: none;
-    }
-}
-
-@media (max-width: 900px) {
-    .stats-row {
-        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -1059,36 +998,6 @@ a.nav-brand:focus-visible {
     gap: 24px;
     max-width: 1000px;
     margin: 0 auto;
-}
-
-.stat-card {
-    text-align: center;
-    padding: 24px;
-    background-color: var(--bg-surface);
-    border-radius: 16px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-elevated);
-}
-
-.stat-number {
-    font-family: 'Fraunces', serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--color-brand-green);
-    margin-bottom: 8px;
-}
-
-.stat-label {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-weight: 500;
 }
 
 /* ============================================
