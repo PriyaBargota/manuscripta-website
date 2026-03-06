@@ -78,20 +78,133 @@
         </section>
 
         <section class="about" id="about">
-            <div class="container">
-                <h2>About the Project</h2>
-                <p>
-                    Manuscripta is an innovative sensory-friendly educational platform developed as part of the
-                    UCL Computer Science Systems Engineering module. Designed specifically for E-ink tablets,
-                    our platform reduces eye strain and visual overstimulation while providing an optimal
-                    learning environment for all students, including those with sensory sensitivities.
-                </p>
-                <p>
-                    At the core of Manuscripta is our intelligent handwriting recognition system that converts
-                    handwritten notes into digital text, making learning more accessible and interactive.
-                    Combined with AI-powered content generation and real-time teacher monitoring, Manuscripta
-                    bridges the gap between traditional pen-and-paper learning and modern digital education.
-                </p>
+            <div class="container" style="max-width: 1200px;">
+
+                <p class="section-eyebrow">About the Project</p>
+                <h2 class="section-title">What is Manuscripta?</h2>
+
+                <!-- Problem / Solution -->
+                <div class="problem-solution-grid">
+
+                    <div class="ps-block ps-block--problem">
+                        <div class="ps-block-label">
+                            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <circle cx="8" cy="8" r="6.5"/>
+                                <line x1="8" y1="5" x2="8" y2="8.5"/>
+                                <circle cx="8" cy="11" r="0.6" fill="currentColor" stroke="none"/>
+                            </svg>
+                            Problem
+                        </div>
+                        <h3>Full-colour tablets are disruptive for neurodiverse learners</h3>
+                        <p>Bright screens and unrestricted internet access create sensory overload for students with autism and complex learning needs. Yet existing E-ink devices lack the computational power to deliver AI-driven educational tools — leaving specialist SEN schools without technology that is both distraction-free and genuinely intelligent.</p>
+                    </div>
+
+                    <div class="ps-block ps-block--solution">
+                        <div class="ps-block-label">
+                            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="2.5 8.5 6 12 13.5 4"/>
+                            </svg>
+                            Solution
+                        </div>
+                        <h3>AI-powered content on distraction-free E-ink displays</h3>
+                        <p>Manuscripta is a classroom orchestration system developed in partnership with IBM, Qualcomm, and the National Autistic Society. Teachers use an AI-powered Windows application — running IBM Granite entirely on-device — to generate and distribute personalised quizzes, worksheets, and polls to students' E-ink tablets over a local Wi-Fi network. Monochromatic displays eliminate audiovisual distraction, while real-time monitoring and a discreet help button ensure no student is left behind.</p>
+                    </div>
+
+                </div>
+
+                <!-- Stat callout cards -->
+                <div class="stats-row">
+
+                    <div class="stat-card">
+                        <div class="stat-number">30</div>
+                        <div class="stat-desc">Student E-ink devices supported simultaneously over local Wi-Fi</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-desc">On-device AI — no cloud, all processing runs locally via IBM Granite</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">11–18</div>
+                        <div class="stat-desc">Target age range, designed for specialist SEN school classrooms</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">2-in-1</div>
+                        <div class="stat-desc">Windows teacher app and Android student app working in sync</div>
+                    </div>
+
+                </div>
+
+                <!-- Partners -->
+                <div class="partners-block">
+                    <p class="partners-label">Project Partners</p>
+                    <div class="partners-row">
+
+                        <!-- IBM -->
+                        <div class="partner-logo">
+                            <div class="partner-logo-box">
+                                <svg viewBox="0 0 80 32" fill="#1F70C1" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="0" y="4" width="8" height="3.5" rx="0.5"/>
+                                    <rect x="0" y="10" width="8" height="3.5" rx="0.5"/>
+                                    <rect x="0" y="16" width="8" height="3.5" rx="0.5"/>
+                                    <rect x="0" y="22" width="8" height="3.5" rx="0.5"/>
+                                    <rect x="12" y="4" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="12" y="10" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="12" y="16" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="12" y="22" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="30" y="4" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="30" y="10" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="30" y="16" width="14" height="3.5" rx="0.5"/>
+                                    <rect x="30" y="22" width="14" height="3.5" rx="0.5"/>
+                                </svg>
+                            </div>
+                            <span class="partner-name">IBM</span>
+                        </div>
+
+                        <div class="partner-divider"></div>
+
+                        <!-- Qualcomm -->
+                        <div class="partner-logo">
+                            <div class="partner-logo-box">
+                                <svg viewBox="0 0 90 32" xmlns="http://www.w3.org/2000/svg">
+                                    <text x="0" y="24" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#3253DC" letter-spacing="-0.5">Qualcomm</text>
+                                </svg>
+                            </div>
+                            <span class="partner-name">Qualcomm</span>
+                        </div>
+
+                        <div class="partner-divider"></div>
+
+                        <!-- National Autistic Society -->
+                        <div class="partner-logo">
+                            <div class="partner-logo-box">
+                                <svg viewBox="0 0 80 32" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="0" y="8" width="14" height="14" rx="2" fill="#E8000D"/>
+                                    <rect x="16" y="8" width="14" height="14" rx="2" fill="#E8000D"/>
+                                    <rect x="32" y="8" width="14" height="14" rx="2" fill="#E8000D"/>
+                                    <text x="50" y="20" font-family="Arial, sans-serif" font-weight="700" font-size="10" fill="#1a1a1a">NAS</text>
+                                </svg>
+                            </div>
+                            <span class="partner-name">National Autistic Society</span>
+                        </div>
+
+                        <div class="partner-divider"></div>
+
+                        <!-- UCL -->
+                        <div class="partner-logo">
+                            <div class="partner-logo-box">
+                                <svg viewBox="0 0 60 32" xmlns="http://www.w3.org/2000/svg">
+                                    <text x="0" y="24" font-family="Arial, sans-serif" font-weight="900" font-size="26" fill="#500778" letter-spacing="1">UCL</text>
+                                </svg>
+                            </div>
+                            <span class="partner-name">UCL</span>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </section>
 
