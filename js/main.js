@@ -587,63 +587,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ========================================
-    // FEATURE CAROUSEL
-    // ========================================
-    const featureSlides = document.querySelectorAll('.feature-slide');
-    const prevButton = document.getElementById('prevFeature');
-    const nextButton = document.getElementById('nextFeature');
-    const indicators = document.querySelectorAll('.carousel-indicators .indicator');
-    let currentSlide = 0;
-
-    if (featureSlides.length > 0 && prevButton && nextButton) {
-        function showSlide(index) {
-            // Remove active class from all slides and indicators
-            featureSlides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-
-            // Add active class to current slide and indicator
-            featureSlides[index].classList.add('active');
-            indicators[index].classList.add('active');
-
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            const next = (currentSlide + 1) % featureSlides.length;
-            showSlide(next);
-        }
-
-        function prevSlide() {
-            const prev = (currentSlide - 1 + featureSlides.length) % featureSlides.length;
-            showSlide(prev);
-        }
-
-        // Arrow button event listeners
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-
-        // Indicator button event listeners
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                showSlide(index);
-            });
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
-        });
-
-        // Optional: Auto-advance carousel every 5 seconds
-        // Uncomment if you want automatic sliding
-        // setInterval(nextSlide, 5000);
-    }
-
 });
 
 
