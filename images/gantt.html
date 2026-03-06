@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuscripta — Project Timeline</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Syne+Mono&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a2e;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --border-strong: #d1d5db;
+    --row-hover: #f9fafb;
+    --c-research:   #5bb8d4;
+    --c-android:    #1e5c3a;
+    --c-windows:    #e8821a;
+    --c-integration:#f5c842;
+    --c-docs:       #a0aab4;
+    --c-milestone:  #1a1a2e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', -apple-system, sans-serif;
+    font-size: 14px;
+    padding: 40px 32px 56px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  header { margin-bottom: 32px; }
+
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+
+  header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .chart-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .chart-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    border-collapse: collapse;
+    min-width: 860px;
+    width: 100%;
+  }
+
+  .month-header th {
+    background: var(--text);
+    color: #ffffff;
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 9px 0;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .month-header th.label-col {
+    min-width: 200px;
+    width: 200px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .week-header th {
+    background: #f3f4f6;
+    color: var(--text-muted);
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 5px 1px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border-strong);
+    min-width: 26px;
+    width: 26px;
+  }
+
+  .week-header th.label-col {
+    background: #f3f4f6;
+    border-right: 1px solid var(--border-strong);
+    text-align: left;
+    padding-left: 14px;
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--row-hover); }
+
+  tbody tr.section-start td { border-top: 1px solid var(--border-strong); }
+  tbody tr.milestone-row { background: #fafafa; }
+  tbody tr.milestone-row:hover { background: #f3f4f6; }
+
+  .row-label {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text);
+    white-space: nowrap;
+    border-right: 1px solid var(--border-strong);
+    min-width: 200px;
+    width: 200px;
+    vertical-align: middle;
+  }
+
+  .row-label.is-milestone {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--c-milestone);
+  }
+
+  .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 7px;
+    vertical-align: middle;
+  }
+
+  td.week-cell {
+    border-right: 1px solid var(--border);
+    padding: 5px 1px;
+    vertical-align: middle;
+    height: 34px;
+    min-width: 26px;
+    width: 26px;
+  }
+
+  td.week-cell.month-end { border-right: 1px solid var(--border-strong); }
+
+  .bar {
+    height: 14px;
+    width: 100%;
+    display: block;
+    opacity: 0.82;
+  }
+
+  .bar-start { border-radius: 7px 1px 1px 7px; }
+  .bar-end   { border-radius: 1px 7px 7px 1px; }
+  .bar-solo  { border-radius: 7px; }
+  .bar-mid   { border-radius: 0; }
+
+  .milestone-diamond {
+    width: 10px;
+    height: 10px;
+    background: var(--c-milestone);
+    transform: rotate(45deg);
+    margin: 0 auto;
+    border-radius: 1px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 14px 16px;
+    background: #f9fafb;
+    border-top: 1px solid var(--border);
+    align-items: center;
+  }
+
+  .legend-label {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 400;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text);
+  }
+
+  .legend-swatch {
+    width: 20px;
+    height: 8px;
+    border-radius: 4px;
+    opacity: 0.82;
+  }
+
+  .legend-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--c-milestone);
+    transform: rotate(45deg);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Project Timeline</h1>
+  <p>COMP0016 Systems Engineering · UCL Computer Science · 2025–2026</p>
+</header>
+
+<div class="chart-wrapper">
+  <div class="chart-scroll">
+    <table id="gantt">
+      <thead></thead>
+      <tbody id="gantt-body"></tbody>
+    </table>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Legend</span>
+    <div class="legend-item"><div class="legend-swatch" style="background:#5bb8d4"></div>Research & HCI</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#1e5c3a"></div>Android Dev</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#e8821a"></div>Windows Dev</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#f5c842"></div>Integration & Testing</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#a0aab4"></div>Documentation</div>
+    <div class="legend-item"><div class="legend-diamond"></div>Milestone</div>
+  </div>
+</div>
+
+<script>
+const PROJECT_START = new Date(2025, 9, 1);
+const PROJECT_END   = new Date(2026, 2, 27);
+
+const WEEKS = [];
+let cur = new Date(PROJECT_START);
+while (cur <= PROJECT_END) {
+  WEEKS.push(new Date(cur));
+  cur.setDate(cur.getDate() + 7);
+}
+
+const ROWS = [
+  { label: 'Requirement Gathering',          color: '#5bb8d4', start:[2025,10,1],  end:[2025,10,28], section: true },
+  { label: 'Persona, Sketches & Prototypes', color: '#5bb8d4', start:[2025,10,6],  end:[2025,11,5]  },
+  { label: 'HCI Presentation',               color: '#5bb8d4', start:[2025,10,27], end:[2025,11,5]  },
+  { label: 'HCI Submission',                 milestone: true,  start:[2025,11,5],  end:[2025,11,5]  },
+  { label: 'Research',                        color: '#5bb8d4', start:[2025,10,6],  end:[2025,11,19], section: true },
+  { label: 'Spec Draft & Gantt Chart',        color: '#a0aab4', start:[2025,11,5],  end:[2025,11,12] },
+  { label: 'Specification Draft',             milestone: true,  start:[2025,11,12], end:[2025,11,12] },
+  { label: 'Phase 1 · Foundation Layer',      color: '#1e5c3a', start:[2025,11,12], end:[2025,12,10], section: true },
+  { label: 'Phase 2 · Repository & Network',  color: '#1e5c3a', start:[2025,12,3],  end:[2026,1,7]  },
+  { label: 'Phase 3 · UI & Presentation',     color: '#1e5c3a', start:[2025,12,17], end:[2026,1,21] },
+  { label: 'Windows App Development',         color: '#e8821a', start:[2025,11,12], end:[2026,1,20] },
+  { label: 'Group Presentation',              milestone: true,  start:[2026,1,20],  end:[2026,1,20] },
+  { label: 'Phase 4 · Device Mgmt & AI',      color: '#1e5c3a', start:[2026,1,21],  end:[2026,2,18], section: true },
+  { label: 'Elevator Pitch',                  color: '#a0aab4', start:[2026,1,21],  end:[2026,2,4]  },
+  { label: 'Phase 5 · Integration & Polish',  color: '#f5c842', start:[2026,2,4],   end:[2026,3,11] },
+  { label: 'Testing & Documentation',         color: '#a0aab4', start:[2026,2,11],  end:[2026,3,20] },
+  { label: 'Website & Report Finalisation',   color: '#a0aab4', start:[2026,3,4],   end:[2026,3,27] },
+  { label: 'Final Submission',                milestone: true,  start:[2026,3,27],  end:[2026,3,27] },
+];
+
+function buildMonthSpans() {
+  const spans = [];
+  let curMonth = null, count = 0;
+  WEEKS.forEach(w => {
+    const label = w.toLocaleString('default', { month: 'short', year: '2-digit' });
+    if (label !== curMonth) {
+      if (curMonth) spans.push({ label: curMonth, cols: count });
+      curMonth = label; count = 1;
+    } else { count++; }
+  });
+  if (curMonth) spans.push({ label: curMonth, cols: count });
+  return spans;
+}
+
+const thead = document.querySelector('#gantt thead');
+const tbody = document.getElementById('gantt-body');
+
+const monthSpans = buildMonthSpans();
+const trMonth = document.createElement('tr');
+trMonth.className = 'month-header';
+const th0 = document.createElement('th');
+th0.className = 'label-col';
+trMonth.appendChild(th0);
+monthSpans.forEach(ms => {
+  const th = document.createElement('th');
+  th.colSpan = ms.cols;
+  th.textContent = ms.label;
+  trMonth.appendChild(th);
+});
+thead.appendChild(trMonth);
+
+const trWeek = document.createElement('tr');
+trWeek.className = 'week-header';
+const th1 = document.createElement('th');
+th1.className = 'label-col';
+th1.textContent = 'Task / Milestone';
+trWeek.appendChild(th1);
+WEEKS.forEach((w, i) => {
+  const th = document.createElement('th');
+  th.textContent = `W${i+1}`;
+  const next = WEEKS[i+1];
+  if (next && next.getMonth() !== w.getMonth()) th.style.borderRight = '1px solid #d1d5db';
+  trWeek.appendChild(th);
+});
+thead.appendChild(trWeek);
+
+ROWS.forEach(row => {
+  const tr = document.createElement('tr');
+  if (row.milestone) tr.className = 'milestone-row';
+  if (row.section)   tr.classList.add('section-start');
+
+  const td0 = document.createElement('td');
+  td0.className = 'row-label' + (row.milestone ? ' is-milestone' : '');
+
+  if (!row.milestone && row.color) {
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.style.background = row.color;
+    td0.appendChild(dot);
+  }
+  if (row.milestone) {
+    const diamond = document.createTextNode('◆  ' + row.label);
+    td0.appendChild(diamond);
+  } else {
+    td0.appendChild(document.createTextNode(row.label));
+  }
+  tr.appendChild(td0);
+
+  const rs = new Date(row.start[0], row.start[1]-1, row.start[2]);
+  const re = new Date(row.end[0],   row.end[1]-1,   row.end[2]);
+
+  WEEKS.forEach((w, i) => {
+    const td = document.createElement('td');
+    td.className = 'week-cell';
+    const next = WEEKS[i+1];
+    if (next && next.getMonth() !== w.getMonth()) td.classList.add('month-end');
+
+    const we = new Date(w); we.setDate(we.getDate() + 6);
+
+    if (row.milestone) {
+      if (rs >= w && rs <= we) {
+        const d = document.createElement('div');
+        d.className = 'milestone-diamond';
+        td.appendChild(d);
+      }
+    } else {
+      const inRange = !(we < rs || w > re);
+      if (inRange) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.background = row.color;
+        const atStart = rs >= w && rs <= we;
+        const atEnd   = re >= w && re <= we;
+        if (atStart && atEnd) bar.classList.add('bar-solo');
+        else if (atStart)     bar.classList.add('bar-start');
+        else if (atEnd)       bar.classList.add('bar-end');
+        else                  bar.classList.add('bar-mid');
+        td.appendChild(bar);
+      }
+    }
+    tr.appendChild(td);
+  });
+
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>
