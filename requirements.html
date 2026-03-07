@@ -233,7 +233,7 @@
 
             <h2 id="research">Requirement Gathering</h2>
             <p>
-                We conducted stakeholder consultations through semi-structured interviews to validate requirements and understand user needs.
+                To gather requirements, we conducted semi-structured interviews with stakeholders across two sessions: an initial client interview with representatives from the National Autistic Society, and a follow-up technical requirements meeting with Professor Dean Mohamedally. Interviews followed a question-and-answer format, with questions prepared in advance and responses used to validate and refine our initial specification.
             </p>
 
             <h3>Key Stakeholder Insights</h3>
@@ -245,30 +245,22 @@
                 </div>
 
                 <div class="interview-tab-panel active" id="interview-1">
-                    <div class="subcard subcard--blue">
-                        <p><strong>Q: We are currently assuming an age range of 11–18. Is this representative of your cohorts?</strong></p>
-                        <p><strong>A:</strong> Yes.</p>
-                    </div>
+                    <p><strong>Q: We are currently assuming an age range of 11 to 18. Is this representative of your cohorts?</strong></p>
+                    <p><strong>A:</strong> Yes.</p>
 
-                    <div class="subcard subcard--green">
-                        <p><strong>Q: How would the students interact with their e-ink tablets? Would they be answering queries with a stylus, by tapping multiple-choice options, by typing, or a mixture of these?</strong></p>
-                        <p><strong>A:</strong> Mixture. Currently, we mostly use iPads and some Windows tablets, which allow for a variety of access needs, including touch with accommodations, stylus, head tracking, mouse and eye-gaze.</p>
-                    </div>
+                    <p><strong>Q: How would students interact with their E-ink tablets?</strong></p>
+                    <p><strong>A:</strong> A mixture. Currently we mostly use iPads and some Windows tablets, which allow for a variety of access needs including touch with accommodations, stylus, head tracking, mouse and eye-gaze.</p>
 
-                    <div class="subcard subcard--orange">
-                        <p><strong>Q: What types of teaching material are most used in the classroom?</strong></p>
-                        <p><strong>A:</strong> Worksheets and quizzes would be useful, also comprehension tasks – but mostly focused on non-fictional texts.</p>
-                    </div>
+                    <p><strong>Q: What types of teaching material are most used in the classroom?</strong></p>
+                    <p><strong>A:</strong> Worksheets and quizzes would be useful, also comprehension tasks, but mostly focused on non-fictional texts.</p>
 
-                    <div class="subcard subcard--yellow">
-                        <p><strong>Q: Would the system be allowed to record student data across a time period for the purposes of monitoring student performance and personalising feedback?</strong></p>
-                        <p><strong>A:</strong> No identifiable data should be stored with a third party.</p>
-                    </div>
+                    <p><strong>Q: Would the system be allowed to record student data across a time period for monitoring performance?</strong></p>
+                    <p><strong>A:</strong> No identifiable data should be stored with a third party.</p>
 
-                    <div class="subcard subcard--blue">
-                        <p><strong>Q: Would it be useful to teachers for the system to generate class-wide student performance reports?</strong></p>
-                        <p><strong>A:</strong> This may be useful, but not essential, since for smaller class sizes, student performance is easier to track.</p>
-                    </div>
+                    <p><strong>Q: Would it be useful to generate class-wide student performance reports?</strong></p>
+                    <p><strong>A:</strong> This may be useful but not essential, since for smaller class sizes student performance is easier to track.</p>
+
+                    <p style="margin-top: 24px;"><strong>What we changed as a result:</strong> The data privacy response directly led to our decision to operate entirely over a local network with no cloud storage. The confirmation of stylus and touch input informed our decision to support both interaction modes in the Android application. The emphasis on worksheets and comprehension tasks shaped the material types we prioritised in the AI generation pipeline.</p>
                 </div>
 
                 <div class="interview-tab-panel" id="interview-2">
