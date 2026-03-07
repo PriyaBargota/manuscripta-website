@@ -153,13 +153,14 @@
 
                 <h2 id="research">Requirement Gathering</h2>
             <p>
-                To gather requirements, we conducted semi-structured interviews with stakeholders across two sessions: an initial client interview with representatives from the National Autistic Society, and a follow-up technical requirements meeting with Professor Dean Mohamedally. Interviews followed a question-and-answer format, with questions prepared in advance and responses used to validate and refine our initial specification.
+                To gather requirements, we conducted semi-structured interviews with stakeholders across three stages: an initial client interview with representatives from the National Autistic Society, a technical requirements meeting with Professor Dean Mohamedally and domain expert Atia Rafiq, and a showcase demonstration where we received feedback from teachers, industry partners, and academic reviewers. Interviews followed a question-and-answer format, with questions prepared in advance and responses used to validate and refine our initial specification.
             </p>
 
             <div class="interview-tabs">
                 <div class="interview-tab-buttons">
                     <button class="interview-tab-btn active" data-tab="interview-1">Initial Client Interview</button>
                     <button class="interview-tab-btn" data-tab="interview-2">Technical Requirements Meeting</button>
+                    <button class="interview-tab-btn" data-tab="interview-3">Showcase Feedback</button>
                 </div>
 
                 <div class="interview-tab-panel active" id="interview-1">
@@ -232,6 +233,40 @@
                         <p>Professor Mohamedally emphasised that student work must be saved locally to the device and not lost if a session is interrupted or the network drops.</p>
                         <p><strong>What we changed:</strong> The Android Room database was designed to persist all student responses locally, with sync to the teacher dashboard occurring separately.</p>
                         <p><strong>Impact:</strong> Local persistence ensures continuity regardless of network conditions, avoiding disruption that could cause significant distress for neurodiverse students.</p>
+                    </div>
+                </div>
+
+                <div class="interview-tab-panel" id="interview-3">
+                    <p>Following our demonstration at the showcase event, we received valuable feedback from teachers, industry partners, and academic reviewers that validated our approach and informed our final implementation priorities.</p>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>Teacher Feedback: E-ink Device Selection</strong></p>
+                        <p>"I'm really glad you've gone with Kindles rather than iPads. Distraction is definitely a big problem with full colour tablets and it's not really possible to lock a student into an app on an iPad. This is exactly the kind of tool teachers actually want." — Teacher, Richard Cloudesley School</p>
+                        <p><strong>What we implemented:</strong> Based on this validation, we committed fully to e-ink tablets as our student device. We implemented kiosk mode on the Android app to lock students into Manuscripta during sessions, and designed the entire UI around a monochrome, low-distraction experience.</p>
+                    </div>
+
+                    <div class="subcard subcard--green">
+                        <p><strong>Teacher Feedback: Auto-marking Control</strong></p>
+                        <p>"Auto-marking is really important, but teachers need control over it before it gets accepted as final. There should be an option to make it manual." — Teacher, Richard Cloudesley School</p>
+                        <p><strong>What we implemented:</strong> We built a marking system where the teacher can review AI-suggested marks before they are finalised, with a manual override option available for every response.</p>
+                    </div>
+
+                    <div class="subcard subcard--orange">
+                        <p><strong>Teacher Feedback: Class-wide Understanding</strong></p>
+                        <p>"Sometimes during a lesson a teacher likes to stop and get an understanding of where all students are. There needs to be a good way of doing this." — Teacher, Richard Cloudesley School</p>
+                        <p><strong>What we implemented:</strong> We built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation so teachers can instantly gauge class-wide understanding.</p>
+                    </div>
+
+                    <div class="subcard subcard--yellow">
+                        <p><strong>Microsoft: Deployment Simplification</strong></p>
+                        <p>"Foundry Local bundles all AI into one executable that you can ship with the app. It reduces overhead on setup considerably." — Microsoft Representative</p>
+                        <p><strong>What we implemented:</strong> We took this on board as a recommendation for simplifying deployment of our on-device AI. This informed our approach to packaging the Windows application as a single self-contained installer.</p>
+                    </div>
+
+                    <div class="subcard subcard--blue">
+                        <p><strong>UCL Academic: Device Identification</strong></p>
+                        <p>"A tag on each device would make it easier to identify. The device should not be able to change its alias, otherwise students could exploit this." — UCL Teaching Assistant</p>
+                        <p><strong>What we implemented:</strong> We added fixed device identification using a generated device ID that cannot be changed by the student, ensuring reliable tracking across sessions without compromising anonymity.</p>
                     </div>
                 </div>
             </div>
@@ -480,70 +515,6 @@
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
                         <div class="use-case-content">Material successfully delivered to and returned from a non-Android E-ink device, validated by domain expert Atia Rafiq whose professional workflow follows the same mechanism.</div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 id="showcase">Showcase Feedback</h2>
-            <p>
-                Following our demonstration at the showcase event, we received valuable feedback from teachers, industry partners, and academic reviewers that validated our approach and informed our final implementation priorities.
-            </p>
-
-            <div class="interview-tabs">
-                <div class="interview-tab-buttons">
-                    <button class="interview-tab-btn active" data-tab="feedback-1">Teacher Feedback</button>
-                    <button class="interview-tab-btn" data-tab="feedback-2">Microsoft</button>
-                    <button class="interview-tab-btn" data-tab="feedback-3">UCL Academic</button>
-                </div>
-
-                <div class="interview-tab-panel active" id="feedback-1">
-                    <div class="quote-card">
-                        <p class="quote-card__text">"I'm really glad you've gone with Kindles rather than iPads. Distraction is definitely a big problem with full colour tablets and it's not really possible to lock a student into an app on an iPad. This is exactly the kind of tool teachers actually want."</p>
-                        <p class="quote-card__attribution">Teacher, Richard Cloudesley School</p>
-                    </div>
-                    <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>Based on this validation, we committed fully to e-ink tablets as our student device. We implemented kiosk mode on the Android app to lock students into Manuscripta during sessions, and designed the entire UI around a monochrome, low-distraction experience.</p>
-                    </div>
-
-                    <div class="quote-card">
-                        <p class="quote-card__text">"Auto-marking is really important, but teachers need control over it before it gets accepted as final. There should be an option to make it manual."</p>
-                        <p class="quote-card__attribution">Teacher, Richard Cloudesley School</p>
-                    </div>
-                    <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We built a marking system where the teacher can review AI-suggested marks before they are finalised, with a manual override option available for every response.</p>
-                    </div>
-
-                    <div class="quote-card">
-                        <p class="quote-card__text">"Sometimes during a lesson a teacher likes to stop and get an understanding of where all students are. There needs to be a good way of doing this."</p>
-                        <p class="quote-card__attribution">Teacher, Richard Cloudesley School</p>
-                    </div>
-                    <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation so teachers can instantly gauge class-wide understanding.</p>
-                    </div>
-                </div>
-
-                <div class="interview-tab-panel" id="feedback-2">
-                    <div class="quote-card">
-                        <p class="quote-card__text">"Foundry Local bundles all AI into one executable that you can ship with the app. It reduces overhead on setup considerably."</p>
-                        <p class="quote-card__attribution">Microsoft Representative</p>
-                    </div>
-                    <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We took this on board as a recommendation for simplifying deployment of our on-device AI. This informed our approach to packaging the Windows application as a single self-contained installer.</p>
-                    </div>
-                </div>
-
-                <div class="interview-tab-panel" id="feedback-3">
-                    <div class="quote-card">
-                        <p class="quote-card__text">"A tag on each device would make it easier to identify. The device should not be able to change its alias, otherwise students could exploit this."</p>
-                        <p class="quote-card__attribution">UCL Teaching Assistant</p>
-                    </div>
-                    <div class="quote-card__implementation">
-                        <h4>What we implemented</h4>
-                        <p>We added fixed device identification using a generated device ID that cannot be changed by the student, ensuring reliable tracking across sessions without compromising anonymity.</p>
                     </div>
                 </div>
             </div>
