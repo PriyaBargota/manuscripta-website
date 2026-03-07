@@ -481,6 +481,10 @@
                 </div>
             </div>
 
+            <p style="margin-top: 32px; padding: 20px; background: #f8f7f5; border-left: 4px solid var(--color-brand-green); border-radius: 4px;">
+                The above workflow describes interaction via the Android student application. For non-Android E-ink devices such as reMarkable and Kindle tablets, an alternative delivery method is supported. The teacher exports the generated material as a PDF and sends it to the device via email. The student annotates the worksheet using the device's native stylus tools and returns the completed work using the device's built-in send-to-email feature. This workflow was validated with Atia Rafiq, a domain expert who uses E-ink devices professionally in a healthcare context where doctors distribute and receive annotated forms via the same mechanism.
+            </p>
+
             <h2 id="interactions">Use Cases</h2>
             <p>The following use cases illustrate how teachers and students interact with Manuscripta in typical classroom scenarios.</p>
 
@@ -702,7 +706,7 @@
             <div class="subcard subcard--green">
                 <h4>Must Have</h4>
                 <ul>
-                    <li>Handwriting recognition must respond within 2 seconds for real-time feedback</li>
+                    <li>Handwriting recognition must respond within 2 seconds for real-time feedback <em style="color: #666; font-style: italic;">(Identified as a requirement during stakeholder interviews. AI-based handwriting recognition of returned PDFs was not completed within the project timeline and is noted as future work in the evaluation.)</em></li>
                     <li>Content distribution to 30 devices must complete within 10 seconds</li>
                     <li>Dashboard updates must display with less than 3-second latency</li>
                     <li>All data transmission must use WPA3 encryption</li>

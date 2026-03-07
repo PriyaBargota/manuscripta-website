@@ -126,7 +126,7 @@
                 <div style="margin-top: 48px; padding: 32px; background: var(--bg-surface); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);">
                     <h3 style="font-family: 'Fraunces', serif; font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 600;">Achievement and Impact</h3>
                     <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px;">
-                        The key achievement of Manuscripta is a fully functional teacher-facing Windows application powered by IBM Granite, validated through testing with two teachers from Richard Cloudesley School and three additional teaching professionals. Testers navigated the platform, generated educational materials using the AI content pipeline, and deployed those materials directly to E-ink tablets, reporting a positive experience throughout. Generated worksheets were successfully displayed and annotated on Kindle and reMarkable E-ink devices supplied by the school, confirming end-to-end content delivery on real hardware.
+                        The key achievement of Manuscripta is a fully functional teacher-facing Windows application powered by IBM Granite, validated through testing with two teachers from Richard Cloudesley School and three additional teaching professionals. Testers navigated the platform, generated educational materials using the AI content pipeline, and deployed those materials directly to E-ink tablets, reporting a positive experience throughout. Generated worksheets were successfully delivered to and annotated on Kindle and reMarkable E-ink devices supplied by the school via an email-based PDF workflow, confirming the system's compatibility with non-Android E-ink hardware.
                     </p>
                     <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; line-height: 1.7; color: var(--text-secondary);">
                         On the Android side, the data and network layers are complete with 96% instruction coverage and 93% branch coverage across 88 classes, validated by a comprehensive JaCoCo test suite. The architecture follows Clean Architecture principles with full Room database, Retrofit networking, and Hilt dependency injection. Integration of the UI layer is ongoing. The system operates entirely over a local area network with no cloud dependencies, ensuring full GDPR compliance and data privacy for students in SEN school environments.
@@ -197,6 +197,17 @@
                         </div>
                         <h3>Privacy-First by Design</h3>
                         <p>Everything runs over a local Wi-Fi network with zero cloud dependencies. No student data leaves the school. All tracking is anonymised and GDPR-compliant.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                        </div>
+                        <h3>Flexible Content Delivery</h3>
+                        <p>Manuscripta supports two parallel delivery methods. Android-based E-ink tablets receive materials directly through the app over local Wi-Fi. Non-Android devices such as reMarkable and Kindle receive materials as PDF worksheets via email, which students annotate and return using the device's built-in send-to-email feature. This mirrors established workflows already used in professional settings such as healthcare, where E-ink form filling via email is common practice.</p>
                     </div>
 
                 </div>
