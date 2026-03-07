@@ -683,22 +683,22 @@
                     <li>✓ AI text assistance (simplify, expand, summarise)</li>
                     <li>✓ Adjustable text size and contrast settings for E-ink optimisation</li>
                     <li>✓ Seamless lesson to quiz navigation</li>
-                    <li>✗ Rich text editor with tables, equations, images and PDFs</li>
-                    <li>✗ Vocabulary highlighting for key terms</li>
-                    <li>✗ Text-to-speech functionality</li>
-                    <li>✗ Export session data and progress reports</li>
-                    <li>✗ Historical progress tracking across multiple sessions</li>
-                    <li>✗ Differentiated material deployment to specific student groups</li>
+                    <li>⚠ Rich text editor with tables, equations, images and PDFs — the basic editor is implemented; advanced formatting options including equations and embedded PDFs were not completed within the project timeline</li>
+                    <li>⚠ Text-to-speech functionality — integrated into the Android application architecture but not fully delivered within the project timeline</li>
+                    <li>⚠ Export session data and progress reports — session data is captured and stored locally; export functionality was not completed within the project timeline</li>
+                    <li>⚠ Historical progress tracking across multiple sessions — local data persistence is implemented via Room database; cross-session aggregation and display was not completed within the project timeline</li>
+                    <li>⚠ Differentiated material deployment to specific student groups — whole-class distribution is implemented; targeted group deployment was not completed within the project timeline</li>
+                    <li>⚠ Vocabulary highlighting for key terms — identified as a should-have requirement but not implemented within the project timeline</li>
                 </ul>
             </div>
 
             <div class="subcard subcard--orange">
                 <h4>Could Have</h4>
                 <ul>
-                    <li>↗ AI chatbot assistant helping teachers refine content generation prompts</li>
-                    <li>↗ Multi-language support for content generation</li>
-                    <li>↗ Drawing tools for diagram-based questions</li>
-                    <li>↗ Advanced analytics dashboard showing class-wide trends</li>
+                    <li>⚠ AI chatbot assistant helping teachers refine content generation prompts — partially explored but not completed within the project timeline</li>
+                    <li>✗ Multi-language support for content generation</li>
+                    <li>✗ Drawing tools for diagram-based questions</li>
+                    <li>✗ Advanced analytics dashboard showing class-wide trends</li>
                     <li>✗ Parent portal providing anonymised progress summaries</li>
                     <li>✗ Mobile teacher dashboard app for tablet or smartphone monitoring</li>
                     <li>✗ Integration with school learning management systems</li>
@@ -759,7 +759,7 @@
                     <li>✓ E-ink displays must maintain minimum 7:1 contrast ratio for visibility</li>
                     <li>✓ System must handle network disconnections without data loss</li>
                     <li>✓ Modular Clean Architecture with separation of data, domain and presentation layers</li>
-                    <li>↗ Handwriting recognition must respond within 2 seconds for real-time feedback <em style="color: #666; font-style: italic;">— identified during stakeholder interviews, not completed within project timeline, noted as future work in evaluation</em></li>
+                    <li>⚠ Handwriting recognition must respond within 2 seconds — identified during stakeholder interviews with Dean Mohamedally and validated by Atia Rafiq's professional workflow; not completed within the project timeline and documented as future work in the evaluation section</li>
                 </ul>
             </div>
 
@@ -770,15 +770,15 @@
                     <li>✓ Modular codebase architecture for easy feature additions post-project</li>
                     <li>✓ Compatibility with common E-ink tablets including reMarkable, Boox and Kindle Scribe</li>
                     <li>✓ Minimal teacher training required — under 30 minutes onboarding</li>
-                    <li>✗ Updates deployable without full system reinstallation</li>
+                    <li>⚠ Updates deployable without full system reinstallation — packaging and deployment pipeline was not completed within the project timeline</li>
                 </ul>
             </div>
 
             <div class="subcard subcard--orange">
                 <h4>Could Have</h4>
                 <ul>
-                    <li>↗ Handwriting recognition achieving 95% or higher accuracy for clear handwriting</li>
-                    <li>↗ Multi-language interface support beyond English</li>
+                    <li>✗ Handwriting recognition achieving 95% or higher accuracy for clear handwriting</li>
+                    <li>✗ Multi-language interface support beyond English</li>
                     <li>✗ Usage analytics for schools to assess platform effectiveness</li>
                 </ul>
             </div>
@@ -794,8 +794,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 8px;">✓ WPA3 encryption requirement removed — encryption handled at network level by school infrastructure, not application level</td>
-                            <td style="padding: 8px;">Out of scope</td>
+                            <td style="padding: 8px;">✓ WPA3 encryption at application level</td>
+                            <td style="padding: 8px;">Encryption handled at network infrastructure level by the school — out of application scope</td>
                         </tr>
                     </tbody>
                 </table>
@@ -805,8 +805,8 @@
                 <p style="font-weight: 600; margin-bottom: 8px;">Key:</p>
                 <ul style="list-style: none; padding: 0;">
                     <li>✓ Implemented and delivered</li>
-                    <li>✗ Not implemented within project timeline</li>
-                    <li>↗ Identified as future work</li>
+                    <li>⚠ Identified as a requirement but not completed within the project timeline</li>
+                    <li>✗ Not attempted within the project timeline</li>
                 </ul>
             </div>
 
