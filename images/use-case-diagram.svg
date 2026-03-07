@@ -1,0 +1,71 @@
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- System Boundary -->
+  <rect x="200" y="50" width="500" height="500" fill="none" stroke="#15502E" stroke-width="2" rx="10"/>
+  <text x="430" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#15502E" text-anchor="middle">Manuscripta</text>
+
+  <!-- Teacher Actor (left side) -->
+  <g id="teacher">
+    <!-- Head -->
+    <circle cx="80" cy="200" r="20" fill="none" stroke="#333" stroke-width="2"/>
+    <!-- Body -->
+    <line x1="80" y1="220" x2="80" y2="280" stroke="#333" stroke-width="2"/>
+    <!-- Arms -->
+    <line x1="80" y1="240" x2="50" y2="260" stroke="#333" stroke-width="2"/>
+    <line x1="80" y1="240" x2="110" y2="260" stroke="#333" stroke-width="2"/>
+    <!-- Legs -->
+    <line x1="80" y1="280" x2="60" y2="320" stroke="#333" stroke-width="2"/>
+    <line x1="80" y1="280" x2="100" y2="320" stroke="#333" stroke-width="2"/>
+    <text x="80" y="345" font-family="Arial, sans-serif" font-size="14" fill="#333" text-anchor="middle">Teacher</text>
+  </g>
+
+  <!-- Student Actor (right side) -->
+  <g id="student">
+    <!-- Head -->
+    <circle cx="820" cy="200" r="20" fill="none" stroke="#333" stroke-width="2"/>
+    <!-- Body -->
+    <line x1="820" y1="220" x2="820" y2="280" stroke="#333" stroke-width="2"/>
+    <!-- Arms -->
+    <line x1="820" y1="240" x2="790" y2="260" stroke="#333" stroke-width="2"/>
+    <line x1="820" y1="240" x2="850" y2="260" stroke="#333" stroke-width="2"/>
+    <!-- Legs -->
+    <line x1="820" y1="280" x2="800" y2="320" stroke="#333" stroke-width="2"/>
+    <line x1="820" y1="280" x2="840" y2="320" stroke="#333" stroke-width="2"/>
+    <text x="820" y="345" font-family="Arial, sans-serif" font-size="14" fill="#333" text-anchor="middle">Student</text>
+  </g>
+
+  <!-- Use Case Ovals (Left side - Teacher) -->
+  <ellipse cx="320" cy="120" rx="100" ry="40" fill="none" stroke="#15502E" stroke-width="2"/>
+  <text x="320" y="118" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Generate Material</text>
+  <text x="320" y="132" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">(UCU1)</text>
+
+  <ellipse cx="320" cy="220" rx="100" ry="40" fill="none" stroke="#15502E" stroke-width="2"/>
+  <text x="320" y="218" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Distribute via Wi-Fi</text>
+  <text x="320" y="232" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">(UCU2)</text>
+
+  <ellipse cx="320" cy="320" rx="100" ry="40" fill="none" stroke="#15502E" stroke-width="2"/>
+  <text x="320" y="318" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Monitor Dashboard</text>
+  <text x="320" y="332" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">(UCU4)</text>
+
+  <ellipse cx="320" cy="420" rx="100" ry="40" fill="none" stroke="#15502E" stroke-width="2"/>
+  <text x="320" y="418" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Distribute via Email</text>
+  <text x="320" y="432" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">(UCU6)</text>
+
+  <!-- Use Case Ovals (Right side - Student) -->
+  <ellipse cx="580" cy="220" rx="100" ry="40" fill="none" stroke="#15502E" stroke-width="2"/>
+  <text x="580" y="218" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Complete Worksheet</text>
+  <text x="580" y="232" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">(UCU3)</text>
+
+  <ellipse cx="580" cy="320" rx="100" ry="40" fill="none" stroke="#15502E" stroke-width="2"/>
+  <text x="580" y="318" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Request Help</text>
+  <text x="580" y="332" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">(UCU5)</text>
+
+  <!-- Connections - Teacher to Use Cases -->
+  <line x1="110" y1="260" x2="220" y2="120" stroke="#666" stroke-width="1.5"/>
+  <line x1="110" y1="260" x2="220" y2="220" stroke="#666" stroke-width="1.5"/>
+  <line x1="110" y1="260" x2="220" y2="320" stroke="#666" stroke-width="1.5"/>
+  <line x1="110" y1="260" x2="220" y2="420" stroke="#666" stroke-width="1.5"/>
+
+  <!-- Connections - Student to Use Cases -->
+  <line x1="790" y1="260" x2="680" y2="220" stroke="#666" stroke-width="1.5"/>
+  <line x1="790" y1="260" x2="680" y2="320" stroke="#666" stroke-width="1.5"/>
+</svg>

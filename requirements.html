@@ -254,7 +254,11 @@
             </div>
 
             <h2 id="interactions">Use Cases</h2>
-            <p>The following use cases illustrate how teachers and students interact with Manuscripta in typical classroom scenarios.</p>
+            <p>The following use cases illustrate how teachers and students interact with Manuscripta in typical classroom scenarios. A UML use case diagram is provided above, followed by detailed descriptions of each case.</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="images/use-case-diagram.svg" alt="UML Use Case Diagram" style="max-width: 100%; height: auto;">
+            </div>
 
             <div class="use-case-table">
                 <div class="use-case-header">
@@ -272,23 +276,24 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher creates a customized worksheet using AI, specifying topic, difficulty level, and learning objectives</div>
+                        <div class="use-case-content">The teacher generates a worksheet using the on-device AI, specifying subject, topic and target reading level.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher opens worksheet generator</li>
-                                <li>Teacher inputs subject topic and difficulty level</li>
-                                <li>AI generates personalized worksheet</li>
-                                <li>Teacher reviews and edits content</li>
-                                <li>Teacher saves to content library</li>
+                                <li>Teacher opens the content generator in the Windows application</li>
+                                <li>Teacher selects material type (worksheet, quiz or poll)</li>
+                                <li>Teacher inputs subject topic and target age group via slider</li>
+                                <li>IBM Granite generates the material locally on the teacher's laptop</li>
+                                <li>Teacher reviews and edits the generated content</li>
+                                <li>Teacher saves the material to the content library</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">AI-generated worksheet ready for distribution to student tablets</div>
+                        <div class="use-case-content">AI-generated material saved to the library and ready for distribution.</div>
                     </div>
                 </div>
             </div>
@@ -309,23 +314,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher distributes worksheets or learning materials to up to 30 student E-ink tablets over local network</div>
+                        <div class="use-case-content">The teacher distributes a saved material to connected student E-ink tablets over the local network.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher selects content from library</li>
-                                <li>Teacher views list of connected devices</li>
-                                <li>Teacher selects target student devices</li>
-                                <li>System pushes content over Wi-Fi</li>
-                                <li>Students receive content notification</li>
+                                <li>Teacher selects a material from the content library</li>
+                                <li>Teacher views the list of connected devices on the dashboard</li>
+                                <li>Teacher selects target devices or distributes to all</li>
+                                <li>System pushes content over Wi-Fi to all selected tablets</li>
+                                <li>Students receive the material on their device</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Learning materials delivered to student devices, ready for interaction</div>
+                        <div class="use-case-content">Learning material delivered simultaneously to up to 30 student devices.</div>
                     </div>
                 </div>
             </div>
@@ -346,24 +351,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">Student completes worksheet by writing answers with stylus, with real-time handwriting recognition feedback</div>
+                        <div class="use-case-content">The student views and completes an assigned worksheet on their E-ink tablet using touch or stylus input.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Student opens assigned worksheet</li>
-                                <li>Student reads question</li>
-                                <li>Student writes answer using stylus</li>
-                                <li>System recognizes handwriting in real-time</li>
-                                <li>System provides visual feedback</li>
-                                <li>Student submits completed work</li>
+                                <li>Student receives notification that material has been assigned</li>
+                                <li>Student opens the worksheet in the Android application</li>
+                                <li>Student reads through the content</li>
+                                <li>Student uses stylus or touch to annotate or answer questions</li>
+                                <li>Student submits completed responses through the app</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Student's handwritten responses captured and submitted to teacher dashboard</div>
+                        <div class="use-case-content">Student responses submitted to the teacher dashboard for review.</div>
                     </div>
                 </div>
             </div>
@@ -384,23 +388,98 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">Teacher uses real-time dashboard to track student engagement, completion rates, and identify students needing assistance</div>
+                        <div class="use-case-content">The teacher monitors class progress and student status in real time during a lesson.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher opens monitoring dashboard</li>
-                                <li>Dashboard displays anonymized student progress</li>
-                                <li>Teacher identifies struggling students</li>
-                                <li>Teacher reviews help requests</li>
-                                <li>Teacher provides targeted support</li>
+                                <li>Teacher opens the monitoring dashboard</li>
+                                <li>Dashboard displays anonymised status of each connected device</li>
+                                <li>Teacher identifies students marked as needing help or inactive</li>
+                                <li>Teacher reviews submitted responses and completion rates</li>
+                                <li>Teacher provides targeted support where needed</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Teacher has comprehensive view of class progress and can provide timely assistance</div>
+                        <div class="use-case-content">Teacher has a live overview of class engagement and can respond to individual needs without disrupting the lesson.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="use-case-table">
+                <div class="use-case-header">
+                    <div class="use-case-id">UCU5</div>
+                    <div class="use-case-title">Use Case</div>
+                </div>
+                <div class="use-case-body">
+                    <div class="use-case-row">
+                        <div class="use-case-label">ID:</div>
+                        <div class="use-case-content">UCU5</div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Actor:</div>
+                        <div class="use-case-content">Student</div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Description:</div>
+                        <div class="use-case-content">The student discreetly signals to the teacher that they need assistance without speaking aloud.</div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Main Flow:</div>
+                        <div class="use-case-content">
+                            <ol>
+                                <li>Student becomes stuck or needs support during a task</li>
+                                <li>Student taps the help request button on the status bar</li>
+                                <li>System sends an alert to the teacher dashboard</li>
+                                <li>Teacher sees the device flagged on the classroom overview grid</li>
+                                <li>Teacher acknowledges the request</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Result:</div>
+                        <div class="use-case-content">Student receives support without having to speak in front of the class, reducing anxiety for neurodiverse learners.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="use-case-table">
+                <div class="use-case-header">
+                    <div class="use-case-id">UCU6</div>
+                    <div class="use-case-title">Use Case</div>
+                </div>
+                <div class="use-case-body">
+                    <div class="use-case-row">
+                        <div class="use-case-label">ID:</div>
+                        <div class="use-case-content">UCU6</div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Actor:</div>
+                        <div class="use-case-content">Teacher</div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Description:</div>
+                        <div class="use-case-content">The teacher distributes a worksheet to a non-Android E-ink device such as a reMarkable or Kindle tablet via email.</div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Main Flow:</div>
+                        <div class="use-case-content">
+                            <ol>
+                                <li>Teacher generates and saves a material in the Windows application</li>
+                                <li>Teacher exports the material as a PDF</li>
+                                <li>Teacher sends the PDF to the student's device email address</li>
+                                <li>Student opens the PDF on their E-ink device</li>
+                                <li>Student annotates the worksheet using the device's native stylus tools</li>
+                                <li>Student returns completed work using the device's send-to-email feature</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="use-case-row">
+                        <div class="use-case-label">Result:</div>
+                        <div class="use-case-content">Material successfully delivered to and returned from a non-Android E-ink device, validated by domain expert Atia Rafiq whose professional workflow follows the same mechanism.</div>
                     </div>
                 </div>
             </div>
