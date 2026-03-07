@@ -152,32 +152,37 @@
 
                     <div class="subcard subcard--blue">
                         <p><strong>Device Compatibility Beyond Android</strong></p>
-                        <p>Our system must support non-Android e-ink devices like reMarkable tablets that lack native REST APIs. We will implement email-based bidirectional communication where teachers send PDF worksheets to devices, students annotate responses, and return via the device's "Send to email" feature. Student identification will be maintained through unique identifiers in email titles or document signatures while preserving anonymity.</p>
+                        <p>The meeting confirmed the system must support non-Android E-ink devices such as reMarkable tablets, which cannot run Android applications. Atia's demonstration validated email-based PDF delivery as an established real-world workflow, already used in healthcare settings where doctors distribute and receive annotated forms via the same mechanism. For these devices, the teacher exports materials as PDFs and sends them via email. The student annotates using the native stylus and returns work via send-to-email, with anonymity preserved through unique identifiers in email titles.</p>
+                        <p><strong>What we changed:</strong> We confirmed two parallel delivery methods — direct Wi-Fi for Android tablets and email-based PDF delivery for non-Android devices.</p>
+                        <p><strong>Impact:</strong> Schools using mixed device types can deploy Manuscripta without being restricted to a single hardware ecosystem.</p>
                     </div>
 
                     <div class="subcard subcard--green">
                         <p><strong>On-Device AI Requirements</strong></p>
-                        <p>The teacher application must use on-device AI processing via OpenVINO and Qualcomm Snapdragon technologies to maintain privacy compliance. No cloud-based AI processing is permitted for student data. All handwriting recognition, content generation, and assessment must occur locally on the teacher's Windows laptop.</p>
+                        <p>All AI processing must occur locally on the teacher's Windows laptop with no cloud dependency, covering content generation, assessment and future handwriting recognition. IBM Granite was selected as the on-device language model.</p>
+                        <p><strong>What we changed:</strong> No student data is processed externally at any point.</p>
+                        <p><strong>Impact:</strong> Schools with strict data protection requirements can deploy the system knowing no data leaves the local network.</p>
                     </div>
 
                     <div class="subcard subcard--orange">
-                        <p><strong>Handwriting Recognition Capabilities</strong></p>
-                        <p>The system must accurately parse multiple input types from returned PDFs: tick boxes for multiple-choice questions, handwritten text answers, and annotated diagrams. AI processing should handle varying handwriting quality across age groups (11–18) and provide automated feedback to teachers on student responses.</p>
+                        <p><strong>Handwriting Recognition</strong></p>
+                        <p>The meeting identified handwriting recognition as a desirable capability, specifically parsing annotated PDFs returned from non-Android devices, including tick boxes and handwritten answers across the 11 to 18 age range.</p>
+                        <p><strong>What we changed:</strong> Added as a should-have requirement. Recognition of returned PDFs was not completed within the project timeline and is documented as future work in the evaluation section.</p>
+                        <p><strong>Impact:</strong> Automating marking of returned worksheets would significantly reduce teacher workload and remains a valuable direction for future development.</p>
                     </div>
 
                     <div class="subcard subcard--yellow">
                         <p><strong>Content Accessibility Features</strong></p>
-                        <p>AI capabilities should include text summarisation for struggling readers, content translation for multilingual students, and reading level adjustment. These features support diverse cognitive abilities and language backgrounds in SEN classrooms.</p>
+                        <p>The AI pipeline should support reading level adjustment, text summarisation and content simplification on demand to meet the varying cognitive needs of SEN students.</p>
+                        <p><strong>What we changed:</strong> Reading level adjustment and text simplification were confirmed as must-have features in the content generation pipeline.</p>
+                        <p><strong>Impact:</strong> Teachers can generate the same material at multiple difficulty levels in seconds, making differentiation practical rather than time-consuming.</p>
                     </div>
 
                     <div class="subcard subcard--blue">
-                        <p><strong>Real-Time Classroom Features</strong></p>
-                        <p>The reMarkable tablet demonstration revealed screen mirroring capabilities useful for teacher-led instruction. The system should support real-time display of teacher content for whole-class demonstrations while maintaining distraction-free student experiences.</p>
-                    </div>
-
-                    <div class="subcard subcard--green">
-                        <p><strong>Long-Term Data Ownership</strong></p>
-                        <p>Professor Mohamedally emphasised creating a "microdrive" model where student notes persist throughout their education as personal property. The AI should adapt to evolving handwriting patterns from early childhood, building personalised assessment history without cloud dependencies. Students own and control their educational materials.</p>
+                        <p><strong>Local Data Persistence</strong></p>
+                        <p>Professor Mohamedally emphasised that student work must be saved locally to the device and not lost if a session is interrupted or the network drops.</p>
+                        <p><strong>What we changed:</strong> The Android Room database was designed to persist all student responses locally, with sync to the teacher dashboard occurring separately.</p>
+                        <p><strong>Impact:</strong> Local persistence ensures continuity regardless of network conditions, avoiding disruption that could cause significant distress for neurodiverse students.</p>
                     </div>
                 </div>
             </div>
