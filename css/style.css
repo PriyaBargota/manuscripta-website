@@ -1533,6 +1533,16 @@ a.nav-brand:focus-visible {
 }
 
 /* ============================================
+   WHITE BACKGROUND SECTION
+   ============================================ */
+.white-bg-section {
+    background-color: white;
+    padding: 32px;
+    margin: 24px -32px;
+    border-radius: 8px;
+}
+
+/* ============================================
    SKETCH IMAGES
    ============================================ */
 .sketch-image {
