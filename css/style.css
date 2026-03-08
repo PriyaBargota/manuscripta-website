@@ -1545,12 +1545,12 @@ a.nav-brand:focus-visible {
 }
 
 .sketch-image img {
-    max-width: 75%;
+    max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
-    image-rendering: high-quality;
     image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
     backface-visibility: hidden;
     transform: translateZ(0);
     -webkit-font-smoothing: subpixel-antialiased;
