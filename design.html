@@ -206,6 +206,13 @@
 
                 <h3>Teacher Interface - Initial to Improved Sketch</h3>
 
+                <p>
+                    Our initial teacher interface sketch enabled educators to create AI-generated teaching materials, deploy lessons and monitor student progress. Drawing from our Jon Kirk persona, we recognised that teachers unfamiliar with AI tools need an interface that feels immediately straightforward, with no unnecessary complexity.
+                </p>
+                <p>
+                    The initial design included a student dashboard, a lesson creation text box and an analytics tab for performance monitoring. Following stakeholder consultation, we identified several usability issues and refined the design accordingly.
+                </p>
+
                 <div class="sketch-comparison">
                     <div class="sketch-column">
                         <h4>Initial Sketch</h4>
@@ -224,6 +231,7 @@
                 <table class="issue-table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Issue Uncovered</th>
                             <th>Changes to Our Sketch</th>
                             <th>Severity</th>
@@ -231,30 +239,27 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>C3</td>
                             <td>The layout was easy to understand but lacked clear guidance for new users.</td>
-                            <td>Tabs were renamed more descriptively, with structured onboarding prompts added for first-time users.</td>
+                            <td><strong>Clear Navigation and Onboarding</strong>, tabs were renamed more descriptively and structured onboarding prompts were added for first-time users. An AI assistant was also introduced to provide real-time help if needed.</td>
                             <td>1</td>
                         </tr>
                         <tr>
-                            <td>The purpose and expected input for the large "lesson plan" text box was not immediately clear.</td>
-                            <td>Lesson input was broken into smaller labelled fields - title, subject, base content and preview - to guide teachers through the creation process.</td>
+                            <td>C4</td>
+                            <td>The purpose and expected input for the large "lesson plan" text box was not immediately clear. Teachers were unsure what to input.</td>
+                            <td><strong>Structured Lesson Input Fields</strong>, the ambiguous text box was replaced with clearly labelled fields - title, subject, base content and preview - guiding teachers step by step through the content creation process.</td>
                             <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>C5</td>
+                            <td>No mechanism existed for teachers to set reading levels for the whole class at once.</td>
+                            <td><strong>Reading Level Controls</strong>, a class-wide age group slider was added to the teacher interface, allowing teachers to set the default reading level for all distributed content.</td>
+                            <td>2</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <p><em>Severity ranges from 1 (lowest) to 3 (highest).</em></p>
-
-                <p style="margin-top: 20px;"><strong>What we changed:</strong></p>
-                <p>
-                    <strong>Structured Lesson Input Fields</strong> - the ambiguous large text box was replaced with clearly labelled fields guiding teachers step by step through content creation.
-                </p>
-                <p>
-                    <strong>Clear Navigation and Onboarding</strong> - tabs were renamed descriptively and structured onboarding prompts were added. An AI assistant was also introduced to provide real-time help if needed.
-                </p>
-                <p>
-                    <strong>Reading Level Controls</strong> - a class-wide age group slider was added to the teacher interface, allowing teachers to set the default reading level for all distributed content.
-                </p>
 
                 <h2 id="prototypes">Initial Prototype</h2>
                 <p>
