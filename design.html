@@ -102,14 +102,20 @@
                 </table>
 
                 <h2 id="sketches">Sketches</h2>
+                <p>
+                    We began by constructing personas and researching SEN needs, which identified the following accessibility requirements guiding our initial student interface sketch:
+                </p>
+                <ul>
+                    <li>Alternative input methods for students with motor or physical disabilities [1]</li>
+                    <li>Adaptable cognitive levels for mixed-ability learners [2]</li>
+                    <li>High contrast for students with reading difficulties [3][4]</li>
+                    <li>The ability to progress through tasks at their own pace</li>
+                </ul>
+                <p>
+                    After consulting Marie-Louise Holmberg (National Autistic Society) and Dan Cooper (SEN specialist) via semi-structured email questionnaires, and conducting further research, we identified the following issues and refined our sketches accordingly.
+                </p>
 
-                <h3>Student Interface Evolution</h3>
-                <p>
-                    Our initial student interface sketches focused on accessibility requirements identified through persona research: alternative input methods for motor disabilities, adaptable cognitive levels for mixed-ability learners, high contrast for reading difficulties, and self-paced progress through tasks.
-                </p>
-                <p>
-                    After stakeholder consultations, we identified usability issues and refined our approach.
-                </p>
+                <h3>Student Interface - Initial to Improved Sketch</h3>
 
                 <div class="sketch-comparison">
                     <div class="sketch-column">
@@ -136,32 +142,29 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Excessive on-screen buttons cause overstimulation for autistic students. 87% show signs of over-stimulation when using tech.</td>
-                            <td>Simplified interface by removing accessibility controls from student view. Moved settings to teacher interface for pre-configuration.</td>
+                            <td>"Excessive visuals are overstimulating." 87% of autistic children show signs of over- or self-stimulation when using technology. [5]</td>
+                            <td>The cluttering of on-screen buttons may overwhelm users. The layout was simplified with fewer navigation buttons.</td>
                             <td>2</td>
                         </tr>
                         <tr>
-                            <td>Many autistic students struggle with reading comprehension. Tailored assistance needed.</td>
-                            <td>Added reading level adjustment features for both teacher (class-wide) and student (individual) interfaces with "Simplify" button.</td>
+                            <td>"Many autistic children fall behind in comprehension tasks due to reading deficits." Tailored reading assistance should be provided. [6]</td>
+                            <td>Reading level adjustment features were added for both teacher (class-wide) and student (individual) interfaces, including a Simplify button.</td>
                             <td>3</td>
                         </tr>
                     </tbody>
                 </table>
 
+                <p><em>Severity ranges from 1 (lowest) to 3 (highest).</em></p>
+
+                <p style="margin-top: 20px;"><strong>What we changed:</strong></p>
                 <p>
-                    <strong>Minimal Interface Elements:</strong> Removed accessibility controls and reading level adjustments from student view to reduce clutter. Teachers configure these settings in advance based on student needs.
+                    <strong>Minimal Interface Elements</strong> - accessibility controls and reading level adjustments were removed from the student view to reduce clutter. Teachers configure these settings in advance based on individual student needs.
                 </p>
                 <p>
-                    <strong>Reading Level Controls:</strong> Added dual-level reading adjustment. Teachers set default class reading level, while students can individually simplify text on their devices for personalized support.
+                    <strong>Reading Level Controls</strong> - dual-level reading adjustment was added. Teachers set the default class reading level, while students can individually simplify text on their devices.
                 </p>
 
-                <h3>Teacher Interface Evolution</h3>
-                <p>
-                    Our initial teacher interface enabled AI content generation, lesson deployment, and progress monitoring. From personas, we recognized teachers may lack AI tool familiarity, so we prioritized straightforward navigation.
-                </p>
-                <p>
-                    The interface included student dashboard, lesson creation fields, and analytics for performance visualization. Stakeholder feedback revealed areas for improvement.
-                </p>
+                <h3>Teacher Interface - Initial to Improved Sketch</h3>
 
                 <div class="sketch-comparison">
                     <div class="sketch-column">
@@ -188,35 +191,34 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Layout was understandable but lacked clear guidance for new users.</td>
-                            <td>Renamed tabs descriptively and added structured onboarding prompts for first-time users.</td>
+                            <td>The layout was easy to understand but lacked clear guidance for new users.</td>
+                            <td>Tabs were renamed more descriptively, with structured onboarding prompts added for first-time users.</td>
                             <td>1</td>
                         </tr>
                         <tr>
-                            <td>Large "lesson plan" text box was ambiguous. Teachers unsure what to input.</td>
-                            <td>Broke lesson input into smaller labeled fields (title, subject, content, preview) to guide creation process.</td>
+                            <td>The purpose and expected input for the large "lesson plan" text box was not immediately clear.</td>
+                            <td>Lesson input was broken into smaller labelled fields - title, subject, base content and preview - to guide teachers through the creation process.</td>
                             <td>3</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <p>
-                    <strong>Structured Lesson Input Fields:</strong> Replaced large text box with labeled fields guiding teachers through content creation step-by-step.
-                </p>
-                <p>
-                    <strong>Clear Navigation and Onboarding:</strong> Renamed tabs descriptively and added onboarding guidance for first-time users. Added AI assistant for real-time help.
-                </p>
-                <p>
-                    <strong>Reading Level Controls:</strong> Added class-wide age group slider allowing teachers to set default reading level for all distributed content.
-                </p>
-
                 <p><em>Severity ranges from 1 (lowest) to 3 (highest).</em></p>
 
-                <h2 id="prototypes">Prototypes</h2>
-
-                <h3>Initial Prototype</h3>
+                <p style="margin-top: 20px;"><strong>What we changed:</strong></p>
                 <p>
-                    We translated sketches into interactive HTML/CSS prototypes simulating both student and teacher interfaces. These prototypes were shared with stakeholders via email for feedback on usability and feature requirements.
+                    <strong>Structured Lesson Input Fields</strong> - the ambiguous large text box was replaced with clearly labelled fields guiding teachers step by step through content creation.
+                </p>
+                <p>
+                    <strong>Clear Navigation and Onboarding</strong> - tabs were renamed descriptively and structured onboarding prompts were added. An AI assistant was also introduced to provide real-time help if needed.
+                </p>
+                <p>
+                    <strong>Reading Level Controls</strong> - a class-wide age group slider was added to the teacher interface, allowing teachers to set the default reading level for all distributed content.
+                </p>
+
+                <h2 id="prototypes">Initial Prototype</h2>
+                <p>
+                    We translated our sketches into a digital interactive prototype using HTML and CSS to simulate both the student and teacher interfaces. The prototype was shared with clients via follow-up email, generating the following feedback:
                 </p>
 
                 <div class="sketch-comparison">
@@ -234,50 +236,79 @@
                     </div>
                 </div>
 
-                <p>Stakeholder feedback identified three key areas for improvement:</p>
-
                 <table class="issue-table">
                     <thead>
                         <tr>
                             <th>Issue Uncovered</th>
-                            <th>Severity</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>"Ability to lock tablets to get students' attention when needed."</td>
-                            <td>3</td>
                         </tr>
                         <tr>
                             <td>"Can we structure content as Units containing Lessons?"</td>
-                            <td>2</td>
                         </tr>
                         <tr>
                             <td>"It would be nice if students could easily switch between lesson and quiz."</td>
-                            <td>2</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h3>Improved Prototype</h3>
-                <p>We addressed stakeholder feedback through three key improvements:</p>
-
+                <p style="margin-top: 20px;"><strong>What we changed:</strong></p>
                 <p>
-                    <strong>Classroom Attention Management:</strong> Added "Lock All Screens" button enabling teachers to pause all student tablets with one click for whole-class instruction or announcements.
+                    <strong>Classroom Attention Management</strong> - a "Lock All Screens" button was added for one-click control during instruction, directly addressing the teacher's need to regain student attention.
                 </p>
                 <p>
-                    <strong>Hierarchical Content Organization:</strong> Implemented Unit/Lesson structure allowing teachers to organize content hierarchically. Teachers specify unit and lesson numbers during creation, then deploy via organized dropdowns in classroom control.
+                    <strong>Hierarchical Content Organisation</strong> - teachers can now specify unit and lesson numbers when creating content, then select and deploy via organised dropdowns in classroom control.
                 </p>
                 <p>
-                    <strong>Seamless Lesson-Quiz Navigation:</strong> Added toggle functionality allowing students to switch between lesson content and quiz questions without returning to main menu, reducing friction and maintaining focus.
+                    <strong>Seamless Lesson-Quiz Navigation</strong> - a quick toggle was added allowing students to switch between lesson content and quiz questions without navigating away from the current screen.
                 </p>
 
-                <h3>Final Evaluation from Educational Sector Contacts</h3>
+                <p style="margin-top: 32px;">You can explore the prototypes here:</p>
                 <ul>
-                    <li>Student status should use color-coded blocks rather than small text labels for clearer visual representation</li>
-                    <li>Terms like lesson, quiz, and worksheet require clearer definitions</li>
-                    <li>Lesson plans and teaching materials should support optional numbering</li>
+                    <li><a href="https://aistudio.google.com/apps/drive/1F8GdVb4J4VLAtkuo53RX8yPfGICrygO9?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Teacher Interface Prototype</a></li>
+                    <li><a href="https://aistudio.google.com/apps/drive/1AVOMRP29kkZyooWVghEObs1-SnqSb59E?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Student Interface Prototype</a></li>
                 </ul>
+
+                <h2 id="final-feedback">Final Feedback and Evaluation</h2>
+                <p>
+                    A final round of feedback was gathered from personal contacts in the educational sector, resulting in the following refinements:
+                </p>
+
+                <table class="issue-table">
+                    <thead>
+                        <tr>
+                            <th>Issue Uncovered</th>
+                            <th>Changes to Our Sketch</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Student statuses shown with small coloured labels were difficult to read at a glance.</td>
+                            <td>The entire student block is now colour-coded to represent each student's status - on task, needs help, or disconnected.</td>
+                        </tr>
+                        <tr>
+                            <td>Terms such as lesson, quiz and worksheet were ambiguous to new users.</td>
+                            <td>Labels and terminology were clarified throughout both interfaces.</td>
+                        </tr>
+                        <tr>
+                            <td>Lesson plans and teaching materials could benefit from optional numbering.</td>
+                            <td>Numbering was made optional when creating content.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Citations</h3>
+                <ol style="font-size: 14px; line-height: 1.8;">
+                    <li>Findlater and Zhang, "Input Accessibility," ASSETS, ACM, 2020.</li>
+                    <li>Barrientos, "Institutionalization of Adapted Books," AIDE Interdisciplinary Research Journal, 2023.</li>
+                    <li>Shuffrey et al., "Visually Evoked Response Differences," Brain Sciences, 2018.</li>
+                    <li>Martin and Wilkins, "Creating Visually Appropriate Classroom Environments," Intervention in School and Clinic, 2021.</li>
+                    <li>Alarcon-Licona and Loke, "Autistic Children's Use of Technology and Media," IDC, ACM, 2017.</li>
+                    <li>Nally et al., "An Analysis of Reading Abilities in Children with Autism Spectrum Disorders," Research in Autism Spectrum Disorders, 2018.</li>
+                </ol>
 
                 <h2 id="final-ui">Final UI</h2>
                 <p>[Final user interface designs and screenshots]</p>
