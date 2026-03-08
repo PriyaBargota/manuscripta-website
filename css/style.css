@@ -1536,9 +1536,8 @@ a.nav-brand:focus-visible {
    SKETCH IMAGES
    ============================================ */
 .sketch-image {
-    margin: 12px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -1546,7 +1545,8 @@ a.nav-brand:focus-visible {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     backface-visibility: hidden;
