@@ -269,84 +269,100 @@
 
                 <h2 id="prototypes">Initial Prototype</h2>
                 <p>
-                    We translated our sketches into a digital interactive prototype using HTML and CSS to simulate both the student and teacher interfaces. The prototype was shared with clients via follow-up email, generating the following feedback:
+                    We translated our sketches into a digital interactive prototype using HTML and CSS to simulate both the student and teacher interfaces. The prototype was shared with clients via follow-up email to validate our design decisions and identify remaining usability issues.
                 </p>
 
-                <div class="sketch-comparison">
-                    <div class="sketch-column">
-                        <h4>Student Prototype</h4>
-                        <div class="sketch-image">
-                            <img src="images/student_prototype.png" alt="Initial Student Prototype">
-                        </div>
-                    </div>
-                    <div class="sketch-column">
-                        <h4>Teacher Prototype</h4>
-                        <div class="sketch-image">
-                            <img src="images/Teacher_prototype.png" alt="Initial Teacher Prototype">
-                        </div>
-                    </div>
-                </div>
-
+                <h3>Prototype Evaluation against Nielsen's Heuristics</h3>
                 <table class="issue-table">
                     <thead>
                         <tr>
-                            <th>Issue Uncovered</th>
+                            <th>Heuristic</th>
+                            <th>Issue Identified</th>
+                            <th>Severity</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>"Ability to lock tablets to get students' attention when needed."</td>
+                            <td>User Control and Freedom</td>
+                            <td>No mechanism for teachers to regain student attention once content was distributed</td>
+                            <td>3</td>
                         </tr>
                         <tr>
-                            <td>"Can we structure content as Units containing Lessons?"</td>
+                            <td>Consistency and Standards</td>
+                            <td>Content was not organised hierarchically - units and lessons were treated as flat items</td>
+                            <td>2</td>
                         </tr>
                         <tr>
-                            <td>"It would be nice if students could easily switch between lesson and quiz."</td>
+                            <td>Flexibility and Efficiency of Use</td>
+                            <td>Students had to navigate away from lesson content to access quiz questions</td>
+                            <td>2</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <p style="margin-top: 20px;"><strong>What we changed:</strong></p>
-                <p>
-                    <strong>Classroom Attention Management</strong> - a "Lock All Screens" button was added for one-click control during instruction, directly addressing the teacher's need to regain student attention.
-                </p>
-                <p>
-                    <strong>Hierarchical Content Organisation</strong> - teachers can now specify unit and lesson numbers when creating content, then select and deploy via organised dropdowns in classroom control.
-                </p>
-                <p>
-                    <strong>Seamless Lesson-Quiz Navigation</strong> - a quick toggle was added allowing students to switch between lesson content and quiz questions without navigating away from the current screen.
-                </p>
-
-                <p style="margin-top: 32px;">You can explore the prototypes here:</p>
-                <ul>
-                    <li><a href="https://aistudio.google.com/apps/drive/1F8GdVb4J4VLAtkuo53RX8yPfGICrygO9?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Teacher Interface Prototype</a></li>
-                    <li><a href="https://aistudio.google.com/apps/drive/1AVOMRP29kkZyooWVghEObs1-SnqSb59E?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Student Interface Prototype</a></li>
-                </ul>
-
-                <h2 id="final-feedback">Final Feedback and Evaluation</h2>
-                <p>
-                    A final round of feedback was gathered from personal contacts in the educational sector, resulting in the following refinements:
-                </p>
-
+                <h3 style="margin-top: 32px;">Client Feedback and Changes</h3>
                 <table class="issue-table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Issue Uncovered</th>
-                            <th>Changes to Our Sketch</th>
+                            <th>Changes Made</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Student statuses shown with small coloured labels were difficult to read at a glance.</td>
-                            <td>The entire student block is now colour-coded to represent each student's status - on task, needs help, or disconnected.</td>
+                            <td>C6</td>
+                            <td>"Ability to lock tablets to get students' attention when needed."</td>
+                            <td><strong>Classroom Attention Management</strong>, a Lock All Screens button was added for one-click control during instruction</td>
                         </tr>
                         <tr>
-                            <td>Terms such as lesson, quiz and worksheet were ambiguous to new users.</td>
-                            <td>Labels and terminology were clarified throughout both interfaces.</td>
+                            <td>C7</td>
+                            <td>"Can we structure content as Units containing Lessons?"</td>
+                            <td><strong>Hierarchical Content Organisation</strong>, teachers can now specify unit and lesson numbers when creating content, then select and deploy via organised dropdowns</td>
                         </tr>
                         <tr>
-                            <td>Lesson plans and teaching materials could benefit from optional numbering.</td>
-                            <td>Numbering was made optional when creating content.</td>
+                            <td>C8</td>
+                            <td>"It would be nice if students could easily switch between lesson and quiz."</td>
+                            <td><strong>Seamless Lesson-Quiz Navigation</strong>, a quick toggle was added allowing students to switch between lesson content and quiz questions without navigating away</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 32px;">You can explore the initial prototype here: <a href="https://aistudio.google.com/apps/drive/1F8GdVb4J4VLAtkuo53RX8yPfGICrygO9?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Teacher Interface Prototype</a> / <a href="https://aistudio.google.com/apps/drive/1AVOMRP29kkZyooWVghEObs1-SnqSb59E?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Student Interface Prototype</a></p>
+
+                <h2 id="improved-prototype" style="margin-top: 48px;">Improved Prototype</h2>
+                <p>
+                    Following the initial prototype evaluation, a second iteration was produced incorporating C6 through C8. A final round of feedback was gathered from personal contacts in the educational sector.
+                </p>
+
+                <h3>Evaluation</h3>
+                <table class="issue-table">
+                    <thead>
+                        <tr>
+                            <th>Heuristic</th>
+                            <th>Issue Identified</th>
+                            <th>Changes Made</th>
+                            <th>Severity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Visibility of System Status</td>
+                            <td>Student statuses shown with small coloured labels were difficult to read at a glance</td>
+                            <td>The entire student block is now colour-coded to represent status - on task, needs help, or disconnected</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Consistency and Standards</td>
+                            <td>Terms such as lesson, quiz and worksheet were ambiguous to new users</td>
+                            <td>Labels and terminology were clarified throughout both interfaces</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Flexibility and Efficiency of Use</td>
+                            <td>Lesson plans and teaching materials lacked optional numbering for organisation</td>
+                            <td>Numbering was made optional when creating content</td>
+                            <td>1</td>
                         </tr>
                     </tbody>
                 </table>
