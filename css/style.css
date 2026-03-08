@@ -1537,11 +1537,9 @@ a.nav-brand:focus-visible {
    ============================================ */
 .sketch-image {
     margin: 12px 0;
-    background-color: var(--bg-surface);
-    border-radius: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .sketch-image img {
