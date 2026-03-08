@@ -63,7 +63,7 @@
 
                 <h2 id="principles">Design Principles</h2>
                 <p>
-                    Design principles guide interface creation to ensure clarity, consistency, and minimal cognitive load for users. For Manuscripta's dual-app system serving neurodiverse students and teachers, we prioritized the following:
+                    Manuscripta's interface design is grounded in established HCI frameworks including WCAG 2.2 accessibility guidelines and Nielsen's 10 Usability Heuristics. Given the dual-app nature of the system and the neurodiverse profile of the student user base, the following principles were prioritised throughout the design process.
                 </p>
 
                 <table class="issue-table">
@@ -76,23 +76,27 @@
                     <tbody>
                         <tr>
                             <td><strong>Simplicity</strong></td>
-                            <td>Interfaces minimized visual clutter and distractions. For students with autism, the E-ink display shows only essential elements: content and navigation. Teacher interface focuses on core tasks: content generation, distribution, and monitoring.</td>
+                            <td>Interfaces minimise visual clutter and distractions. The student E-ink display shows only essential elements — content and navigation — with no colour, animation or unnecessary chrome. The teacher interface focuses on three core tasks: content generation, distribution and monitoring.</td>
                         </tr>
                         <tr>
                             <td><strong>Consistency</strong></td>
-                            <td>Visual elements maintain predictable behavior across both applications. Consistent typography, button styles, and layout patterns reduce learning curves and prevent confusion.</td>
+                            <td>Visual elements maintain predictable behaviour across both applications. Consistent typography, button styles and layout patterns reduce the learning curve and prevent confusion, particularly important for neurodiverse users who rely on routine and predictability.</td>
                         </tr>
                         <tr>
                             <td><strong>Accessibility</strong></td>
-                            <td>High contrast ratios (7:1 minimum) for E-ink displays, adjustable text sizes, and optional text-to-speech ensure students with varying sensory and cognitive needs can interact comfortably. Reading level adjustments support comprehension across ability levels.</td>
+                            <td>High contrast ratios of at least 7:1 for E-ink displays, adjustable text sizes, and optional text-to-speech ensure students with varying sensory and cognitive needs can interact comfortably. Reading level adjustment supports comprehension across ability levels, in line with WCAG 2.2 guidelines.</td>
                         </tr>
                         <tr>
                             <td><strong>Feedback</strong></td>
-                            <td>Real-time feedback informs users of system status. Students see immediate handwriting recognition responses. Teachers receive live progress updates and help request notifications. Loading states and confirmation messages maintain transparency.</td>
+                            <td>Real-time feedback informs users of system status at every stage. Students receive immediate confirmation when answers are submitted. Teachers receive live progress updates and help request notifications. Loading states and confirmation messages ensure neither user is left uncertain about what the system is doing.</td>
                         </tr>
                         <tr>
                             <td><strong>Error Tolerance</strong></td>
-                            <td>System handles mistakes gracefully. Auto-save prevents work loss during network drops. Teachers can regenerate content if initial AI output doesn't meet needs. Students can request help without penalty.</td>
+                            <td>The system handles mistakes gracefully. Auto-save prevents work loss during network interruptions. Teachers can regenerate content if initial AI output does not meet their needs. Students can request help without penalty or drawing attention to themselves.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Privacy by Design</strong></td>
+                            <td>No data leaves the local network at any point. The interface contains no login screens, cloud sync indicators or external service integrations, reinforcing to both teachers and students that the system operates entirely within the school environment.</td>
                         </tr>
                     </tbody>
                 </table>
