@@ -2658,4 +2658,141 @@ html {
         grid-template-columns: 1fr;
         gap: 16px;
     }
+
+    .doc-content table {
+        font-size: 14px;
+    }
+
+    .doc-content table th,
+    .doc-content table td {
+        padding: 10px 12px;
+    }
+
+    .doc-content pre {
+        font-size: 13px;
+        padding: 16px;
+    }
+}
+
+/* ============================================
+   IMPLEMENTATION PAGE STYLES
+   ============================================ */
+
+/* Attribution text for team member credits */
+.attribution {
+    font-style: italic;
+    color: var(--color-gray-500);
+    font-size: 14px;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
+/* Screenshot placeholders */
+.screenshot-placeholder {
+    background-color: var(--color-gray-100);
+    border: 2px dashed var(--color-gray-300);
+    border-radius: 8px;
+    padding: 60px 24px;
+    margin: 24px 0;
+    text-align: center;
+}
+
+.screenshot-placeholder p {
+    color: var(--color-gray-500);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Warning boxes for partial implementations */
+.warning-box {
+    background-color: var(--color-brand-orange-light);
+    border-left: 4px solid var(--color-brand-orange);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+}
+
+.warning-box p {
+    color: var(--text-primary);
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.warning-box strong {
+    color: var(--color-brand-orange-dark);
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+/* Code blocks */
+.doc-content pre {
+    background-color: var(--color-gray-900);
+    color: var(--color-gray-100);
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid var(--color-gray-700);
+}
+
+.doc-content pre code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-gray-100);
+    background: transparent;
+    padding: 0;
+}
+
+.doc-content code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    background-color: var(--color-gray-100);
+    color: var(--color-brand-green-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* Tables */
+.doc-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.doc-content table thead {
+    background-color: var(--color-brand-green);
+    color: white;
+}
+
+.doc-content table th {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--color-brand-green-dark);
+}
+
+.doc-content table td {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--color-gray-100);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.doc-content table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.doc-content table tbody tr:hover {
+    background-color: var(--color-gray-50);
 }

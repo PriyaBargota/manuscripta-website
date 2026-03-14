@@ -58,42 +58,278 @@
             <div class="doc-content">
                 <div class="doc-header">
                     <h1>Implementation</h1>
-                    <p>Development process, key feature implementation details, and technical challenges for the Manuscripta platform.</p>
+                    <p>Technical implementation details for the Windows teacher application and Android student application, including architecture, networking, AI integration, and CI/CD pipelines.</p>
                 </div>
 
-                <h2 id="process">Development Process</h2>
                 <p>
-                    [Describe your development methodology - agile, sprints, version control practices]
+                    Manuscripta is implemented as two independent but tightly integrated applications built concurrently against a shared API contract. The Windows teacher application was built by Raphael Li and Nemo Shu. The Android student application was built by Priya Bargota and Will Stephen.
                 </p>
 
-                <h2 id="features">Key Features Implementation</h2>
-                
-                <h3>Android Application</h3>
-                <p>[Describe implementation of Android app components]</p>
-                <ul>
-                    <li>MVVM Architecture implementation</li>
-                    <li>Room Database and DAOs (SessionDao, SessionEntity)</li>
-                    <li>UI/UX implementation</li>
-                    <li>Local storage and caching</li>
-                </ul>
+                <h2 id="windows-app">Windows Teacher Application</h2>
+                <p class="attribution"><em>Built by Raphael Li and Nemo Shu</em></p>
 
-                <h3>Backend Services</h3>
-                <p>[Describe backend implementation]</p>
-                <ul>
-                    <li>API endpoints and controllers</li>
-                    <li>Business logic and services</li>
-                    <li>Database integration</li>
-                    <li>AI model integration</li>
-                </ul>
+                <p>
+                    The Windows application consists of a .NET 10.0 ASP.NET Core backend and a React and Electron frontend. The frontend is solely responsible for spawning, monitoring and terminating the backend as a child process on startup using Node.js child_process.spawn. The backend is published as a self-contained win-x64 executable bundled inside the Electron application, meaning the teacher installs and runs a single application with no separate setup required. If the backend crashes, the frontend detects this via health checks and restarts it automatically with exponential backoff. Dynamic port allocation ensures startup succeeds even if default ports are unavailable.
+                </p>
 
-                <h3>Integration</h3>
-                <p>[Describe how components integrate together]</p>
+                <p>
+                    Security is enforced through strict Content Security Policy headers, a preload script using contextBridge, and no Node.js access in the renderer process. File attachments are stored using UUID-based naming in AppData\ManuscriptaTeacherApp\Attachments, with IPC handlers managing file picking, storage, retrieval and deletion.
+                </p>
 
-                <h2 id="code">Code Highlights</h2>
-                <p>[Add code snippets or links to important implementations]</p>
+                <h3>Content Library</h3>
+                <p>
+                    The Library view provides a hierarchical explorer of all teaching content organised as Unit Collections, Units, Lessons and Materials. Teachers can expand and collapse each level, search across all materials using a global search bar, and create new content at any level. Material type is indicated by icon — worksheets and quizzes are visually distinguished. This hierarchy was added directly in response to client feedback captured in C7.
+                </p>
+                <div class="screenshot-placeholder">
+                    <p><em>[Library Screenshot Placeholder]</em></p>
+                </div>
 
-                <h2 id="challenges">Challenges and Solutions</h2>
-                <p>[Discuss technical challenges faced and how you solved them]</p>
+                <h3>Classroom Management</h3>
+                <p>
+                    The Classroom view is divided into two panels. The Deploy Material panel allows the teacher to select a unit, lesson, material and accessibility options from cascading dropdowns, then deploy to all selected devices simultaneously. The Device Controls panel provides one-click Lock All and Unlock All buttons, and separate pairing flows for Android tablets via TCP and external devices such as Kindle via email.
+                </p>
+                <p>
+                    The connected device grid shows each paired device as a card displaying its name and connection status — ON TASK, NEEDS HELP or DISCONNECTED. The Kindle device is shown with a distinct label, reflecting the parallel delivery workflow validated with Atia Rafiq.
+                </p>
+                <div class="screenshot-placeholder">
+                    <p><em>[Classroom Screenshot Placeholder]</em></p>
+                </div>
+
+                <h3>Responses and AI Feedback</h3>
+                <p>
+                    The Responses view shows each question from the deployed material alongside all student responses received. For each response the teacher sees the student's answer, the AI-generated mark scheme, a mark input field, and an AI-generated feedback comment produced by IBM Granite 4.0. The teacher can edit the mark, edit the feedback text, send it directly to the student's device, or regenerate the feedback using the Re-generate with AI button. This implements the teacher oversight requirement — AI feedback is always subject to teacher review before it reaches the student.
+                </p>
+                <div class="screenshot-placeholder">
+                    <p><em>[Responses Screenshot Placeholder]</em></p>
+                </div>
+
+                <h3>Real-Time Communication via SignalR</h3>
+                <p>
+                    The backend exposes a SignalR hub at /TeacherPortalHub on port 5910, providing real-time bidirectional communication between the backend and the React frontend. The frontend subscribes to hub events and updates the UI reactively without polling.
+                </p>
+                <p>
+                    A dedicated HubEventBridge hosted service bridges low-level TCP network events to high-level SignalR broadcasts. It subscribes to eight event types and converts them to Clients.All.SendAsync() broadcasts, implementing a clean pub/sub pattern that keeps the TCP layer decoupled from the UI layer. Key events include UpdateDeviceStatus, HandRaised, DistributionFailed, RefreshResponses and feedback state transitions from PROVISIONAL to READY to DELIVERED.
+                </p>
+
+                <h3>AI Content Generation Pipeline</h3>
+                <p>
+                    Material generation uses a two-model pipeline running entirely on the teacher's laptop via Ollama. Qwen3:8b is the primary model for generating formatted worksheets and quizzes. IBM Granite 4.0 was originally intended as the primary model but was moved to fallback after testing showed it struggled to produce correctly structured output, particularly for question-based materials. Granite is retained for lower-resource hardware and is used as the primary model for feedback generation, where its performance is sufficient for the smaller task.
+                </p>
+                <p>
+                    For source document processing, ChromaDB implements a standard RAG pipeline. Documents are chunked into 512-token segments with 64-token overlap, embedded using the nomic-embed-text model via Ollama, and stored in ChromaDB with metadata. During material generation, the top five most semantically relevant chunks are retrieved and injected into the prompt, solving the context window limitation that makes large documents such as textbooks unusable when passed whole to the model.
+                </p>
+                <p>
+                    Runtime dependencies including Ollama, ChromaDB and rmapi are managed by a centralised RuntimeDependencyManager system built on an abstract base class. Each dependency subclasses from this base, meaning new tools can be added without duplicating detection and installation logic.
+                </p>
+
+                <h4>Pseudocode: Material Generation</h4>
+                <pre><code>FUNCTION GenerateMaterial(description, readingAge, materialType, unitCollectionId, sourceDocIds):
+
+    // Model selection
+    selectedModel = "qwen3:8b"
+    IF NOT CanGenerateWithModel(selectedModel):
+        UnloadModel("qwen3:8b")
+        selectedModel = "granite4"
+        IF NOT EnsureModelReady(selectedModel):
+            THROW "No models available"
+
+    // RAG context retrieval
+    descriptionEmbedding = Ollama.Embed("nomic-embed-text", description)
+    relevantChunks = ChromaDB.Query(
+        vector = descriptionEmbedding,
+        filters = {UnitCollectionId, SourceDocumentIds},
+        topK = 5
+    )
+
+    // Prompt construction
+    prompt = BuildPrompt(description, readingAge, materialType, relevantChunks)
+
+    // LLM inference
+    response = Ollama.Chat(selectedModel, prompt, temperature=0.7, timeout=300s)
+    generatedContent = response.content
+
+    // Validation and iterative refinement (fallback model only, max 3 iterations)
+    IF selectedModel == "granite4":
+        FOR iteration IN 1..3:
+            errors = ValidateOutput(generatedContent)
+            IF no errors: BREAK
+            generatedContent = Ollama.Chat(selectedModel, RefinementPrompt(errors))
+
+    // Deterministic fixes
+    finalContent = ApplyFixes(generatedContent)  // close code blocks, normalise headers, fix markers
+
+    // Question extraction for worksheets
+    IF materialType == WORKSHEET:
+        finalContent, questionIds = ExtractQuestionsFromDrafts(finalContent)
+
+    RETURN finalContent, questionIds
+
+END FUNCTION</code></pre>
+
+                <h4>Pseudocode: Feedback Generation</h4>
+                <pre><code>FUNCTION GenerateFeedbackAsync(response):
+
+    question = FetchQuestion(response.questionId)
+    IF question.markScheme == null: RETURN null
+
+    EnsureModelReady("granite4")
+
+    prompt = BuildFeedbackPrompt(question.text, response.answerText, question.markScheme)
+    feedbackText = Ollama.Chat("granite4", prompt, temperature=0.5)
+
+    feedback = CreateFeedback(feedbackText, status=PROVISIONAL)
+    SignalR.Broadcast("OnFeedbackGenerated", feedbackId, responseId)
+
+    RETURN feedbackId
+
+END FUNCTION</code></pre>
+
+                <h3>TCP Networking and Device Management</h3>
+                <p>
+                    The TcpPairingService manages a dual-socket setup: a TCP listener for incoming connections and a concurrent dictionary mapping device IDs to active TcpClient instances. The heartbeat timeout window is 10 seconds — if no STATUS_UPDATE is received from a device within this window, it is marked DISCONNECTED and the teacher dashboard updates in real time via SignalR.
+                </p>
+                <p>
+                    Command queueing uses TaskCompletionSource for async waiting on LOCK and UNLOCK acknowledgements, allowing the Windows application to await confirmation that a command was received before updating the UI.
+                </p>
+
+                <h2 id="android-app">Android Student Application</h2>
+                <p class="attribution"><em>Built by Priya Bargota and Will Stephen</em></p>
+
+                <p>
+                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The backend data and network layers achieve 96% instruction coverage and 93% branch coverage across 88 classes, validated by JaCoCo.
+                </p>
+
+                <h3>Device Pairing Screen</h3>
+                <p>
+                    On first launch the student enters their name and taps Pair. The application broadcasts a UDP discovery packet on port 5913 to locate the teacher's Windows application on the local network without requiring manual IP configuration. Once the server responds, a TCP pairing handshake is completed on port 5912 and the device is registered. The screen is deliberately minimal — a single text field and one button — reflecting the principle of reducing cognitive load established in C1.
+                </p>
+                <div class="screenshot-placeholder">
+                    <p><em>[Pairing Screenshot Placeholder]</em></p>
+                </div>
+
+                <h3>Worksheet View</h3>
+                <p>
+                    Once paired and a material is deployed, the student sees the worksheet displayed in large high-contrast monochromatic text optimised for E-ink rendering. Typography is set at a size appropriate for the target age group with generous line spacing to support students with reading difficulties. A persistent Raise Hand button sits at the bottom right of every content screen, allowing the student to send a discreet help request to the teacher dashboard without interrupting their work.
+                </p>
+                <div class="screenshot-placeholder">
+                    <p><em>[Worksheet Screenshot Placeholder]</em></p>
+                </div>
+                <div class="warning-box">
+                    <p><strong>⚠</strong> Content transformation buttons (simplify, expand, summarise) are identified as a should-have requirement and are partially implemented. Full delivery is noted in the evaluation section.</p>
+                </div>
+
+                <h3>Quiz View</h3>
+                <p>
+                    The quiz view displays a reading passage followed by a question and an answer input field. The student types their response and submits it via HTTP POST to port 5911, where it appears in the teacher's Responses view alongside AI-generated feedback from IBM Granite 4.0.
+                </p>
+                <div class="screenshot-placeholder">
+                    <p><em>[Quiz Screenshot Placeholder]</em></p>
+                </div>
+                <div class="warning-box">
+                    <p><strong>⚠</strong> Text-to-speech functionality is integrated into the application architecture but not fully delivered within the project timeline.</p>
+                </div>
+
+                <h3>Clean Architecture Implementation</h3>
+                <p>
+                    The data layer contains Room entities, DAOs and Retrofit DTOs. Entities are immutable with a single constructor, making them suitable only for Room persistence and preventing accidental mutation. The domain layer contains corresponding domain models with convenience constructors and input validation that throws immediately on invalid state. Bidirectional mappers convert between entities and domain models, keeping Room annotations entirely out of business logic. The presentation layer uses ViewModels and LiveData, ensuring the UI reacts to state changes without directly accessing data sources.
+                </p>
+
+                <h3>Multi-Channel Networking</h3>
+
+                <h4>Pseudocode: Connection and Heartbeat</h4>
+                <pre><code>ON app start:
+    UDP.Broadcast(DISCOVERY_PACKET, port=5913)
+    WAIT for server response
+
+ON server found:
+    TCP.Connect(serverIP, port=5912)
+    TCP.Send(PAIRING_REQUEST, deviceId, studentName)
+    WAIT for PAIRING_ACK
+
+ON material deployed (TCP signal 0x05 received):
+    HTTP.GET("/distribution/{deviceId}", port=5911)
+    FOR each material downloaded:
+        TCP.Send(DISTRIBUTE_ACK, deviceId + 0x00 + materialId)
+    UI.DisplayMaterial()
+
+EVERY 3 seconds:
+    TCP.Send(STATUS_UPDATE 0x10, deviceId, status, batteryLevel, currentMaterialId)
+
+ON Raise Hand tapped:
+    TCP.Send(HAND_RAISED 0x11, deviceId)
+    UI.ShowConfirmation()
+
+ON answer submitted:
+    HTTP.POST("/responses", deviceId, questionId, answerText)
+    LocalDB.Save(response, synced=true)</code></pre>
+
+                <h4>Pseudocode: Retry with Exponential Backoff</h4>
+                <pre><code>FUNCTION SyncResponse(response):
+    attempts = 0
+    backoff = 1 second
+
+    WHILE attempts < 5:
+        TRY:
+            result = HTTP.POST("/responses", response)
+            IF result == 201:
+                MarkSynced(response)
+                RETURN success
+        CATCH NetworkException:
+            WAIT(backoff)
+            backoff = MIN(backoff * 2, 32 seconds)
+            attempts++
+
+    LocalDB.Save(response, synced=false)  // queue for later sync
+
+END FUNCTION</code></pre>
+
+                <h3>CI/CD Pipeline</h3>
+                <p>
+                    The Android application uses GitHub Actions for continuous integration. The workflow triggers on pull requests to any path within android/ and runs two jobs sequentially. The first job runs Checkstyle to enforce code style across the entire codebase. The second job runs the full JaCoCo test suite and enforces 100% unit test coverage — the build fails if coverage drops below this threshold. Coverage reports are uploaded as artifacts and posted as comments on pull requests automatically.
+                </p>
+                <div class="warning-box">
+                    <p><strong>⚠</strong> A Windows CI/CD pipeline was not implemented within the project timeline. The Windows application is built and packaged manually using Electron Forge.</p>
+                </div>
+
+                <h2 id="decisions">Key Implementation Decisions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Decision</th>
+                            <th>Rationale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Electron manages .NET backend lifecycle</td>
+                            <td>Single executable deployment — teachers install one application, backend starts automatically with no separate setup</td>
+                        </tr>
+                        <tr>
+                            <td>Qwen3:8b as primary, Granite as fallback</td>
+                            <td>Granite struggled with correctly formatted multi-question materials during testing; Qwen3 produces better structured output at reasonable speed</td>
+                        </tr>
+                        <tr>
+                            <td>Per-material TCP acknowledgement</td>
+                            <td>Allows the Windows dashboard to display exact distribution state per material rather than a single batch confirmation</td>
+                        </tr>
+                        <tr>
+                            <td>HeartbeatManager owns all TCP dispatch</td>
+                            <td>Prevents direct coupling between the network layer and repositories, single source of truth for all TCP messages</td>
+                        </tr>
+                        <tr>
+                            <td>Immutable Room entities</td>
+                            <td>Prevents accidental mutations during persistence, enforces clean separation from domain models</td>
+                        </tr>
+                        <tr>
+                            <td>404 for invalid GUIDs</td>
+                            <td>Avoids leaking information about ID validity to unauthenticated callers, aligns with RESTful practice</td>
+                        </tr>
+                        <tr>
+                            <td>100% Android unit test coverage enforced by CI</td>
+                            <td>Ensures every data and network layer component is independently verifiable, supporting the clean architecture goal</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h2 id="github">GitHub Repository</h2>
                 <p>
