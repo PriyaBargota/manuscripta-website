@@ -61,41 +61,330 @@
                     <p>Testing strategy, coverage metrics, and quality assurance processes for the Manuscripta platform.</p>
                 </div>
 
-                <h2 id="strategy">Testing Strategy</h2>
                 <p>
-                    [Describe your overall testing approach and methodology]
+                    Manuscripta's testing strategy covers four areas: unit testing of individual components, integration testing of cross-system interactions, user acceptance testing with teaching professionals, and AI output validation. Both applications have formal test suites enforced through continuous integration.
                 </p>
 
-                <h2 id="unit">Unit Testing</h2>
-                <p>[Describe unit tests for individual components]</p>
-                <ul>
-                    <li>DAO layer tests</li>
-                    <li>ViewModel tests</li>
-                    <li>Service layer tests</li>
-                </ul>
+                <h2 id="strategy">Testing Strategy Overview</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Scope</th>
+                            <th>Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Unit testing</td>
+                            <td>Individual classes, functions, network protocol handlers</td>
+                            <td>JUnit, Mockito, Robolectric (Android); xUnit, Moq (Windows)</td>
+                        </tr>
+                        <tr>
+                            <td>Integration testing</td>
+                            <td>Cross-layer data flow, network protocol sequences, database interactions</td>
+                            <td>MockWebServer, ephemeral SQLite, custom integration harness</td>
+                        </tr>
+                        <tr>
+                            <td>User acceptance testing</td>
+                            <td>Teacher workflows validated against real classroom scenarios</td>
+                            <td>In-person sessions with 5 teaching professionals</td>
+                        </tr>
+                        <tr>
+                            <td>AI output validation</td>
+                            <td>Material generation consistency and format correctness</td>
+                            <td>Manual prompt testing — automated suite planned as future work</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="android-unit">Android Unit Testing</h2>
+                <p class="attribution"><em>Built and maintained by Priya Bargota and Will Stephen</em></p>
+
+                <p>
+                    The Android test suite consists of 74 test files comprising 21,504 lines of test code, covering every layer of the Clean Architecture stack.
+                </p>
+
+                <h3>Coverage Results (JaCoCo)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Instruction coverage</td>
+                            <td>96%</td>
+                        </tr>
+                        <tr>
+                            <td>Branch coverage</td>
+                            <td>93%</td>
+                        </tr>
+                        <tr>
+                            <td>Classes covered</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td>Coverage threshold (CI enforced)</td>
+                            <td>95%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The CI pipeline runs <code>./gradlew jacocoTestReport jacocoTestCoverageVerification</code> on every pull request. Any PR that drops coverage below 95% fails automatically and cannot be merged.
+                </p>
+
+                <h3>Test Distribution</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Test Files</th>
+                            <th>Key Areas Covered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Network</td>
+                            <td>Multiple</td>
+                            <td>TCP protocol (13 tests), UDP discovery (4 tests), DTOs (13 tests)</td>
+                        </tr>
+                        <tr>
+                            <td>Data</td>
+                            <td>Multiple</td>
+                            <td>Room DAOs (6 tests), Entities (9 tests), Repositories (4 tests)</td>
+                        </tr>
+                        <tr>
+                            <td>Domain</td>
+                            <td>Multiple</td>
+                            <td>Mappers (6 tests), Domain models (3 tests)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The most significant test files are <code>HeartbeatManagerTest</code> (455 lines) and <code>TcpSocketManagerTest</code> (422 lines), which together validate the core networking behaviour the system depends on for real-time classroom control.
+                </p>
+
+                <h3>Example: HeartbeatManager Test</h3>
+                <p>
+                    The heartbeat mechanism is critical — if STATUS_UPDATE packets stop arriving at the Windows application, devices are marked DISCONNECTED after 10 seconds. The test suite validates the 3-second interval, correct opcode transmission, thread safety via AtomicBoolean, and graceful shutdown behaviour.
+                </p>
+                <pre><code>// Verifies heartbeat sends STATUS_UPDATE (0x10) at correct interval
+@Test
+public void testHeartbeatSendsStatusUpdate() {
+    heartbeatManager.start();
+    Thread.sleep(3500); // allow one heartbeat cycle
+    verify(tcpSocketManager, atLeastOnce())
+        .send(eq(Opcode.STATUS_UPDATE), any());
+}</code></pre>
+
+                <h3>Example: RetryInterceptor Test</h3>
+                <p>
+                    The retry policy must retry on 5xx and 408/429 errors but not on other 4xx errors. Tests verify the exponential backoff sequence (1s, 2s, 4s, 8s, 16s, 32s) and the 5-attempt cap.
+                </p>
+                <pre><code>// Verifies exponential backoff doubles on each retry
+@Test
+public void testExponentialBackoff() {
+    long backoff = retryInterceptor.calculateNextBackoff(1000);
+    assertEquals(2000, backoff);
+    backoff = retryInterceptor.calculateNextBackoff(backoff);
+    assertEquals(4000, backoff);
+}</code></pre>
+
+                <h3>Robolectric Compatibility</h3>
+                <p>
+                    Several adaptations were required to run tests on the JVM via Robolectric rather than a physical device. The RetryInterceptor was removed from the test harness because <code>ConnectivityManager.isConnected()</code> always returns false in Robolectric. A <code>directHandler</code> was added for immediate Runnable dispatch since Robolectric's paused looper mode does not execute <code>Handler.post()</code>. A volatile <code>currentStateSnapshot</code> field was added to PairingManager because <code>LiveData.getValue()</code> returns stale or null values in Robolectric.
+                </p>
+
+                <h2 id="windows-unit">Windows Unit Testing</h2>
+                <p class="attribution"><em>Built and maintained by Raphael Li and Nemo Shu</em></p>
+
+                <p>
+                    The Windows test suite consists of 52 C# test files comprising 12,028 lines of test code, using xUnit as the test framework and Moq for mocking dependencies.
+                </p>
+
+                <h3>Test Distribution</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Test Files</th>
+                            <th>Key Areas Covered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Controllers</td>
+                            <td>6</td>
+                            <td>Attachment, Config, Distribution, Feedback, Pairing, Response endpoints</td>
+                        </tr>
+                        <tr>
+                            <td>Services</td>
+                            <td>18</td>
+                            <td>Session management, Device Registry, TCP/UDP networking, Hub event bridge</td>
+                        </tr>
+                        <tr>
+                            <td>Entities</td>
+                            <td>25</td>
+                            <td>All data models, polymorphic material entities</td>
+                        </tr>
+                        <tr>
+                            <td>Repositories</td>
+                            <td>2</td>
+                            <td>Hierarchy repository, generic repository pattern</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The entity tests are particularly important because Manuscripta uses polymorphic material entities — ReadingMaterial, WorksheetMaterial and PollMaterial all derive from a common base. Tests verify that the factory methods produce the correct subtype and that entity validation behaves correctly for each.
+                </p>
+
+                <h3>Example: TCP Pairing Service Test</h3>
+                <pre><code>// Verifies device is marked DISCONNECTED after 10s without heartbeat
+[Fact]
+public async Task DeviceMarkedDisconnectedAfterTimeout() {
+    await pairingService.SimulateHeartbeatTimeout(deviceId);
+    var status = await deviceRegistry.GetStatus(deviceId);
+    Assert.Equal(DeviceStatus.Disconnected, status);
+}</code></pre>
 
                 <h2 id="integration">Integration Testing</h2>
-                <p>[Describe integration tests between components]</p>
-                <ul>
-                    <li>API endpoint testing</li>
-                    <li>Database integration testing</li>
-                    <li>End-to-end workflow testing</li>
-                </ul>
+                <p>
+                    The integration test infrastructure uses an ephemeral SQLite database created fresh per test run, ensuring no state leaks between tests. Network services (UDP broadcast and TCP pairing) start automatically in integration mode. An IntegrationSeedService seeds required device configuration, materials, questions, attachments and feedback on startup. A POST /api/v1/integration/reset endpoint clears all data and re-seeds between test runs.
+                </p>
+                <p>
+                    A notable issue discovered during integration testing was that all device and entity IDs must be valid UUIDs — the server validates using <code>Guid.TryParse()</code> and previously returned 400 Bad Request for malformed IDs. This was changed to 404 Not Found with a generic message to avoid leaking information about ID validity.
+                </p>
 
                 <h2 id="uat">User Acceptance Testing</h2>
-                <p>[Describe UAT with actual users - teachers and students]</p>
+                <p>
+                    Five teaching professionals tested the Windows application in person, including two teachers from Richard Cloudesley School and three additional teachers from Priya Bargota's personal contacts in the education sector. Testers navigated the full teacher workflow: opening the application, generating AI-powered materials using the content generator, deploying materials to connected E-ink devices, and monitoring student progress from the dashboard.
+                </p>
 
-                <h2 id="eink">E-ink Device Testing</h2>
-                <p>[Specific testing on E-ink tablets]</p>
+                <h3>Key findings:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feedback</th>
+                            <th>Change Made</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Ability to lock tablets to get students' attention when needed"</td>
+                            <td>Lock All Screens button added (C6)</td>
+                        </tr>
+                        <tr>
+                            <td>"Can we structure content as Units containing Lessons?"</td>
+                            <td>Hierarchical content organisation added (C7)</td>
+                        </tr>
+                        <tr>
+                            <td>"It would be nice if students could easily switch between lesson and quiz"</td>
+                            <td>Seamless lesson-quiz navigation toggle added (C8)</td>
+                        </tr>
+                        <tr>
+                            <td>Student statuses shown with small coloured labels were hard to read</td>
+                            <td>Entire device block now colour-coded by status</td>
+                        </tr>
+                        <tr>
+                            <td>Terms such as lesson, quiz and worksheet were ambiguous</td>
+                            <td>Labels and terminology clarified throughout</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <h2 id="coverage">Test Coverage</h2>
-                <p>[Report on test coverage metrics]</p>
+                <p>
+                    No formal user testing was conducted with students within the project timeline. The planned visit of 127 students to UCL did not proceed. Student-facing testing remains as future work.
+                </p>
 
-                <h2 id="bugs">Bug Tracking and Resolution</h2>
-                <p>[Describe how bugs were tracked and resolved during development]</p>
+                <h2 id="ai-validation">AI Output Validation</h2>
+                <p>
+                    The AI content generation pipeline introduces non-determinism — the same prompt does not always produce identical output. Manuscripta addresses this through a deterministic post-processing pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are normalised to H3, malformed question markers are fixed, and invalid references are removed.
+                </p>
+                <p>
+                    Manual testing was conducted by generating the same material prompt multiple times and checking that the post-processing pipeline consistently produces valid, structured output. The validation function checks for unclosed code blocks, excessive header levels, malformed question markers, invalid PDF references and unprocessed question drafts.
+                </p>
+                <div class="warning-box">
+                    <p><strong>⚠</strong> Automated AI consistency testing — testing a range of inputs and repeated prompts to measure output variance — was not completed within the project timeline. This is identified as future evaluation work. The TA recommendation to include prompt documentation in the appendices has been noted and prompt examples are included in the Appendices section.</p>
+                </div>
 
-                <h2 id="results">Test Results</h2>
-                <p>[Summary of test results and any issues found]</p>
+                <h2 id="coverage">Test Coverage Summary</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Application</th>
+                            <th>Test Files</th>
+                            <th>Lines of Test Code</th>
+                            <th>Coverage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Android</td>
+                            <td>74</td>
+                            <td>21,504</td>
+                            <td>96% instruction, 93% branch</td>
+                        </tr>
+                        <tr>
+                            <td>Windows</td>
+                            <td>52</td>
+                            <td>12,028</td>
+                            <td>Not measured (no JaCoCo equivalent configured)</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>126</td>
+                            <td>33,532</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="not-tested">What is not tested</h2>
+                <p>
+                    In the interest of transparency, the following areas have no automated test coverage:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gap</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Performance benchmarks</td>
+                            <td>No load testing suite was implemented</td>
+                            <td>Future work</td>
+                        </tr>
+                        <tr>
+                            <td>30-device simultaneous distribution</td>
+                            <td>Requires physical hardware setup</td>
+                            <td>Future work</td>
+                        </tr>
+                        <tr>
+                            <td>AI output consistency at scale</td>
+                            <td>Requires automated prompt testing suite</td>
+                            <td>Future work</td>
+                        </tr>
+                        <tr>
+                            <td>Android UI layer</td>
+                            <td>Espresso UI tests not yet written</td>
+                            <td>⚠ In progress</td>
+                        </tr>
+                        <tr>
+                            <td>Student user testing</td>
+                            <td>Planned visit did not proceed</td>
+                            <td>Future work</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
