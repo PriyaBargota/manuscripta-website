@@ -2736,16 +2736,16 @@ html {
 /* Major section headers */
 #windows-app,
 #android-app {
-    background-color: var(--color-brand-green);
-    margin: 48px -48px 32px -48px;
-    padding: 20px 48px;
-    border-top: 4px solid var(--color-brand-green-dark);
-    border-bottom: 4px solid var(--color-brand-green-dark);
+    background-color: #F0F7F3;
+    padding: 20px 0 16px 0;
+    border-top: 4px solid #15502E;
+    margin-top: 48px;
+    margin-bottom: 32px;
 }
 
 #windows-app h2,
 #android-app h2 {
-    color: white;
+    color: var(--color-brand-green-dark);
     border-left: none;
     padding-left: 0;
     margin: 0 0 4px 0;
@@ -2754,7 +2754,7 @@ html {
 
 #windows-app .attribution,
 #android-app .attribution {
-    color: white;
+    color: var(--color-gray-600);
     margin: 0;
     font-size: 14px;
     opacity: 0.9;
@@ -2778,12 +2778,13 @@ html {
 
 /* Subsection headers - clean style */
 .doc-content h3 {
-    background-color: var(--color-gray-100);
-    padding: 12px 20px;
-    border-left: 4px solid var(--color-brand-green);
-    margin-top: 32px;
+    background-color: transparent;
+    padding: 0 0 8px 16px;
+    border-left: 4px solid #15502E;
+    margin-top: 40px;
     margin-bottom: 16px;
-    font-size: 20px;
+    font-size: 19px;
+    color: #0D3B1F;
 }
 
 /* Screenshot placeholders */
