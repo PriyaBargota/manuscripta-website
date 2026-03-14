@@ -2678,6 +2678,95 @@ html {
    IMPLEMENTATION PAGE STYLES
    ============================================ */
 
+/* Intro card */
+.intro-card {
+    background: linear-gradient(135deg, var(--color-brand-cream) 0%, white 100%);
+    border-left: 5px solid var(--color-brand-orange);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin: 24px 0 40px 0;
+    box-shadow: var(--shadow-soft);
+}
+
+.intro-card p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.intro-card strong {
+    color: var(--color-brand-green-dark);
+    font-weight: 600;
+}
+
+/* Major section headers with colored backgrounds */
+#windows-app,
+#android-app {
+    background: linear-gradient(135deg, var(--color-brand-green) 0%, var(--color-brand-green-dark) 100%);
+    margin: 48px -48px 32px -48px;
+    padding: 32px 48px;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(21, 80, 46, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+#windows-app::before,
+#android-app::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 231, 130, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+#windows-app h2,
+#android-app h2 {
+    color: white;
+    border-left: none;
+    padding-left: 0;
+    margin: 0 0 8px 0;
+    font-size: 28px;
+}
+
+#windows-app .attribution,
+#android-app .attribution {
+    color: var(--color-brand-yellow);
+    margin: 0;
+    font-size: 15px;
+}
+
+#decisions {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    margin: 56px -48px 0 -48px;
+    padding: 40px 48px;
+    border-top: 5px solid var(--color-brand-orange);
+    border-radius: 12px 12px 0 0;
+    box-shadow: inset 0 4px 12px rgba(255, 97, 6, 0.08);
+}
+
+#decisions h2 {
+    color: var(--color-brand-orange-dark);
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+    font-size: 28px;
+}
+
+#decisions h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--color-brand-orange);
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
 /* Attribution text for team member credits */
 .attribution {
     font-style: italic;
@@ -2685,108 +2774,216 @@ html {
     font-size: 14px;
     margin-top: -8px;
     margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Screenshot placeholders */
-.screenshot-placeholder {
-    background-color: var(--color-gray-100);
-    border: 2px dashed var(--color-gray-300);
+.attribution::before {
+    content: "👥";
+    font-size: 16px;
+}
+
+/* Feature sections - card style */
+.doc-content > p {
+    background: white;
+    padding: 20px 24px;
     border-radius: 8px;
-    padding: 60px 24px;
-    margin: 24px 0;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--color-brand-blue);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doc-content > p:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+}
+
+/* Subsection styling with icons */
+.doc-content h3 {
+    background: linear-gradient(135deg, var(--color-brand-blue) 0%, #7dd3fc 100%);
+    padding: 14px 20px;
+    border-left: none;
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(171, 216, 249, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.doc-content h3:hover {
+    transform: translateX(4px);
+}
+
+.doc-content h3::before {
+    content: "🔹";
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Screenshot placeholders - more interesting */
+.screenshot-placeholder {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: 3px dashed var(--color-brand-blue);
+    border-radius: 12px;
+    padding: 80px 24px;
+    margin: 32px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.screenshot-placeholder::before {
+    content: "📸";
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+    opacity: 0.7;
 }
 
 .screenshot-placeholder p {
-    color: var(--color-gray-500);
-    font-size: 14px;
+    color: var(--color-gray-600);
+    font-size: 15px;
+    font-weight: 500;
     margin: 0;
 }
 
-/* Warning boxes for partial implementations */
+/* Warning boxes - more vibrant */
 .warning-box {
-    background-color: var(--color-brand-orange-light);
-    border-left: 4px solid var(--color-brand-orange);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
+    background: linear-gradient(135deg, var(--color-brand-orange-light) 0%, #fff5ed 100%);
+    border-left: 6px solid var(--color-brand-orange);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    box-shadow: 0 4px 12px rgba(255, 97, 6, 0.1);
+    position: relative;
+}
+
+.warning-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 97, 6, 0.1) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .warning-box p {
     color: var(--text-primary);
     font-size: 14px;
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .warning-box strong {
-    color: var(--color-brand-orange-dark);
-    font-size: 18px;
-    margin-right: 6px;
+    color: var(--color-brand-orange);
+    font-size: 20px;
+    margin-right: 8px;
 }
 
-/* Code blocks */
+/* Code blocks - terminal style */
 .doc-content pre {
-    background-color: var(--color-gray-900);
-    color: var(--color-gray-100);
-    border-radius: 8px;
-    padding: 20px;
+    background: linear-gradient(to bottom, #1e293b 0%, #0f172a 100%);
+    color: #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
     overflow-x: auto;
-    margin: 20px 0;
-    border: 1px solid var(--color-gray-700);
+    margin: 24px 0;
+    border: 1px solid #334155;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.doc-content pre::before {
+    content: "●  ●  ●";
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color: #64748b;
+    font-size: 10px;
+    letter-spacing: 4px;
 }
 
 .doc-content pre code {
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
     font-size: 14px;
-    line-height: 1.6;
-    color: var(--color-gray-100);
+    line-height: 1.7;
+    color: #e2e8f0;
     background: transparent;
     padding: 0;
+    margin-top: 20px;
+    display: block;
 }
 
 .doc-content code {
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-    background-color: var(--color-gray-100);
+    background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
     color: var(--color-brand-green-dark);
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
     font-size: 13px;
+    border: 1px solid #86efac;
 }
 
-/* Tables */
+/* Pseudocode headers */
+.doc-content h4 {
+    background: linear-gradient(to right, var(--color-brand-yellow) 0%, transparent 100%);
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-top: 28px;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.doc-content h4::before {
+    content: "⚙️";
+    margin-right: 8px;
+}
+
+/* Tables - more colorful */
 .doc-content table {
     width: 100%;
     border-collapse: collapse;
-    margin: 24px 0;
+    margin: 32px 0;
     background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border: 2px solid var(--color-brand-green);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 8px 24px rgba(21, 80, 46, 0.12);
 }
 
 .doc-content table thead {
-    background-color: var(--color-brand-green);
+    background: linear-gradient(135deg, var(--color-brand-green) 0%, var(--color-brand-green-dark) 100%);
     color: white;
 }
 
 .doc-content table th {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     text-align: left;
-    padding: 16px 20px;
-    border-bottom: 2px solid var(--color-brand-green-dark);
+    padding: 18px 24px;
+    border-bottom: 3px solid var(--color-brand-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .doc-content table td {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--color-gray-100);
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--color-gray-200);
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+.doc-content table td:first-child {
+    font-weight: 600;
+    color: var(--color-brand-green-dark);
+    background-color: rgba(21, 80, 46, 0.03);
 }
 
 .doc-content table tbody tr:last-child td {
@@ -2794,5 +2991,6 @@ html {
 }
 
 .doc-content table tbody tr:hover {
-    background-color: var(--color-gray-50);
+    background-color: var(--color-brand-cream);
+    transition: background-color 0.2s ease;
 }
