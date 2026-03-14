@@ -67,6 +67,305 @@
                     </p>
                 </div>
 
+                <h2 id="features">Key Features</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Status</th>
+                            <th>Built by</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AI material generation (Qwen3:8b + Granite fallback)</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>Hierarchical content library</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time classroom dashboard</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>Device pairing and management</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>AI feedback generation with teacher approval</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>Android device pairing screen</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Worksheet and quiz display</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Raise Hand help request</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-channel networking (HTTP/TCP/UDP)</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Clean Architecture data and network layers</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Content transformation (simplify, expand, summarise)</td>
+                            <td>⚠</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Text-to-speech</td>
+                            <td>⚠</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>Kiosk mode</td>
+                            <td>⚠</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="frameworks">Frameworks and Libraries</h2>
+
+                <h3>Windows Teacher Application</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Backend framework</td>
+                            <td>ASP.NET Core (.NET 10.0)</td>
+                            <td>REST API, SignalR hub, business logic</td>
+                        </tr>
+                        <tr>
+                            <td>Frontend framework</td>
+                            <td>React + Electron</td>
+                            <td>Desktop UI, backend process management</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time communication</td>
+                            <td>SignalR</td>
+                            <td>Bidirectional event broadcasting between backend and UI</td>
+                        </tr>
+                        <tr>
+                            <td>Database</td>
+                            <td>SQLite via Entity Framework Core</td>
+                            <td>Local persistent storage for all content and session data</td>
+                        </tr>
+                        <tr>
+                            <td>AI inference</td>
+                            <td>Ollama (Qwen3:8b, IBM Granite 4.0)</td>
+                            <td>On-device material generation and feedback</td>
+                        </tr>
+                        <tr>
+                            <td>Vector database</td>
+                            <td>ChromaDB</td>
+                            <td>RAG pipeline for source document retrieval</td>
+                        </tr>
+                        <tr>
+                            <td>Device delivery</td>
+                            <td>rmapi, SMTP</td>
+                            <td>reMarkable and Kindle content distribution</td>
+                        </tr>
+                        <tr>
+                            <td>Build and packaging</td>
+                            <td>Electron Forge, Squirrel</td>
+                            <td>Windows installer creation</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Android Student Application</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Language</td>
+                            <td>Java</td>
+                            <td>Primary development language</td>
+                        </tr>
+                        <tr>
+                            <td>Local database</td>
+                            <td>Room (androidx.room 2.6.1)</td>
+                            <td>Offline-first persistent storage</td>
+                        </tr>
+                        <tr>
+                            <td>HTTP networking</td>
+                            <td>Retrofit 2.11.0 + OkHttp 4.12.0</td>
+                            <td>REST communication with Windows backend</td>
+                        </tr>
+                        <tr>
+                            <td>Dependency injection</td>
+                            <td>Hilt (Dagger 2.52)</td>
+                            <td>Loose coupling across all layers</td>
+                        </tr>
+                        <tr>
+                            <td>Architecture</td>
+                            <td>MVVM with LiveData</td>
+                            <td>Reactive UI without direct data source access</td>
+                        </tr>
+                        <tr>
+                            <td>Testing</td>
+                            <td>JUnit, Mockito, Robolectric, MockWebServer</td>
+                            <td>Unit and integration testing</td>
+                        </tr>
+                        <tr>
+                            <td>Coverage reporting</td>
+                            <td>JaCoCo 0.8.12</td>
+                            <td>95% coverage enforcement via CI</td>
+                        </tr>
+                        <tr>
+                            <td>Code style</td>
+                            <td>Checkstyle 10.12.0</td>
+                            <td>Enforced on every pull request</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="repository">Repository Structure</h2>
+                <p>
+                    The project uses a monorepo — both applications live in the same GitHub repository at raphaellith/Manuscripta under separate top-level directories. This allowed both sub-teams to share the API contract and documentation while keeping their CI/CD pipelines independent via path-based triggers.
+                </p>
+                <pre><code>Manuscripta/
+├── android/          Android student application
+│   └── app/
+│       └── src/main/java/    Java source code
+├── windows/          Windows teacher application
+│   └── ManuscriptaTeacherApp/
+│       ├── Main/     ASP.NET Core backend
+│       └── UI/       Electron + React frontend
+├── docs/             Project documentation
+├── api-spec/         Shared API contract
+└── README.md</code></pre>
+
+                <h2 id="api-contract">API Contract</h2>
+                <p>
+                    Because the Windows and Android applications were developed simultaneously by separate sub-teams, a shared API contract was established at the outset and stored in api-spec/ in the monorepo. This contract defined the HTTP endpoints, request and response formats, and TCP message opcodes that both sides agreed to implement independently. Neither team needed to wait for the other before building — the contract served as the integration boundary.
+                </p>
+
+                <h3>HTTP Endpoints (port 5911)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Endpoint</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>POST</td>
+                            <td>/pair</td>
+                            <td>Device registration and pairing</td>
+                        </tr>
+                        <tr>
+                            <td>GET</td>
+                            <td>/distribution/{deviceId}</td>
+                            <td>Fetch assigned materials for a device</td>
+                        </tr>
+                        <tr>
+                            <td>POST</td>
+                            <td>/responses</td>
+                            <td>Submit a student answer</td>
+                        </tr>
+                        <tr>
+                            <td>GET</td>
+                            <td>/config/{deviceId}</td>
+                            <td>Fetch accessibility configuration</td>
+                        </tr>
+                        <tr>
+                            <td>GET</td>
+                            <td>/feedback/{deviceId}</td>
+                            <td>Retrieve AI-generated feedback</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>TCP Message Opcodes (port 5912)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Opcode</th>
+                            <th>Name</th>
+                            <th>Direction</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0x10</td>
+                            <td>STATUS_UPDATE</td>
+                            <td>Client to Server</td>
+                            <td>Heartbeat every 3 seconds</td>
+                        </tr>
+                        <tr>
+                            <td>0x05</td>
+                            <td>DISTRIBUTE_MATERIAL</td>
+                            <td>Server to Client</td>
+                            <td>Trigger material fetch</td>
+                        </tr>
+                        <tr>
+                            <td>0x12</td>
+                            <td>DISTRIBUTE_ACK</td>
+                            <td>Client to Server</td>
+                            <td>Confirm receipt per material</td>
+                        </tr>
+                        <tr>
+                            <td>0x11</td>
+                            <td>HAND_RAISED</td>
+                            <td>Client to Server</td>
+                            <td>Help request signal</td>
+                        </tr>
+                        <tr>
+                            <td>0x01</td>
+                            <td>LOCK_SCREEN</td>
+                            <td>Server to Client</td>
+                            <td>Remote screen lock</td>
+                        </tr>
+                        <tr>
+                            <td>0x02</td>
+                            <td>UNLOCK_SCREEN</td>
+                            <td>Server to Client</td>
+                            <td>Remote screen unlock</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    All device and entity IDs are validated as GUIDs server-side. Invalid IDs return 404 Not Found with a generic message rather than 400 Bad Request, avoiding information leakage to unauthenticated callers.
+                </p>
+
                 <h2 id="windows-app">Windows Teacher Application</h2>
                 <p class="attribution"><em>Built by Raphael Li and Nemo Shu</em></p>
 
