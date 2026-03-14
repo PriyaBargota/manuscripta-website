@@ -2716,223 +2716,149 @@ html {
 
 /* Intro section */
 .intro-card {
-    background-color: var(--color-gray-50);
-    border: 2px solid var(--color-gray-200);
-    padding: 24px 32px;
-    margin: 24px 0 40px 0;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 24px 0;
 }
 
 .intro-card p {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.8;
-    margin: 0;
+    margin-bottom: 16px;
 }
 
 .intro-card strong {
-    color: var(--color-brand-green-dark);
+    color: var(--text-primary);
     font-weight: 600;
-}
-
-/* Major section headers */
-#windows-app,
-#android-app {
-    background-color: #F0F7F3;
-    padding: 20px 0 16px 0;
-    border-top: 4px solid #15502E;
-    margin-top: 48px;
-    margin-bottom: 32px;
-}
-
-#windows-app h2,
-#android-app h2 {
-    color: var(--color-brand-green-dark);
-    border-left: none;
-    padding-left: 0;
-    margin: 0 0 4px 0;
-    font-size: 26px;
-}
-
-#windows-app .attribution,
-#android-app .attribution {
-    color: var(--color-gray-600);
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-/* Key Decisions section */
-#decisions {
-    margin-top: 56px;
-    padding-top: 32px;
-    border-top: 4px solid var(--color-brand-orange);
 }
 
 /* Attribution text */
 .attribution {
     font-style: italic;
     color: var(--color-gray-500);
-    font-size: 14px;
-    margin-top: -8px;
-    margin-bottom: 16px;
-}
-
-/* Subsection headers - clean style */
-.doc-content h3 {
-    background-color: transparent;
-    padding: 0 0 8px 16px;
-    border-left: 4px solid #15502E;
-    margin-top: 40px;
-    margin-bottom: 16px;
-    font-size: 19px;
-    color: #0D3B1F;
+    font-size: 13px;
+    margin-top: -4px;
+    margin-bottom: 20px;
 }
 
 /* Screenshot placeholders */
 .screenshot-placeholder {
-    background-color: var(--color-gray-50);
-    border: 2px dashed var(--color-gray-400);
-    padding: 60px 24px;
+    background-color: #f9fafb;
+    border: 1px dashed var(--color-gray-300);
+    padding: 50px 24px;
     margin: 24px 0;
     text-align: center;
 }
 
 .screenshot-placeholder p {
-    color: var(--color-gray-600);
-    font-size: 14px;
-    font-weight: 500;
+    color: var(--color-gray-500);
+    font-size: 13px;
+    font-weight: 400;
     margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 /* Warning boxes */
 .warning-box {
-    background-color: #fffbeb;
-    border: 2px solid var(--color-brand-orange);
-    border-left: 6px solid var(--color-brand-orange);
-    padding: 18px 24px;
-    margin: 24px 0;
+    background-color: #fffbf0;
+    border-left: 4px solid var(--color-brand-orange);
+    padding: 16px 20px;
+    margin: 20px 0;
 }
 
 .warning-box p {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-size: 14px;
     margin: 0;
     line-height: 1.7;
 }
 
 .warning-box strong {
-    color: var(--color-brand-orange-dark);
-    font-weight: 700;
-    margin-right: 4px;
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 /* Code blocks - clean monospace style */
 .doc-content pre {
-    background-color: #f8f8f8;
-    color: #1f2937;
-    border: 1px solid var(--color-gray-300);
-    border-left: 4px solid var(--color-brand-green);
-    padding: 20px;
+    background-color: #fafafa;
+    color: #374151;
+    border: 1px solid var(--color-gray-200);
+    padding: 18px 20px;
     overflow-x: auto;
     margin: 20px 0;
     font-family: 'JetBrains Mono', 'Courier New', monospace;
+    border-radius: 4px;
 }
 
 .doc-content pre code {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 13px;
-    line-height: 1.6;
-    color: #1f2937;
+    line-height: 1.5;
+    color: #374151;
     background: transparent;
     padding: 0;
 }
 
 .doc-content code {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
-    background-color: var(--color-gray-100);
-    color: var(--color-brand-green-dark);
+    background-color: #f3f4f6;
+    color: #4b5563;
     padding: 2px 6px;
     border-radius: 3px;
     font-size: 13px;
-    border: 1px solid var(--color-gray-300);
 }
 
 /* Pseudocode headers */
 .doc-content h4 {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 15px;
-    font-weight: 700;
-    color: var(--color-brand-green-dark);
-    margin-top: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 28px;
     margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: 2px solid var(--color-brand-green);
-    padding-bottom: 6px;
-    display: inline-block;
 }
 
-/* Tables - Professional Report Style */
+/* Tables - Clean Report Style */
 .doc-content table {
     width: 100%;
     border-collapse: collapse;
-    margin: 32px 0;
+    margin: 28px 0;
     background-color: white;
-    border: 2px solid var(--color-gray-300);
+    border: 1px solid var(--color-gray-200);
     font-size: 14px;
 }
 
 .doc-content table thead {
-    background-color: var(--color-brand-green);
-    color: white;
+    background-color: #f9fafb;
+    border-bottom: 2px solid var(--color-gray-300);
 }
 
 .doc-content table th {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
     text-align: left;
-    padding: 14px 20px;
-    border-bottom: 3px solid var(--color-brand-green-dark);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 16px;
+    color: var(--text-primary);
     vertical-align: top;
-}
-
-.doc-content table th:last-child {
-    border-right: none;
 }
 
 .doc-content table td {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--color-gray-200);
-    border-right: 1px solid var(--color-gray-200);
+    padding: 12px 16px;
+    border-top: 1px solid var(--color-gray-100);
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.6;
     vertical-align: top;
 }
 
-.doc-content table td:last-child {
-    border-right: none;
-}
-
 .doc-content table td:first-child {
-    font-weight: 600;
-    color: var(--color-brand-green-dark);
-    background-color: var(--color-gray-50);
-    width: 35%;
-}
-
-.doc-content table tbody tr:last-child td {
-    border-bottom: 2px solid var(--color-gray-300);
-}
-
-.doc-content table tbody tr:nth-child(even) {
-    background-color: var(--color-gray-50);
+    font-weight: 500;
+    color: var(--text-primary);
+    width: 38%;
 }
 
 .doc-content table tbody tr:hover {
-    background-color: #f0fdf4;
+    background-color: #fafbfc;
 }
