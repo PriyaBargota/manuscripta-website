@@ -209,6 +209,11 @@ public void testExponentialBackoff() {
                     Several adaptations were required to run tests on the JVM via Robolectric rather than a physical device. The RetryInterceptor was removed from the test harness because <code>ConnectivityManager.isConnected()</code> always returns false in Robolectric. A <code>directHandler</code> was added for immediate Runnable dispatch since Robolectric's paused looper mode does not execute <code>Handler.post()</code>. A volatile <code>currentStateSnapshot</code> field was added to PairingManager because <code>LiveData.getValue()</code> returns stale or null values in Robolectric.
                 </p>
 
+                <h3>Checkstyle</h3>
+                <p>
+                    The Android codebase uses a custom Checkstyle configuration at <code>android/config/checkstyle/checkstyle.xml</code>. Key rules enforced include a 120-character line length limit, a 150-line method length limit, a maximum of 7 parameters per method, JavaDoc required for all public classes and methods, no wildcard imports, spaces only (no tab characters), and enforcement of equals/hashCode pairs. Checkstyle runs as the first job in the CI pipeline before tests, meaning code style violations are caught before any test execution begins.
+                </p>
+
                 <h2 id="windows-unit">Windows Unit Testing</h2>
                 <p class="attribution"><em>Built and maintained by Raphael Li and Nemo Shu</em></p>
 
@@ -254,13 +259,43 @@ public void testExponentialBackoff() {
                 </p>
 
                 <h3>Example: TCP Pairing Service Test</h3>
-                <pre><code>// Verifies device is marked DISCONNECTED after 10s without heartbeat
-[Fact]
-public async Task DeviceMarkedDisconnectedAfterTimeout() {
-    await pairingService.SimulateHeartbeatTimeout(deviceId);
-    var status = await deviceRegistry.GetStatus(deviceId);
-    Assert.Equal(DeviceStatus.Disconnected, status);
+                <p>
+                    The following test verifies that the TcpPairingService handles concurrent listener attempts gracefully — a real defensive programming requirement given the service manages live network sockets.
+                </p>
+                <pre><code>[Fact]
+public async Task StartListeningAsync_CalledTwice_LogsWarning()
+{
+    // Use random port to avoid conflicts with parallel tests
+    var dedicatedOptions = Options.Create(new NetworkSettings
+    {
+        TcpPort = new Random().Next(10000, 60000)
+    });
+    using var dedicatedService = new TcpPairingService(
+        dedicatedOptions, _serviceProvider,
+        _mockLogger.Object, _mockRefreshConfigTracker.Object);
+
+    using var cts = new CancellationTokenSource();
+    var listenTask1 = dedicatedService.StartListeningAsync(cts.Token);
+    await Task.Delay(100); // Wait for listener to become active
+
+    // Second call should return immediately without creating a duplicate socket
+    var listenTask2 = dedicatedService.StartListeningAsync(cts.Token);
+    await listenTask2;
+
+    // Verify warning was logged
+    _mockLogger.Verify(
+        x => x.Log(LogLevel.Warning, It.IsAny<EventId>(),
+            It.Is<It.IsAnyType>((v, t) =>
+                v.ToString()!.Contains("already active")),
+            It.IsAny<Exception>(),
+            It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+        Times.Once);
+
+    cts.Cancel();
 }</code></pre>
+                <p>
+                    This test validates real network socket behaviour using an actual TCP listener on a randomly assigned port, verifies defensive programming against duplicate listeners, and demonstrates proper async cancellation and resource disposal patterns.
+                </p>
 
                 <h2 id="integration">Integration Testing</h2>
                 <p>
@@ -337,13 +372,13 @@ public async Task DeviceMarkedDisconnectedAfterTimeout() {
                             <td>Android</td>
                             <td>74</td>
                             <td>21,504</td>
-                            <td>96% instruction, 93% branch</td>
+                            <td>96% instruction, 93% branch (JaCoCo)</td>
                         </tr>
                         <tr>
                             <td>Windows</td>
                             <td>52</td>
                             <td>12,028</td>
-                            <td>Not measured (no JaCoCo equivalent configured)</td>
+                            <td>Not measured — no coverage tool configured</td>
                         </tr>
                         <tr>
                             <td>Total</td>
@@ -353,6 +388,65 @@ public async Task DeviceMarkedDisconnectedAfterTimeout() {
                         </tr>
                     </tbody>
                 </table>
+
+                <h2 id="ci-cd">CI/CD and Code Quality</h2>
+                <p>
+                    Pull request peer reviews were conducted as a team norm rather than being enforced via GitHub branch protection rules. This means reviews were voluntary rather than technically required before merging. In retrospect, configuring branch protection to require at least one approving review and passing CI checks before merge would have provided a stronger quality gate, and this is noted as a process improvement for future projects.
+                </p>
+
+                <h2 id="bugs">Bugs Discovered Through Testing</h2>
+                <p>
+                    The following bugs were discovered and fixed as a direct result of testing:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PR</th>
+                            <th>Bug</th>
+                            <th>How Testing Found It</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#286</td>
+                            <td>All 7 Retrofit endpoints missing /api/v1/ prefix, causing 404 on every request</td>
+                            <td>Integration tests returned unexpected 404 responses</td>
+                        </tr>
+                        <tr>
+                            <td>#286</td>
+                            <td>MaterialDto deserialised as null due to incorrect @SerializedName("Type") annotation</td>
+                            <td>DTO unit tests failed on null field assertions</td>
+                        </tr>
+                        <tr>
+                            <td>#286</td>
+                            <td>Server retained TCP state between test runs, causing 25% flaky failure rate on handRaised test</td>
+                            <td>Intermittent CI failures identified the stateful server issue</td>
+                        </tr>
+                        <tr>
+                            <td>#286</td>
+                            <td>Controllers returning 400/403 for invalid GUIDs, leaking ID validity information</td>
+                            <td>Security-focused test assertions caught incorrect status codes</td>
+                        </tr>
+                        <tr>
+                            <td>#255</td>
+                            <td>Windows CI running in wrong directory, silently failing to catch test failures</td>
+                            <td>Manual inspection of CI output revealed no tests were executing</td>
+                        </tr>
+                        <tr>
+                            <td>#266</td>
+                            <td>External communication using port 5910 instead of 5911, violating the API contract</td>
+                            <td>Enforcement tests added specifically to prevent regression</td>
+                        </tr>
+                        <tr>
+                            <td>#295</td>
+                            <td>Refactoring GenerateResponsePdfAsync to call GetAllAsync() caused four tests to fail</td>
+                            <td>Existing mocks expected old per-entity methods, caught the breaking change immediately</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    The flaky test in PR #286 is particularly notable — a 25% failure rate on the handRaised acknowledgement test revealed that the Windows integration server was retaining TCP connection state between test runs. The fix required adding a proper state reset between tests, which is now handled by the POST /api/v1/integration/reset endpoint described in the integration testing section.
+                </p>
 
                 <h2 id="not-tested">What is not tested</h2>
                 <p>
