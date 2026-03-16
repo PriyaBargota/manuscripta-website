@@ -107,6 +107,17 @@
                     </tbody>
                 </table>
 
+                <h2 id="execution">Test Execution Instructions</h2>
+
+                <h3>Android</h3>
+                <pre><code>cd android && ./gradlew test</code></pre>
+                <pre><code>cd android && ./gradlew jacocoTestReport</code></pre>
+                <pre><code>cd android && ./gradlew checkstyle</code></pre>
+
+                <h3>Windows</h3>
+                <pre><code>cd windows/ManuscriptaTeacherApp/Main
+dotnet test</code></pre>
+
                 <h2 id="android-unit">Android Unit Testing</h2>
                 <p class="attribution"><em>Built and maintained by Priya Bargota and Will Stephen</em></p>
 
@@ -213,6 +224,11 @@ public void testExponentialBackoff() {
                 <p>
                     The Android codebase uses a custom Checkstyle configuration at <code>android/config/checkstyle/checkstyle.xml</code>. Key rules enforced include a 120-character line length limit, a 150-line method length limit, a maximum of 7 parameters per method, JavaDoc required for all public classes and methods, no wildcard imports, spaces only (no tab characters), and enforcement of equals/hashCode pairs. Checkstyle runs as the first job in the CI pipeline before tests, meaning code style violations are caught before any test execution begins.
                 </p>
+
+                <h3>Test Results</h3>
+                <div class="warning-box">
+                    <p><strong>TODO:</strong> Add JaCoCo HTML coverage report screenshot showing 96% instruction coverage and GitHub Actions CI pipeline passing screenshot</p>
+                </div>
 
                 <h2 id="windows-unit">Windows Unit Testing</h2>
                 <p class="attribution"><em>Built and maintained by Raphael Li and Nemo Shu</em></p>
@@ -344,6 +360,63 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
 
                 <p>
                     No formal user testing was conducted with students within the project timeline. The planned visit of 127 students to UCL did not proceed. Student-facing testing remains as future work.
+                </p>
+
+                <h2 id="compatibility">Device and Platform Compatibility</h2>
+                <p>
+                    Manuscripta was tested across a range of devices and operating system configurations to validate compatibility with the target hardware.
+                </p>
+
+                <h3>E-ink Device Compatibility</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>Category</th>
+                            <th>Delivery Method</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Boox / AiPaper</td>
+                            <td>Android E-ink</td>
+                            <td>Direct Wi-Fi via Android app</td>
+                            <td>✓ Supported</td>
+                        </tr>
+                        <tr>
+                            <td>Qualcomm test device</td>
+                            <td>Android tablet</td>
+                            <td>Direct Wi-Fi via Android app</td>
+                            <td>✓ Development and testing device</td>
+                        </tr>
+                        <tr>
+                            <td>Kindle Scribe</td>
+                            <td>Non-Android E-ink</td>
+                            <td>Email PDF workflow via SMTP</td>
+                            <td>✓ Validated in user testing</td>
+                        </tr>
+                        <tr>
+                            <td>reMarkable</td>
+                            <td>Non-Android E-ink</td>
+                            <td>Email PDF workflow via rmapi</td>
+                            <td>✓ Validated by domain expert Atia Rafiq</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The email-based PDF workflow for non-Android devices was validated during user testing with two Richard Cloudesley School teachers and independently confirmed by Atia Rafiq, whose professional healthcare workflow uses the identical mechanism.
+                </p>
+
+                <h3>Android Version Compatibility</h3>
+                <p>
+                    The Android application targets API level 36 and supports a minimum of API level 27 (Android 8.0). This range covers all commercially available Android E-ink tablets from manufacturers including Boox and AiPaper.
+                </p>
+
+                <h3>Windows Compatibility</h3>
+                <p>
+                    The Windows teacher application was tested on Windows 10 and Windows 11 on both Intel and Qualcomm AI-capable chipsets. On machines without a dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI models locally.
                 </p>
 
                 <h2 id="ai-validation">AI Output Validation</h2>
