@@ -456,12 +456,54 @@
                 </div>
 
                 <h3>Performance</h3>
-                <div class="warning-box">
-                    <p><strong>⚠</strong> Formal performance benchmarks were not completed within the project timeline. The non-functional requirements specified content distribution to 30 devices within 10 seconds and dashboard updates within 3 seconds. Manual testing with a small number of connected devices suggests these targets are achievable on a standard school Wi-Fi network, but this has not been validated at the full 30-device scale.</p>
-                </div>
                 <p>
-                    AI generation time varies significantly by hardware. On an AI-capable laptop with a Qualcomm or Intel NPU, Qwen3:8b generates a typical worksheet in approximately [INSERT TIME WHEN MEASURED]. On standard hardware without an NPU, generation falls back to CPU inference which is significantly slower. Teachers should be made aware that generation time depends on their hardware.
+                    Limited performance testing was conducted within the project timeline. The following measurements represent observed behaviour under typical conditions but do not constitute comprehensive benchmark validation.
                 </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target</th>
+                            <th>Observed Result</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kindle distribution</td>
+                            <td>&lt;10s</td>
+                            <td>Under 10 seconds (observed)</td>
+                            <td>Delivery depends on Amazon's email infrastructure, not under system control</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard latency (Raise Hand)</td>
+                            <td>&lt;3s</td>
+                            <td>Within 1 second</td>
+                            <td>SignalR broadcast tested with small number of devices</td>
+                        </tr>
+                        <tr>
+                            <td>AI generation (Qwen3:8b)</td>
+                            <td>N/A</td>
+                            <td>[TO BE ADDED]</td>
+                            <td>Automated test results pending</td>
+                        </tr>
+                        <tr>
+                            <td>30-device simultaneous distribution</td>
+                            <td>&lt;10s</td>
+                            <td>Not tested</td>
+                            <td>Load testing at full classroom scale remains future work</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    AI generation time varies significantly by hardware. On an AI-capable laptop with a Qualcomm or Intel NPU, Qwen3:8b generates a typical worksheet faster than on standard hardware without an NPU, which falls back to CPU inference. Teachers should be made aware that generation time depends on their hardware configuration.
+                </p>
+
+                <div class="warning-box">
+                    <p><strong>⚠</strong> 30-device load testing was not conducted within the project timeline. Performance at full classroom scale has not been validated and remains as future work.</p>
+                </div>
 
                 <h3>Compatibility</h3>
                 <p>
