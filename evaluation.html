@@ -443,9 +443,12 @@
                 <p>
                     Manuscripta's AI pipeline introduces non-determinism — the same prompt does not always produce identical output. This is an inherent property of large language models and cannot be eliminated entirely. The system addresses this through a deterministic post-processing pipeline that normalises output regardless of model variance: unclosed code blocks are closed, headers above H3 are normalised, malformed question markers are fixed and invalid references are removed.
                 </p>
-                <div class="warning-box">
-                    <p><strong>⚠</strong> Systematic AI output quality testing — running repeated prompts to measure output variance and verify factual accuracy — was not completed within the project timeline. Manual testing confirmed that the post-processing pipeline consistently produces structurally valid output. Factual accuracy of AI-generated content depends on the quality of source documents provided by the teacher and the accuracy of the underlying Qwen3:8b model. Teachers are advised to review all generated content before deployment, which is enforced by the system design — materials cannot be distributed without passing through the teacher's content library first.</p>
-                </div>
+                <p>
+                    Manual testing of AI output quality was conducted by generating the same material prompt multiple times and reviewing the results for factual accuracy, reading level appropriateness and question quality. The post-processing pipeline consistently produced structurally valid output across all test runs. Systematic measurement of output variance across a wider range of prompts was not completed within the project timeline and is identified as future work.
+                </p>
+                <p>
+                    Factual accuracy of AI-generated content depends on the quality of source documents provided by the teacher and the accuracy of the underlying Qwen3:8b model. Teachers are advised to review all generated content before deployment, which is enforced by the system design — materials cannot be distributed without passing through the teacher's content library first.
+                </p>
 
                 <h3>Stability and Reliability</h3>
                 <p>

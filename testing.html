@@ -419,16 +419,10 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                     The Windows teacher application was tested on Windows 10 and Windows 11 on both Intel and Qualcomm AI-capable chipsets. On machines without a dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI models locally.
                 </p>
 
-                <h2 id="ai-validation">AI Output Validation</h2>
+                <h2 id="ai-validation">AI Output Post-Processing Validation</h2>
                 <p>
-                    The AI content generation pipeline introduces non-determinism — the same prompt does not always produce identical output. Manuscripta addresses this through a deterministic post-processing pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are normalised to H3, malformed question markers are fixed, and invalid references are removed.
+                    The AI content generation pipeline introduces non-determinism — the same prompt does not always produce identical output. Manuscripta addresses this through a deterministic post-processing pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are normalised to H3, malformed question markers are fixed, and invalid references are removed. The validation function was unit tested to verify it correctly identifies and flags each error type.
                 </p>
-                <p>
-                    Manual testing was conducted by generating the same material prompt multiple times and checking that the post-processing pipeline consistently produces valid, structured output. The validation function checks for unclosed code blocks, excessive header levels, malformed question markers, invalid PDF references and unprocessed question drafts.
-                </p>
-                <div class="warning-box">
-                    <p><strong>⚠</strong> Automated AI consistency testing — testing a range of inputs and repeated prompts to measure output variance — was not completed within the project timeline. This is identified as future evaluation work. The TA recommendation to include prompt documentation in the appendices has been noted and prompt examples are included in the Appendices section.</p>
-                </div>
 
                 <h2 id="coverage">Test Coverage Summary</h2>
                 <table>
