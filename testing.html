@@ -110,6 +110,10 @@
                     </tbody>
                 </table>
 
+                <p>
+                    Manuscripta's testing effort follows the testing pyramid. Unit and component tests form the base — 126 test files running automatically on every pull request, covering individual functions through to full component-level behaviour. Integration tests sit in the middle, verifying cross-system interactions with real network services and ephemeral databases. User acceptance testing forms the top — fewer in number but closest to real classroom conditions. The GitHub Actions CI pipeline runs the full Android test suite on every pull request, serving as automated regression testing and ensuring new changes cannot break existing behaviour without being detected.
+                </p>
+
                 <h2 id="execution">Test Execution Instructions</h2>
 
                 <h3>Android</h3>
@@ -127,6 +131,10 @@ dotnet test</code></pre>
                 <p>
                     The Android test suite consists of 74 test files comprising 21,504 lines of test code, covering
                     every layer of the Clean Architecture stack.
+                </p>
+
+                <p>
+                    The Android test suite is organised into four suites corresponding to the Clean Architecture layers: the network suite covering TCP, UDP and HTTP protocol handlers; the data suite covering Room entities, DAOs and repositories; the domain suite covering mappers and business logic models; and the presentation suite covering ViewModels. Each suite contains tests at the same granularity, allowing failures to be isolated to a specific layer without running the full suite.
                 </p>
 
                 <h3>Coverage Results (JaCoCo)</h3>
@@ -475,6 +483,61 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                     devices, and monitoring student progress from the dashboard.
                 </p>
 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Test Case ID</td>
+                            <td>UAT-01</td>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td>Teacher generates a worksheet from a source document</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>Verifies that a teacher can generate a correctly formatted, age-appropriate worksheet using the AI content pipeline with a source document uploaded</td>
+                        </tr>
+                        <tr>
+                            <td>Preconditions</td>
+                            <td>Windows application running, Ollama loaded with Qwen3:8b, PDF source document available for upload</td>
+                        </tr>
+                        <tr>
+                            <td>Test Data</td>
+                            <td>Subject: History, Age group: 14, Material type: Worksheet, Source document: one page PDF</td>
+                        </tr>
+                        <tr>
+                            <td>Steps</td>
+                            <td>1. Open content generator. 2. Upload source PDF. 3. Set subject to History and age group to 14. 4. Select Worksheet as material type. 5. Click Generate. 6. Review generated content. 7. Save to library.</td>
+                        </tr>
+                        <tr>
+                            <td>Expected Result</td>
+                            <td>Worksheet appears within 60 seconds containing age-appropriate content derived from the source document, with correctly formatted questions and no structural errors</td>
+                        </tr>
+                        <tr>
+                            <td>Actual Result</td>
+                            <td>Pass</td>
+                        </tr>
+                        <tr>
+                            <td>Pass/Fail</td>
+                            <td>Pass</td>
+                        </tr>
+                        <tr>
+                            <td>Tested By</td>
+                            <td>Richard Cloudesley School teachers (2), additional teaching professionals (3)</td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td>March 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <h3>Key findings:</h3>
                 <table>
                     <thead>
@@ -622,8 +685,8 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                         </tr>
                         <tr>
                             <td>#286</td>
-                            <td>Controllers returning 400/403 for invalid GUIDs, leaking ID validity information</td>
-                            <td>Security-focused test assertions caught incorrect status codes</td>
+                            <td>Controllers returning 400 Bad Request for invalid GUID format, which could leak information about ID validity to unauthenticated callers</td>
+                            <td>Security-focused test assertions identified the response code mismatch — changed to 404 Not Found with generic messages to align with RESTful best practice</td>
                         </tr>
                         <tr>
                             <td>#255</td>
