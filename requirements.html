@@ -94,10 +94,10 @@
                 <div>
                     <h2>Our Approach</h2>
                     <p>
-                        Manuscripta addresses these challenges through a two-component system. The teacher application runs on a Windows laptop with an AI-capable chipset and uses IBM Granite, an on-device large language model, to generate educational materials including quizzes, worksheets and polls. The teacher can specify the topic, target age group and reading level, and the model produces content accordingly without any internet connection. Materials are then distributed to student devices over a local area network.
+                        Manuscripta addresses these challenges through a two-component system. The teacher application runs on a Windows laptop with an AI-capable chipset and uses local LLM models such as Qwen and IBM Granite to generate educational materials including quizzes, worksheets and polls. The teacher can specify the topic, target age group and reading level, and the model produces content accordingly without any internet connection. Materials are then distributed to student devices over a local area network.
                     </p>
                     <p>
-                        The student application runs on Android-based E-ink tablets, such as those manufactured by Boox and AiPaper, as well as on Kindle and reMarkable devices supplied by Richard Cloudesley School. The monochromatic, low-refresh display of these devices eliminates the audiovisual stimulation associated with standard tablets, and the application runs in kiosk mode to prevent students from navigating away from their assigned material. Students can annotate worksheets using a stylus, submit answers to quizzes and polls, and raise a discreet help request visible only to the teacher.
+                        The student application runs on Android-based E-ink tablets, such as those manufactured by Boox and AiPaper, as well as on Kindle and reMarkable devices. The monochromatic, low-refresh display of these devices eliminates the audiovisual stimulation associated with standard tablets, and the application runs in kiosk mode to prevent students from navigating away from their assigned material. Students can annotate worksheets using a stylus, submit answers to quizzes and polls, and raise a discreet help request visible only to the teacher.
                     </p>
                     <p>
                         The teacher dashboard provides a live overview of all connected devices, showing each student's status and aggregating quiz and poll responses anonymously. All data remains on the local network and is never transmitted to external servers, ensuring that no personally identifiable student information is stored or processed beyond the classroom.
@@ -127,7 +127,7 @@
                 <div>
                     <h2>Teacher support</h2>
                     <p>
-                        <strong>Replace</strong> time-consuming manual worksheet creation with an AI content pipeline that produces tailored quizzes, worksheets and polls in seconds using IBM Granite
+                        <strong>Replace</strong> time-consuming manual worksheet creation with an AI content pipeline that produces tailored quizzes, worksheets and polls in seconds using on-device AI models
                     </p>
                     <p>
                         <strong>Provide</strong> a real-time monitoring dashboard showing every student's status, help requests and device health without requiring physical movement around the classroom
@@ -141,7 +141,7 @@
                 <div>
                     <h2>Technical</h2>
                     <p>
-                        <strong>Demonstrate</strong> a fully on-device AI pipeline integrated into a practical classroom tool with no cloud dependency, using IBM Granite running locally on the teacher's laptop
+                        <strong>Demonstrate</strong> a fully on-device AI pipeline integrated into a practical classroom tool with no cloud dependency, using local LLM models running on the teacher's laptop
                     </p>
                     <p>
                         <strong>Design</strong> a low-latency local network protocol capable of serving up to 30 simultaneous E-ink devices
@@ -209,8 +209,8 @@
 
                     <div class="subcard subcard--green">
                         <p><strong>On-Device AI Requirements</strong></p>
-                        <p>All AI processing must occur locally on the teacher's Windows laptop with no cloud dependency, covering content generation, assessment and future handwriting recognition. IBM Granite was selected as the on-device language model.</p>
-                        <p><strong>What we changed:</strong> The requirement for fully local AI processing narrowed our model selection to on-device options only. IBM Granite was selected over alternatives because it runs entirely on the teacher's laptop without an internet connection, is optimised for Intel and Qualcomm chipsets which our target hardware uses, and is supported by our project partner IBM who provided technical guidance on integration.</p>
+                        <p>All AI processing must occur locally on the teacher's Windows laptop with no cloud dependency, covering content generation, assessment and future handwriting recognition. Qwen was selected as the primary on-device language model, with IBM Granite retained as a fallback for less capable hardware. Both models are managed via Ollama.</p>
+                        <p><strong>How we addressed this:</strong> Fully local AI processing was a core requirement from the outset, narrowing model selection to on-device options only. Qwen was chosen as the primary model for content generation due to its ability to produce well-structured, correctly formatted materials. IBM Granite is retained as a fallback for hardware that cannot support Qwen, and is used for smaller tasks such as generating feedback. Both run entirely on the teacher's laptop via Ollama without an internet connection.</p>
                         <p><strong>Impact:</strong> Teachers can generate personalised content in schools with restricted or no internet access, and the system remains fully functional on a standard school network without any external dependencies.</p>
                     </div>
 
@@ -237,30 +237,23 @@
                 </div>
 
                 <div class="interview-tab-panel" id="interview-3">
-                    <p>Following our demonstration at the showcase event, we received valuable feedback from teachers, industry partners, and academic reviewers that validated our approach and informed our final implementation priorities.</p>
+                    <p>At the project showcase, we demonstrated Manuscripta to teachers, industry partners and academic reviewers. The feedback primarily validated our existing design decisions rather than introducing new requirements.</p>
 
                     <div class="subcard subcard--blue">
-                        <p><strong>Teacher Feedback: E-ink Device Selection</strong></p>
-                        <p>"I'm really glad you've gone with Kindles rather than iPads. Distraction is definitely a big problem with full colour tablets and it's not really possible to lock a student into an app on an iPad. This is exactly the kind of tool teachers actually want." - Teacher, Richard Cloudesley School</p>
-                        <p><strong>What we implemented:</strong> Based on this validation, we committed fully to e-ink tablets as our student device. We implemented kiosk mode on the Android app to lock students into Manuscripta during sessions, and designed the entire UI around a monochrome, low-distraction experience.</p>
+                        <p><strong>NAS Feedback: Narrative Framing</strong></p>
+                        <p>Mareli Smit of the National Autistic Society highlighted the economic argument for E-ink tablets: a one-off investment in a set of devices replaces the recurring cost of printed textbooks, worksheets and other physical materials. This feedback informed how we positioned the project's value proposition.</p>
+                        <p><strong>Impact:</strong> This reinforced the case for E-ink tablets as a cost-effective long-term alternative to printed materials, particularly in SEN settings where differentiated resources at multiple reading levels would otherwise require significant ongoing expenditure.</p>
                     </div>
 
                     <div class="subcard subcard--green">
-                        <p><strong>Teacher Feedback: Auto-marking Control</strong></p>
-                        <p>"Auto-marking is really important, but teachers need control over it before it gets accepted as final. There should be an option to make it manual." - Teacher, Richard Cloudesley School</p>
-                        <p><strong>What we implemented:</strong> We built a marking system where the teacher can review AI-suggested marks before they are finalised, with a manual override option available for every response.</p>
-                    </div>
-
-                    <div class="subcard subcard--orange">
-                        <p><strong>Teacher Feedback: Class-wide Understanding</strong></p>
-                        <p>"Sometimes during a lesson a teacher likes to stop and get an understanding of where all students are. There needs to be a good way of doing this." - Teacher, Richard Cloudesley School</p>
-                        <p><strong>What we implemented:</strong> We built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation so teachers can instantly gauge class-wide understanding.</p>
+                        <p><strong>Showcase Validation</strong></p>
+                        <p>Feedback from attendees validated our core design decisions: the choice of E-ink devices for distraction reduction, the fully local AI processing approach, and the real-time monitoring dashboard. No significant changes to requirements resulted from the showcase.</p>
                     </div>
 
                     <div class="subcard subcard--yellow">
                         <p><strong>Microsoft: Deployment Simplification</strong></p>
                         <p>"Foundry Local bundles all AI into one executable that you can ship with the app. It reduces overhead on setup considerably." - Microsoft Representative</p>
-                        <p><strong>What we implemented:</strong> We took this on board as a recommendation for simplifying deployment of our on-device AI. This informed our approach to packaging the Windows application as a single self-contained installer.</p>
+                        <p><strong>What we considered:</strong> This was evaluated as a potential approach to simplifying deployment. Ultimately, we retained Ollama for model management as it was already integrated into our workflow and supported our two-model architecture. The teacher application includes a guided setup UI that handles dependency installation as a one-off process, which Mareli Smit confirmed would be acceptable for teachers.</p>
                     </div>
 
                     <div class="subcard subcard--blue">
@@ -273,7 +266,7 @@
 
             <h2 id="personas">Personas</h2>
             <p>
-                We developed two personas based on our stakeholder consultations. Jon Kirk was developed from feedback provided by teachers at Richard Cloudesley School, and Tim Jones was developed from insights provided by Marie-Louise Holmberg and Mareli Smith of the National Autistic Society, reflecting characteristics of students with Autism Spectrum Disorder and dyslexia in SEN settings. These personas were used throughout the project to ground design decisions in real user needs.
+                We developed two personas based on our stakeholder consultations. Jon Kirk was developed from feedback provided by teachers consulted during the project, and Tim Jones was developed from insights provided by Marie-Louise Holmberg and Mareli Smit of the National Autistic Society, reflecting characteristics of students with Autism Spectrum Disorder and dyslexia in SEN settings. These personas were used throughout the project to ground design decisions in real user needs.
             </p>
             <p>
                 Jon is preparing a History lesson for a mixed-ability class of 12 students. He uses the Windows application to generate a reading comprehension worksheet at two difficulty levels in under a minute, distributes it to all connected tablets simultaneously, and monitors from his desk which students have started, paused or raised a help request.
@@ -323,7 +316,7 @@
                                 <li>Teacher opens the content generator in the Windows application</li>
                                 <li>Teacher selects material type (worksheet, quiz or poll)</li>
                                 <li>Teacher inputs subject topic and target age group via slider</li>
-                                <li>IBM Granite generates the material locally on the teacher's laptop</li>
+                                <li>The on-device AI model generates the material locally on the teacher's laptop</li>
                                 <li>Teacher reviews and edits the generated content</li>
                                 <li>Teacher saves the material to the content library</li>
                             </ol>
@@ -543,8 +536,8 @@
                         <div class="user-flow-box">Review &amp; Edit Content</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                         <div class="user-flow-split">
-                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Re-generate if needed</div>
-                            <div class="user-flow-split-box user-flow-split-box--b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Save to Library</div>
+                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Suggest modifications</div>
+                            <div class="user-flow-split-box user-flow-split-box--b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Approve and save</div>
                         </div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                         <div class="user-flow-box">Select Target Student Devices</div>
@@ -620,7 +613,7 @@
 
             <h2 id="moscow">MoSCoW Requirement List</h2>
             <p>
-                Requirements were prioritised using the MoSCoW method, reflecting input from stakeholder interviews with the National Autistic Society and Richard Cloudesley School, and validated against the technical constraints of E-ink hardware and on-device AI processing.
+                Requirements were prioritised using the MoSCoW method, reflecting input from stakeholder interviews with the National Autistic Society and teachers consulted during the project, and validated against the technical constraints of E-ink hardware and on-device AI processing.
             </p>
 
             <h3>Functional Requirements</h3>
@@ -641,6 +634,8 @@
                     <li>✓ Offline-first with auto-save and automatic sync</li>
                     <li>✓ Local network only with no cloud dependencies</li>
                     <li>✓ Anonymised student IDs and data privacy compliance</li>
+                    <li>✓ Search function to locate materials across units and lessons (MAT4)</li>
+                    <li>✓ Upload source documents (.pdf, .txt, .docx) for AI processing (MAT8)</li>
                 </ul>
             </div>
 
@@ -656,6 +651,10 @@
                     <li>⚠ Historical progress tracking across multiple sessions: local data persistence is implemented via Room database; cross-session aggregation and display was not completed within the project timeline</li>
                     <li>⚠ Differentiated material deployment to specific student groups: whole-class distribution is implemented; targeted group deployment was not completed within the project timeline</li>
                     <li>⚠ Vocabulary highlighting for key terms: identified as a should-have requirement but not implemented within the project timeline</li>
+                    <li>✓ Manual or AI-assisted response marking with teacher override (MAT18)</li>
+                    <li>✓ Optional point system for correct responses (MAT19)</li>
+                    <li>✓ Material metadata including deployment status and creation date (MAT13)</li>
+                    <li>✓ Configure application settings and preferences (ACC2)</li>
                 </ul>
             </div>
 
@@ -669,6 +668,12 @@
                     <li>✗ Parent portal providing anonymised progress summaries</li>
                     <li>✗ Mobile teacher dashboard app for tablet or smartphone monitoring</li>
                     <li>✗ Integration with school learning management systems</li>
+                    <li>✗ Average student progress panel on dashboard (CON4)</li>
+                    <li>✗ Live View of individual student screens (CON13)</li>
+                    <li>✗ Split dashboard into two tabs for monitoring and control (CON14)</li>
+                    <li>✗ Eye gaze control support via third-party hardware (Student ACC2)</li>
+                    <li>✗ Local user authentication (SYS2)</li>
+                    <li>⚠ Microsoft Store packaging (SYS3): status to be confirmed</li>
                 </ul>
             </div>
 
@@ -738,6 +743,7 @@
                     <li>✓ Compatibility with common E-ink tablets including reMarkable, Boox and Kindle Scribe</li>
                     <li>✓ Minimal teacher training required: under 30 minutes onboarding</li>
                     <li>⚠ Updates deployable without full system reinstallation: packaging and deployment pipeline was not completed within the project timeline</li>
+                    <li>⚠ Compatible with Intel and Qualcomm AI chipsets (SYS1): status to be confirmed</li>
                 </ul>
             </div>
 
@@ -786,7 +792,7 @@
                 <div>
                     <h2>Acknowledgements</h2>
                     <p>
-                        The team would like to thank Professor Dean Mohamedally (UCL) for his supervision and guidance throughout the project. We are grateful to Marie-Louise Holmberg and Mareli Smith of the National Autistic Society, and Dan Cooper (SEN specialist), for their input on the needs of autistic learners and their feedback on the system's design. We also thank Atia Rafiq, whose demonstration of E-ink workflows in a professional healthcare context informed our approach to non-Android device support.
+                        The team would like to thank Professor Dean Mohamedally (UCL) for his supervision and guidance throughout the project. We are grateful to Marie-Louise Holmberg and Mareli Smit of the National Autistic Society for their input on the needs of autistic learners and their feedback on the system's design. We also thank Dan Cooper of Richard Cloudesley School for his input on accessibility requirements for SEN students. We also thank Atia Rafiq, whose demonstration of E-ink workflows in a professional healthcare context informed our approach to non-Android device support.
                     </p>
                 </div>
 
@@ -817,10 +823,9 @@
                         </div>
                     </div>
                     <div style="margin-top: 24px;">
-                        <p><strong>IBM</strong>: provided the Granite large language model used for on-device AI content generation in the teacher application, along with technical guidance on model integration.</p>
+                        <p><strong>IBM</strong>: provided technical guidance on model integration and the Granite language model, which is used as a fallback model in the teacher application.</p>
                         <p><strong>Qualcomm</strong>: supplied an Android tablet device used during development and testing.</p>
-                        <p><strong>National Autistic Society</strong>: contributed domain expertise on the needs of autistic learners and provided stakeholder feedback through Marie-Louise Holmberg and Mareli Smith.</p>
-                        <p><strong>Richard Cloudesley School</strong>: a specialist SEN school in London that participated in user testing and supplied E-ink devices used during development and evaluation.</p>
+                        <p><strong>National Autistic Society</strong>: contributed domain expertise on the needs of autistic learners and provided stakeholder feedback through Marie-Louise Holmberg and Mareli Smit.</p>
                         <p><strong>UCL</strong>: academic supervision provided by Professor Dean Mohamedally.</p>
                     </div>
                 </div>
