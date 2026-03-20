@@ -57,37 +57,127 @@
         <div class="doc-layout">
             <div class="doc-content">
                 <div class="doc-header">
-                    <h1>Background Research</h1>
-                    <p>Literature review, technology analysis, and competitive research informing Manuscripta's design decisions.</p>
+                    <h1>Research</h1>
                 </div>
 
-                <h2 id="literature">Literature Review</h2>
+                <h2 id="literature">Literature Review on a Similar Platform: LiveWorksheets</h2>
                 <p>
-                    [Discuss existing research on educational technology, E-ink devices, and AI in education]
+                    LiveWorksheets is a free online educational platform that enables educators to convert traditional printable lesson materials into web-based interactive counterparts. When creating a worksheet, teachers may select from a collection of at least 13 different task types, including fill-in-the-blank, multiple-choice, matching, writing and pronunciation questions. After receiving a link to the worksheet from their teacher, students can complete the worksheet on their smartphones, tablets or laptops. Upon completion, worksheets would be automatically marked and task feedback would be delivered to students in real time.
+                </p>
+                <p>
+                    From the perspective of the teacher, LiveWorksheets provides an accessible and user-friendly way to create and manage engaging lesson materials with flexible designs [1]. As most design decisions were made through an intuitive graphical user interface (GUI), the platform required little time, effort and technical ability from teachers. Since worksheets can be saved, duplicated or organized into workbooks for future use, teachers may iterate through multiple drafts before sending a finalized version to students. The automatic marking feature also saves time by accelerating the process of tediously scoring each student’s response [2].
+                </p>
+                <p>
+                    From the students’ perspective, incorporating multimedia elements into worksheets and assessments lead to greater learning motivation [3] and more active participation [4] in classes. Misconceptions can be immediately corrected through real-time feedback, fostering a higher level of interest, motivation and independence among students [2].
+                </p>
+                <p>
+                    Nonetheless, evaluations of the LiveWorksheets platform have uncovered numerous limitations in its design. For example, [5] characterised the site as being more suited for objective assessments with short and exact answers, as its features are inadequate in accommodating questions with longer or more in-depth responses like open-ended essays. In [6], one teacher noted that LiveWorksheets’ distracting smartphone notifications hampered classroom management. The development of effective course materials with respect to designated learning objectives and students’ individual learning needs also required excessive time and effort.
+                </p>
+                <p>
+                    It follows from these insights that the development of an interactive educational platform similar to LiveWorksheets should prioritise an intuitive low-barrier interface for educators, as teachers are more likely to adopt a tool that demands minimal technical expertise while still offering meaningful design flexibility. Workflow features like storing, editing and organising materials are equally valuable, as they allow both iterative refinement and flexible management of content. To sustain student engagement and promote motivation, the platform should support diverse multimedia formats and immediate personalised feedback.
+                </p>
+                <p>
+                    Additionally, developers should invest in building robust support, such as through large language models, for marking and evaluating open-ended long-form responses. This is because relying solely on objective question types places significant constraints on the platform’s pedagogical scope. The value of providing real-time adaptive feedback through generative artificial intelligence (GenAI) tools was illustrated by an experiment on tablet-based geometry learning [7], in which seventh-graders whose tablets delivered immediate GenAI-based corrective feedback outperformed those with feedback-free tablets. The task success rate of students with no such feedback was comparable to those who accomplished the same task on paper.
+                </p>
+                <p>
+                    Similarly, GenAI tools can significantly speed up material creation. Teachers can thus produce curriculum-aligned content more efficiently and reduce the substantial time and effort that thoughtful lesson design currently demands. It is also advisable to adjust the textual complexity of materials in accordance with students’ reading levels, thereby preventing students with reading deficits from falling behind in comprehension tasks [8, 9].
+                </p>
+                <p>
+                    Finally, attention should be given to minimizing disruptive system notifications, which can undermine classroom management when devices are in use.
                 </p>
 
-                <h2 id="technology">Technology Analysis</h2>
-                <h3>E-ink Technology</h3>
-                <p>[Research on E-ink displays and their applications in education]</p>
+                <h2 id="technology">Technology Review on Possible Devices, Solutions and Frameworks</h2>
+                <h3>Choice of devices: Traditional tablets and e-ink displays</h3>
+                <p>
+                    In recent years, mobile touch-screen devices such as the iPad and Galaxy Tab have become popular tools for integrating technology into the classroom. In a survey of 1211 college students in the United States, 40% of participants reported using tablets for schoolwork at least twice per week [10]. A 2025 survey of 489 school information technology (IT) leads showed that 87% of primary schools and 55% of secondary schools in the United Kingdom provide tablet computers to students, with 21% of teachers incorporating tablets in their lessons “a lot of the time” [11].
+                </p>
+                <p>
+                    Indeed, tablets give marked pedagogical benefits. In a series of interviews with 26 middle school students and teachers, 58% of interviewees expressed satisfaction with the use of iPads on campus, noting their accessibility, portability and versatility [12]. Another study examined students’ opinions on educational tablets and identified such advantages as streamlined lesson interactions, more abundant supplementary learning resources, more organized course materials, diminished paper waste and reduced frustration in booking computer labs or laptop carts [13]. Similar points were raised in [14] and [15].
+                </p>
+                <p>
+                    These strengths are transferable to classrooms where students have special educational needs (SEN). According to [16], iPads empower SEN students to take stronger ownership of their learning, and their screen size and touch sensitivity are ideal for those suffering from low vision or limited fine motor skills. This is exemplified by case studies in which tablets improved reading levels in students with attention deficit hyperactivity disorders (ADHD) [17] and spell-checking proficiencies in those with autism spectrum disorders (ASD) [18].
+                </p>
+                <p>
+                    However, tablet devices can be disruptive in both lesson planning and execution. One study found that the introduction of iPads resulted in teachers spending more time in lesson preparation, which involved assessing the relevance of various educational applications to the school curriculum before installing them on individual tablets [19]. In [12], 65% of interviewed teachers and students described iPads’ messaging and gaming functionalities as distracting and addictive. Questionnaire results in [20] further elaborated on their diversionary nature, as teachers expressed difficulties in classroom management due to tablet abuse, audiovisual distractions and students surfing on irrelevant webpages.
+                </p>
+                <p>
+                    These disadvantages are amplified in SEN environments. For instance, [21] showed that the abundance of visual stimulus coupled with rapid pacing diverts the attention of ADHD students toward apps and websites unrelated to the course content. This reduces pedagogical effectiveness as more supervision and support are needed to hold students’ attention.
+                </p>
+                <p>
+                    One promising solution to mitigate these distractions while preserving the pedagogical benefits of digital devices is the adoption of black-and-white electronic ink (e-ink) displays, including AiPaper, BOOX MAX, Kindle Scribe and reMarkable. Compared to traditional liquid crystal display (LCD) devices like iPads, grayscale e-ink displays are more readable, produce a greater display contrast, consume less power and minimise visual fatigue [22, 23]. This makes sustained reading more comfortable and cognitively manageable, particularly during extended class periods. In addition, their low refresh rates render them incapable of running video games, social media applications, or multimedia-rich browsers at any usable frame rate. This hardware constraint discourages students from browsing external sites and apps during lessons, reducing the classroom management burden attributed to tablet abuse.
+                </p>
+                <p>
+                    The monochrome static display is also suitable for SEN environments. According to [24], 87% of autistic children show signs of self-stimulation when using electronic devices with overstimulating visuals. Both [25] and [26] elucidated the importance of high-visual-contrast displays for learners with reading difficulties. Since e-ink devices are specially designed to minimise visual stimuli and noise, they can provide a sensory-friendly learning experience with minimal cognitive overload for hypersensitive learners.
+                </p>
 
-                <h3>AI Models for Education</h3>
-                <p>[Research on AI-powered educational content generation]</p>
+                <h3>Developing a solution</h3>
+                <p>
+                    The most straightforward approach to integrating GenAI feedback and material generation into a classroom platform with e-ink displays would be to connect such devices to a remotely hosted LLM via the application programming interface (API) of an external cloud-based model provider. However, this naive solution introduces serious data privacy vulnerabilities. In many jurisdictions, schools are bound by legislation such as the General Data Protection Regulation (GDPR) in the United Kingdom and European Union [27], and the Family Educational Rights and Privacy Act (FERPA) in the United States [28], which impose strict constraints on how student data may be shared with third parties. When a student’s written response is routed to an externally hosted LLM, it is subject to the model provider’s data handling policies, which may include logging, retention or use for model training. This concern is particularly acute in SEN classrooms, where student responses may contain sensitive disclosures relating to health and learning difficulties. This naïve solution therefore presents an unacceptable privacy risk in most school environments.
+                </p>
+                <p>
+                    One way to address these concerns is to run the LLM directly on each student’s device. However, while quantised models can feasibly run on high-end tablets equipped with neural processing units, the low-power microcontrollers and limited memory of e-ink devices fail to meet the hardware requirements for effective local LLM inference, which usually requires 4 or more gigabytes of RAM for model and context storage [29].
+                </p>
+                <p>
+                    To tackle this problem, it is observed that AI computation and content consumption are separable concerns that do not need to occur on the same device. Rather than distributing inference across student devices, the system can instead concentrate all LLM processing on the teacher’s laptop. In this decoupled architecture, the teacher may use their AI-powered laptop to generate lesson materials via a locally run LLM. These materials are transmitted wirelessly to students’ e-ink displays, where they are rendered cleanly with high contrast and few distractions. When a student submits a response, it is transmitted back to the teacher’s laptop, where the on-device LLM evaluates it and generates personalised feedback. This feedback is then returned to the student’s e-ink device for review.
+                </p>
+                <p>
+                    This architecture resolves all the issues identified across the previous approaches simultaneously. Sensitive student data is never exposed to any third-party service in accordance with GDPR, FERPA and institutional safeguarding obligations. The e-ink display retains its full pedagogical and sensory benefits, requiring no modification to the display hardware. The teacher also remains the sole point of control over generating materials and feedback, preserving meaningful pedagogical oversight before they are shown to students.
+                </p>
 
-                <h3>Mobile Development Frameworks</h3>
-                <p>[Analysis of Android development approaches - MVVM, Room, etc.]</p>
+                <h3 id="languages">Programming languages, frameworks and tools</h3>
+                <p>
+                    The teacher-facing application is built as an Electron app, which allows the platform to be distributed as a native Windows desktop application while being developed using frontend web technologies like React, HTML, CSS and TypeScript. Although Electron apps tend to take up more disk space and memory than native Windows applications [30], the mature and ubiquitous React ecosystem dramatically lowers the barrier to building a rich interactive user interface. This leads to a polished and maintainable frontend that can be developed and iterated upon without needing expertise in platform-specific GUI frameworks such as WinForms or WPF.
+                </p>
+                <p>
+                    The Windows application’s backend is implemented in C# with .NET and Entity Framework Core (EF Core). C# is a natural choice for a Windows-hosted service, offering strong typing, excellent performance for I/O-bound workloads and a rich ecosystem of libraries for networking and data access. EF Core provides an object-relational mapping layer that enables persistent data management without handwritten SQL.
+                </p>
+                <p>
+                    Although the frontend and backend can be run independently during development, they are packaged together into a single distributable unit for deployment. The backend is published as a self-contained Windows executable targeting the win-x64 runtime, bundled as an extra resource within the Electron application using Electron Forge and wrapped into a Squirrel-based Windows installer. The frontend manages the lifecycle of the backend process at runtime and is responsible for spawning it on startup. This single-installer approach means the user installs one application without administrative privileges, with no separate backend setup or dependency management required.
+                </p>
+                <p>
+                    All language model inference runs locally via Ollama, which provides a lightweight and self-contained runtime for open-weight models without cloud connectivity or external API keys. The platform uses the models Qwen3 and Granite 4.0 to generate materials and feedback. The nomic-embed-text model is used exclusively for producing dense vector embeddings of reference materials such as textbooks and curriculum documents. These embeddings are stored in a Chroma vector database and accessed through the ChromaDB .NET client, thereby enabling retrieval-augmented generation (RAG). When the teacher wishes to generate a worksheet with GenAI, relevant passages from the embedded reference corpus may be retrieved using a k-nearest neighbours search algorithm and injected into the prompt context. This grounds the model’s output in authoritative curriculum-aligned source materials rather than relying solely on the model’s parametric knowledge. This is particularly valuable for subject-specific content where factual accuracy and alignment with prescribed syllabi are paramount.
+                </p>
+                <p>
+                    The platform’s communication layer uses three complementary protocols. HTTP REST is used for transferring large payloads such as the distribution of lesson materials from the teacher’s laptop to student devices, and the upload of student responses in the reverse direction. However, because the Windows server cannot initiate outbound HTTP requests to client devices, a separate TCP socket channel is used to notify student devices when new materials are ready for collection, prompting them to initiate the corresponding HTTP download. This same TCP channel handles other low-latency control signals, such as lock screen commands issued by the teacher and real-time status updates from student devices, where the persistent connection and minimal framing overhead of raw TCP are preferable to HTTP’s request-response overhead. Device discovery and initial pairing are handled via UDP broadcasting, which allows student tablets to locate the teacher’s laptop on the local network without any pre-configured IP addresses.
+                </p>
+                <p>
+                    While the primary student experience is delivered through a native Android application, the platform also accommodates reMarkable and Kindle e-ink devices, which cannot run arbitrary third-party applications. For these devices, the platform adopts an asynchronous delivery model that routes around the direct TCP and HTTP channels used by Android clients. Materials for reMarkable devices are pushed via the reMarkable Cloud using rmapi, a command-line interface that interacts with reMarkable’s proprietary sync service to display documents in students’ reMarkable library without manual file transfer. Kindle devices are served through Amazon’s Personal Documents service, with materials delivered as email attachments to each device’s assigned Send-to-Kindle address. Although this asynchronous model sacrifices the real-time response submission mechanism available on Android devices, it significantly broadens the platform’s compatibility, allowing schools that have already invested in reMarkable or Kindle hardware to participate without replacing existing devices.
+                </p>
+                <p>
+                    The native student-facing application is an Android app written in Java with an XML-based user interface. Native Android applications enable fine-grained control over network behaviour, background services and display rendering, all of which are important for handling incoming TCP signals, triggering HTTP requests in response to server notifications and rendering lesson materials clearly on the constrained displays of e-ink Android devices. The use of XML layouts for the UI is fitting for an e-ink interface with low refresh rates, where simple, static layouts are preferable to dynamically recomposed views.
+                </p>
 
-                <h2 id="competitive">Competitive Analysis</h2>
-                <p>[Analysis of similar products or platforms]</p>
-                <ul>
-                    <li>Product 1: [Description and comparison]</li>
-                    <li>Product 2: [Description and comparison]</li>
-                </ul>
-
-                <h2 id="market">Market Research</h2>
-                <p>[Research on potential users, market size, and adoption challenges]</p>
-
-                <h2 id="findings">Key Findings</h2>
-                <p>[Summarize the most important findings from your research]</p>
+                <h2 id="bibliography">Bibliography</h2>
+                <p id="ref-1">[1] H. Le and D. Prabjandee, “A Review of the Website Liveworksheets.com,” Computer-Assisted Language Learning Electronic Journal, vol. 24, no. 1, pp. 269–279, Feb. 2023, Available: https://www.researchgate.net/publication/368291946_A_Review_of_the_Website_Liveworksheetscom</p>
+                <p id="ref-2">[2] M. D. Hernanto, I. R. W. Atmojo, and M. Indriayu, “Liveworksheets Analysis as an Online Student Worksheet Assessment in the 21st Century Era,” Advances in Social Science, Education and Humanities Research, pp. 514–523, Dec. 2023, doi: https://doi.org/10.2991/978-2-38476-114-2_48.</p>
+                <p id="ref-3">[3] Faradisa, Suarman, and Gusnardi, “Development of Student Worksheets (LKPD) Assisted by the Liveworksheets Site to Increase Learning Motivation in Accounting Materials,” Journal of Educational Sciences, vol. 7, no. 3, pp. 350–358, Jul. 2023, doi: https://doi.org/10.31258/jes.7.3.p.474-487.</p>
+                <p id="ref-4">[4] S. Fardinelly, A. Slamet , R. Susanti, and M. Raharjo, “E-Worksheet for Students Using Liveworksheet for Digestive System Material,” Jurnal Edutech Undiksha, vol. 12, no. 1, pp. 121–130, Jun. 2024, doi: https://doi.org/10.23887/jeu.v12i1.73022.</p>
+                <p id="ref-5">[5] E. Ernawati, E. Driana*, E. Ernawati, and P. Pramudiani, “The Use of Liveworksheets as an Assessment Tool to Enhance Students’ Conceptual Understanding and Engagement in Science Learning: a Case Study at a Junior High School,” Jurnal IPA &amp; Pembelajaran IPA, vol. 9, no. 1, pp. 293–311, Mar. 2025, doi: https://doi.org/10.24815/jipi.v9i1.44488.</p>
+                <p id="ref-6">[6] F. Kholida, W. I. M. Rohmana, and K. Sa’diyah, “Investigating Live Worksheets as Assessment Tool for Senior High School Students,” Eternal: English Teaching Journal, vol. 16, no. 2, pp. 353–367, Aug. 2025, doi: https://doi.org/10.26877/eternal.v16i2.1266.</p>
+                <p id="ref-7">[7] T. Colliot, O. Krichen, N. Girard, É. Anquetil, and É. Jamet, “What Makes Tablet‐based Learning effective? A Study of the Role of Real‐time Adaptive Feedback,” British Journal of Educational Technology, vol. 55, no. 5, pp. 2278–2295, Feb. 2024, doi: https://doi.org/10.1111/bjet.13439.</p>
+                <p id="ref-8">[8] I. A. Barrientos, “Institutionalization of Adapted Books in Enhancing the Reading Ability of Students with Cognitive Disabilities,” AIDE Interdisciplinary Research Journal, vol. 3, no. 1, pp. 313–322, Apr. 2023, doi: https://doi.org/10.56648/aide-irj.v3i1.71.</p>
+                <p id="ref-9">[9] A. Nally, O. Healy, J. Holloway, and H. Lydon, “An Analysis of Reading Abilities in Children with Autism Spectrum Disorders,” Research in Autism Spectrum Disorders, vol. 47, pp. 14–25, Mar. 2018, doi: https://doi.org/10.1016/j.rasd.2017.12.002.</p>
+                <p id="ref-10">[10] The Harris Poll and Pearson, “Pearson Student Mobile Device Survey 2015 - National Report: College Students,” Jun. 2015. Accessed: Mar. 20, 2026. [Online]. Available: https://news.lenovo.com/wp-content/uploads/2019/04/2015-Pearson-Student-Mobile-Device-Survey-College.pdf</p>
+                <p id="ref-11">[11] Department for Education, “Technology in Schools Survey: 2024 to 2025,” GOV.UK, Nov. 27, 2025. https://www.gov.uk/government/publications/technology-in-schools-survey-report-2024-to-2025 (accessed Mar. 20, 2026).</p>
+                <p id="ref-12">[12] C. Ditzler, E. Hong, and N. Strudler, “How Tablets Are Utilized in the Classroom,” Journal of Research on Technology in Education, vol. 48, no. 3, pp. 181–193, May 2016, doi: https://doi.org/10.1080/15391523.2016.1172444.</p>
+                <p id="ref-13">[13] A. Velchik, “Digital Tablets in the Classroom: A Perspective from Students,” Journal of Education and Practice, vol. 11, no. 15, pp. 11–16, May 2020, doi: https://doi.org/10.7176/jep/11-15-02.</p>
+                <p id="ref-14">[14] R. Ellis-Behnke, J. Gilliland, G. E. Schneider, and D. Singer, “Educational Benefits of a Paperless Classroom Utilizing Tablet PCs.” Accessed: Mar. 20, 2026. [Online]. Available: http://download.101com.com/syllabus/conf/summer2005/PDFs/Posters/S_wps.pdf</p>
+                <p id="ref-15">[15] T. Karsenti and A. Fievez, “The iPad in Education: Uses, Benefits, and Challenges — A Survey of 6057 Students and 302 Teachers in Quebec (Canada),” Dec. 2013. Accessed: Mar. 20, 2026. [Online]. Available: https://www.researchgate.net/publication/266672409_The_iPad_in_Education_uses_benefits_and_challenges_A_survey_of_6057_students_and_302_teachers_in_Quebec_Canada</p>
+                <p id="ref-16">[16] P. Riley, “Teaching, Learning, and Living with iPads,” Music Educators Journal, vol. 100, no. 1, pp. 81–86, Aug. 2013, doi: https://doi.org/10.1177/0027432113489152.</p>
+                <p id="ref-17">[17] B. McClanahan, K. Williams, E. Kennedy, and S. Tate, “A Breakthrough for Josh: How Use of an iPad Facilitated Reading Improvement,” TechTrends, vol. 56, no. 3, pp. 20–28, Mar. 2012, doi: https://doi.org/10.1007/s11528-012-0572-6.</p>
+                <p id="ref-18">[18] D. M. Kagohara, J. Sigafoos, D. Achmadi, M. O’Reilly, and G. Lancioni, “Teaching Children with Autism Spectrum Disorders to Check the Spelling of Words,” Research in Autism Spectrum Disorders, vol. 6, no. 1, pp. 304–310, Jan. 2012, doi: https://doi.org/10.1016/j.rasd.2011.05.012.</p>
+                <p id="ref-19">[19] K. Goodwin, “Use of Tablet Technology in the Classroom,” NSW Curriculum and Learning Innovation Centre, 2012. Accessed: Mar. 20, 2026. [Online]. Available: https://cpb-ap-se2.wpmucdn.com/global2.vic.edu.au/dist/1/42368/files/2014/04/iPad_Evaluation_Sydney_Region_exec_sum-1pjdj70.pdf</p>
+                <p id="ref-20">[20] K. Nikolopoulou, “Secondary Education Teachers’ Perceptions of Mobile Phone and Tablet Use in Classrooms: Benefits, Constraints and Concerns,” Journal of Computers in Education, vol. 7, no. 2, pp. 257–275, Feb. 2020, doi: https://doi.org/10.1007/s40692-020-00156-7.</p>
+                <p id="ref-21">[21] M. Flemming, “Implementation of Classroom Technology for Elementary Students with ADHD,” Walden University, 2025. Accessed: Mar. 20, 2026. [Online]. Available: https://www.proquest.com/docview/3200076944</p>
+                <p id="ref-22">[22] S. Ali Rabbani, M. Ahmed, and A. Hashim Zahid, “E-Ink; Revolution of Displays,” MATEC Web of Conferences, vol. 381, p. 02003, Jun. 2023, doi: https://doi.org/10.1051/matecconf/202338102003.</p>
+                <p id="ref-23">[23] S. Benedetto, V. Drai-Zerbib, M. Pedrotti, G. Tissier, and T. Baccino, “E-Readers and Visual Fatigue,” PLoS ONE, vol. 8, no. 12, Dec. 2013, doi: https://doi.org/10.1371/journal.pone.0083676.</p>
+                <p id="ref-24">[24] S. Alarcon-Licona and L. Loke, “Autistic Children’s Use of Technology and Media: A Fieldwork Study,” in Proceedings of the 2017 Conference on Interaction Design and Children, New York, NY, USA: Association for Computing Machinery, Jun. 2017, pp. 651–658. Available: https://doi.org/10.1145/3078072.3084338</p>
+                <p id="ref-25">[25] L. C. Shuffrey et al., “Visually Evoked Response Differences to Contrast and Motion in Children with Autism Spectrum Disorder,” Brain Sciences, vol. 8, no. 9, p. 160, Aug. 2018, doi: https://doi.org/10.3390/brainsci8090160.</p>
+                <p id="ref-26">[26] R. Martin and J. Wilkins, “Creating Visually Appropriate Classroom Environments for Students with Autism Spectrum Disorder,” Intervention in School and Clinic, vol. 57, no. 3, pp. 176–181, May 2021, doi: https://doi.org/10.1177/10534512211014882.</p>
+                <p id="ref-27">[27] The European Parliament and the Council of the European Union, Council Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the Protection of Natural Persons with Regard to the Processing of Personal Data and on the Free Movement of Such Data (United Kingdom General Data Protection Regulation). 2016. Accessed: Mar. 20, 2026. [Online]. Available: https://gdpr-info.eu/</p>
+                <p id="ref-28">[28] Public Law, Family Educational Rights and Privacy Act. 1974. Accessed: Mar. 20, 2026. [Online]. Available: https://studentprivacy.ed.gov/ferpa</p>
+                <p id="ref-29">[29] J. Xiao, Q. Huang, X. Chen, and C. Tian, “Large Language Model Performance Benchmarking on Mobile Platforms: A Thorough Evaluation,” Journal of LaTeX Class Files, vol. 14, no. 8, Aug. 2021, doi: https://doi.org/10.48550/arXiv.2410.03613.</p>
+                <p id="ref-30">[30] D. Alymkulov, “Desktop Application Development Using Electron Framework: Native vs. Cross-Platform,” Apr. 2019. Accessed: Mar. 20, 2026. [Online]. Available: https://www.theseus.fi/bitstream/handle/10024/167669/Daniyar_Alymkulov.pdf</p>
             </div>
         </div>
     </main>
@@ -98,6 +188,71 @@
             <p>Systems Engineering Project</p>
         </div>
     </footer>
+    <script>
+        (function () {
+            const content = document.querySelector('.doc-content');
+            const bibliographyHeading = document.getElementById('bibliography');
+
+            if (!content || !bibliographyHeading) {
+                return;
+            }
+
+            const citationPattern = /\[(\d+(?:\s*,\s*\d+)*)]/g;
+            const paragraphs = Array.from(content.querySelectorAll('p'));
+            const proseParagraphs = paragraphs.filter((p) =>
+                p.compareDocumentPosition(bibliographyHeading) & Node.DOCUMENT_POSITION_FOLLOWING
+            );
+
+            proseParagraphs.forEach((paragraph) => {
+                const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+                const textNodes = [];
+
+                while (walker.nextNode()) {
+                    textNodes.push(walker.currentNode);
+                }
+
+                textNodes.forEach((textNode) => {
+                    const text = textNode.nodeValue;
+
+                    if (!text || !citationPattern.test(text)) {
+                        citationPattern.lastIndex = 0;
+                        return;
+                    }
+
+                    citationPattern.lastIndex = 0;
+                    const fragment = document.createDocumentFragment();
+                    let lastIndex = 0;
+                    let match;
+
+                    while ((match = citationPattern.exec(text)) !== null) {
+                        fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+
+                        const numbers = match[1].split(',').map((value) => value.trim());
+                        fragment.appendChild(document.createTextNode('['));
+
+                        numbers.forEach((number, index) => {
+                            const link = document.createElement('a');
+                            link.href = `#ref-${number}`;
+                            link.textContent = number;
+                            link.setAttribute('aria-label', `Jump to bibliography reference ${number}`);
+                            fragment.appendChild(link);
+
+                            if (index < numbers.length - 1) {
+                                fragment.appendChild(document.createTextNode(', '));
+                            }
+                        });
+
+                        fragment.appendChild(document.createTextNode(']'));
+                        lastIndex = citationPattern.lastIndex;
+                    }
+
+                    fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+                    textNode.parentNode.replaceChild(fragment, textNode);
+                    citationPattern.lastIndex = 0;
+                });
+            });
+        })();
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
