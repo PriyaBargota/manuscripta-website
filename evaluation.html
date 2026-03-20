@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluation - Manuscripta</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <a href="#main" class="sr-only focus-visible">Skip to main content</a>
     <nav class="navbar">
@@ -58,14 +60,15 @@
             <div class="doc-content">
                 <div class="doc-header">
                     <h1>Evaluation</h1>
-                    <p>Critical assessment of requirements achievement, stakeholder validation, system quality, and future work priorities.</p>
+                    <p>Critical assessment of requirements achievement, stakeholder validation, system quality, and
+                        future work priorities.</p>
                 </div>
 
                 <h2 id="requirements">Requirements Achievement</h2>
                 <p>
-                    The following table summarises the completion status of all MoSCoW requirements against what was delivered, with contributor attribution.
+                    The following table summarises the completion status of all MoSCoW requirements against what was
+                    delivered, with contributor attribution.
                 </p>
-
                 <h3>Functional Requirements — Must Have</h3>
                 <table>
                     <thead>
@@ -78,87 +81,347 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>F1</td>
-                            <td>AI-powered content generation for quizzes, worksheets and polls</td>
+                            <td>MAT1</td>
+                            <td>The application must provide a Lesson Library to store, manage and organise all generated content.</td>
                             <td>✓</td>
                             <td>Raphael Li, Nemo Shu</td>
                         </tr>
                         <tr>
-                            <td>F2</td>
-                            <td>Hierarchical lesson organisation (Units → Lessons → Materials)</td>
+                            <td>MAT2/MAT3A</td>
+                            <td>The Lesson Library must be organised using the hierarchical structure of units, lessons, and materials.</td>
                             <td>✓</td>
                             <td>Raphael Li, Nemo Shu</td>
                         </tr>
                         <tr>
-                            <td>F3</td>
-                            <td>Content distribution to up to 30 E-ink tablets over local Wi-Fi</td>
+                            <td>MAT4</td>
+                            <td>The application must include a search function for teachers to locate materials across all units and lessons.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT5</td>
+                            <td>The application must allow a teacher to generate and store materials using one or more on-device GenAI models.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT6</td>
+                            <td>When creating a new material, the application must prompt the teacher for the material type.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT7</td>
+                            <td>When creating a new material, the application must prompt the teacher for a textual description of the expected content.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT8</td>
+                            <td>When creating a new material, the application must prompt the teacher to upload zero or more source material documents.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT12</td>
+                            <td>After creating a new material, the teacher must be able to modify and refine its contents via an editor.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT15</td>
+                            <td>The application must allow the import and display of static images and PDF documents as lesson materials.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT16</td>
+                            <td>The application must allow the teacher to highlight and define keywords or vocabulary for each material.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT17</td>
+                            <td>When creating a new material, the system must provide a means for adjusting the text complexity and readability of the generated material.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON1</td>
+                            <td>The application must provide a continuously updated dashboard displaying aggregated and anonymised data.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON2A</td>
+                            <td>The dashboard must include an overview of the individual statuses of each student tablet.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON3</td>
+                            <td>The dashboard must include a panel displaying the number of connected devices.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON5</td>
+                            <td>The dashboard must include a panel indicating devices which require attention.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON6</td>
+                            <td>The application must include a panel providing device-specific controls.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON7</td>
+                            <td>The dashboard must include a chart summarising students’ responses to quizzes or polls.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON8</td>
+                            <td>The dashboard must include a panel for launching and delivering a previously created material to all students.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON10</td>
+                            <td>The dashboard must support simultaneous differentiation for deployment.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON11</td>
+                            <td>The application must allow the teacher to export and save session data to a local file for offline tracking.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON12</td>
+                            <td>The dashboard must provide a visual alert when a specific student triggers a "Help" request.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>NET1 (Teacher/Student)</td>
+                            <td>Distribute material content to at least 30 students’ tablets through the same LAN.</td>
                             <td>✓</td>
                             <td>Raphael Li, Nemo Shu, Priya Bargota, Will Stephen</td>
                         </tr>
                         <tr>
-                            <td>F4</td>
-                            <td>Real-time monitoring dashboard</td>
-                            <td>✓</td>
-                            <td>Raphael Li, Nemo Shu</td>
-                        </tr>
-                        <tr>
-                            <td>F5</td>
-                            <td>Session management (create, start, pause, cancel, end)</td>
-                            <td>✓</td>
-                            <td>Raphael Li, Nemo Shu</td>
-                        </tr>
-                        <tr>
-                            <td>F6</td>
-                            <td>Kiosk mode with remote screen locking</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>F7</td>
-                            <td>Stylus input and annotation on E-ink displays</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>F8</td>
-                            <td>Interactive quiz, worksheet and poll with immediate feedback</td>
+                            <td>NET2 (Teacher/Student)</td>
+                            <td>Receive responses from student tablets over the LAN.</td>
                             <td>✓</td>
                             <td>Raphael Li, Nemo Shu, Priya Bargota, Will Stephen</td>
                         </tr>
                         <tr>
-                            <td>F9</td>
-                            <td>Help request button</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>F10</td>
-                            <td>Reading level adjustment tools</td>
+                            <td>ACC1 (Teacher)</td>
+                            <td>The user interface must be intuitive for teachers with standard computer literacy.</td>
                             <td>✓</td>
                             <td>Raphael Li, Nemo Shu</td>
                         </tr>
                         <tr>
-                            <td>F11</td>
-                            <td>Offline-first with auto-save and automatic sync</td>
+                            <td>ACC2 (Teacher)</td>
+                            <td>The teacher must be able to configure their application settings and preferences on their laptop.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>ACC3A (Teacher)</td>
+                            <td>The teacher must be able to enable and disable accessibility features on a per tablet basis.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>SYS1 (Teacher)</td>
+                            <td>The application must be compatible with both Intel and Qualcomm AI chipsets.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>SYS3 (Teacher)</td>
+                            <td>The application must be packaged for distribution via the Microsoft Store.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT1 (Student)</td>
+                            <td>The application must be able to display all supported material types.</td>
                             <td>✓</td>
                             <td>Priya Bargota, Will Stephen</td>
                         </tr>
                         <tr>
-                            <td>F12</td>
-                            <td>Local network only with no cloud dependencies</td>
+                            <td>MAT2B (Student)</td>
+                            <td>The application must display feedback as configured by the teacher.</td>
                             <td>✓</td>
-                            <td>All</td>
+                            <td>Priya Bargota, Will Stephen</td>
                         </tr>
                         <tr>
-                            <td>F13</td>
-                            <td>Anonymised student IDs and data privacy compliance</td>
+                            <td>MAT3 (Student)</td>
+                            <td>The application must provide a "Try Again" option for incorrect responses.</td>
                             <td>✓</td>
-                            <td>All</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>MAT4 (Student)</td>
+                            <td>The application must include buttons to simplify, expand on, or summarise the text.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>MAT5 (Student)</td>
+                            <td>The application must provide students with AI assistance tools.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>MAT6 (Student)</td>
+                            <td>The application must display the "Key Vocabulary" defined by the teacher.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>MAT7 (Student)</td>
+                            <td>The application must include a "Raise Hand" button.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>MAT8 (Student)</td>
+                            <td>The application must support handwriting input.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>ACC1 (Student)</td>
+                            <td>The application must support tapping, typing, and styluses.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>ACC3 (Student)</td>
+                            <td>The application must include a text-to-speech button if enabled.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>ACC4 (Student)</td>
+                            <td>The application must have a monochromatic display with minimal audiovisual stimuli.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>SYS1 (Student)</td>
+                            <td>The application must be compatible with commercially available e-ink tablets.</td>
+                            <td>✓</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>System 1-4</td>
+                            <td>The system must valid user inputs, display clear states, anonymise data, and support 30 concurrent low-latency connections.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu, Priya Bargota, Will Stephen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Functional Requirements — Should Have</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Requirement</th>
+                            <th>Status</th>
+                            <th>Contributors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MAT13</td>
+                            <td>Each material should be associated with metadata such as deployment status and creation date.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT18</td>
+                            <td>The application should provide the option to mark individual student responses manually or via AI.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT19</td>
+                            <td>The application should provide an optional point system.</td>
+                            <td>⚠</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON14</td>
+                            <td>The dashboard information should be split into two different tabs or sections.</td>
+                            <td>✓</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>MAT9A (Student)</td>
+                            <td>Question feedback should identify correct parts of reasoning and guide towards the right answer.</td>
+                            <td>⚠</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                        <tr>
+                            <td>ACC5 (Student)</td>
+                            <td>The application should include animated mascots or avatars to act as learning companions.</td>
+                            <td>⚠</td>
+                            <td>Priya Bargota, Will Stephen</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Functional Requirements — Could Have</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Requirement</th>
+                            <th>Status</th>
+                            <th>Contributors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MAT14</td>
+                            <td>The application could provide an AI-powered conversational teaching assistance for lesson planning.</td>
+                            <td>⚠</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON4</td>
+                            <td>The dashboard could include a panel displaying the average student’s progress.</td>
+                            <td>⚠</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>CON13</td>
+                            <td>The dashboard could provide a "Live View" of the current screen of a specific student.</td>
+                            <td>⚠</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>SYS2</td>
+                            <td>The application could be secured through local user authentication.</td>
+                            <td>⚠</td>
+                            <td>Raphael Li, Nemo Shu</td>
+                        </tr>
+                        <tr>
+                            <td>ACC2 (Student)</td>
+                            <td>The application could support eye gaze control via third-party hardware.</td>
+                            <td>⚠</td>
+                            <td>Priya Bargota, Will Stephen</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h3>Functional Requirements — Should Have</h3>
+<h3>Functional Requirements — Should Have</h3>
                 <table>
                     <thead>
                         <tr>
@@ -226,7 +489,8 @@
                     </tbody>
                 </table>
 
-                <p><strong>✓</strong> Delivered &nbsp;&nbsp; <strong>⚠</strong> Partially implemented or not completed within project timeline</p>
+                <p><strong>✓</strong> Delivered &nbsp;&nbsp; <strong>⚠</strong> Partially implemented or not completed
+                    within project timeline</p>
 
                 <h2 id="contributions">Individual Contributions</h2>
 
@@ -381,7 +645,9 @@
 
                 <h2 id="showcase">Showcase Feedback and Stakeholder Validation</h2>
                 <p>
-                    Following our demonstration at the showcase event, we received feedback from teachers, industry partners and academic reviewers that validated our approach and informed final implementation priorities.
+                    Following our demonstration at the showcase event, we received feedback from teachers, industry
+                    partners and academic reviewers that validated our approach and informed final implementation
+                    priorities.
                 </p>
 
                 <table>
@@ -394,29 +660,33 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>"I'm really glad you've gone with Kindles rather than iPads. Distraction is definitely a big problem with full colour tablets and it's not really possible to lock a student into an app on an iPad. This is exactly the kind of tool teachers actually want."</td>
-                            <td>Teacher, Richard Cloudesley School</td>
-                            <td>Committed fully to E-ink tablets. Implemented kiosk mode and designed the entire UI around a monochrome low-distraction experience.</td>
+                            <td>"I'm really glad you've gone with Kindles rather than iPads. Distraction is definitely a
+                                big problem with full colour tablets and it's not really possible to lock a student into
+                                an app on an iPad. This is exactly the kind of tool teachers actually want."</td>
+                            <td>Teacher</td>
+                            <td>Committed fully to E-ink tablets. Implemented kiosk mode and designed the entire UI
+                                around a monochrome low-distraction experience.</td>
                         </tr>
                         <tr>
-                            <td>"Auto-marking is really important, but teachers need control over it before it gets accepted as final. There should be an option to make it manual."</td>
-                            <td>Teacher, Richard Cloudesley School</td>
-                            <td>Built a marking system where teachers review AI-suggested marks before finalisation, with manual override available for every response.</td>
+                            <td>"Auto-marking is really important, but teachers need control over it before it gets
+                                accepted as final. There should be an option to make it manual."</td>
+                            <td>Teacher</td>
+                            <td>Built a marking system where teachers review AI-suggested marks before finalisation,
+                                with manual override available for every response.</td>
                         </tr>
                         <tr>
-                            <td>"Sometimes during a lesson a teacher likes to stop and get an understanding of where all students are. There needs to be a good way of doing this."</td>
-                            <td>Teacher, Richard Cloudesley School</td>
-                            <td>Built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation.</td>
+                            <td>"Sometimes during a lesson a teacher likes to stop and get an understanding of where all
+                                students are. There needs to be a good way of doing this."</td>
+                            <td>Teacher</td>
+                            <td>Built a real-time dashboard with a colour-coded grid showing every student's status,
+                                plus poll and quiz response aggregation.</td>
                         </tr>
                         <tr>
-                            <td>"Foundry Local bundles all AI into one executable that you can ship with the app. It reduces overhead on setup considerably."</td>
-                            <td>Microsoft Representative</td>
-                            <td>Informed our approach to packaging the Windows application as a single self-contained Squirrel installer.</td>
-                        </tr>
-                        <tr>
-                            <td>"A tag on each device would make it easier to identify. The device should not be able to change its alias, otherwise students could exploit this."</td>
+                            <td>"A tag on each device would make it easier to identify. The device should not be able to
+                                change its alias, otherwise students could exploit this."</td>
                             <td>UCL Teaching Assistant</td>
-                            <td>Added fixed device identification using a generated UUID that cannot be changed by the student, ensuring reliable tracking without compromising anonymity.</td>
+                            <td>Added fixed device identification using a generated UUID that cannot be changed by the
+                                student, ensuring reliable tracking without compromising anonymity.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -425,105 +695,259 @@
 
                 <h3>User Interface and User Experience</h3>
                 <p>
-                    The teacher application received consistently positive feedback from all five teaching professionals who tested it. The hierarchical content library, cascading deployment dropdowns and colour-coded device grid were described as intuitive by testers with standard computer literacy. The clean separation between the Library, Classroom and Responses views reduces cognitive load for teachers managing a live lesson.
+                    The teacher application received consistently positive feedback from all five teaching professionals
+                    who tested it. The hierarchical content library, cascading deployment dropdowns and colour-coded
+                    device grid were described as intuitive by testers with standard computer literacy. The clean
+                    separation between the Library, Classroom and Responses views reduces cognitive load for teachers
+                    managing a live lesson.
                 </p>
                 <p>
-                    The Android student interface was deliberately minimal — large monochromatic text, a single persistent Raise Hand button, and no navigation chrome beyond what is necessary for the current task. This directly addresses the design principle established in C1 and aligns with what the Richard Cloudesley School teachers described as a key requirement. The interface has not yet been formally tested with SEN students, which remains a significant gap.
+                    The Android student interface was deliberately minimal — large monochromatic text, a single
+                    persistent Raise Hand button, and no navigation chrome beyond what is necessary for the current
+                    task. This directly addresses the design principle established in C1 and aligns with what the
+                    teachers described as a key requirement. The interface has not yet been formally tested with
+                    students, which remains a significant gap.
                 </p>
 
                 <h3>Functionality</h3>
                 <p>
-                    All thirteen Must Have functional requirements were delivered. Three of the six Should Have requirements were delivered in full, with the remaining three partially implemented. The AI content generation pipeline represents the strongest functional achievement — generating formatted worksheets and quizzes from source documents with no internet connection, running entirely on the teacher's laptop.
+                    All forty-one Must Have functional requirements were delivered. Three of the six Should Have
+                    requirements were delivered in full, with the remaining three partially implemented. The AI content
+                    generation pipeline represents the strongest functional achievement — generating formatted
+                    worksheets and quizzes from source documents with no internet connection, running entirely on the
+                    teacher's laptop.
                 </p>
                 <p>
-                    The teacher oversight model for AI feedback was a deliberate design decision validated by stakeholder feedback. Rather than sending AI-generated marks directly to students, the teacher reviews and approves each piece of feedback before it is delivered. This addresses the concern raised at the showcase that auto-marking without teacher control could undermine trust in the system.
+                    The teacher oversight model for AI feedback was a deliberate design decision validated by
+                    stakeholder feedback. Rather than sending AI-generated marks directly to students, the teacher
+                    reviews and approves each piece of feedback before it is delivered. This addresses the concern
+                    raised at the showcase that auto-marking without teacher control could undermine trust in the
+                    system.
                 </p>
 
-                <h3>AI Output Quality</h3>
+                <h3>AI Capabilities</h3>
                 <p>
-                    Manuscripta's AI pipeline introduces non-determinism — the same prompt does not always produce identical output. This is an inherent property of large language models and cannot be eliminated entirely. The system addresses this through a deterministic post-processing pipeline that normalises output regardless of model variance: unclosed code blocks are closed, headers above H3 are normalised, malformed question markers are fixed and invalid references are removed.
-                </p>
-                <p>
-                    Manual testing of AI output quality was conducted by generating the same material prompt multiple times and reviewing the results for factual accuracy, reading level appropriateness and question quality. The post-processing pipeline consistently produced structurally valid output across all test runs. Systematic measurement of output variance across a wider range of prompts was not completed within the project timeline and is identified as future work.
-                </p>
-                <p>
-                    Factual accuracy of AI-generated content depends on the quality of source documents provided by the teacher and the accuracy of the underlying Qwen3:8b model. Teachers are advised to review all generated content before deployment, which is enforced by the system design — materials cannot be distributed without passing through the teacher's content library first.
+                    The AI capabilities of Manuscripta were evaluated through a series of experiments designed to assess
+                    the performance of the AI models used in the system. The experiments were conducted with both
+                    IBM Granite 4 and Qwen3:8b models.
                 </p>
 
-                <h3>Stability and Reliability</h3>
+                <h4>Material Generation Latency</h4>
                 <p>
-                    The system operates reliably over a local area network for single-session classroom use. The 3-second heartbeat mechanism provides real-time device status updates and detects disconnections within 10 seconds. The Android Room database ensures student work is never lost during network interruptions, addressing the concern raised by Dean Mohamedally that session data must persist locally.
+                    <strong>Experiment & Purpose:</strong> The Material Generation test records the end-to-end latency
+                    required to query ChromaDB, assimilate the context chunks, and generate a fully-formatted
+                    instructional worksheet complete with embedded draft questions. The plot visualises the execution
+                    latency variance for both hardware models, illustrating the realistic range of speed fluctuations
+                    inherent to generating unstructured tokens.
                 </p>
-                <div class="warning-box">
-                    <p><strong>⚠</strong> Long-session stability and multi-session reliability have not been formally tested. The system was validated for single lesson scenarios of approximately 60 minutes. Behaviour over extended deployment periods or across multiple consecutive sessions is not yet characterised.</p>
-                </div>
-
-                <h3>Performance</h3>
+                <img src="images/eval/material_gen_time.png"
+                    alt="Boxplot and scatter visualization of Material Generation Latency distributions"
+                    class="eval-graph" />
                 <p>
-                    Limited performance testing was conducted within the project timeline. The following measurements represent observed behaviour under typical conditions but do not constitute comprehensive benchmark validation.
+                    <strong>Performance Comparison:</strong> Granite4, being a highly quantized and smaller parameter
+                    model, exhibits a faster average generation latency compared to the heavier Qwen3:8b model. Despite
+                    the speed advantage, Qwen is designated as the primary model due to its superior instruction
+                    adherence in the previous quality experiments.
                 </p>
 
-                <table>
+                <h4>Content Modification</h4>
+                <p>
+                    <strong>Experiment & Purpose:</strong> This experiment evaluates the AI Assistant's ability to
+                    modify and simplify textbook content ("Simplify terminology for an 8 year old") while preserving key
+                    academic entities (e.g., "mitochondria"). We compared the performance of the primary model
+                    (Qwen3:8b) against the fallback model (Granite4) across repeated iterations. The graph below
+                    visualizes the algorithmic instruction adherence via the statistical distribution of Flesch-Kincaid
+                    complexity reduction for every generated data point, ensuring total transparency on model variance.
+                </p>
+                <img src="images/eval/content_mod_delta.png"
+                    alt="Boxplot tracking individual Flesch-Kincaid Complexity Reduction iterations across models"
+                    class="eval-graph" />
+                <p>
+                    <strong>Performance Comparison:</strong> Both models successfully retained the required entities.
+                    However, Qwen3:8b demonstrated a noticeably deeper semantic understanding of the target reading age,
+                    resulting in a more significant drop in the Flesch-Kincaid complexity score compared to Granite4.
+                </p>
+
+                <h4>Auto-Grading & Feedback</h4>
+                <p>
+                    <strong>Experiment & Purpose:</strong> This experiment assesses the auto-grading accuracy and format
+                    strictness of the AI pipeline. Using real Example Candidate Responses from Cambridge (CAIE) across
+                    Computer Science, Economics, Mathematics, and First Language English, the test compares the
+                    LLM-generated marks against the official examiner baseline. To normalize across varying maximum
+                    marks per subject, the exact tabular performance records the Score Ratio (Actual Mark / Expected
+                    Mark), the proportion of responses perfectly graded (% Exact), and skewness towards
+                    over/under-marking.
+                </p>
+                <table class="eval-table">
                     <thead>
                         <tr>
-                            <th>Metric</th>
-                            <th>Target</th>
-                            <th>Observed Result</th>
-                            <th>Notes</th>
+                            <th>Subject</th>
+                            <th>Model</th>
+                            <th>Number of Qs</th>
+                            <th>% Overmarked</th>
+                            <th>% Exact</th>
+                            <th>% Undermarked</th>
+                            <th>Average Score Ratio</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Kindle distribution</td>
-                            <td>&lt;10s</td>
-                            <td>Under 10 seconds (observed)</td>
-                            <td>Delivery depends on Amazon's email infrastructure, not under system control</td>
+                            <td>CompSci</td>
+                            <td>Qwen3:8b</td>
+                            <td>45</td>
+                            <td>20.0%</td>
+                            <td>57.8%</td>
+                            <td>22.2%</td>
+                            <td>1.06</td>
                         </tr>
                         <tr>
-                            <td>Dashboard latency (Raise Hand)</td>
-                            <td>&lt;3s</td>
-                            <td>Within 1 second</td>
-                            <td>SignalR broadcast tested with small number of devices</td>
+                            <td>CompSci</td>
+                            <td>Granite4</td>
+                            <td>45</td>
+                            <td>35.6%</td>
+                            <td>33.3%</td>
+                            <td>31.1%</td>
+                            <td>1.20</td>
                         </tr>
                         <tr>
-                            <td>AI generation (Qwen3:8b)</td>
-                            <td>N/A</td>
-                            <td>[TO BE ADDED]</td>
-                            <td>Automated test results pending</td>
+                            <td>Maths</td>
+                            <td>Qwen3:8b</td>
+                            <td>21</td>
+                            <td>42.9%</td>
+                            <td>47.6%</td>
+                            <td>9.5%</td>
+                            <td>1.19</td>
                         </tr>
                         <tr>
-                            <td>30-device simultaneous distribution</td>
-                            <td>&lt;10s</td>
-                            <td>Not tested</td>
-                            <td>Load testing at full classroom scale remains future work</td>
+                            <td>Maths</td>
+                            <td>Granite4</td>
+                            <td>21</td>
+                            <td>81.0%</td>
+                            <td>19.0%</td>
+                            <td>0.0%</td>
+                            <td>1.98</td>
+                        </tr>
+                        <tr>
+                            <td>Economics</td>
+                            <td>Qwen3:8b</td>
+                            <td>18</td>
+                            <td>55.6%</td>
+                            <td>11.1%</td>
+                            <td>33.3%</td>
+                            <td>1.33</td>
+                        </tr>
+                        <tr>
+                            <td>Economics</td>
+                            <td>Granite4</td>
+                            <td>18</td>
+                            <td>77.8%</td>
+                            <td>22.2%</td>
+                            <td>0.0%</td>
+                            <td>1.75</td>
+                        </tr>
+                        <tr>
+                            <td>English</td>
+                            <td>Qwen3:8b</td>
+                            <td>18</td>
+                            <td>61.1%</td>
+                            <td>0.0%</td>
+                            <td>38.9%</td>
+                            <td>1.06</td>
+                        </tr>
+                        <tr>
+                            <td>English</td>
+                            <td>Granite4</td>
+                            <td>18</td>
+                            <td>100.0%</td>
+                            <td>0.0%</td>
+                            <td>0.0%</td>
+                            <td>1.66</td>
                         </tr>
                     </tbody>
                 </table>
-
                 <p>
-                    AI generation time varies significantly by hardware. On an AI-capable laptop with a Qualcomm or Intel NPU, Qwen3:8b generates a typical worksheet faster than on standard hardware without an NPU, which falls back to CPU inference. Teachers should be made aware that generation time depends on their hardware configuration.
+                    <strong>Performance Comparison:</strong> Qwen3:8b consistently outperformed Granite4 in grading
+                    accuracy across both exact-science and subjective essay subjects. Granite4 struggled with the strict
+                    marking tolerances of Computer Science and Mathematics, while Qwen3:8b maintained high alignment
+                    with human inter-rater reliability boundaries.
                 </p>
 
-                <div class="warning-box">
-                    <p><strong>⚠</strong> 30-device load testing was not conducted within the project timeline. Performance at full classroom scale has not been validated and remains as future work.</p>
+                <h4>Auto-Grading Consistency</h4>
+                <p>
+                    <strong>Experiment & Purpose:</strong> To evaluate the non-determinism of subjective automated
+                    assessment, specific candidate responses were continuously re-evaluated. The graphs below
+                    demonstrate the distribution of marks assigned by each model for a single question over multiple
+                    iterations, highlighting the variance and average mark deviation against the expected baseline.
+                </p>
+                <div class="consistency-graphs"
+                    style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <img src="images/eval/consistency_CompSci_Paper1_64909375.png"
+                        alt="Distribution of marks for a Computer Science query" class="eval-graph"
+                        style="width: 45%; max-width: 500px;" />
+                    <img src="images/eval/consistency_Maths_Paper3_cc89f193.png"
+                        alt="Distribution of marks for a Mathematics query" class="eval-graph"
+                        style="width: 45%; max-width: 500px;" />
+                    <img src="images/eval/consistency_Eco_Paper2_91ccb75e.png"
+                        alt="Distribution of marks for an Economics query" class="eval-graph"
+                        style="width: 45%; max-width: 500px;" />
+                    <img src="images/eval/consistency_FirstLanEng_Paper2_3af7e380.png"
+                        alt="Distribution of marks for an English query" class="eval-graph"
+                        style="width: 45%; max-width: 500px;" />
                 </div>
+
+                <h4>Conclusion</h4>
+                <p>
+                    The experiments demonstrated that the decision to use Qwen3:8b as the primary AI model for
+                    Manuscripta
+                    was well-justified. It outperforms Granite4 in almost all measured metrics except for the speed of
+                    generation. We believe the trade-off in speed is reasonable given the significant improvement in
+                    accuracy and consistency, with material generation completed within 2 minutes on a Nvidia RTX 4050.
+                </p>
 
                 <h3>Compatibility</h3>
                 <p>
-                    The dual delivery method — Android app over Wi-Fi and email-based PDF for non-Android devices — ensures the system is not restricted to a single hardware ecosystem. The email workflow was validated with two Richard Cloudesley School teachers using Kindle devices and independently confirmed by Atia Rafiq using a reMarkable tablet. This makes Manuscripta deployable in schools with mixed E-ink device inventories without requiring hardware standardisation.
+                    Manuscripta's local LLM models are powered by Ollama, which supports a wide range of GPUs
+                    manufactured by NVIDIA, AMD, and Apple. This allows teachers to run Manuscripta on their own devices
+                    without cloud dependencies. However, support for Intel and Qualcomm NPUs is planned for the future,
+                    which is expected to broaden the range of devices that can run Manuscripta locally.
+                </p>
+                <p>
+                    The dual delivery method — Android app over Wi-Fi and cloud-based PDF for non-Android devices —
+                    ensures the system is not restricted to a single hardware ecosystem. This makes Manuscripta
+                    deployable in schools with mixed E-ink device inventories without requiring hardware
+                    standardisation.
                 </p>
 
                 <h3>Maintainability</h3>
                 <p>
-                    The Android application follows Clean Architecture with strict separation of data, domain and presentation layers, enforced by the CI pipeline which requires 95% unit test coverage on every pull request. The 126-test, 33,532-line combined test suite provides a strong regression safety net. The Windows application uses a centralised RuntimeDependencyManager for AI dependencies, meaning new models or tools can be added without duplicating management logic.
+                    The Android application follows Clean Architecture with strict separation of data, domain and
+                    presentation layers, enforced by the CI pipeline which requires 95% unit test coverage on every pull
+                    request. The 126-test, 33,532-line combined test suite provides a strong regression safety net.
+                </p>
+
+                <p>
+                    The Windows application uses a centralised RuntimeDependencyManager for AI dependencies, meaning new
+                    models or tools can be added without duplicating management logic. Strict separation of layers and
+                    persisten and cascading rules are also defined.
                 </p>
 
                 <h3>Project Management</h3>
                 <p>
-                    The team used GitHub Issues and pull requests for task tracking, with conventional commit messages and path-based CI/CD separating Android and Windows workflows. The monorepo structure with a shared API contract in api-spec/ enabled parallel development between the two sub-teams without blocking dependencies.
+                    The team used GitHub Issues and pull requests for task tracking, with conventional commit messages
+                    and path-based CI/CD separating Android and Windows workflows.
                 </p>
                 <p>
-                    The development cutoff was met on 13 March 2026. Areas where project management could have been stronger include the absence of formal branch protection rules — pull request reviews were voluntary rather than enforced — and the lack of performance benchmarking infrastructure, which was identified late in the project timeline.
+                    The interaction between the Windows and Android applications is standardised through team-wide
+                    specifications, including the API Contract, Validation Rules for Data Models, Pairing and Session
+                    Interaction specifications. Designing specifications up-front significantly reduced the need for
+                    unnecessary iterations and improved the efficiency of the development process.
+                </p>
+                <p>
+                    Furthermore, the Windows application uses strict specification-anchored development process, where
+                    specifications are maintained as a self-consistent system along with the codebase, and any
+                    implementation must be based on the specifications. This streamlines implementation agents and
+                    review agents in the AI-assisted development process, ensuring alignment between the generated code
+                    and the intent.
                 </p>
 
                 <h2 id="limitations">Known Limitations</h2>
@@ -548,7 +972,8 @@
                         </tr>
                         <tr>
                             <td>No formal student user testing conducted</td>
-                            <td>Effectiveness for SEN learners is validated by proxy through teacher feedback and NAS domain expertise, not direct student testing</td>
+                            <td>Effectiveness for learners is validated by proxy through teacher feedback and NAS
+                                domain expertise, not direct student testing</td>
                             <td>Future work</td>
                         </tr>
                         <tr>
@@ -564,12 +989,17 @@
                         <tr>
                             <td>Text-to-speech not fully delivered</td>
                             <td>Students cannot have content read aloud in current version</td>
-                            <td>⚠ In progress</td>
+                            <td>Future work</td>
                         </tr>
                         <tr>
                             <td>Kiosk mode not fully delivered on Android</td>
                             <td>Students can potentially navigate away from the app</td>
-                            <td>⚠ In progress</td>
+                            <td>Future work</td>
+                        </tr>
+                        <tr>
+                            <td>Lack of response submission mechanism for external devices</td>
+                            <td>Students cannot submit responses from external devices</td>
+                            <td>Future work</td>
                         </tr>
                     </tbody>
                 </table>
@@ -578,32 +1008,48 @@
 
                 <h3>Priority 1 — Student user testing</h3>
                 <p>
-                    The most significant gap in the project is the absence of formal testing with SEN students. Partnering with Richard Cloudesley School to conduct a structured classroom trial would provide direct evidence of the system's effectiveness for the target user group and identify usability issues that teacher testing cannot surface.
+                    The most significant gap in the project is the absence of formal testing with students.
+                    Conducting a structured classroom trial would provide
+                    direct evidence of the system's effectiveness for the target user group and identify usability
+                    issues that teacher testing cannot surface.
                 </p>
 
                 <h3>Priority 2 — Performance validation at scale</h3>
                 <p>
-                    Load testing with 30 simultaneous devices on a standard school Wi-Fi network would validate the non-functional requirements that were specified but not measured. This would also identify any bottlenecks in the TCP distribution pipeline under realistic classroom conditions.
+                    Load testing with 30 simultaneous devices on a standard school Wi-Fi network would validate the
+                    non-functional requirements that were specified but not measured. This would also identify any
+                    bottlenecks in the TCP distribution pipeline under realistic classroom conditions.
                 </p>
 
-                <h3>Priority 3 — AI output quality framework</h3>
+                <h3>Priority 3 — Further AI output quality evaluation and tuning</h3>
                 <p>
-                    A systematic framework for evaluating AI output quality — including factual accuracy checks, reading level validation and consistency measurement across repeated prompts — would provide the evidence base needed to deploy the system with confidence in a real classroom. The TA recommendation to document example prompts and their outputs in an appendix is noted as a starting point.
+                    Whilst the AI output quality was evaluated in the AI Evaluation section, further evaluation and
+                    tuning on factual accuracy, reading level adherence and instruction-following would allow the
+                    system to be deployed with greater confidence in a real classroom. Furthermore, feedback generation
+                    should be tested on a wider range of tasks that go beyond past-paper questions, and resolving the
+                    systematic tendency of over-marking should be a priority.
                 </p>
 
                 <h3>Priority 4 — Complete should-have features</h3>
                 <p>
-                    Text-to-speech, export of session data, vocabulary highlighting and differentiated deployment to student groups were identified as should-have requirements and partially implemented. Completing these would meaningfully improve the system's accessibility and teacher utility.
+                    Text-to-speech, export of session data and vocabulary highlighting were identified as should-have
+                    requirements and partially implemented. Completing
+                    these would meaningfully improve the system's accessibility and teacher utility.
                 </p>
 
-                <h3>Priority 5 — Handwriting recognition</h3>
+                <h3>Priority 5 — Handwriting recognition and full external device integration</h3>
                 <p>
-                    Identified during the second stakeholder meeting with Dean Mohamedally and validated by Atia Rafiq's professional workflow, handwriting recognition for returned PDFs remains the most technically ambitious undelivered requirement. The ONNX model file exists in the codebase but is not yet integrated. This would unlock fully automated marking of non-Android device submissions.
+                    Identified during the second stakeholder meeting with Dean Mohamedally and validated by Atia Rafiq's
+                    professional workflow, handwriting recognition for returned PDFs remains the most technically
+                    ambitious undelivered requirement. This would unlock fully automated marking of non-Android device
+                    submissions.
                 </p>
 
                 <h3>Priority 6 — Microsoft Store packaging</h3>
                 <p>
-                    The Windows application was specified to be distributed via the Microsoft Store. The Squirrel installer infrastructure is in place. Completing the Store submission process would make the system accessible to schools without requiring manual installation from a developer build.
+                    The Windows application was specified to be distributed via the Microsoft Store. The Squirrel
+                    installer infrastructure is in place. Completing the Store submission process would make the system
+                    accessible to schools without requiring manual installation from a developer build.
                 </p>
             </div>
         </div>
@@ -617,4 +1063,5 @@
     </footer>
     <script src="js/main.js"></script>
 </body>
+
 </html>
