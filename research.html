@@ -148,6 +148,14 @@
                     The native student-facing application is an Android app written in Java with an XML-based user interface. Native Android applications enable fine-grained control over network behaviour, background services and display rendering, all of which are important for handling incoming TCP signals, triggering HTTP requests in response to server notifications and rendering lesson materials clearly on the constrained displays of e-ink Android devices. The use of XML layouts for the UI is fitting for an e-ink interface with low refresh rates, where simple, static layouts are preferable to dynamically recomposed views.
                 </p>
 
+                <h2>Summary</h2>
+                <p>
+                    Based on insights from literature and technology reviews, it is decided that the platform should target e-ink devices such as reMarkable and Kindle alongside Android tablets, chosen for their low distraction and sensory-friendly properties compared to conventional LCD screens. Rather than routing student data through external cloud services, all AI inference runs locally on the teacher’s laptop via Ollama, using the Qwen3 and Granite 4.0 models for content generation and feedback, and nomic-embed-text for producing vector embeddings stored in a Chroma database to enable retrieval-augmented generation against curriculum materials. The teacher-facing application is built as an Electron and React desktop app backed by a C# and .NET service with EF Core for data persistence, packaged into a single installer.
+                </p>
+                <p>
+                    Communication between devices relies on three protocols: HTTP for transferring materials and responses, TCP sockets for low-latency control signals and real-time notifications, and UDP broadcasting for device discovery. Where direct connections are unavailable, as with reMarkable and Kindle hardware, the platform falls back to asynchronous delivery through the reMarkable Cloud and Amazon’s Personal Documents service respectively. The student-facing Android application is written in Java to allow precise control over networking and display rendering.
+                </p>
+
                 <h2 id="bibliography">Bibliography</h2>
                 <p id="ref-1">[1] H. Le and D. Prabjandee, “A Review of the Website Liveworksheets.com,” Computer-Assisted Language Learning Electronic Journal, vol. 24, no. 1, pp. 269–279, Feb. 2023, Available: https://www.researchgate.net/publication/368291946_A_Review_of_the_Website_Liveworksheetscom</p>
                 <p id="ref-2">[2] M. D. Hernanto, I. R. W. Atmojo, and M. Indriayu, “Liveworksheets Analysis as an Online Student Worksheet Assessment in the 21st Century Era,” Advances in Social Science, Education and Humanities Research, pp. 514–523, Dec. 2023, doi: https://doi.org/10.2991/978-2-38476-114-2_48.</p>
