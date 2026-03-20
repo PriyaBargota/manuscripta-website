@@ -63,7 +63,7 @@
 
                 <h2 id="principles">Design Principles</h2>
                 <p>
-                    Manuscripta's interface design is informed by Nielsen's usability heuristics, reviewed as part of the HCI component of the module. Given the dual-app nature of the system and the diverse profile of the student user base — including neurodiverse learners — the following principles were prioritised throughout the design process.
+                    Manuscripta's interface design is informed by Nielsen's usability heuristics, reviewed as part of the HCI component of the module. Given the dual-app nature of the system and the diverse profile of the student user base the following principles were prioritised throughout the design process.
                 </p>
 
                 <table class="issue-table">
@@ -121,13 +121,13 @@
                             <td>R1</td>
                             <td>Alternative input methods [1]</td>
                             <td>Students with motor or physical disabilities may be unable to use a single input method reliably</td>
-                            <td>The student interface supports stylus, touch and typing, with touch targets sized appropriately for users with motor difficulties</td>
+                            <td>The student interface supports touch and typing, with touch targets sized appropriately for users with motor difficulties</td>
                         </tr>
                         <tr>
                             <td>R2</td>
                             <td>Adaptable cognitive levels [2]</td>
                             <td>Mixed-ability classrooms require content pitched at different reading levels simultaneously</td>
-                            <td>Teachers set a class-wide reading level via an age group slider; students can individually simplify or summarise text on their own device</td>
+                            <td>Teachers set a per material reading level and age group, tayloring generated materials to the needs of their students</td>
                         </tr>
                         <tr>
                             <td>R3</td>
@@ -138,7 +138,7 @@
                         <tr>
                             <td>R4</td>
                             <td>Self-paced progression</td>
-                            <td>Timed or peer-visible progress creates anxiety for neurodiverse learners</td>
+                            <td>Timed or peer-visible progress creates anxiety for learners</td>
                             <td>The student interface shows only the current task with no visible progress indicators or peer comparison</td>
                         </tr>
                     </tbody>
@@ -147,17 +147,8 @@
                 <h3>Student Interface Learning Page</h3>
 
                 <h4>Initial Learning Pages</h4>
-                <div class="sketch-comparison">
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/initiallearningpage1.png?v=4" alt="Initial Student Interface Sketch 1">
-                        </div>
-                    </div>
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/initiallearningpage2.png?v=4" alt="Initial Student Interface Sketch 2">
-                        </div>
-                    </div>
+                <div class="sketch-image">
+                    <img src="images/uidesign/initiallearningpages.png?v=4" alt="Initial Student Interface Sketch 1">
                 </div>
 
                 <p style="margin-top: 24px;">
@@ -192,17 +183,8 @@
                 <p><em>Severity ranges from 1 (lowest) to 3 (highest).</em></p>
 
                 <h4 style="margin-top: 32px;">Improved Learning Pages</h4>
-                <div class="sketch-comparison">
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/improvedlearningpage1.png?v=5" alt="Improved Student Interface Sketch 1">
-                        </div>
-                    </div>
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/improvedlearningpage2.png?v=5" alt="Improved Student Interface Sketch 2">
-                        </div>
-                    </div>
+                <div class="sketch-image">
+                    <img src="images/uidesign/improvedlearningpages.png?v=5" alt="Improved Student Interface Sketch 1">
                 </div>
 
                 <h3>Teacher Interface</h3>
@@ -215,18 +197,10 @@
                 </p>
 
                 <h4>Initial Sketches</h4>
-                <div class="sketch-comparison">
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/teacherinitialsketch.png?v=6" alt="Initial Teacher Interface Sketch 1">
-                        </div>
-                    </div>
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/teacherinitialsketch2.png?v=6" alt="Initial Teacher Interface Sketch 2">
-                        </div>
-                    </div>
+                <div class="sketch-image">
+                    <img src="images/uidesign/initialsketches.png?v=6" alt="Initial Teacher Interface Sketch 1">
                 </div>
+
 
                 <table class="issue-table">
                     <thead>
@@ -261,8 +235,8 @@
 
                 <p><em>Severity ranges from 1 (lowest) to 3 (highest).</em></p>
 
-                <h4 style="margin-top: 32px;">Improved Sketch</h4>
-                <div style="max-width: 50%; margin: 0;">
+                <h4 style="margin-top: 32px; text-align: center;">Improved Sketch</h4>
+                <div style="max-width: 30%; margin: 0 auto;">
                     <div class="sketch-image">
                         <img src="images/uidesign/improvedteacherinterface.png?v=7" alt="Improved Teacher Interface Sketch">
                     </div>
@@ -271,24 +245,18 @@
 
                 <h2 id="prototypes">Initial Prototype</h2>
                 <p>
-                    We translated our sketches into a digital interactive prototype using HTML and CSS to simulate both the student and teacher interfaces. The prototype was shared with clients via follow-up email to validate our design decisions and identify remaining usability issues.
+                    We translated our sketches into a digital interactive prototype using Google's AI Studio to generate basic React Typescript frontentends. These simulated both the student and teacher interfaces, and were shared with clients via follow-up email and during design review calls to validate our design decisions and identify remaining usability issues.
                 </p>
 
-                <div class="sketch-comparison">
-                    <div class="sketch-column">
-                        <h4>Teacher Interface</h4>
-                        <div class="sketch-image">
-                            <img src="images/uidesign/initialprototypeteacher.jpeg?v=2" alt="Initial Teacher Prototype">
-                        </div>
-                    </div>
-                    <div class="sketch-column">
-                        <h4>Student Interface</h4>
-                        <div class="sketch-image">
-                            <img src="images/uidesign/initialprototypestudent.jpeg?v=2" alt="Initial Student Prototype">
-                        </div>
-                    </div>
-                </div>
+                <p style="margin-top: 32px;">You can explore the initial prototypes here: <a href="https://aistudio.google.com/apps/drive/1F8GdVb4J4VLAtkuo53RX8yPfGICrygO9?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Teacher Interface Prototype</a> / <a href="https://aistudio.google.com/apps/drive/1AVOMRP29kkZyooWVghEObs1-SnqSb59E?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Student Interface Prototype</a></p>
 
+
+      
+                <h4>Initial Prototypes</h4>
+                <div class="sketch-image">
+                    <img src="images/uidesign/initialprototypes.png?v=2" alt="Initial Teacher Prototype">
+                </div>
+     
                 <h3 style="margin-top: 32px;">Prototype Evaluation against Nielsen's Heuristics</h3>
 
                 <h4>What Worked Well</h4>
@@ -357,25 +325,18 @@
 
                 <p><em>Severity ranges from 1 (lowest) to 3 (highest).</em></p>
 
-                <p style="margin-top: 32px;">You can explore the initial prototype here: <a href="https://aistudio.google.com/apps/drive/1F8GdVb4J4VLAtkuo53RX8yPfGICrygO9?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Teacher Interface Prototype</a> / <a href="https://aistudio.google.com/apps/drive/1AVOMRP29kkZyooWVghEObs1-SnqSb59E?showPreview=true&showAssistant=true" target="_blank" rel="noopener">Student Interface Prototype</a></p>
-
                 <h2 id="improved-prototype" style="margin-top: 48px;">Improved Prototype</h2>
                 <p>
                     Following the initial prototype evaluation, a second iteration was produced incorporating C6 through C8. A final round of feedback was gathered from personal contacts in the educational sector.
                 </p>
 
                 <h4>Teacher Interface</h4>
-                <div style="max-width: 50%; margin: 0;">
-                    <div class="sketch-image">
-                        <img src="images/uidesign/initialprototypeteacher1.png?v=2" alt="Improved Teacher Prototype 1">
-                    </div>
-                    <div class="sketch-image" style="margin-top: 16px;">
-                        <img src="images/uidesign/initialprototypeteacher2.png?v=2" alt="Improved Teacher Prototype 2">
-                    </div>
+                <div class="sketch-image">
+                    <img src="images/uidesign/improvedprototypes.png" alt="Improved Teacher Prototype 1">
                 </div>
 
-                <h4 style="margin-top: 32px;">Student Interface</h4>
-                <div style="max-width: 50%; margin: 0;">
+                <h4 style="margin-top: 32px; text-align: center;">Student Interface</h4>
+                <div style="max-width: 30%; margin: 0 auto;">
                     <div class="sketch-image">
                         <img src="images/uidesign/C6.png?v=2" alt="Improved Student Prototype with C6">
                     </div>
@@ -431,18 +392,6 @@
                     <div class="sketch-column">
                         <div class="sketch-image">
                             <img src="images/uidesign/teacherportalfinal/teacher-library-add-material.png" alt="Teacher portal — Add material modal">
-                        </div>
-                    </div>
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/teacherportalfinal/teacher-library-ai-generation.png" alt="Teacher portal — AI generation form">
-                        </div>
-                    </div>
-                </div>
-                <div class="sketch-comparison" style="margin-top: 16px;">
-                    <div class="sketch-column">
-                        <div class="sketch-image">
-                            <img src="images/uidesign/teacherportalfinal/teacher-library-generating.png" alt="Teacher portal — Content generation in progress">
                         </div>
                     </div>
                     <div class="sketch-column">
