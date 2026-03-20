@@ -415,62 +415,107 @@
 
                 <h2 id="final-ui">Final UI</h2>
                 <p>
-                    The final interface evolved from our prototypes primarily through aesthetic refinement on the teacher side and functional simplification on the student side. Both applications adopt a modern, scholarly design language — pairing the Fraunces serif typeface for headings with IBM Plex Sans for body text, set against a muted palette of brand green, warm orange accents and soft cream backgrounds.
+                    The final interface evolved from our prototypes primarily through aesthetic refinement on the teacher side and functional simplification on the student side. Both applications adopt a modern, scholarly design language: pairing the Fraunces serif typeface for headings with IBM Plex Sans for body text, set against a muted palette of brand green, warm orange accents and soft cream backgrounds.
                 </p>
 
                 <h3>Teacher Portal</h3>
                 <p>
-                    The teacher portal received primarily aesthetic updates, bringing the interface in line with the project's visual identity. The layout is organised into four core sections — Library, Classroom, Responses and Settings — each accessible from a persistent sidebar. The design prioritises clarity and efficiency, ensuring teachers can generate, manage and distribute content without navigating unnecessary complexity. The website itself mirrors the teacher portal's visual language, maintaining consistency across the project.
+                    The teacher portal received primarily aesthetic updates, bringing the interface in line with the project's visual identity. The layout is organised into four core sections - Library, Classroom, Responses and Settings - each accessible from a persistent sidebar. The design prioritises clarity and efficiency, ensuring teachers can generate, manage and distribute content without navigating unnecessary complexity. The website itself mirrors the teacher portal's visual language, maintaining consistency across the project.
                 </p>
 
                 <h4>Library</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Teacher portal — Library page --></p>
+                <div class="sketch-image">
+                    <img src="images/uidesign/teacherportalfinal/teacher-library-explorer.png" alt="Teacher portal — Library explorer with hierarchical content">
+                </div>
+                <div class="sketch-comparison" style="margin-top: 16px;">
+                    <div class="sketch-column">
+                        <div class="sketch-image">
+                            <img src="images/uidesign/teacherportalfinal/teacher-library-add-material.png" alt="Teacher portal — Add material modal">
+                        </div>
+                    </div>
+                    <div class="sketch-column">
+                        <div class="sketch-image">
+                            <img src="images/uidesign/teacherportalfinal/teacher-library-ai-generation.png" alt="Teacher portal — AI generation form">
+                        </div>
+                    </div>
+                </div>
+                <div class="sketch-comparison" style="margin-top: 16px;">
+                    <div class="sketch-column">
+                        <div class="sketch-image">
+                            <img src="images/uidesign/teacherportalfinal/teacher-library-generating.png" alt="Teacher portal — Content generation in progress">
+                        </div>
+                    </div>
+                    <div class="sketch-column">
+                        <div class="sketch-image">
+                            <img src="images/uidesign/teacherportalfinal/teacher-library-editor.png" alt="Teacher portal — Material editor with generated content">
+                        </div>
+                    </div>
                 </div>
 
                 <h4>Classroom</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Teacher portal — Classroom page --></p>
+                
+                <div class="sketch-column">
+                    <img src="images/uidesign/teacherportalfinal/teacher-classroom-device-idle.png" alt="Teacher portal — Classroom with paired device idle">
+                </div>
+                <div class="sketch-column" style="margin-top: 16px;">
+                    <img src="images/uidesign/teacherportalfinal/teacher-classroom-help-request.png" alt="Teacher portal — Classroom with student help request notification">
                 </div>
 
                 <h4>Responses</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Teacher portal — Responses page --></p>
+
+                <div class="sketch-image">
+                    <div class="sketch-image">
+                        <img src="images/uidesign/teacherportalfinal/teacher-responses-feedback.png" alt="Teacher portal — Responses page with AI feedback and marks">
+                    </div>
                 </div>
 
                 <h4>Settings</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Teacher portal — Settings page --></p>
+                <div class="sketch-image">
+                    <img src="images/uidesign/teacherportalfinal/teacher-settings.png" alt="Teacher portal — Settings page with device configuration">
                 </div>
 
                 <h3>Student Device</h3>
                 <p>
-                    The student interface retains the minimal, distraction-free character of the prototype but introduces key functional changes. The tabbed navigation was replaced with a dropdown selector, allowing students to scroll through and select any material, worksheet or feedback item. This reclaimed screen real estate for content display and removed the scaling limitation of fixed tabs — the number of items on device can now grow dynamically. At the bottom of the screen, a persistent Raise Hand button allows students to silently request help at any time, while a Submit Answer button appears contextually when a worksheet is active. The simplify, expand and summarise buttons from the prototype were removed as those features were descoped from the final build.
+                    The student interface retains the minimal, distraction-free character of the prototype but introduces key functional changes. The tabbed navigation was replaced with a dropdown selector, allowing students to scroll through and select any material, worksheet or feedback item. This  allows the number of items on device to now grow dynamically. At the bottom of the screen, a persistent Raise Hand button allows students to silently request help at any time, while a Submit Answer button appears contextually when a worksheet is active. The simplify, expand and summarise buttons from the prototype were removed as those features were descoped from the final build.
                 </p>
 
-                <h4>Material Rendered</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Student device — Material rendered --></p>
-                </div>
-
-                <h4>Dropdown Material Selector</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Student device — Dropdown material selector --></p>
-                </div>
-
-                <h4>Worksheet Rendered</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Student device — Worksheet rendered --></p>
-                </div>
-
-                <h4>Immediate Feedback Page</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Student device — Immediate feedback page --></p>
-                </div>
-
-                <h4>Teacher Response Feedback Page</h4>
-                <div class="screenshot-placeholder">
-                    <p><!-- IMAGE: Student device — Teacher response feedback page --></p>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 8px;">
+                    <div>
+                        <h4>Pairing Screen</h4>
+                        <div class="sketch-image">
+                            <img src="images/uidesign/student-pairing.png" alt="Student device — Pairing screen">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Idle Paired State</h4>
+                        <div class="sketch-image">
+                            <img src="images/uidesign/student-idle.png" alt="Student device — Idle state, no materials deployed">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Reading Material</h4>
+                        <div class="sketch-image">
+                            <img src="images/uidesign/student-material.png" alt="Student device — Material rendered">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Worksheet Material</h4>
+                        <div class="sketch-image">
+                            <img src="images/uidesign/student-worksheet.png" alt="Student device — Worksheet with answers filled in">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Dropdown Material Selector</h4>
+                        <div class="sketch-image">
+                            <img src="images/uidesign/student-dropdown.png" alt="Student device — Dropdown material selector open">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Teacher Response Feedback</h4>
+                        <div class="sketch-image">
+                            <img src="images/uidesign/student-teacher-feedback.png" alt="Student device — Teacher response feedback with marks">
+                        </div>
+                    </div>
                 </div>
 
                 <h3>Citations</h3>
