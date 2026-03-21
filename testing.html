@@ -374,10 +374,36 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
 
                 <h2 id="integration">Integration Testing</h2>
                 <p>
-                    The integration test infrastructure uses an ephemeral SQLite database created fresh per test run, ensuring no state leaks between tests. Network services (UDP broadcast and TCP pairing) start automatically in integration mode. An IntegrationSeedService seeds required device configuration, materials, questions, attachments and feedback on startup. A POST /api/v1/integration/reset endpoint clears all data and re-seeds between test runs.
+                    Integration testing verifies the network-layer interactions between the Android tablet (client) and the Windows teacher application (server). Because the client drives all test scenarios, the Windows backend must be actively running and listening on real network sockets.
                 </p>
+
+                <h3>Windows Server Preparation</h3>
                 <p>
-                    A notable issue discovered during integration testing was that all device and entity IDs must be valid UUIDs — the server validates using <code>Guid.TryParse()</code> and previously returned 400 Bad Request for malformed IDs. This was changed to 404 Not Found with a generic message to avoid leaking information about ID validity.
+                    To support live integration testing without altering wire-level protocol behaviours, the Windows application incorporates a dedicated <strong>integration-test startup mode</strong>. Running <code>dotnet run --launch-profile Integration</code> activates the following specific test behaviours:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Network Services Auto-Start:</strong> The UDP broadcast service, TCP pairing listener, and HTTP REST APIs bind automatically to their default test ports (5913, 5912, and 5911 respectively) on server startup.
+                    </li>
+                    <li>
+                        <strong>Database Isolation:</strong> The system completely bypasses EF Core migrations and instead creates a clean, ephemeral in-memory SQLite database (<code>MainDbContext</code>) on each run to prevent test pollution.
+                    </li>
+                    <li>
+                        <strong>Test Data Seeding:</strong> An <code>IntegrationSeedService</code> injects perfectly formed dummy data into the database. This includes registering a well-known test device (ID: <code>00000000-0000-0000-0000-000000000001</code>), setting default configurations, and staging dummy AI materials (worksheets, questions, test attachments) for the tablet to request.
+                    </li>
+                    <li>
+                        <strong>Simulation API:</strong> An internal <code>/api/simulation/</code> endpoint exposes a webhook that directly issues TCP commands to the client (e.g., <code>LOCK_SCREEN</code>, <code>STAGE_MATERIAL</code>). This deterministic triggering mechanism allows tests to fully automate server-initiated command flows. Crucially, the MSBuild conditions in <code>Manuscripta.Main.csproj</code> explicitly strip the <code>Testing/</code> directory out of the compilation tree during a <code>Release</code> build, ensuring that these simulation backdoors are physically impossible to access in the circulated production binaries.
+                    </li>
+                </ul>
+
+                <h3>Android Client Execution</h3>
+                <p>
+                    With the Windows server running in integration mode, the Android tests execute via <code>./gradlew connectedAndroidTest</code>. These tests perform the real assertions, verifying that the UDP packets are valid, TCP connections complete successfully, and HTTP REST calls return the exact expected schemas defined in the API Contract.
+                </p>
+
+                <h3>Manual Integration Testing</h3>
+                <p>
+                    In addition to automated tests, comprehensive manual testing has been conducted between the Windows application running in deployment mode and a physical Android tablet. This ensures that when the frontend is fully involved, all systems communicate correctly, maintaining stability and confirming the correct working order of the two applications in real-world scenarios.
                 </p>
 
                 <h2 id="uat">User Acceptance Testing</h2>
@@ -475,7 +501,7 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
 
                 <h3>Windows Compatibility</h3>
                 <p>
-                    The Windows teacher application was tested on Windows 10 and Windows 11 on both Intel and Qualcomm AI-capable chipsets. On machines without a dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI models locally.
+                    The Windows teacher application was tested on Windows 11 with RTX4050 GPU. On machines without a dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI models locally.
                 </p>
 
                 <h2 id="ai-validation">AI Output Post-Processing Validation</h2>
