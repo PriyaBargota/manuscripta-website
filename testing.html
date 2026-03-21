@@ -445,8 +445,8 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                         deterministic triggering mechanism allows tests to fully automate server-initiated command
                         flows. Crucially, the MSBuild conditions in <code>Manuscripta.Main.csproj</code> explicitly
                         strip the <code>Testing/</code> directory out of the compilation tree during a
-                        <code>Release</code> build, ensuring that these simulation backdoors are physically impossible
-                        to access in the circulated production binaries.
+                        <code>Release</code> build, ensuring that these simulation backdoors are
+                        not accessible in the circulated production binaries.
                     </li>
                 </ul>
 
