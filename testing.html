@@ -565,48 +565,6 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                 <p>
                     The flaky test in PR #286 is particularly notable — a 25% failure rate on the handRaised acknowledgement test revealed that the Windows integration server was retaining TCP connection state between test runs. The fix required adding a proper state reset between tests, which is now handled by the POST /api/v1/integration/reset endpoint described in the integration testing section.
                 </p>
-
-                <h2 id="not-tested">What is not tested</h2>
-                <p>
-                    In the interest of transparency, the following areas have no automated test coverage:
-                </p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Gap</th>
-                            <th>Reason</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Performance benchmarks</td>
-                            <td>No load testing suite was implemented</td>
-                            <td>Future work</td>
-                        </tr>
-                        <tr>
-                            <td>30-device simultaneous distribution</td>
-                            <td>Requires physical hardware setup</td>
-                            <td>Future work</td>
-                        </tr>
-                        <tr>
-                            <td>AI output consistency at scale</td>
-                            <td>Requires automated prompt testing suite</td>
-                            <td>Future work</td>
-                        </tr>
-                        <tr>
-                            <td>Android UI layer</td>
-                            <td>Espresso UI tests not yet written</td>
-                            <td>⚠ In progress</td>
-                        </tr>
-                        <tr>
-                            <td>Student user testing</td>
-                            <td>Planned visit did not proceed</td>
-                            <td>Future work</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </main>
 
