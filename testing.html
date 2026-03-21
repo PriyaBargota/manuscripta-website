@@ -115,7 +115,7 @@
                 <pre><code>cd android && ./gradlew checkstyle</code></pre>
 
                 <h3>Windows</h3>
-                <pre><code>cd windows/ManuscriptaTeacherApp/Main
+                <pre><code>cd windows/ManuscriptaTeacherApp/MainTests
 dotnet test</code></pre>
 
                 <h2 id="android-unit">Android Unit Testing</h2>
@@ -236,6 +236,65 @@ public void testExponentialBackoff() {
                 <p>
                     The Windows test suite consists of 52 C# test files comprising 12,028 lines of test code, using xUnit as the test framework and Moq for mocking dependencies.
                 </p>
+
+                <h3>Layer-by-Layer Coverage Results (XPlat Code Coverage)</h3>
+                <p>
+                    Testing the Windows application is substantially more challenging than the Android client due to a heavy reliance on external environments and services (specifically local network UDP/TCP broadcasting, physical filesystem access, SMTP mail delivery, and external AI runtimes such as Ollama and ChromaDB). While the core logic, models, and HTTP controllers maintain strong coverage, the overall average is pulled down by the low-level external and hardware integrations that are notoriously difficult to automate locally without complex mocking.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Line Coverage</th>
+                            <th>Branch Coverage</th>
+                            <th>Classes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Controllers (API Layer)</td>
+                            <td>88.3%</td>
+                            <td>85.0%</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>Models &amp; Data Context</td>
+                            <td>89.9%</td>
+                            <td>79.6%</td>
+                            <td>63</td>
+                        </tr>
+                        <tr>
+                            <td>Core Business Services</td>
+                            <td>75.0%</td>
+                            <td>67.7%</td>
+                            <td>31</td>
+                        </tr>
+                        <tr>
+                            <td>GenAI Services</td>
+                            <td>69.4%</td>
+                            <td>66.3%</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Network Services</td>
+                            <td>58.6%</td>
+                            <td>50.6%</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Repositories (Data Access)</td>
+                            <td>49.5%</td>
+                            <td>37.7%</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Runtime Dependencies</td>
+                            <td>35.4%</td>
+                            <td>21.5%</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h3>Test Distribution</h3>
                 <table>
@@ -423,42 +482,8 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                 <p>
                     The AI content generation pipeline introduces non-determinism — the same prompt does not always produce identical output. Manuscripta addresses this through a deterministic post-processing pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are normalised to H3, malformed question markers are fixed, and invalid references are removed. The validation function was unit tested to verify it correctly identifies and flags each error type.
                 </p>
-
-                <h2 id="coverage">Test Coverage Summary</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Application</th>
-                            <th>Test Files</th>
-                            <th>Lines of Test Code</th>
-                            <th>Coverage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Android</td>
-                            <td>74</td>
-                            <td>21,504</td>
-                            <td>96% instruction, 93% branch (JaCoCo)</td>
-                        </tr>
-                        <tr>
-                            <td>Windows</td>
-                            <td>52</td>
-                            <td>12,028</td>
-                            <td>Not measured — no coverage tool configured</td>
-                        </tr>
-                        <tr>
-                            <td>Total</td>
-                            <td>126</td>
-                            <td>33,532</td>
-                            <td>—</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2 id="ci-cd">CI/CD and Code Quality</h2>
                 <p>
-                    Pull request peer reviews were conducted as a team norm rather than being enforced via GitHub branch protection rules. This means reviews were voluntary rather than technically required before merging. In retrospect, configuring branch protection to require at least one approving review and passing CI checks before merge would have provided a stronger quality gate, and this is noted as a process improvement for future projects.
+                    Refer to the evaluation section for a detailed analysis of AI output latency, quality and consistency.
                 </p>
 
                 <h2 id="bugs">Bugs Discovered Through Testing</h2>
