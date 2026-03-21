@@ -267,7 +267,7 @@
         generation (RAG). After considering alternative vector stores such as Qdrant or a SQLite-based solution with
         pgvector, we selected Chroma for its minimal setup requirements and its comprehensive support for the embedding
         workflows. When the teacher wishes to generate a worksheet with GenAI and selects an accompanying source
-        material, a k-nearest neighbours search algorithm is used to retrieve the top k chunks with the closest
+        material, a <i>k</i>-nearest neighbours search algorithm is used to retrieve the top <i>k</i> chunks with the closest
         semantic similarity from the embedded reference corpus. By injecting these chunks into the prompt context, the
         model’s output is grounded in authoritative curriculum-aligned source materials rather than relying solely on
         the model’s parametric knowledge. This is particularly valuable for subject-specific content where factual
