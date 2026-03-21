@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing - Manuscripta</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <a href="#main" class="sr-only focus-visible">Skip to main content</a>
     <nav class="navbar">
@@ -58,7 +60,8 @@
             <div class="doc-content">
                 <div class="doc-header">
                     <h1>Testing</h1>
-                    <p>Testing strategy, coverage metrics, and quality assurance processes for the Manuscripta platform.</p>
+                    <p>Testing strategy, coverage metrics, and quality assurance processes for the Manuscripta platform.
+                    </p>
                 </div>
 
                 <p>
@@ -122,7 +125,8 @@ dotnet test</code></pre>
                 <p class="attribution"><em>Built and maintained by Priya Bargota and Will Stephen</em></p>
 
                 <p>
-                    The Android test suite consists of 74 test files comprising 21,504 lines of test code, covering every layer of the Clean Architecture stack.
+                    The Android test suite consists of 74 test files comprising 21,504 lines of test code, covering
+                    every layer of the Clean Architecture stack.
                 </p>
 
                 <h3>Coverage Results (JaCoCo)</h3>
@@ -154,7 +158,8 @@ dotnet test</code></pre>
                 </table>
 
                 <p>
-                    The CI pipeline runs <code>./gradlew jacocoTestReport jacocoTestCoverageVerification</code> on every pull request. Any PR that drops coverage below 95% fails automatically and cannot be merged.
+                    The CI pipeline runs <code>./gradlew jacocoTestReport jacocoTestCoverageVerification</code> on every
+                    pull request. Any PR that drops coverage below 95% fails automatically and cannot be merged.
                 </p>
 
                 <h3>Test Distribution</h3>
@@ -186,12 +191,17 @@ dotnet test</code></pre>
                 </table>
 
                 <p>
-                    The most significant test files are <code>HeartbeatManagerTest</code> (455 lines) and <code>TcpSocketManagerTest</code> (422 lines), which together validate the core networking behaviour the system depends on for real-time classroom control.
+                    The most significant test files are <code>HeartbeatManagerTest</code> (455 lines) and
+                    <code>TcpSocketManagerTest</code> (422 lines), which together validate the core networking behaviour
+                    the system depends on for real-time classroom control.
                 </p>
 
                 <h3>Example: HeartbeatManager Test</h3>
                 <p>
-                    The heartbeat mechanism is critical — if STATUS_UPDATE packets stop arriving at the Windows application, devices are marked DISCONNECTED after 10 seconds. The test suite validates the 3-second interval, correct opcode transmission, thread safety via AtomicBoolean, and graceful shutdown behaviour.
+                    The heartbeat mechanism is critical — if STATUS_UPDATE packets stop arriving at the Windows
+                    application, devices are marked DISCONNECTED after 10 seconds. The test suite validates the 3-second
+                    interval, correct opcode transmission, thread safety via AtomicBoolean, and graceful shutdown
+                    behaviour.
                 </p>
                 <pre><code>// Verifies heartbeat sends STATUS_UPDATE (0x10) at correct interval
 @Test
@@ -204,7 +214,8 @@ public void testHeartbeatSendsStatusUpdate() {
 
                 <h3>Example: RetryInterceptor Test</h3>
                 <p>
-                    The retry policy must retry on 5xx and 408/429 errors but not on other 4xx errors. Tests verify the exponential backoff sequence (1s, 2s, 4s, 8s, 16s, 32s) and the 5-attempt cap.
+                    The retry policy must retry on 5xx and 408/429 errors but not on other 4xx errors. Tests verify the
+                    exponential backoff sequence (1s, 2s, 4s, 8s, 16s, 32s) and the 5-attempt cap.
                 </p>
                 <pre><code>// Verifies exponential backoff doubles on each retry
 @Test
@@ -217,29 +228,47 @@ public void testExponentialBackoff() {
 
                 <h3>Robolectric Compatibility</h3>
                 <p>
-                    Several adaptations were required to run tests on the JVM via Robolectric rather than a physical device. The RetryInterceptor was removed from the test harness because <code>ConnectivityManager.isConnected()</code> always returns false in Robolectric. A <code>directHandler</code> was added for immediate Runnable dispatch since Robolectric's paused looper mode does not execute <code>Handler.post()</code>. A volatile <code>currentStateSnapshot</code> field was added to PairingManager because <code>LiveData.getValue()</code> returns stale or null values in Robolectric.
+                    Several adaptations were required to run tests on the JVM via Robolectric rather than a physical
+                    device. The RetryInterceptor was removed from the test harness because
+                    <code>ConnectivityManager.isConnected()</code> always returns false in Robolectric. A
+                    <code>directHandler</code> was added for immediate Runnable dispatch since Robolectric's paused
+                    looper mode does not execute <code>Handler.post()</code>. A volatile
+                    <code>currentStateSnapshot</code> field was added to PairingManager because
+                    <code>LiveData.getValue()</code> returns stale or null values in Robolectric.
                 </p>
 
                 <h3>Checkstyle</h3>
                 <p>
-                    The Android codebase uses a custom Checkstyle configuration at <code>android/config/checkstyle/checkstyle.xml</code>. Key rules enforced include a 120-character line length limit, a 150-line method length limit, a maximum of 7 parameters per method, JavaDoc required for all public classes and methods, no wildcard imports, spaces only (no tab characters), and enforcement of equals/hashCode pairs. Checkstyle runs as the first job in the CI pipeline before tests, meaning code style violations are caught before any test execution begins.
+                    The Android codebase uses a custom Checkstyle configuration at
+                    <code>android/config/checkstyle/checkstyle.xml</code>. Key rules enforced include a 120-character
+                    line length limit, a 150-line method length limit, a maximum of 7 parameters per method, JavaDoc
+                    required for all public classes and methods, no wildcard imports, spaces only (no tab characters),
+                    and enforcement of equals/hashCode pairs. Checkstyle runs as the first job in the CI pipeline before
+                    tests, meaning code style violations are caught before any test execution begins.
                 </p>
 
                 <h3>Test Results</h3>
                 <div class="warning-box">
-                    <p><strong>TODO:</strong> Add JaCoCo HTML coverage report screenshot showing 96% instruction coverage and GitHub Actions CI pipeline passing screenshot</p>
+                    <p><strong>TODO:</strong> Add JaCoCo HTML coverage report screenshot showing 96% instruction
+                        coverage and GitHub Actions CI pipeline passing screenshot</p>
                 </div>
 
                 <h2 id="windows-unit">Windows Unit Testing</h2>
                 <p class="attribution"><em>Built and maintained by Raphael Li and Nemo Shu</em></p>
 
                 <p>
-                    The Windows test suite consists of 52 C# test files comprising 12,028 lines of test code, using xUnit as the test framework and Moq for mocking dependencies.
+                    The Windows test suite consists of 52 C# test files comprising 12,028 lines of test code, using
+                    xUnit as the test framework and Moq for mocking dependencies.
                 </p>
 
                 <h3>Layer-by-Layer Coverage Results (XPlat Code Coverage)</h3>
                 <p>
-                    Testing the Windows application is substantially more challenging than the Android client due to a heavy reliance on external environments and services (specifically local network UDP/TCP broadcasting, physical filesystem access, SMTP mail delivery, and external AI runtimes such as Ollama and ChromaDB). While the core logic, models, and HTTP controllers maintain strong coverage, the overall average is pulled down by the low-level external and hardware integrations that are notoriously difficult to automate locally without complex mocking.
+                    Testing the Windows application is substantially more challenging than the Android client due to a
+                    heavy reliance on external environments and services (specifically local network UDP/TCP
+                    broadcasting, physical filesystem access, SMTP mail delivery, and external AI runtimes such as
+                    Ollama and ChromaDB). While the core logic, models, and HTTP controllers maintain strong coverage,
+                    the overall average is pulled down by the low-level external and hardware integrations that are
+                    notoriously difficult to automate locally without complex mocking.
                 </p>
                 <table>
                     <thead>
@@ -330,12 +359,17 @@ public void testExponentialBackoff() {
                 </table>
 
                 <p>
-                    The entity tests are particularly important because Manuscripta uses polymorphic material entities — ReadingMaterial, WorksheetMaterial and PollMaterial all derive from a common base. Tests verify that the factory methods produce the correct subtype and that entity validation behaves correctly for each.
+                    The entity tests are particularly important because Manuscripta uses polymorphic material entities —
+                    ReadingMaterial, WorksheetMaterial and PollMaterial all derive from a common base. Tests verify that
+                    the factory methods produce the correct subtype and that entity validation behaves correctly for
+                    each.
                 </p>
 
                 <h3>Example: TCP Pairing Service Test</h3>
                 <p>
-                    The following test verifies that the TcpPairingService handles concurrent listener attempts gracefully — a real defensive programming requirement given the service manages live network sockets.
+                    The following test verifies that the TcpPairingService handles concurrent listener attempts
+                    gracefully — a real defensive programming requirement given the service manages live network
+                    sockets.
                 </p>
                 <pre><code>[Fact]
 public async Task StartListeningAsync_CalledTwice_LogsWarning()
@@ -369,46 +403,76 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
     cts.Cancel();
 }</code></pre>
                 <p>
-                    This test validates real network socket behaviour using an actual TCP listener on a randomly assigned port, verifies defensive programming against duplicate listeners, and demonstrates proper async cancellation and resource disposal patterns.
+                    This test validates real network socket behaviour using an actual TCP listener on a randomly
+                    assigned port, verifies defensive programming against duplicate listeners, and demonstrates proper
+                    async cancellation and resource disposal patterns.
                 </p>
 
                 <h2 id="integration">Integration Testing</h2>
                 <p>
-                    Integration testing verifies the network-layer interactions between the Android tablet (client) and the Windows teacher application (server). Because the client drives all test scenarios, the Windows backend must be actively running and listening on real network sockets.
+                    Integration testing verifies the network-layer interactions between the Android tablet (client) and
+                    the Windows teacher application (server). Because the client drives all test scenarios, the Windows
+                    backend must be actively running and listening on real network sockets.
                 </p>
 
                 <h3>Windows Server Preparation</h3>
                 <p>
-                    To support live integration testing without altering wire-level protocol behaviours, the Windows application incorporates a dedicated <strong>integration-test startup mode</strong>. Running <code>dotnet run --launch-profile Integration</code> activates the following specific test behaviours:
+                    To support live integration testing without altering wire-level protocol behaviours, the Windows
+                    application incorporates a dedicated <strong>integration-test startup mode</strong>. Running
+                    <code>dotnet run --launch-profile Integration</code> activates the following specific test
+                    behaviours:
                 </p>
                 <ul>
                     <li>
-                        <strong>Network Services Auto-Start:</strong> The UDP broadcast service, TCP pairing listener, and HTTP REST APIs bind automatically to their default test ports (5913, 5912, and 5911 respectively) on server startup.
+                        <strong>Network Services Auto-Start:</strong> The UDP broadcast service, TCP pairing listener,
+                        and HTTP REST APIs bind automatically to their default test ports (5913, 5912, and 5911
+                        respectively) on server startup.
                     </li>
                     <li>
-                        <strong>Database Isolation:</strong> The system completely bypasses EF Core migrations and instead creates a clean, ephemeral in-memory SQLite database (<code>MainDbContext</code>) on each run to prevent test pollution.
+                        <strong>Database Isolation:</strong> The system completely bypasses EF Core migrations and
+                        instead creates a clean, ephemeral in-memory SQLite database (<code>MainDbContext</code>) on
+                        each run to prevent test pollution.
                     </li>
                     <li>
-                        <strong>Test Data Seeding:</strong> An <code>IntegrationSeedService</code> injects perfectly formed dummy data into the database. This includes registering a well-known test device (ID: <code>00000000-0000-0000-0000-000000000001</code>), setting default configurations, and staging dummy AI materials (worksheets, questions, test attachments) for the tablet to request.
+                        <strong>Test Data Seeding:</strong> An <code>IntegrationSeedService</code> injects perfectly
+                        formed dummy data into the database. This includes registering a well-known test device (ID:
+                        <code>00000000-0000-0000-0000-000000000001</code>), setting default configurations, and staging
+                        dummy AI materials (worksheets, questions, test attachments) for the tablet to request.
                     </li>
                     <li>
-                        <strong>Simulation API:</strong> An internal <code>/api/simulation/</code> endpoint exposes a webhook that directly issues TCP commands to the client (e.g., <code>LOCK_SCREEN</code>, <code>STAGE_MATERIAL</code>). This deterministic triggering mechanism allows tests to fully automate server-initiated command flows. Crucially, the MSBuild conditions in <code>Manuscripta.Main.csproj</code> explicitly strip the <code>Testing/</code> directory out of the compilation tree during a <code>Release</code> build, ensuring that these simulation backdoors are physically impossible to access in the circulated production binaries.
+                        <strong>Simulation API:</strong> An internal <code>/api/simulation/</code> endpoint exposes a
+                        webhook that directly issues TCP commands to the client (e.g., <code>LOCK_SCREEN</code>). This
+                        deterministic triggering mechanism allows tests to fully automate server-initiated command
+                        flows. Crucially, the MSBuild conditions in <code>Manuscripta.Main.csproj</code> explicitly
+                        strip the <code>Testing/</code> directory out of the compilation tree during a
+                        <code>Release</code> build, ensuring that these simulation backdoors are physically impossible
+                        to access in the circulated production binaries.
                     </li>
                 </ul>
 
                 <h3>Android Client Execution</h3>
                 <p>
-                    With the Windows server running in integration mode, the Android tests execute via <code>./gradlew connectedAndroidTest</code>. These tests perform the real assertions, verifying that the UDP packets are valid, TCP connections complete successfully, and HTTP REST calls return the exact expected schemas defined in the API Contract.
+                    With the Windows server running in integration mode, the Android tests execute via
+                    <code>./gradlew connectedAndroidTest</code>. These tests perform the real assertions, verifying that
+                    the UDP packets are valid, TCP connections complete successfully, and HTTP REST calls return the
+                    exact expected schemas defined in the API Contract.
                 </p>
 
                 <h3>Manual Integration Testing</h3>
                 <p>
-                    In addition to automated tests, comprehensive manual testing has been conducted between the Windows application running in deployment mode and a physical Android tablet. This ensures that when the frontend is fully involved, all systems communicate correctly, maintaining stability and confirming the correct working order of the two applications in real-world scenarios.
+                    In addition to automated tests, comprehensive manual testing has been conducted between the Windows
+                    application running in deployment mode and a physical Android tablet. This ensures that when the
+                    frontend is fully involved, all systems communicate correctly, maintaining stability and confirming
+                    the correct working order of the two applications in real-world scenarios.
                 </p>
 
                 <h2 id="uat">User Acceptance Testing</h2>
                 <p>
-                    Five teaching professionals tested the Windows application in person, including two teachers from Richard Cloudesley School and three additional teachers from Priya Bargota's personal contacts in the education sector. Testers navigated the full teacher workflow: opening the application, generating AI-powered materials using the content generator, deploying materials to connected E-ink devices, and monitoring student progress from the dashboard.
+                    Five teaching professionals tested the Windows application in person, including two teachers from
+                    Richard Cloudesley School and three additional teachers from Priya Bargota's personal contacts in
+                    the education sector. Testers navigated the full teacher workflow: opening the application,
+                    generating AI-powered materials using the content generator, deploying materials to connected E-ink
+                    devices, and monitoring student progress from the dashboard.
                 </p>
 
                 <h3>Key findings:</h3>
@@ -444,12 +508,14 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                 </table>
 
                 <p>
-                    No formal user testing was conducted with students within the project timeline. The planned visit of 127 students to UCL did not proceed. Student-facing testing remains as future work.
+                    No formal user testing was conducted with students within the project timeline. The planned visit of
+                    127 students to UCL did not proceed. Student-facing testing remains as future work.
                 </p>
 
                 <h2 id="compatibility">Device and Platform Compatibility</h2>
                 <p>
-                    Manuscripta was tested across a range of devices and operating system configurations to validate compatibility with the target hardware.
+                    Manuscripta was tested across a range of devices and operating system configurations to validate
+                    compatibility with the target hardware.
                 </p>
 
                 <h3>E-ink Device Compatibility</h3>
@@ -491,25 +557,37 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                 </table>
 
                 <p>
-                    The email-based PDF workflow for non-Android devices was validated during user testing with two Richard Cloudesley School teachers and independently confirmed by Atia Rafiq, whose professional healthcare workflow uses the identical mechanism.
+                    The email-based PDF workflow for non-Android devices was validated during user testing with two
+                    Richard Cloudesley School teachers and independently confirmed by Atia Rafiq, whose professional
+                    healthcare workflow uses the identical mechanism.
                 </p>
 
                 <h3>Android Version Compatibility</h3>
                 <p>
-                    The Android application targets API level 36 and supports a minimum of API level 27 (Android 8.0). This range covers all commercially available Android E-ink tablets from manufacturers including Boox and AiPaper.
+                    The Android application targets API level 36 and supports a minimum of API level 27 (Android 8.0).
+                    This range covers all commercially available Android E-ink tablets from manufacturers including Boox
+                    and AiPaper.
                 </p>
 
                 <h3>Windows Compatibility</h3>
                 <p>
-                    The Windows teacher application was tested on Windows 11 with RTX4050 GPU. On machines without a dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI models locally.
+                    The Windows teacher application was tested on Windows 11 with RTX4050 GPU. On machines without a
+                    dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but
+                    significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI
+                    models locally.
                 </p>
 
                 <h2 id="ai-validation">AI Output Post-Processing Validation</h2>
                 <p>
-                    The AI content generation pipeline introduces non-determinism — the same prompt does not always produce identical output. Manuscripta addresses this through a deterministic post-processing pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are normalised to H3, malformed question markers are fixed, and invalid references are removed. The validation function was unit tested to verify it correctly identifies and flags each error type.
+                    The AI content generation pipeline introduces non-determinism — the same prompt does not always
+                    produce identical output. Manuscripta addresses this through a deterministic post-processing
+                    pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are
+                    normalised to H3, malformed question markers are fixed, and invalid references are removed. The
+                    validation function was unit tested to verify it correctly identifies and flags each error type.
                 </p>
                 <p>
-                    Refer to the evaluation section for a detailed analysis of AI output latency, quality and consistency.
+                    Refer to the evaluation section for a detailed analysis of AI output latency, quality and
+                    consistency.
                 </p>
 
                 <h2 id="bugs">Bugs Discovered Through Testing</h2>
@@ -532,12 +610,14 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                         </tr>
                         <tr>
                             <td>#286</td>
-                            <td>MaterialDto deserialised as null due to incorrect @SerializedName("Type") annotation</td>
+                            <td>MaterialDto deserialised as null due to incorrect @SerializedName("Type") annotation
+                            </td>
                             <td>DTO unit tests failed on null field assertions</td>
                         </tr>
                         <tr>
                             <td>#286</td>
-                            <td>Server retained TCP state between test runs, causing 25% flaky failure rate on handRaised test</td>
+                            <td>Server retained TCP state between test runs, causing 25% flaky failure rate on
+                                handRaised test</td>
                             <td>Intermittent CI failures identified the stateful server issue</td>
                         </tr>
                         <tr>
@@ -557,15 +637,20 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                         </tr>
                         <tr>
                             <td>#295</td>
-                            <td>Refactoring GenerateResponsePdfAsync to call GetAllAsync() caused four tests to fail</td>
-                            <td>Existing mocks expected old per-entity methods, caught the breaking change immediately</td>
+                            <td>Refactoring GenerateResponsePdfAsync to call GetAllAsync() caused four tests to fail
+                            </td>
+                            <td>Existing mocks expected old per-entity methods, caught the breaking change immediately
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <p>
-                    The flaky test in PR #286 is particularly notable — a 25% failure rate on the handRaised acknowledgement test revealed that the Windows integration server was retaining TCP connection state between test runs. The fix required adding a proper state reset between tests, which is now handled by the POST /api/v1/integration/reset endpoint described in the integration testing section.
+                    The flaky test in PR #286 is particularly notable — a 25% failure rate on the handRaised
+                    acknowledgement test revealed that the Windows integration server was retaining TCP connection state
+                    between test runs. The fix required adding a proper state reset between tests, which is now handled
+                    by the POST /api/v1/integration/reset endpoint described in the integration testing section.
                 </p>
-        </div>
+            </div>
     </main>
 
     <footer>
@@ -576,4 +661,5 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
     </footer>
     <script src="js/main.js"></script>
 </body>
+
 </html>
