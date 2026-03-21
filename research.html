@@ -229,43 +229,49 @@
         iterated upon without needing expertise in platform-specific GUI frameworks such as WinForms or WPF.
       </p>
       <p>
-        The Windows application’s backend is implemented in C# with .NET and Entity Framework Core (EF Core). C# is a
-        natural choice for a Windows-hosted service, offering strong typing, excellent performance for I/O-bound
-        workloads and a rich ecosystem of libraries for networking and data access. EF Core provides an
-        object-relational mapping layer that enables persistent data management without handwritten SQL.
+        We have chosen to implement the Windows application’s backend C# with .NET and Entity Framework Core (EF Core),
+        in lieu of alternatives like Python and Node.js. Python is dismissed as an option because its throughputs for
+        networking and data-serving workloads are inferior compared to C#. While its extensive machine learning (ML)
+        libraries makes it a popular alternative for AI-related backends [31], the platform’s AI inference is fully
+        delegated to Ollama, making Python’s ML ecosystem redundant. Meanwhile, using Node.js would allow the backend
+        to share Electron’s JavaScript runtime, thus unifying the language across the stack. However, JavaScript lacks
+        the structured concurrency primitives and mature ecosystem for long-running background services that C#
+        provides, making it less suitable for a persistent Windows service handling concurrent networking and data
+        access workloads. This ultimately leaves us with C#, which is a natural choice for a Windows-hosted service,
+        offering strong typing, excellent performance for I/O-bound workloads and a rich ecosystem of libraries for
+        networking and data access.
       </p>
       <p>
         Although the frontend and backend can be run independently during development, they are packaged together into a
         single distributable unit for deployment. The backend is published as a self-contained Windows executable
         targeting the win-x64 runtime, bundled as an extra resource within the Electron application using Electron Forge
         and wrapped into a Squirrel-based Windows installer. The frontend manages the lifecycle of the backend process
-        at runtime and is responsible for spawning it on startup. This single-installer approach means the user installs
-        one application without administrative privileges, with no separate backend setup or dependency management
-        required.
+        at runtime and is responsible for spawning it on startup. Alternative distribution approaches such as publishing
+        the backend as a separate installer or a Docker container were considered but rejected. A separate installer
+        introduces a dependency management burden for non-technical school IT staff, while Docker requires additional
+        runtime installation and is poorly suited to the end-user Windows desktop context. This single-installer
+        approach means the user installs one application without administrative privileges, with no separate backend
+        setup or dependency management required.
       </p>
       <p>
         All language model inference runs locally via Ollama, which provides a lightweight and self-contained runtime
-        for open-weight models without cloud connectivity or external API keys. The platform uses the models Qwen3 and
-        Granite 4.0 to generate materials and feedback. The nomic-embed-text model is used exclusively for producing
-        dense vector embeddings of reference materials such as textbooks and curriculum documents. These embeddings are
-        stored in a Chroma vector database and accessed through the ChromaDB .NET client, thereby enabling
-        retrieval-augmented generation (RAG). When the teacher wishes to generate a worksheet with GenAI, relevant
-        passages from the embedded reference corpus may be retrieved using a k-nearest neighbours search algorithm and
-        injected into the prompt context. This grounds the model’s output in authoritative curriculum-aligned source
-        materials rather than relying solely on the model’s parametric knowledge. This is particularly valuable for
-        subject-specific content where factual accuracy and alignment with prescribed syllabi are paramount.
+        for open-weight models without cloud connectivity or external API keys. An alternative approach would be to use
+        llama.cpp directly or integrate a framework such as LM Studio. However, Ollama’s HTTP API and model management
+        layer offer a more convenient and stable interface for programmatic use from a .NET backend than invoking
+        llama.cpp binaries directly, and LM Studio is optimised for interactive desktop use rather than headless server
+        operation.
       </p>
       <p>
-        The platform’s communication layer uses three complementary protocols. HTTP REST is used for transferring large
-        payloads such as the distribution of lesson materials from the teacher’s laptop to student devices, and the
-        upload of student responses in the reverse direction. However, because the Windows server cannot initiate
-        outbound HTTP requests to client devices, a separate TCP socket channel is used to notify student devices when
-        new materials are ready for collection, prompting them to initiate the corresponding HTTP download. This same
-        TCP channel handles other low-latency control signals, such as lock screen commands issued by the teacher and
-        real-time status updates from student devices, where the persistent connection and minimal framing overhead of
-        raw TCP are preferable to HTTP’s request-response overhead. Device discovery and initial pairing are handled via
-        UDP broadcasting, which allows student tablets to locate the teacher’s laptop on the local network without any
-        pre-configured IP addresses.
+        The platform stores dense vector embeddings of reference materials such as textbooks and curriculum documents in
+        a Chroma vector database and accessed through the ChromaDB .NET client, thereby enabling retrieval-augmented
+        generation (RAG). After considering alternative vector stores such as Qdrant or a SQLite-based solution with
+        pgvector, we selected Chroma for its minimal setup requirements and its comprehensive support for the embedding
+        workflows. When the teacher wishes to generate a worksheet with GenAI and selects an accompanying source
+        material, a k-nearest neighbours search algorithm is used to retrieve the top k chunks with the closest
+        semantic similarity from the embedded reference corpus. By injecting these chunks into the prompt context, the
+        model’s output is grounded in authoritative curriculum-aligned source materials rather than relying solely on
+        the model’s parametric knowledge. This is particularly valuable for subject-specific content where factual
+        accuracy and alignment with prescribed syllabi are paramount.
       </p>
       <p>
         While the primary student experience is delivered through a native Android application, the platform also
@@ -280,12 +286,12 @@
         invested in reMarkable or Kindle hardware to participate without replacing existing devices.
       </p>
       <p>
-        The native student-facing application is an Android app written in Java with an XML-based user interface. Native
-        Android applications enable fine-grained control over network behaviour, background services and display
-        rendering, all of which are important for handling incoming TCP signals, triggering HTTP requests in response to
-        server notifications and rendering lesson materials clearly on the constrained displays of e-ink Android
-        devices. The use of XML layouts for the UI is fitting for an e-ink interface with low refresh rates, where
-        simple, static layouts are preferable to dynamically recomposed views.
+        The native student-facing application is an Android app written in Java with an XML-based user interface. As an
+        alternative, Kotlin is the contemporary default for Android development and offers more concise syntax and
+        improved null safety over Java. However, as both Java and Kotlin compile to the same Java Virtual Machine (JVM)
+        bytecode and are fully interoperable, our team selected the former to eliminate any unnecessary learning curves.
+        The use of XML layouts for the UI is fitting for an e-ink interface with low refresh rates, where simple,
+        static layouts are preferable to dynamically recomposed views.
       </p>
 
       <h2>Summary</h2>
@@ -300,12 +306,10 @@
         Core for data persistence, packaged into a single installer.
       </p>
       <p>
-        Communication between devices relies on three protocols: HTTP for transferring materials and responses, TCP
-        sockets for low-latency control signals and real-time notifications, and UDP broadcasting for device discovery.
-        Where direct connections are unavailable, as with reMarkable and Kindle hardware, the platform falls back to
-        asynchronous delivery through the reMarkable Cloud and Amazon’s Personal Documents service respectively. The
-        student-facing Android application is written in Java to allow precise control over networking and display
-        rendering.
+        The student-facing Android application is written in Java to allow precise control over networking and display
+        rendering. Where direct connections with student tablets are unavailable, as with reMarkable and Kindle
+        hardware, the platform falls back to asynchronous delivery through the reMarkable Cloud and Amazon’s Personal
+        Documents service respectively.
       </p>
 
       <h2 id="bibliography">Bibliography</h2>
@@ -396,6 +400,8 @@
       <p id="ref-30">[30] D. Alymkulov, “Desktop Application Development Using Electron Framework: Native vs.
         Cross-Platform,” Apr. 2019. Accessed: Mar. 20, 2026. [Online]. Available:
         https://www.theseus.fi/bitstream/handle/10024/167669/Daniyar_Alymkulov.pdf</p>
+      <p id="ref-31">[31] Stack Overflow, “2025 Stack Overflow Developer Survey,” Stack Overflow, 2025.
+        https://survey.stackoverflow.co/2025/ (accessed Mar. 21, 2026).</p>
     </div>
   </div>
 </main>
