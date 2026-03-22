@@ -2,7 +2,7 @@
   <img src="images/QuillBG.png" alt="Manuscripta Logo" width="120" height="120">
 </p>
 
-<h1 align="center">Manuscripta — Project Report</h1>
+<h1 align="center">Manuscripta - Project Report</h1>
 
 <p align="center">
   <strong>Documentation website for the Manuscripta accessible e-learning platform</strong>
