@@ -168,7 +168,7 @@
                             <td>Desktop UI, backend process management</td>
                         </tr>
                         <tr>
-                            <td>Real-time communication</td>
+                            <td>Internal real-time communication</td>
                             <td>SignalR</td>
                             <td>Bidirectional event broadcasting between backend and UI</td>
                         </tr>
@@ -184,7 +184,7 @@
                         </tr>
                         <tr>
                             <td>Vector database</td>
-                            <td>ChromaDB</td>
+                            <td>ChromaDB (Model: nomic-embed-text)</td>
                             <td>RAG pipeline for source document retrieval</td>
                         </tr>
                         <tr>
@@ -263,13 +263,14 @@
 │       └── src/main/java/    Java source code
 ├── windows/          Windows teacher application
 │   └── ManuscriptaTeacherApp/
-│       ├── Main/     ASP.NET Core backend
-│       └── UI/       Electron + React frontend
+│       ├── docs/         System design docs and specification
+│       ├── Main/         ASP.NET Core backend
+│       ├── MainTests/    Integration tests for the backend
+│       └── UI/           Electron + React frontend
 ├── docs/             Project documentation
-├── api-spec/         Shared API contract
 └── README.md</code></pre>
 
-                <h2 id="api-contract">API Contract</h2>
+                <h2 id="cross-platform-communication">Cross-Platform Communication and Device Pairing</h2>
                 <p>
                     Because the Windows and Android applications were developed simultaneously by separate sub-teams, a shared API contract was established at the outset and stored in api-spec/ in the monorepo. This contract defined the HTTP endpoints, request and response formats, and TCP message opcodes that both sides agreed to implement independently. Neither team needed to wait for the other before building — the contract served as the integration boundary.
                 </p>
@@ -365,6 +366,103 @@
                 <p>
                     All device and entity IDs are validated as GUIDs server-side. Invalid IDs return 404 Not Found with a generic message rather than 400 Bad Request, avoiding information leakage to unauthenticated callers.
                 </p>
+
+                <h3>Communication Flow</h3>
+                <div class="mermaid">
+sequenceDiagram
+    participant A as Android Tablet
+    participant W as Windows Teacher App
+    
+    Note over A,W: 1. Discovery (UDP 5913)
+    W->>A: Broadcast UDP Discovery (IP, Ports)
+    
+    Note over A,W: 2. Pairing (TCP 5912 & HTTP 5911)
+    A->>W: TCP Connect & PAIRING_REQUEST (0x20)
+    A->>W: HTTP POST /pair
+    W-->>A: TCP PAIRING_ACK (0x21)
+    W-->>A: HTTP 201 Created
+    
+    Note over A,W: 3. Session & Control (TCP 5912)
+    loop Every 3s
+        A->>W: STATUS_UPDATE (0x10)
+    end
+    W->>A: DISTRIBUTE_MATERIAL (0x05)
+    
+    Note over A,W: 4. Content & Responses (HTTP 5911)
+    A->>W: GET /distribution/{deviceId}
+    W-->>A: Material JSON
+    A->>W: TCP DISTRIBUTE_ACK (0x12)
+    A->>W: POST /responses
+    W-->>A: HTTP 201 Created
+                </div>
+
+
+                <h3>Windows TCP Networking</h3>
+                <p>
+                    The TcpPairingService manages a dual-socket setup: a TCP listener for incoming connections and a concurrent dictionary mapping device IDs to active TcpClient instances. The heartbeat timeout window is 10 seconds — if no STATUS_UPDATE is received from a device within this window, it is marked DISCONNECTED and the teacher dashboard updates in real time via SignalR.
+                </p>
+                <p>
+                    Command queueing uses TaskCompletionSource for async waiting on LOCK and UNLOCK acknowledgements, allowing the Windows application to await confirmation that a command was received before updating the UI.
+                </p>
+
+                <h3>Android Networking Implementation</h3>
+
+                <h4>Pseudocode: Connection and Heartbeat</h4>
+                <pre><code>ON app start:
+    UDP.Broadcast(DISCOVERY_PACKET, port=5913)
+    WAIT for server response
+
+ON server found:
+    TCP.Connect(serverIP, port=5912)
+    TCP.Send(PAIRING_REQUEST, deviceId, studentName)
+    WAIT for PAIRING_ACK
+
+ON material deployed (TCP signal 0x05 received):
+    HTTP.GET("/distribution/{deviceId}", port=5911)
+    FOR each material downloaded:
+        TCP.Send(DISTRIBUTE_ACK, deviceId + 0x00 + materialId)
+    UI.DisplayMaterial()
+
+EVERY 3 seconds:
+    TCP.Send(STATUS_UPDATE 0x10, deviceId, status, batteryLevel, currentMaterialId)
+
+ON Raise Hand tapped:
+    TCP.Send(HAND_RAISED 0x11, deviceId)
+    UI.ShowConfirmation()
+
+ON answer submitted:
+    HTTP.POST("/responses", deviceId, questionId, answerText)
+    LocalDB.Save(response, synced=true)</code></pre>
+
+                <h4>Pseudocode: Retry with Exponential Backoff</h4>
+                <pre><code>FUNCTION SyncResponse(response):
+    attempts = 0
+    backoff = 1 second
+
+    WHILE attempts < 5:
+        TRY:
+            result = HTTP.POST("/responses", response)
+            IF result == 201:
+                MarkSynced(response)
+                RETURN success
+        CATCH NetworkException:
+            WAIT(backoff)
+            backoff = MIN(backoff * 2, 32 seconds)
+            attempts++
+
+    LocalDB.Save(response, synced=false)  // queue for later sync
+
+END FUNCTION</code></pre>
+
+                <h2 id="external-devices">External Device Delivery (reMarkable & Kindle)</h2>
+                <p>
+                    In addition to the Android student application, Manuscripta supports delivering materials directly to E-ink devices such as the <strong>reMarkable</strong> tablet and <strong>Amazon Kindle</strong>. This ensures compatibility with existing hardware in schools.
+                </p>
+                <ul>
+                    <li><strong>reMarkable:</strong> Delivery is handled via <code>rmapi</code>, integrating directly with the reMarkable cloud to upload generated worksheets and quizzes as PDFs.</li>
+                    <li><strong>Kindle:</strong> Materials are sent using SMTP via the Kindle "Send to Kindle" email service.</li>
+                </ul>
+
 
                 <h2 id="windows-app">Windows Teacher Application</h2>
                 <p class="attribution"><em>Built by Raphael Li and Nemo Shu</em></p>
@@ -480,14 +578,6 @@ END FUNCTION</code></pre>
 
 END FUNCTION</code></pre>
 
-                <h3>TCP Networking and Device Management</h3>
-                <p>
-                    The TcpPairingService manages a dual-socket setup: a TCP listener for incoming connections and a concurrent dictionary mapping device IDs to active TcpClient instances. The heartbeat timeout window is 10 seconds — if no STATUS_UPDATE is received from a device within this window, it is marked DISCONNECTED and the teacher dashboard updates in real time via SignalR.
-                </p>
-                <p>
-                    Command queueing uses TaskCompletionSource for async waiting on LOCK and UNLOCK acknowledgements, allowing the Windows application to await confirmation that a command was received before updating the UI.
-                </p>
-
                 <h2 id="android-app">Android Student Application</h2>
                 <p class="attribution"><em>Built by Priya Bargota and Will Stephen</em></p>
 
@@ -524,62 +614,13 @@ END FUNCTION</code></pre>
                     The data layer contains Room entities, DAOs and Retrofit DTOs. Entities are immutable with a single constructor, making them suitable only for Room persistence and preventing accidental mutation. The domain layer contains corresponding domain models with convenience constructors and input validation that throws immediately on invalid state. Bidirectional mappers convert between entities and domain models, keeping Room annotations entirely out of business logic. The presentation layer uses ViewModels and LiveData, ensuring the UI reacts to state changes without directly accessing data sources.
                 </p>
 
-                <h3>Multi-Channel Networking</h3>
-
-                <h4>Pseudocode: Connection and Heartbeat</h4>
-                <pre><code>ON app start:
-    UDP.Broadcast(DISCOVERY_PACKET, port=5913)
-    WAIT for server response
-
-ON server found:
-    TCP.Connect(serverIP, port=5912)
-    TCP.Send(PAIRING_REQUEST, deviceId, studentName)
-    WAIT for PAIRING_ACK
-
-ON material deployed (TCP signal 0x05 received):
-    HTTP.GET("/distribution/{deviceId}", port=5911)
-    FOR each material downloaded:
-        TCP.Send(DISTRIBUTE_ACK, deviceId + 0x00 + materialId)
-    UI.DisplayMaterial()
-
-EVERY 3 seconds:
-    TCP.Send(STATUS_UPDATE 0x10, deviceId, status, batteryLevel, currentMaterialId)
-
-ON Raise Hand tapped:
-    TCP.Send(HAND_RAISED 0x11, deviceId)
-    UI.ShowConfirmation()
-
-ON answer submitted:
-    HTTP.POST("/responses", deviceId, questionId, answerText)
-    LocalDB.Save(response, synced=true)</code></pre>
-
-                <h4>Pseudocode: Retry with Exponential Backoff</h4>
-                <pre><code>FUNCTION SyncResponse(response):
-    attempts = 0
-    backoff = 1 second
-
-    WHILE attempts < 5:
-        TRY:
-            result = HTTP.POST("/responses", response)
-            IF result == 201:
-                MarkSynced(response)
-                RETURN success
-        CATCH NetworkException:
-            WAIT(backoff)
-            backoff = MIN(backoff * 2, 32 seconds)
-            attempts++
-
-    LocalDB.Save(response, synced=false)  // queue for later sync
-
-END FUNCTION</code></pre>
-
                 <h3>CI/CD Pipeline</h3>
                 <p>
                     The Android application uses GitHub Actions for continuous integration. The workflow triggers on pull requests to any path within android/ and runs two jobs sequentially. The first job runs Checkstyle to enforce code style across the entire codebase. The second job runs the full JaCoCo test suite and enforces 100% unit test coverage — the build fails if coverage drops below this threshold. Coverage reports are uploaded as artifacts and posted as comments on pull requests automatically.
                 </p>
-                <div class="warning-box">
-                    <p><strong>⚠</strong> A Windows CI/CD pipeline was not implemented within the project timeline. The Windows application is built and packaged manually using Electron Forge.</p>
-                </div>
+                <p>
+                    Similarly, a CI/CD pipeline was implemented for the Windows application to automate backend builds and tests, as well as packaging through GitHub Actions using Electron Forge.
+                </p>
 
                 <h2 id="decisions">Key Implementation Decisions</h2>
                 <table>
@@ -663,5 +704,7 @@ END FUNCTION</code></pre>
         </div>
     </footer>
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
 </body>
 </html>
