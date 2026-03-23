@@ -467,11 +467,11 @@ public void setConfig_restartsIfRunning() throws Exception {
                 </p>
                 <p>
                     <strong>What it does:</strong> The Windows application binds four services to four separate ports:
-                    SignalR on 5910 (frontend communication, per FrontendWorkflowSpecifications §2ZA(8)(b)), HTTP REST
-                    on 5911 (material distribution and responses, per API Contract §Ports), TCP on 5912 (control
+                    SignalR on 5910 (frontend communication, per our FrontendWorkflowSpecifications Section 2ZA(8)(b), "The default designated port for SignalR communications shall be 5910."), HTTP REST
+                    on 5911 (material distribution and responses, per API Contract), TCP on 5912 (control
                     signals), and UDP on 5913 (device discovery). Host-based routing via
                     <code>RequireHost</code> constrains REST controllers to port 5911 only, while health and SignalR
-                    endpoints remain accessible on any port.
+                    endpoints remain accessible on any port. These tests verify that the port configuration strictly match to the specification and that the routing rules are correctly enforced, in order to guard against potential misconfigurations that could break client-server communication without obvious errors, which is central to the system's integrity.
                 </p>
                 <p>
                     <strong>What must be guaranteed:</strong> If a REST API request arrives on the SignalR port, it must
