@@ -63,7 +63,7 @@
 
                 <div class="intro-card">
                     <p>
-                        Manuscripta is implemented as two independent but tightly integrated applications built concurrently against a shared API contract. The Windows teacher application was built by <strong>Raphael Li</strong> and <strong>Nemo Shu</strong>. The Android student application was built by <strong>Priya Bargota</strong> and <strong>Will Stephen</strong>.
+                        Manuscripta is implemented as two independent but tightly integrated applications built concurrently against a shared API contract. The Windows teacher application was built by <strong>Raphael Li</strong> and <strong>Nemo Shu</strong>. The Android student application was built by <strong>Will Stephen</strong> and <strong>Priya Bargota</strong>.
                     </p>
                 </div>
 
@@ -345,7 +345,7 @@ sequenceDiagram
 
                 <h3>Application Startup and Process Management</h3>
                 <p>
-                    The Windows application consists of a .NET 10.0 ASP.NET Core backend and a React and Electron frontend. The frontend is solely responsible for spawning, monitoring and terminating the backend as a child process on startup using Node.js child_process.spawn. The backend is published as a self-contained win-x64 executable bundled inside the Electron application, meaning the teacher installs and runs a single application with no separate setup required. If the backend crashes, the frontend detects this via health checks and restarts it automatically with exponential backoff. Dynamic port allocation ensures startup succeeds even if default ports are unavailable.
+                    The Windows application consists of a .NET 10.0 ASP.NET Core backend and a React/Electron frontend. The frontend is responsible for spawning, monitoring and terminating the backend as a child process on startup using Node.js child_process.spawn. The backend is published as a self-contained win-x64 executable bundled inside the Electron application, meaning the teacher installs and runs a single application with no separate setup required. If the backend crashes, the frontend detects this via health checks and restarts it automatically with exponential backoff. Dynamic port allocation ensures startup succeeds even if default ports are unavailable.
                 </p>
 
                 <p>
