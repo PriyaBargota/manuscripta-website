@@ -78,35 +78,34 @@
                 </figure>
 
                 <h2 id="windows-application">Windows application</h2>
-                <p>Content TBC:</p>
-                <p>
-                    Database schema/ UML,<br>
-                    Persistence rules,<br>
-                    Frontend-to-backend communication
-                </p>
+                <p>The Windows teacher portal is a whole-stack web application consisting of a frontend and a backend. At runtime, the frontend is responsible for starting and supervising the backend process.</p>
+                <p>The Windows application uses a layered architecture with clear separation of concerns across backend, frontend, and testing components. The backend is an ASP.NET Core service that owns business rules, persistence, and device networking; the frontend is an Electron + React client that acts as the teacher-facing interface; and bidirectional runtime communication is handled primarily through SignalR.</p>
+
+                <h3 id="data-persistence">Data persistence</h3>
+                <p>For the purposes of our application, data storage is classified into two categories: long-term persistence and short-term persistence.</p>
+                <p>Long-term persisted data are stored in a database in the user’s application settings folder. Specifically, the backend deterministically assumes a default database location on startup, creating the directory if it does not already exist. Long-term persistence allows data to be retrievable via SQLite and Entity Framework Core (EF Core) across application restarts. Examples of long-term persisted data include unit collections, units, lessons, materials, questions, source document metadata, attachment metadata, configuration defaults, PDF export defaults, external device metadata and email credential records.</p>
+                <p>On the contrary, short-term persisted data is intentionally volatile. As they are only valid for the current application run, these data are stored in an in-memory database. Examples of short-term persisted data include student responses, sessions, feedback lifecycle data, paired device registry, live device status cache and per-device configuration overrides.</p>
+                <p>On startup, the backend proactively performs orphan cleanup for attachment files and external-device configuration files, reconciling filesystem state with database state. This ensures strong consistency across relational data and sidecar file storage.</p>
+
+                <h3 id="backend-layers">Backend layers</h3>
+                <p>To ensure a separation of concerns with maintainability and testability, the Windows backend is organised into four main layers: the model layer, the data layer, the service layer and the controller layer.</p>
+                <p>The model layer facilitates the communication between other layers by defining the core application data structures. This includes entities, enumeration types, data transfer objects (DTOs), events, mapping types and network message models.</p>
+                <p>The data layer manages the application’s connection to the database via a database context. It defines how model entities are stored, indexed and manipulated, enforcing the long-term and short-term persistence rules.</p>
+                <p>The backend business logic is implemented in the service layer, where long-term persisted data from EF Core is bridged with short-term persisted data from memory. This layer coordinates creation, retrieval, update, delete (CRUD) and other operations on model entities, with corresponding domain restraints and lifecycle rules to validate cascading and orphan-related behaviour. Moreover, this layer provides runtime integration survices including PDF generation, file handling, external-device deployment, email dispatch, AI generation or embedding workflows, dependency availability checks and background initialisation tasks. The service layer also includes a TeacherPortalHub for communicating with the Electron frontend, as elucidated in the next section.</p>
+                <p>The controller layer exposes the service layer’s functionalities through external-facing REST API endpoints, from which HTTP requests are translated into service calls before returning safe responses.</p>
 
                 <h2 id="interaction-with-the-android-application">Interaction with the Android application</h2>
-                <p>Content TBC:</p>
-                <p>
-                    Very high-level overview of API Contract,<br>
-                    Android’s internal architecture
-                </p>
+                <p>Interaction with the Android application employs separate channels for different communication purposes.</p>
+                <p>Before any meaningful communication can occur, student tablets must first locate the teacher’s Windows machine on the local network through UDP broadcasting. The teacher application continuously announces its presence on the network, broadcasting its IP address and the ports where the teacher is listening. When a tablet receives these broadcasts, it extracts the connection details and pairs with the laptop. Using UDP allows the broadcasted information to reach all devices on the network simultaneously with no prior connection and minimal overhead.</p>
+                <p>After initial pairing is established, the primary communication channel transitions to a mixture of HTTP and TCP.</p>
+                <p>When a new piece of information is made available to students, it is impractical for the Windows laptop to directly transmit it to student tablets via TCP, as this protocol is optimised for control signals rather than bulk data transfer. Using HTTP requests for this is similarly unfeasible as it requires client initiation. To resolve this problem, we have utilised a hybrid three-phase push-pull pattern which uses both HTTP and TCP. In this pattern, the Windows laptop uses TCP to signal that something is available. When the tablets receive this signal, they use HTTP to pull that content. Lastly, a tablet must send an acknowledgment signal via TCP to indicate successful retrieval. This pattern is repeatedly utilised in material deployment, feedback delivery and configuration refresh mechanisms.</p>
+                <p>In addition to this pattern, HTTP is also used to register student names and submit student responses. Meanwhile, TCP is used for real-time remote-control signals like locking tablet screens, updating tablet statuses and sending raise-hand messages.</p>
 
-                <h2 id="interaction-with-remarkable-clients">Interaction with reMarkable clients</h2>
-                <p>Content TBC:</p>
-                <p>
-                    Pairing,<br>
-                    Authentication code,<br>
-                    Config files,<br>
-                    rmapi
-                </p>
-
-                <h2 id="interaction-with-kindle-clients">Interaction with Kindle clients</h2>
-                <p>Content TBC:</p>
-                <p>
-                    Email credentials management,<br>
-                    Send to Kindle
-                </p>
+                <h2 id="interaction-with-remarkable-and-kindle-clients">Interaction with reMarkable and Kindle clients</h2>
+                <p>Manuscripta’s Windows architecture treats reMarkable and Kindle endpoints as external and asynchronous clients rather than classroom-native ones. This is because while Android tablets participate in direct classroom control and live status loops, external devices are integrated through cloud-mediated dispatch channels that do not support screen locking, instant acknowledgements or direct TCP control semantics. Hence, our system does not try to force a real-time classroom protocol onto devices that are designed for delayed sync and store-and-forward workflows.</p>
+                <p>For reMarkable, communication is built around the runtime dependency rmapi, with a token-based pairing flow. A one-time code is collected, the backend validates rmapi availability, and rmapi authentication writes a device-specific configuration file under the application data directory. Thereafter, each reMarkable device is effectively represented by a persisted entity plus its corresponding rmapi config artifact, which supports independent authentication domains per device.</p>
+                <p>Communication with Kindle tablets is email-centric and relies on SMTP credential availability. Pairing captures the Kindle destination address semantics, while deployment uses Amazon’s Send to Kindle service to send PDFs as email attachments. Email credentials are stored in a single-record repository and encrypted at rest, with DPAPI on Windows and a development fallback for non-Windows environments.</p>
+                <p>Overall, the material delivery process is architected as a two-phase pipeline where a PDF version of the material is generated before being dispatched. Generation of PDF takes into account the configuration settings associated with the device, the material as well as the global defaults.</p>
             </div>
         </div>
     </main>
