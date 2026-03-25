@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
-  <title id="title">One-to-many Windows and Android architecture diagram</title>
-  <desc id="desc">A Windows laptop server connected bidirectionally to three e-ink Android client devices with arrows labelled request and response data.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title">
+  <title id="title">The Windows and Android applications exhibit a server-client relationship.</title>
 
   <defs>
     <style>

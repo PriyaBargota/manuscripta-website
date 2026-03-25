@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
-    <title id="title">Extended Windows, Android, reMarkable and Kindle architecture diagram</title>
-    <desc id="desc">A Windows laptop server connected bidirectionally to three Android e-ink clients, plus one-way Material PDFs flows to reMarkable and Kindle clients.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title">
+    <title id="title">The Windows application may send PDF versions of materials to reMarkable and Kindle clients.</title>
 
     <defs>
         <style>
