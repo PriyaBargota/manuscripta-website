@@ -41,16 +41,16 @@
         <rect class="pdf-client-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
         <rect class="pdf-client-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
         <circle fill="#FF6106" cx="75" cy="156" r="5" />
-        <text class="label" x="75" y="72" text-anchor="middle">E-ink device</text>
-        <text class="sub" x="75" y="96" text-anchor="middle">reMarkable client</text>
+        <text class="label" x="75" y="72" text-anchor="middle">reMarkable</text>
+        <text class="sub" x="75" y="96" text-anchor="middle">(client)</text>
     </g>
 
     <g transform="translate(70 310)">
         <rect class="pdf-client-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
         <rect class="pdf-client-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
         <circle fill="#FF6106" cx="75" cy="156" r="5" />
-        <text class="label" x="75" y="72" text-anchor="middle">E-ink device</text>
-        <text class="sub" x="75" y="96" text-anchor="middle">Kindle client</text>
+        <text class="label" x="75" y="72" text-anchor="middle">Kindle</text>
+        <text class="sub" x="75" y="96" text-anchor="middle">(client)</text>
     </g>
 
     <!-- Android e-ink clients as tablet shapes -->
