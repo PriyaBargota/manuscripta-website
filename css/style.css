@@ -959,7 +959,7 @@ a.nav-brand:focus-visible {
     overflow: hidden;
     border-radius: 16px;
     box-shadow: var(--shadow-elevated);
-    background-color: var(--bg-surface);
+    background-color: #000;
 }
 
 .video-container iframe {
@@ -968,7 +968,7 @@ a.nav-brand:focus-visible {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border: none;
 }
 
 .about p {
