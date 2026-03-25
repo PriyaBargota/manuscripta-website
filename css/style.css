@@ -1225,6 +1225,28 @@ a.nav-brand:focus-visible {
     margin-bottom: 16px;
 }
 
+.doc-figure {
+    margin: 24px auto 28px;
+    text-align: center;
+}
+
+.doc-figure img {
+    width: 100%;
+    max-width: 1040px;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-soft);
+}
+
+.doc-figure figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--color-gray-500);
+    font-style: italic;
+}
+
 .doc-content ul,
 .doc-content ol {
     font-family: 'IBM Plex Sans', sans-serif;
