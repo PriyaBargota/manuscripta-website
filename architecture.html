@@ -66,14 +66,14 @@
                     At its core, Manuscripta is a distributed client-server system consisting of two interdependent applications. The Windows application, which displays a teacher portal, runs on the teacher’s laptop and acts as a central server. Meanwhile, the Android application, which guides student learning, runs on each student’s e-ink display and acts as a client. Under this system, multiple clients may connect to the same server at a time. This bidirectional communication occurs exclusively over a local area network with no cloud dependency. This architecture, which facilitates a clean separation of concerns, centralises the storage and management of data, including those associated with lesson materials and tablet configurations, into the teacher’s laptop, thus ensuring data integrity and consistency.
                 </p>
                 <figure class="doc-figure">
-                    <img src="images/architecture-diagram-core.svg" alt="One Windows laptop connected bidirectionally to three Android e-ink devices with request and response data arrows.">
+                    <img src="images/architecture-diagram-windows-android.svg" alt="One Windows laptop connected bidirectionally to three Android e-ink devices with request and response data arrows.">
                     <figcaption>The Windows and Android applications exhibit a server-client relationship.</figcaption>
                 </figure>
                 <p>
                     In addition to this bidirectional communication, the platform supports unidirectional communication from the Windows laptop to both reMarkable or Kindle clients, on which our custom Android application cannot be installed and run. In these cases, the teacher may transmit the PDF version of a chosen lesson material to any number of specified clients. The PDF transmission to reMarkable and Kindle clients is carried out via the reMarkable cloud and via email respectively. As this is a one-way transmission, no responses of any kind may be returned to the teacher’s laptop.
                 </p>
                 <figure class="doc-figure">
-                    <img src="images/architecture-diagram-extended.svg" alt="Windows laptop connected bidirectionally to three Android e-ink devices and one-way to reMarkable and Kindle clients via Material PDF arrows.">
+                    <img src="images/architecture-diagram-windows-android-external.svg" alt="Windows laptop connected bidirectionally to three Android e-ink devices and one-way to reMarkable and Kindle clients via Material PDF arrows.">
                     <figcaption>The Windows application may send PDF versions of materials to reMarkable and Kindle clients.</figcaption>
                 </figure>
 
