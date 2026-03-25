@@ -2889,19 +2889,16 @@ html {
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-soft);
     background: #000;
+    aspect-ratio: 16 / 9;
 }
 
 .video-embed iframe {
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 450px;
+    height: 100%;
     border: none;
-}
-
-@media (max-width: 768px) {
-    .video-embed iframe {
-        height: 280px;
-    }
 }
 
 /* ============================================
