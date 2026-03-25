@@ -62,28 +62,55 @@
                 </div>
 
                 <h2 id="deployment">Setup &amp; Getting Started</h2>
-                <p>[Instructions for setting up and running the project locally will go here.]</p>
+                <div style="margin: 24px 0 40px; text-align: center;">
+                    <a href="https://github.com/raphaellith/Manuscripta" target="_blank" class="btn btn-primary" style="display: inline-flex; min-height: 48px; padding: 0 24px; border-radius: 99px; background: #24292e;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 12px;">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Full Setup Guide on GitHub
+                    </a>
+                </div>
+
+                <h3>Prerequisites</h3>
+                <div class="prerequisites-container">
+                    <div class="prereq-block">
+                        <h4>Teacher Application</h4>
+                        <ul>
+                            <li>Windows PC with sufficient resources to run Ollama and Qwen3 8B locally (approximately 8 GB RAM for the model)</li>
+                            <li>.NET 10.0 SDK</li>
+                            <li>Node.js (for Electron frontend)</li>
+                        </ul>
+                    </div>
+                    <div class="prereq-block">
+                        <h4>Student Application</h4>
+                        <ul>
+                            <li>Android-based e-ink tablet (e.g., Boox, AiPaper)</li>
+                            <li>All devices must be connected to the same local network</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <h2 id="videos">Monthly Videos</h2>
 
                 <h3>December Update</h3>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">In December, we made significant progress connecting the front-end prototype to the .NET back-end, introducing persistent data storage and a rich text material editor that supports LaTeX equations and PDFs. We successfully deployed the interactive student interface to an e-ink tablet for quizzes and viewing materials. Our next priorities include detailing LLM integration, designing the Retrieval-Augmented Generation (RAG) pipeline, and evaluating compatible on-device AI models.</p>
                 <div class="video-embed">
-                    <iframe src="https://liveuclac-my.sharepoint.com/:v:/g/personal/zcabwst_ucl_ac_uk/IQCp9zME1ovAQ4gejpTJ5_xPAdf11tjEfOQH_LriSvTb4Og?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=JPahGv&action=embedview" title="December Update Video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/goQ_0TK-boA" title="December Update Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
                 <h3>January Update</h3>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">In January, we introduced our new rich text editor to the teacher portal, which supports formatting, tables, KaTeX equations, and embedded PDFs. On the student side, we deployed our interactive UI onto an e-ink tablet, allowing students to view tasks and answer questions in a distraction-free environment. Moving forward, we are focusing on LLM integration for AI generation and marking, designing our RAG pipeline, and benchmarking on-device AI models on Intel and Qualcomm hardware.</p>
                 <div class="video-embed">
-                    <iframe src="https://liveuclac-my.sharepoint.com/:v:/g/personal/zcabwst_ucl_ac_uk/IQD8xi6zknWaT6bodUqpu0xnAa8id-QacAFRxK_X_nUQffc?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=bOuq9r&action=embedview" title="January Update Video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/RmyO1qy0SEE" title="January Update Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
                 <h3>February Update</h3>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">In February, we focused on website design, PDF rendering, and hardware integration. We updated the styling of the Manuscripta website to match the design of our Windows application to maintain visual consistency. We improved core material distribution by implementing native PDF rendering, allowing teachers to export any lesson material as a PDF document for traditional classroom use. Finally, we successfully integrated the platform with reMarkable tablets, enabling the deployment of questions and embedded PDFs directly to paired reMarkable devices.</p>
                 <div class="video-embed">
-                    <iframe src="https://liveuclac-my.sharepoint.com/:v:/g/personal/zcabwst_ucl_ac_uk/IQCHaDhwjQfOQaQh9JFdES5gAeee9oJD6mbe3Us5rRnFuSM?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=lJDfKD&action=embedview" title="February Update Video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/a8xwBN4p2j0" title="February Update Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
-                <h2 id="external-links">External Resources</h2>
-                <p>Explore our source code and follow our development journey:</p>
-                
+                <h2 id="external-links">External Resources</h2>                
                 <div class="resource-cards">
                     <!-- GitHub Card -->
                     <a href="https://github.com/raphaellith/Manuscripta" target="_blank" class="resource-card github-card">
