@@ -25,3 +25,5 @@ yarn-error.log*
 # Project specific
 reference UI/
 images/pr-content/
+/docs/
+claude.md

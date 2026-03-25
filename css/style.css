@@ -955,8 +955,7 @@ a.nav-brand:focus-visible {
     max-width: 900px;
     margin: 0 auto;
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 16px;
     box-shadow: var(--shadow-elevated);
