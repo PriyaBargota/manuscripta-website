@@ -737,7 +737,7 @@ a.nav-brand:focus-visible {
     border-radius: 2px;
 }
 
-.problem-solution-grid {
+.about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
@@ -910,7 +910,7 @@ a.nav-brand:focus-visible {
 }
 
 @media (max-width: 768px) {
-    .problem-solution-grid {
+    .about-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
