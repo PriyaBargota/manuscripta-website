@@ -2879,3 +2879,151 @@ html {
 .doc-content table tbody tr:hover {
     background-color: #fafbfc;
 }
+
+/* Video Embeds */
+.video-embed {
+    position: relative;
+    margin: 16px 0 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+    background: #000;
+}
+
+.video-embed iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .video-embed iframe {
+        height: 280px;
+    }
+}
+
+/* ============================================
+   RESOURCE CARDS (Appendices)
+   ============================================ */
+.resource-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 32px 0 48px;
+}
+
+.resource-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.github-card::before {
+    background-color: #24292e;
+}
+
+.notion-card::before {
+    background-color: #000000;
+}
+
+.resource-card:hover.github-card {
+    border-color: #24292e;
+}
+
+.resource-card:hover.notion-card {
+    border-color: #000000;
+}
+
+.resource-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background: var(--color-gray-50);
+    color: var(--text-primary);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.resource-card:hover .resource-icon {
+    transform: scale(1.05);
+}
+
+.github-card:hover .resource-icon {
+    background: rgba(36, 41, 46, 0.1);
+    color: #24292e;
+}
+
+.notion-card:hover .resource-icon {
+    background: rgba(0, 0, 0, 0.1);
+    color: #000000;
+}
+
+.resource-content {
+    flex-grow: 1;
+}
+
+.resource-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: var(--text-primary);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+}
+
+.resource-content p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.resource-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--color-gray-400);
+    transition: transform 0.3s ease, color 0.3s ease;
+    align-self: center;
+}
+
+.resource-card:hover .resource-arrow {
+    transform: translateX(4px);
+    color: var(--color-brand-green);
+}
+
+@media (max-width: 640px) {
+    .resource-cards {
+        grid-template-columns: 1fr;
+    }
+}
