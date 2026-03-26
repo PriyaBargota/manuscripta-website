@@ -184,7 +184,7 @@
                         <tr>
                             <td>Coverage reporting</td>
                             <td>JaCoCo 0.8.12</td>
-                            <td>95% coverage enforcement via CI</td>
+                            <td>90% coverage enforcement via CI</td>
                         </tr>
                         <tr>
                             <td>Code style</td>
@@ -400,20 +400,20 @@ END FUNCTION</code></pre>
                 <p class="attribution"><em>Built by Priya Bargota and Will Stephen</em></p>
 
                 <p>
-                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The backend data and network layers achieve 96% instruction coverage and 93% branch coverage across 88 classes, validated by JaCoCo.
+                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The data and network layers achieve 90% instruction coverage, validated by JaCoCo. A number of classes are excluded from coverage reporting because JaCoCo either counted them as generated build files or could not detect that they were being tested. Excluded classes include Android-generated resources (<code>R.class</code>, <code>BuildConfig</code>, <code>Manifest</code>, <code>databinding</code>), Hilt dependency injection artefacts (<code>*_Factory</code>, <code>*_MembersInjector</code>, <code>Hilt_*</code>, <code>*_Impl</code>, <code>*_GeneratedInjector</code>), all UI Activities and Fragments (<code>MainActivity</code>, <code>PairingActivity</code>, <code>ReadingFragment</code>, <code>QuizFragment</code>, <code>WorksheetFragment</code>, <code>FeedbackFragment</code>, <code>TeacherFeedbackFragment</code>), rendering components (<code>MarkdownRenderer</code>, <code>QuestionBlockRenderer</code>, <code>AttachmentImageLoader</code>, custom Views), network and connection managers (<code>TcpSocketManager</code>, <code>HeartbeatManager</code>, <code>PairingManager</code>, <code>ConnectionManager</code>, <code>MulticastLockManager</code>), and application entry points (<code>ManuscriptaApplication</code>, <code>ManuscriptaDatabase</code>, <code>DatabaseModule</code>).
                 </p>
 
                 <h3>Device Pairing Screen</h3>
                 <p>
                     On first launch the student enters their name and taps Pair. The application broadcasts a UDP discovery packet on port 5913 to locate the teacher's Windows application on the local network without requiring manual IP configuration. Once the server responds, a TCP pairing handshake is completed on port 5912 and the device is registered. The screen is deliberately minimal — a single text field and one button — reflecting the principle of reducing cognitive load established in C1.
                 </p>
-                <img src="images/Android-1.png" alt="Device Pairing Screen showing minimal interface with name input and pair button" class="implementation-screenshot">
+                <img src="images/Android-1.png" alt="Device Pairing Screen showing minimal interface with name input and pair button" class="implementation-screenshot-mobile">
 
                 <h3>Worksheet View</h3>
                 <p>
                     Once paired and a material is deployed, the student sees the worksheet displayed in large high-contrast monochromatic text optimised for E-ink rendering. Typography is set at a size appropriate for the target age group with generous line spacing to support students with reading difficulties. A persistent Raise Hand button sits at the bottom right of every content screen, allowing the student to send a discreet help request to the teacher dashboard without interrupting their work.
                 </p>
-                <img src="images/Android-2.png" alt="Worksheet View displaying high-contrast monochromatic text with Raise Hand button" class="implementation-screenshot">
+                <img src="images/Android-2.png" alt="Worksheet View displaying high-contrast monochromatic text with Raise Hand button" class="implementation-screenshot-mobile">
                 <div class="warning-box">
                     <p><strong>⚠</strong> Content transformation buttons (simplify, expand, summarise) are identified as a should-have requirement and are partially implemented. Full delivery is noted in the evaluation section.</p>
                 </div>
@@ -422,7 +422,7 @@ END FUNCTION</code></pre>
                 <p>
                     The quiz view displays a reading passage followed by a question and an answer input field. The student types their response and submits it via HTTP POST to port 5911, where it appears in the teacher's Responses view alongside AI-generated feedback from IBM Granite 4.0.
                 </p>
-                <img src="images/Android-3.png" alt="Quiz View showing reading passage, question, and answer input field" class="implementation-screenshot">
+                <img src="images/Android-3.png" alt="Quiz View showing reading passage, question, and answer input field" class="implementation-screenshot-mobile">
                 <div class="warning-box">
                     <p><strong>⚠</strong> Text-to-speech functionality is integrated into the application architecture but not fully delivered within the project timeline.</p>
                 </div>
@@ -434,7 +434,7 @@ END FUNCTION</code></pre>
 
                 <h3>CI/CD Pipeline</h3>
                 <p>
-                    The Android application uses GitHub Actions for continuous integration. The workflow triggers on pull requests to any path within android/ and runs two jobs sequentially. The first job runs Checkstyle to enforce code style across the entire codebase. The second job runs the full JaCoCo test suite and enforces 100% unit test coverage — the build fails if coverage drops below this threshold. Coverage reports are uploaded as artifacts and posted as comments on pull requests automatically.
+                    The Android application uses GitHub Actions for continuous integration. The workflow triggers on pull requests to any path within android/ and runs two jobs sequentially. The first job runs Checkstyle to enforce code style across the entire codebase. The second job runs the full JaCoCo test suite enforcing 90% unit test coverage — the build fails if coverage drops below this threshold. Coverage reports are uploaded as artifacts and posted as comments on pull requests automatically.
                 </p>
                 <p>
                     Similarly, a CI/CD pipeline was implemented for the Windows application to automate backend builds and tests, as well as packaging through GitHub Actions using Electron Forge.
@@ -470,7 +470,7 @@ END FUNCTION</code></pre>
                             <td>Prevents accidental mutations during persistence, enforces clean separation from domain models</td>
                         </tr>
                         <tr>
-                            <td>100% Android unit test coverage enforced by CI</td>
+                            <td>90% Android unit test coverage enforced by CI</td>
                             <td>Ensures every data and network layer component is independently verifiable, supporting the clean architecture goal</td>
                         </tr>
                     </tbody>
@@ -597,6 +597,47 @@ END FUNCTION</code></pre>
                 </details>
 
                 <h3>Android Application</h3>
+                <p>
+                    The Android sub-team adopted a broadly similar specification-anchored workflow. All agent interactions were grounded in the shared <code>/docs</code> directory, which served as the single source of project context across both sub-teams. Each agent harness that interacted with the Android codebase — whether Antigravity, GitHub Copilot, or Claude Code — was configured with instruction files (<code>claude.md</code>, <code>.github/copilot-instructions.md</code>, and equivalent) that directed it to read the documentation directory on startup and gather project context before generating any code. These instruction files also contained the directory layout, coding standards (including Checkstyle configuration), and testing methodologies — ensuring that agents operated within the same constraints applied to human contributors.
+                </p>
+                <p>
+                    Google Antigravity, GitHub Copilot, and Claude Code were used throughout implementation. All generated code was manually reviewed and validated by Will, with one exception: the Android UI layer (<code>Activities</code>, <code>Fragments</code>, and rendering components) received less rigorous manual oversight due to time constraints — a trade-off discussed further under <em>AI Agent Limitations</em> below.
+                </p>
+
+                <h4>Project Management and Issue Decomposition</h4>
+                <p>
+                    At the start of the project, agents were used to decompose the systems architecture into a structured set of parent issues, each containing a set of child issues. This decomposition was performed in several stages, deliberately limiting the scope of each individual agent task to reduce the risk of compounding errors. The resulting plan was audited and validated manually before any development began.
+                </p>
+                <p>
+                    The goal of this decomposition was to digest the full development effort into smaller, independently buildable and verifiable units of work, with each issue mapping directly onto a single pull request. Issues were deployed to the GitHub repository with clear dependency mappings, enabling parallelised code generation across multiple agent sessions without merge conflicts or duplicated effort.
+                </p>
+
+                <h4>Review Workflow</h4>
+                <p>
+                    GitHub Copilot Review Agents were used to perform initial review passes on all pull requests before human review was requested. Pull requests were iterated against the review agent until its comments ran clear, at which point the PR was passed to a team member for manual review. This practice saved significant time and identified a large number of small bugs and inconsistencies across the development process. The review agent had full project context and access to the team's coding standards via the Copilot instructions document, and therefore helped enforce those standards consistently across all contributions.
+                </p>
+
+                <h4>Case Study: Integration Testing with GitHub Copilot Agent</h4>
+                <p>
+                    When integration testing between the Android and Windows applications, the GitHub Copilot coding agent running Claude Opus 4.6 proved invaluable. Will generated a suite of integration test cases targeting the Android client and tasked the agent with executing each test, identifying integration bugs, applying fixes, and re-running the tests until all cases passed.
+                </p>
+                <p>
+                    The agent had direct access to the Android tablet and could interact with the UI via <code>adb</code> (Android Debug Bridge) commands. It was also capable of bundling and deploying the APK to the device, and could make API calls to simulation endpoints exposed by the Windows client — with instructions that it could add additional simulation endpoints if needed. Crucially, the agent was instructed to treat the API contract defined in <code>/docs</code> as ground truth and as the tiebreaker for any behavioural discrepancies between the two applications.
+                </p>
+                <p>
+                    This agent session ran for approximately six hours and identified all subtle inconsistencies and bugs in the communications between the two systems. The resulting fixes were merged in <a href="https://github.com/raphaellith/Manuscripta/pull/286" target="_blank">PR #286</a>. Notably, most of the agent's time was spent running tests and verifying changes via <code>adb</code>, as well as exploring the problem space — the actual lines of code changed were well within the range of straightforward human manual verification.
+                </p>
+                <p>
+                    After the agent-based integration tests completed, the team conducted manual end-to-end verification in a single group meeting session. This follow-up identified cases in which the agent had resolved test case failures without addressing the underlying feature behaviour — the tests passed, but the feature itself was not doing what was intended. This reinforced the importance of human judgement in validating not just correctness against test specifications, but fitness for purpose.
+                </p>
+
+                <h4>AI Agent Limitations</h4>
+                <p>
+                    One of the core limitations discovered when working in this agent-assisted fashion was that it fundamentally shifted where the bottlenecks in development occurred. Code generation became functionally free — low cost in terms of both effort and time. As a result, the bottleneck moved away from writing code and towards code review. This led to situations in which pull requests sat in review for extended periods, and to imbalances between team members caused by the asymmetry between the time required to generate a large number of PRs and the time required to verify, digest, and integrate them into the codebase.
+                </p>
+                <p>
+                    There is a further risk associated with insufficient review of generated code, as was the case for the UI layer: when no team member holds a clear mental model of what the different classes are doing, it becomes significantly more difficult to identify bugs, make informed architectural decisions, and — more broadly — understand the boundaries of what the codebase can and cannot be adapted to deliver.
+                </p>
 
                 <h2 id="github">GitHub Repository</h2>
                 <p>
