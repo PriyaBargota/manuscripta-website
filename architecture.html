@@ -114,8 +114,9 @@
         student responses, sessions, feedback lifecycle data, paired device registry, live device status cache and
         per-device configuration overrides.</p>
       <p>On startup, the backend proactively performs orphan cleanup for attachment files and external-device
-        configuration files, reconciling filesystem state with database state. This ensures strong consistency across
-        relational data and sidecar file storage.</p>
+        configuration files, reconciling filesystem state with database state. Likewise, the frontend is responsible for
+        removing orphaned attachments and questions when the material editor is used or when broken attachment links are
+        discovered. This ensures strong consistency across relational data and sidecar file storage.</p>
 
       <h3 id="backend-layers">Backend layers</h3>
       <p>To ensure a separation of concerns with maintainability and testability, the Windows backend is organised into
