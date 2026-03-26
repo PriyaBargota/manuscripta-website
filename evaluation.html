@@ -630,56 +630,65 @@
 
                 <h3>AI Capabilities</h3>
                 <p>
-                    The AI capabilities of Manuscripta were evaluated through a series of experiments designed to assess
-                    the performance of the AI models used in the system. The experiments were conducted with both
-                    IBM Granite 4 and Qwen3:8b models.
+                    The AI capabilities of Manuscripta were evaluated using the same production prompt-construction and
+                    parsing pathways used by the Windows application, rather than separate evaluation-only prompts. 
+                    We run repeated iterations to capture expected non-determinism in LLM outputs. 
+                    The experiments below compare Qwen3:8b and Granite4 under equivalent conditions.
                 </p>
 
                 <h4>Material Generation Latency</h4>
                 <p>
-                    <strong>Experiment & Purpose:</strong> The Material Generation test records the end-to-end latency
-                    required to query ChromaDB, assimilate the context chunks, and generate a fully-formatted
-                    instructional worksheet complete with embedded draft questions. The plot visualises the execution
-                    latency variance for both hardware models, illustrating the realistic range of speed fluctuations
-                    inherent to generating unstructured tokens.
+                    The material generation latency experiment measures end-to-end worksheet generation time while
+                    holding prompt inputs constant across models. In the test runs, the request uses the title
+                    "Newton's Laws AI Test" and the description "Create a short physics worksheet covering Newton's
+                    laws of motion with three separate draft questions placed inside the reading material.", with
+                    reading age set to 14, actual age set to 15, and target duration set to 30 minutes. The generated
+                    prompt follows the production structure of TASK, MATERIAL TITLE, MATERIAL DESCRIPTION, RESTRAINTS,
+                    MARKDOWN SYNTAX, and SOURCE DOCUMENT CONTEXT, and in this controlled experiment the source-context
+                    section is intentionally empty so that latency and format adherence can be compared directly. Each
+                    model is run for 10 iterations and we record timing variance alongside format checks such as
+                    question-draft marker emission.
                 </p>
                 <img src="images/eval/material_gen_time.png"
                     alt="Boxplot and scatter visualization of Material Generation Latency distributions"
                     class="eval-graph" />
                 <p>
-                    <strong>Performance Comparison:</strong> Granite4, being a highly quantized and smaller parameter
-                    model, exhibits a faster average generation latency compared to the heavier Qwen3:8b model. Despite
-                    the speed advantage, Qwen is designated as the primary model due to its superior instruction
-                    adherence in the previous quality experiments.
+                    Granite4, as a lighter model, demonstrates lower average generation latency than Qwen3:8b.
+                    However, Qwen3:8b remains the primary model because the quality-focused experiments show stronger
+                    instruction adherence and overall output reliability.
                 </p>
 
                 <h4>Content Modification</h4>
                 <p>
-                    <strong>Experiment & Purpose:</strong> This experiment evaluates the AI Assistant's ability to
-                    modify and simplify textbook content ("Simplify terminology for an 8 year old") while preserving key
-                    academic entities (e.g., "mitochondria"). We compared the performance of the primary model
-                    (Qwen3:8b) against the fallback model (Granite4) across repeated iterations. The graph below
-                    visualizes the algorithmic instruction adherence via the statistical distribution of Flesch-Kincaid
-                    complexity reduction for every generated data point, ensuring total transparency on model variance.
+                    The content modification experiment evaluates whether the assistant can simplify complex prose while
+                    preserving key scientific entities. The fixed original content is "The mitochondria is the
+                    indubitable powerhouse of the cellular micro-organism. It orchestrates adenocine-triphosphate
+                    synthesis." and the exact instruction is "Simplify terminology for an 8 year old". The production
+                    prompt is generated with material type "reading", title "Cellular Biology", reading age 8, and
+                    actual age 8, again using an empty source-context section for controlled comparison. Both models
+                    are run for 10 iterations, and the chart reports Flesch-Kincaid reduction per run while entity
+                    preservation is checked explicitly (for example, retention of "mitochondria").
                 </p>
                 <img src="images/eval/content_mod_delta.png"
                     alt="Boxplot tracking individual Flesch-Kincaid Complexity Reduction iterations across models"
                     class="eval-graph" />
                 <p>
-                    <strong>Performance Comparison:</strong> Both models successfully retained the required entities.
-                    However, Qwen3:8b demonstrated a noticeably deeper semantic understanding of the target reading age,
-                    resulting in a more significant drop in the Flesch-Kincaid complexity score compared to Granite4.
+                    Both models generally retain required entities, but Qwen3:8b shows stronger simplification quality
+                    for the target reading level, reflected in a larger average complexity reduction.
                 </p>
 
                 <h4>Auto-Grading & Feedback</h4>
                 <p>
-                    <strong>Experiment & Purpose:</strong> This experiment assesses the auto-grading accuracy and format
-                    strictness of the AI pipeline. Using real Example Candidate Responses from Cambridge (CAIE) across
-                    Computer Science, Economics, Mathematics, and First Language English, the test compares the
-                    LLM-generated marks against the official examiner baseline. To normalize across varying maximum
-                    marks per subject, the exact tabular performance records the Score Ratio (Actual Mark / Expected
-                    Mark), the proportion of responses perfectly graded (% Exact), and skewness towards
-                    over/under-marking.
+                    The auto-grading and feedback experiment assesses marking alignment and output-format compliance
+                    using CAIE example candidate responses spanning Computer Science, Mathematics, Economics, and First
+                    Language English. For each response, the production feedback prompt is used with the task wording
+                    "Generate constructive feedback for a student's response to the question given below.", and when a
+                    maximum score is present the model is instructed to begin with a strict "MARK: X" line before the
+                    feedback body. The prompt then includes QUESTION, STUDENT'S RESPONSE, MARK SCHEME, and Maximum
+                    Score sections, with requirements for evidence-based marking, full-range score readiness, student-
+                    facing constructive language, British English, and no markdown or HTML. Each response is evaluated
+                    three times per model to capture variance, and the table reports over-marking, exact matches,
+                    under-marking, and normalised score ratio.
                 </p>
                 <table class="eval-table">
                     <thead>
@@ -769,18 +778,17 @@
                     </tbody>
                 </table>
                 <p>
-                    <strong>Performance Comparison:</strong> Qwen3:8b consistently outperformed Granite4 in grading
-                    accuracy across both exact-science and subjective essay subjects. Granite4 struggled with the strict
-                    marking tolerances of Computer Science and Mathematics, while Qwen3:8b maintained high alignment
-                    with human inter-rater reliability boundaries.
+                    Qwen3:8b consistently outperformed Granite4 in grading alignment across both exact-science and
+                    subjective-response subjects. Granite4 showed a stronger tendency to over-mark in tighter
+                    mark-scheme settings, while Qwen3:8b remained closer to expected examiner baselines.
                 </p>
 
                 <h4>Auto-Grading Consistency</h4>
                 <p>
-                    <strong>Experiment & Purpose:</strong> To evaluate the non-determinism of subjective automated
-                    assessment, specific candidate responses were continuously re-evaluated. The graphs below
-                    demonstrate the distribution of marks assigned by each model for a single question over multiple
-                    iterations, highlighting the variance and average mark deviation against the expected baseline.
+                    To quantify non-determinism directly, a fixed response was re-marked 25 times per model for one
+                    selected question in each subject using the same production feedback prompt and parser. The plots
+                    below show mark distributions per item, making variance and central tendency visible relative to
+                    the expected baseline mark.
                 </p>
                 <div class="consistency-graphs"
                     style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
@@ -808,6 +816,10 @@
                     RTX 4050. However, the larger inconsistency in mark distribution for Qwen3:8b in questions with
                     high maximum marks is a concern that
                     needs to be addressed in future work.
+                </p>
+
+                <h4>More about Evaluation Tests</h4>
+                <p>Interested readers may access the evaluation tests here: <a href="https://github.com/raphaellith/Manuscripta/tree/evaluation/eval-tests/windows/ManuscriptaTeacherApp/AiEvaluationTests" target="_blank">Manuscripta AI Evaluation Tests</a>.
                 </p>
 
                 <h3>Compatibility</h3>
@@ -857,45 +869,17 @@
                 </p>
 
                 <h2 id="limitations">Known Limitations</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Limitation</th>
-                            <th>Impact</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Kiosk mode requires MDM provisioning for full enforcement</td>
-                            <td>Students on unmanaged devices could potentially exit the app</td>
-                        </tr>
-                        <tr>
-                            <td>AI generation significantly slower on CPU-only hardware</td>
-                            <td>Generation time may be impractical on older school laptops</td>
-                        </tr>
-                        <tr>
-                            <td>No formal student user testing conducted</td>
-                            <td>Effectiveness for learners is validated by proxy through teacher feedback and NAS
-                                domain expertise, not direct student testing</td>
-                        </tr>
-                        <tr>
-                            <td>30-device simultaneous distribution not load tested</td>
-                            <td>Performance at full classroom scale is not validated</td>
-                        </tr>
-                        <tr>
-                            <td>Text-to-speech not fully delivered</td>
-                            <td>Students cannot have content read aloud in current version</td>
-                        </tr>
-                        <tr>
-                            <td>Kiosk mode not fully delivered on Android</td>
-                            <td>Students can potentially navigate away from the app</td>
-                        </tr>
-                        <tr>
-                            <td>Lack of response submission mechanism for external devices</td>
-                            <td>Students cannot submit responses from external devices</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ul>
+                    <li>Kiosk mode requires MDM provisioning for full enforcement, so students on unmanaged devices could potentially exit the app.</li>
+                    <li>AI generation is significantly slower on CPU-only hardware, so generation time may be impractical on older school laptops.</li>
+                    <li>No formal student user testing has been conducted, so effectiveness for learners is validated by proxy through teacher feedback and NAS domain expertise rather than direct student testing.</li>
+                    <li>Thirty-device simultaneous distribution has not been load tested, so full classroom-scale performance is not yet validated.</li>
+                    <li>Text-to-speech is not fully delivered, so students cannot have content read aloud in the current version.</li>
+                    <li>Kiosk mode is not fully delivered on Android, so students can potentially navigate away from the app.</li>
+                    <li>There is no response submission mechanism for external devices, so students cannot submit responses from non-Android devices.</li>
+                    <li>There is currently no way to select which Windows teacher application to connect to when multiple teachers are broadcasting on the same LAN, so the Android client may connect non-deterministically.</li>
+                    <li>The editor modal can fail to save content when a user inserts LaTeX into a table.</li>
+                </ul>
 
                 <h2 id="future">Future Work</h2>
 
