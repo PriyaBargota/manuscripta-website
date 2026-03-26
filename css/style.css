@@ -614,7 +614,8 @@ a.nav-brand:focus-visible {
 
 .features h2,
 .about h2,
-.team h2 {
+.team h2,
+.gallery h2 {
     font-size: 30px;
     text-align: center;
     margin-bottom: 48px;
@@ -737,7 +738,8 @@ a.nav-brand:focus-visible {
     border-radius: 2px;
 }
 
-.about-grid {
+.about-grid,
+.gallery-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
@@ -910,7 +912,8 @@ a.nav-brand:focus-visible {
 }
 
 @media (max-width: 768px) {
-    .about-grid {
+    .about-grid,
+    .gallery-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
@@ -1124,6 +1127,15 @@ a.nav-brand:focus-visible {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
 }
+
+/* ============================================
+   GALLERY SECTION
+   ============================================ */
+.gallery {
+  padding: 64px 32px;
+  background-color: var(--bg-secondary);
+}
+
 
 /* ============================================
    DOCUMENTATION PAGES
