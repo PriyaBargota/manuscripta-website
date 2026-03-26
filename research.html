@@ -109,20 +109,25 @@
         tablet-based geometry learning [7], in which seventh-graders whose tablets delivered immediate GenAI-based
         corrective feedback outperformed those with feedback-free tablets. The task success rate of students with no
         such feedback was comparable to those who accomplished the same task on paper.
+        The feasibility of AI-powered batch marking is demonstrated by platforms such as Copyleaks' AI Grader, which
+        allows educators to upload entire class sets of handwritten or typed responses, which are then evaluated and
+        annotated by AI models before marked copies are returned to the teacher [8]. A comprehensive review of
+        AI-based automated grading systems found that such batch-oriented approaches enhanced grading consistency and
+        scalability while reducing educators' workloads, though challenges around algorithmic bias and user trust
+        remain [9].
       </p>
       <p>
         Similarly, GenAI tools can significantly speed up material creation. Teachers can thus produce
         curriculum-aligned content more efficiently and reduce the substantial time and effort that thoughtful lesson
         design currently demands. It is also advisable to adjust the textual complexity of materials in accordance with
         students’ reading levels, thereby preventing students with reading deficits from falling behind in comprehension
-        tasks [8, 9].
+        tasks [10, 11].
       </p>
       <p>
         Finally, attention should be given to minimizing disruptive system notifications, which can undermine classroom
         management when devices are in use.
       </p>
       <p>
-        Beyond real-time on-device marking, recent work has explored AI-powered batch marking as a scalable alternative for processing student submissions at volume. Cloud-hosted platforms such as Copyleaks AI Grader allow educators to upload entire class sets of handwritten or typed responses, which are then evaluated and annotated by AI models before marked copies are returned to the teacher [32]. A comprehensive review of AI-powered automated grading systems found that such batch-oriented approaches enhance grading consistency and scalability while reducing educators' workloads, though challenges around algorithmic bias and user trust remain [33]. While Manuscripta's current architecture performs all inference locally on the teacher's laptop, the batch marking paradigm offers a useful reference point for future scalability, particularly if the volume of open-ended student responses exceeds what a single device can process in acceptable time.
       </p>
 
       <h2 id="technology">Technology Review on Possible Devices, Solutions and Frameworks</h2>
@@ -130,37 +135,37 @@
       <p>
         In recent years, mobile touch-screen devices such as the iPad and Galaxy Tab have become popular tools for
         integrating technology into the classroom. In a survey of 1211 college students in the United States, 40% of
-        participants reported using tablets for schoolwork at least twice per week [10]. A 2025 survey of 489 school
+        participants reported using tablets for schoolwork at least twice per week [12]. A 2025 survey of 489 school
         information technology (IT) leads showed that 87% of primary schools and 55% of secondary schools in the United
         Kingdom provide tablet computers to students, with 21% of teachers incorporating tablets in their lessons “a lot
-        of the time” [11].
+        of the time” [13].
       </p>
       <p>
         Indeed, tablets give marked pedagogical benefits. In a series of interviews with 26 middle school students and
         teachers, 58% of interviewees expressed satisfaction with the use of iPads on campus, noting their
-        accessibility, portability and versatility [12]. Another study examined students’ opinions on educational
+        accessibility, portability and versatility [14]. Another study examined students’ opinions on educational
         tablets and identified such advantages as streamlined lesson interactions, more abundant supplementary learning
         resources, more organized course materials, diminished paper waste and reduced frustration in booking computer
-        labs or laptop carts [13]. Similar points were raised in [14] and [15].
+        labs or laptop carts [15]. Similar points were raised in [16] and [17].
       </p>
       <p>
         These strengths are transferable to classrooms where students have special educational needs (SEN). According to
-        [16], iPads empower SEN students to take stronger ownership of their learning, and their screen size and touch
+        [18], iPads empower SEN students to take stronger ownership of their learning, and their screen size and touch
         sensitivity are ideal for those suffering from low vision or limited fine motor skills. This is exemplified by
         case studies in which tablets improved reading levels in students with attention deficit hyperactivity disorders
-        (ADHD) [17] and spell-checking proficiencies in those with autism spectrum disorders (ASD) [18].
+        (ADHD) [19] and spell-checking proficiencies in those with autism spectrum disorders (ASD) [20].
       </p>
       <p>
         However, tablet devices can be disruptive in both lesson planning and execution. One study found that the
         introduction of iPads resulted in teachers spending more time in lesson preparation, which involved assessing
         the relevance of various educational applications to the school curriculum before installing them on individual
-        tablets [19]. In [12], 65% of interviewed teachers and students described iPads’ messaging and gaming
-        functionalities as distracting and addictive. Questionnaire results in [20] further elaborated on their
+        tablets [21]. In [14], 65% of interviewed teachers and students described iPads’ messaging and gaming
+        functionalities as distracting and addictive. Questionnaire results in [22] further elaborated on their
         diversionary nature, as teachers expressed difficulties in classroom management due to tablet abuse, audiovisual
         distractions and students surfing on irrelevant webpages.
       </p>
       <p>
-        These disadvantages are amplified in SEN environments. For instance, [21] showed that the abundance of visual
+        These disadvantages are amplified in SEN environments. For instance, [23] showed that the abundance of visual
         stimulus coupled with rapid pacing diverts the attention of ADHD students toward apps and websites unrelated to
         the course content. This reduces pedagogical effectiveness as more supervision and support are needed to hold
         students’ attention.
@@ -170,15 +175,15 @@
         devices is the adoption of black-and-white electronic ink (e-ink) displays, including AiPaper, BOOX MAX, Kindle
         Scribe and reMarkable. Compared to traditional liquid crystal display (LCD) devices like iPads, grayscale e-ink
         displays are more readable, produce a greater display contrast, consume less power and minimise visual fatigue
-        [22, 23]. This makes sustained reading more comfortable and cognitively manageable, particularly during extended
+        [24, 25]. This makes sustained reading more comfortable and cognitively manageable, particularly during extended
         class periods. In addition, their low refresh rates render them incapable of running video games, social media
         applications, or multimedia-rich browsers at any usable frame rate. This hardware constraint discourages
         students from browsing external sites and apps during lessons, reducing the classroom management burden
         attributed to tablet abuse.
       </p>
       <p>
-        The monochrome static display is also suitable for SEN environments. According to [24], 87% of autistic children
-        show signs of self-stimulation when using electronic devices with overstimulating visuals. Both [25] and [26]
+        The monochrome static display is also suitable for SEN environments. According to [26], 87% of autistic children
+        show signs of self-stimulation when using electronic devices with overstimulating visuals. Both [27] and [28]
         elucidated the importance of high-visual-contrast displays for learners with reading difficulties. Since e-ink
         devices are specially designed to minimise visual stimuli and noise, they can provide a sensory-friendly
         learning experience with minimal cognitive overload for hypersensitive learners.
@@ -190,8 +195,8 @@
         platform with e-ink displays would be to connect such devices to a remotely hosted LLM via the application
         programming interface (API) of an external cloud-based model provider. However, this naive solution introduces
         serious data privacy vulnerabilities. In many jurisdictions, schools are bound by legislation such as the
-        General Data Protection Regulation (GDPR) in the United Kingdom and European Union [27], and the Family
-        Educational Rights and Privacy Act (FERPA) in the United States [28], which impose strict constraints on how
+        General Data Protection Regulation (GDPR) in the United Kingdom and European Union [29], and the Family
+        Educational Rights and Privacy Act (FERPA) in the United States [30], which impose strict constraints on how
         student data may be shared with third parties. When a student’s written response is routed to an externally
         hosted LLM, it is subject to the model provider’s data handling policies, which may include logging, retention
         or use for model training. This concern is particularly acute in SEN classrooms, where student responses may
@@ -202,7 +207,7 @@
         One way to address these concerns is to run the LLM directly on each student’s device. However, while quantised
         models can feasibly run on high-end tablets equipped with neural processing units, the low-power
         microcontrollers and limited memory of e-ink devices fail to meet the hardware requirements for effective local
-        LLM inference, which usually requires 4 or more gigabytes of RAM for model and context storage [29].
+        LLM inference, which usually requires 4 or more gigabytes of RAM for model and context storage [31].
       </p>
       <p>
         To tackle this problem, it is observed that AI computation and content consumption are separable concerns that
@@ -227,7 +232,7 @@
         The teacher-facing application is built as an Electron app, which allows the platform to be distributed as a
         native Windows desktop application while being developed using frontend web technologies like React, HTML, CSS
         and TypeScript. Although Electron apps tend to take up more disk space and memory than native Windows
-        applications [30], the mature and ubiquitous React ecosystem dramatically lowers the barrier to building a rich
+        applications [32], the mature and ubiquitous React ecosystem dramatically lowers the barrier to building a rich
         interactive user interface. This leads to a polished and maintainable frontend that can be developed and
         iterated upon without needing expertise in platform-specific GUI frameworks such as WinForms or WPF.
       </p>
@@ -235,7 +240,7 @@
         We have chosen to implement the Windows application’s backend C# with .NET and Entity Framework Core (EF Core),
         in lieu of alternatives like Python and Node.js. Python is dismissed as an option because its throughputs for
         networking and data-serving workloads are inferior compared to C#. While its extensive machine learning (ML)
-        libraries makes it a popular alternative for AI-related backends [31], the platform’s AI inference is fully
+        libraries makes it a popular alternative for AI-related backends [33], the platform’s AI inference is fully
         delegated to Ollama, making Python’s ML ecosystem redundant. Meanwhile, using Node.js would allow the backend
         to share Electron’s JavaScript runtime, thus unifying the language across the stack. However, JavaScript lacks
         the structured concurrency primitives and mature ecosystem for long-running background services that C#
@@ -338,76 +343,76 @@
       <p id="ref-7">[7] T. Colliot, O. Krichen, N. Girard, É. Anquetil, and É. Jamet, “What Makes Tablet‐based Learning
         effective? A Study of the Role of Real‐time Adaptive Feedback,” British Journal of Educational Technology, vol.
         55, no. 5, pp. 2278–2295, Feb. 2024, doi: https://doi.org/10.1111/bjet.13439.</p>
-      <p id="ref-8">[8] I. A. Barrientos, “Institutionalization of Adapted Books in Enhancing the Reading Ability of
+      <p id="ref-8">[8] Copyleaks, "AI Grader," 2025. https://copyleaks.com/ai-grader (accessed Mar. 26, 2026).</p>
+      <p id="ref-9">[9] L. Y. Tan, S. Hu, D. J. Yeo, and K. H. Cheong, "A Comprehensive Review on Automated Grading Systems in STEM Using AI Techniques," Mathematics, vol. 13, no. 17, p. 2828, Sep. 2025, doi: https://doi.org/10.3390/math13172828.</p>
+      <p id="ref-10">[10] I. A. Barrientos, “Institutionalization of Adapted Books in Enhancing the Reading Ability of
         Students with Cognitive Disabilities,” AIDE Interdisciplinary Research Journal, vol. 3, no. 1, pp. 313–322, Apr.
         2023, doi: https://doi.org/10.56648/aide-irj.v3i1.71.</p>
-      <p id="ref-9">[9] A. Nally, O. Healy, J. Holloway, and H. Lydon, “An Analysis of Reading Abilities in Children
+      <p id="ref-11">[11] A. Nally, O. Healy, J. Holloway, and H. Lydon, “An Analysis of Reading Abilities in Children
         with Autism Spectrum Disorders,” Research in Autism Spectrum Disorders, vol. 47, pp. 14–25, Mar. 2018, doi:
         https://doi.org/10.1016/j.rasd.2017.12.002.</p>
-      <p id="ref-10">[10] The Harris Poll and Pearson, “Pearson Student Mobile Device Survey 2015 - National Report:
+      <p id="ref-12">[12] The Harris Poll and Pearson, “Pearson Student Mobile Device Survey 2015 - National Report:
         College Students,” Jun. 2015. Accessed: Mar. 20, 2026. [Online]. Available:
         https://news.lenovo.com/wp-content/uploads/2019/04/2015-Pearson-Student-Mobile-Device-Survey-College.pdf</p>
-      <p id="ref-11">[11] Department for Education, “Technology in Schools Survey: 2024 to 2025,” GOV.UK, Nov. 27, 2025.
+      <p id="ref-13">[13] Department for Education, “Technology in Schools Survey: 2024 to 2025,” GOV.UK, Nov. 27, 2025.
         https://www.gov.uk/government/publications/technology-in-schools-survey-report-2024-to-2025 (accessed Mar. 20,
         2026).</p>
-      <p id="ref-12">[12] C. Ditzler, E. Hong, and N. Strudler, “How Tablets Are Utilized in the Classroom,” Journal of
+      <p id="ref-14">[14] C. Ditzler, E. Hong, and N. Strudler, “How Tablets Are Utilized in the Classroom,” Journal of
         Research on Technology in Education, vol. 48, no. 3, pp. 181–193, May 2016, doi:
         https://doi.org/10.1080/15391523.2016.1172444.</p>
-      <p id="ref-13">[13] A. Velchik, “Digital Tablets in the Classroom: A Perspective from Students,” Journal of
+      <p id="ref-15">[15] A. Velchik, “Digital Tablets in the Classroom: A Perspective from Students,” Journal of
         Education and Practice, vol. 11, no. 15, pp. 11–16, May 2020, doi: https://doi.org/10.7176/jep/11-15-02.</p>
-      <p id="ref-14">[14] R. Ellis-Behnke, J. Gilliland, G. E. Schneider, and D. Singer, “Educational Benefits of a
+      <p id="ref-16">[16] R. Ellis-Behnke, J. Gilliland, G. E. Schneider, and D. Singer, “Educational Benefits of a
         Paperless Classroom Utilizing Tablet PCs.” Accessed: Mar. 20, 2026. [Online]. Available:
         http://download.101com.com/syllabus/conf/summer2005/PDFs/Posters/S_wps.pdf</p>
-      <p id="ref-15">[15] T. Karsenti and A. Fievez, “The iPad in Education: Uses, Benefits, and Challenges — A Survey
+      <p id="ref-17">[17] T. Karsenti and A. Fievez, “The iPad in Education: Uses, Benefits, and Challenges — A Survey
         of 6057 Students and 302 Teachers in Quebec (Canada),” Dec. 2013. Accessed: Mar. 20, 2026. [Online]. Available:
         https://www.researchgate.net/publication/266672409_The_iPad_in_Education_uses_benefits_and_challenges_A_survey_of_6057_students_and_302_teachers_in_Quebec_Canada</p>
-      <p id="ref-16">[16] P. Riley, “Teaching, Learning, and Living with iPads,” Music Educators Journal, vol. 100, no.
+      <p id="ref-18">[18] P. Riley, “Teaching, Learning, and Living with iPads,” Music Educators Journal, vol. 100, no.
         1, pp. 81–86, Aug. 2013, doi: https://doi.org/10.1177/0027432113489152.</p>
-      <p id="ref-17">[17] B. McClanahan, K. Williams, E. Kennedy, and S. Tate, “A Breakthrough for Josh: How Use of an
+      <p id="ref-19">[19] B. McClanahan, K. Williams, E. Kennedy, and S. Tate, “A Breakthrough for Josh: How Use of an
         iPad Facilitated Reading Improvement,” TechTrends, vol. 56, no. 3, pp. 20–28, Mar. 2012, doi:
         https://doi.org/10.1007/s11528-012-0572-6.</p>
-      <p id="ref-18">[18] D. M. Kagohara, J. Sigafoos, D. Achmadi, M. O’Reilly, and G. Lancioni, “Teaching Children with
+      <p id="ref-20">[20] D. M. Kagohara, J. Sigafoos, D. Achmadi, M. O’Reilly, and G. Lancioni, “Teaching Children with
         Autism Spectrum Disorders to Check the Spelling of Words,” Research in Autism Spectrum Disorders, vol. 6, no. 1,
         pp. 304–310, Jan. 2012, doi: https://doi.org/10.1016/j.rasd.2011.05.012.</p>
-      <p id="ref-19">[19] K. Goodwin, “Use of Tablet Technology in the Classroom,” NSW Curriculum and Learning
+      <p id="ref-21">[21] K. Goodwin, “Use of Tablet Technology in the Classroom,” NSW Curriculum and Learning
         Innovation Centre, 2012. Accessed: Mar. 20, 2026. [Online]. Available:
         https://cpb-ap-se2.wpmucdn.com/global2.vic.edu.au/dist/1/42368/files/2014/04/iPad_Evaluation_Sydney_Region_exec_sum-1pjdj70.pdf</p>
-      <p id="ref-20">[20] K. Nikolopoulou, “Secondary Education Teachers’ Perceptions of Mobile Phone and Tablet Use in
+      <p id="ref-22">[22] K. Nikolopoulou, “Secondary Education Teachers’ Perceptions of Mobile Phone and Tablet Use in
         Classrooms: Benefits, Constraints and Concerns,” Journal of Computers in Education, vol. 7, no. 2, pp. 257–275,
         Feb. 2020, doi: https://doi.org/10.1007/s40692-020-00156-7.</p>
-      <p id="ref-21">[21] M. Flemming, “Implementation of Classroom Technology for Elementary Students with ADHD,”
+      <p id="ref-23">[23] M. Flemming, “Implementation of Classroom Technology for Elementary Students with ADHD,”
         Walden University, 2025. Accessed: Mar. 20, 2026. [Online]. Available:
         https://www.proquest.com/docview/3200076944</p>
-      <p id="ref-22">[22] S. Ali Rabbani, M. Ahmed, and A. Hashim Zahid, “E-Ink; Revolution of Displays,” MATEC Web of
+      <p id="ref-24">[24] S. Ali Rabbani, M. Ahmed, and A. Hashim Zahid, “E-Ink; Revolution of Displays,” MATEC Web of
         Conferences, vol. 381, p. 02003, Jun. 2023, doi: https://doi.org/10.1051/matecconf/202338102003.</p>
-      <p id="ref-23">[23] S. Benedetto, V. Drai-Zerbib, M. Pedrotti, G. Tissier, and T. Baccino, “E-Readers and Visual
+      <p id="ref-25">[25] S. Benedetto, V. Drai-Zerbib, M. Pedrotti, G. Tissier, and T. Baccino, “E-Readers and Visual
         Fatigue,” PLoS ONE, vol. 8, no. 12, Dec. 2013, doi: https://doi.org/10.1371/journal.pone.0083676.</p>
-      <p id="ref-24">[24] S. Alarcon-Licona and L. Loke, “Autistic Children’s Use of Technology and Media: A Fieldwork
+      <p id="ref-26">[26] S. Alarcon-Licona and L. Loke, “Autistic Children’s Use of Technology and Media: A Fieldwork
         Study,” in Proceedings of the 2017 Conference on Interaction Design and Children, New York, NY, USA: Association
         for Computing Machinery, Jun. 2017, pp. 651–658. Available: https://doi.org/10.1145/3078072.3084338</p>
-      <p id="ref-25">[25] L. C. Shuffrey et al., “Visually Evoked Response Differences to Contrast and Motion in
+      <p id="ref-27">[27] L. C. Shuffrey et al., “Visually Evoked Response Differences to Contrast and Motion in
         Children with Autism Spectrum Disorder,” Brain Sciences, vol. 8, no. 9, p. 160, Aug. 2018, doi:
         https://doi.org/10.3390/brainsci8090160.</p>
-      <p id="ref-26">[26] R. Martin and J. Wilkins, “Creating Visually Appropriate Classroom Environments for Students
+      <p id="ref-28">[28] R. Martin and J. Wilkins, “Creating Visually Appropriate Classroom Environments for Students
         with Autism Spectrum Disorder,” Intervention in School and Clinic, vol. 57, no. 3, pp. 176–181, May 2021, doi:
         https://doi.org/10.1177/10534512211014882.</p>
-      <p id="ref-27">[27] The European Parliament and the Council of the European Union, Council Regulation (EU)
+      <p id="ref-29">[29] The European Parliament and the Council of the European Union, Council Regulation (EU)
         2016/679 of the European Parliament and of the Council of 27 April 2016 on the Protection of Natural Persons
         with Regard to the Processing of Personal Data and on the Free Movement of Such Data (United Kingdom General
         Data Protection Regulation). 2016. Accessed: Mar. 20, 2026. [Online]. Available: https://gdpr-info.eu/</p>
-      <p id="ref-28">[28] Public Law, Family Educational Rights and Privacy Act. 1974. Accessed: Mar. 20, 2026.
+      <p id="ref-30">[30] Public Law, Family Educational Rights and Privacy Act. 1974. Accessed: Mar. 20, 2026.
         [Online]. Available: https://studentprivacy.ed.gov/ferpa</p>
-      <p id="ref-29">[29] J. Xiao, Q. Huang, X. Chen, and C. Tian, “Large Language Model Performance Benchmarking on
+      <p id="ref-31">[31] J. Xiao, Q. Huang, X. Chen, and C. Tian, “Large Language Model Performance Benchmarking on
         Mobile Platforms: A Thorough Evaluation,” Journal of LaTeX Class Files, vol. 14, no. 8, Aug. 2021, doi:
         https://doi.org/10.48550/arXiv.2410.03613.</p>
-      <p id="ref-30">[30] D. Alymkulov, “Desktop Application Development Using Electron Framework: Native vs.
+      <p id="ref-32">[32] D. Alymkulov, “Desktop Application Development Using Electron Framework: Native vs.
         Cross-Platform,” Apr. 2019. Accessed: Mar. 20, 2026. [Online]. Available:
         https://www.theseus.fi/bitstream/handle/10024/167669/Daniyar_Alymkulov.pdf</p>
-      <p id="ref-31">[31] Stack Overflow, "2025 Stack Overflow Developer Survey," Stack Overflow, 2025.
+      <p id="ref-33">[33] Stack Overflow, "2025 Stack Overflow Developer Survey," Stack Overflow, 2025.
         https://survey.stackoverflow.co/2025/ (accessed Mar. 21, 2026).</p>
-      <p id="ref-32">[32] Copyleaks, "AI Grader," 2025. https://copyleaks.com/ai-grader (accessed Mar. 26, 2026).</p>
-      <p id="ref-33">[33] L. Y. Tan, S. Hu, D. J. Yeo, and K. H. Cheong, "A Comprehensive Review on Automated Grading Systems in STEM Using AI Techniques," Mathematics, vol. 13, no. 17, p. 2828, Sep. 2025, doi: https://doi.org/10.3390/math13172828.</p>
-    </div>
+      </div>
   </div>
 </main>
 
