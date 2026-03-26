@@ -147,7 +147,8 @@
         overhead. The pairing process is shown in the sequence diagram below.</p>
       <figure class="doc-figure">
         <img src="images/architecture-sequence-diagram-android-pairing.svg"
-             alt="Architecture sequence diagram for Android pairing" class="architecture-diagram" style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+             alt="Architecture sequence diagram for Android pairing" class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
         <figcaption>The full sequence of events for pairing an Android device with the Windows application.</figcaption>
       </figure>
       <p>After initial pairing is established, the primary communication channel transitions to a mixture of HTTP and
@@ -163,6 +164,16 @@
       <p>In addition to this pattern, HTTP is also used to register student names and submit student responses.
         Meanwhile, TCP is used for real-time remote-control signals like locking tablet screens, updating tablet
         statuses and sending raise-hand messages.</p>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-deploy-material.svg"
+             alt="Architecture sequence diagram for deploying materials to Android devices" class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The full sequence of events for deploying a lesson material to an Android device. Android devices
+          must report their status, including whether the student is engaged, whether the device is low on battery and
+          whether the screen is locked, to the Windows laptop every 3 seconds. Each attachment in the material is
+          retrieved from the laptop individually.
+        </figcaption>
+      </figure>
 
       <h2 id="interaction-with-remarkable-and-kindle-clients">Interaction with reMarkable and Kindle clients</h2>
       <p>Manuscripta’s Windows architecture treats reMarkable and Kindle endpoints as external and asynchronous clients
