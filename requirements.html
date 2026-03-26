@@ -282,24 +282,24 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher generates a worksheet using the on-device AI, specifying subject, topic and target reading level.</div>
+                        <div class="use-case-content">The teacher generates a Water Cycle worksheet using IBM Granite on-device AI, specifying reading age 8 for students aged 12.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher opens the content generator in the Windows application</li>
-                                <li>Teacher selects material type (worksheet, quiz or poll)</li>
-                                <li>Teacher inputs subject topic and target age group via slider</li>
-                                <li>The on-device AI model generates the material locally on the teacher's laptop</li>
-                                <li>Teacher reviews and edits the generated content</li>
-                                <li>Teacher modifies the material manually if needed</li>
+                                <li>Teacher opens Lesson Library in the Windows application and clicks "Create New Worksheet"</li>
+                                <li>Teacher selects material type: Worksheet</li>
+                                <li>Teacher enters topic "Water Cycle", reading age "8 years old", actual age "12 years old", duration "30 minutes"</li>
+                                <li>IBM Granite generates the worksheet locally including questions like "Which process forms clouds?" with options: Evaporation, Condensation, Precipitation</li>
+                                <li>Teacher reviews the generated questions and sees they align with the learning objectives</li>
+                                <li>Teacher manually adds a question: "Describe what happens to water droplets in a cloud"</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">AI-generated material ready for distribution.</div>
+                        <div class="use-case-content">Water Cycle worksheet with age-appropriate language saved to library and ready for distribution to Boox tablets.</div>
                     </div>
                 </div>
             </div>
@@ -320,23 +320,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher distributes a saved material to connected student E-ink tablets over the local network.</div>
+                        <div class="use-case-content">The teacher distributes the Water Cycle worksheet to 15 connected Boox tablets over the local Wi-Fi network.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher selects a material from the content library</li>
-                                <li>Teacher views the list of connected devices on the dashboard</li>
-                                <li>Teacher selects target devices or distributes to all</li>
-                                <li>System pushes content over Wi-Fi to all selected tablets</li>
-                                <li>Students receive the material on their device</li>
+                                <li>Teacher selects "Water Cycle Worksheet" from the lesson library</li>
+                                <li>Teacher opens Classroom dashboard and views 15 connected Boox tablets listed by device name</li>
+                                <li>Teacher selects all 15 devices for deployment</li>
+                                <li>Teacher clicks "Deploy to Devices" and system pushes the worksheet over local Wi-Fi within 5 seconds</li>
+                                <li>All 15 students receive notification on their Boox tablets: "New worksheet available"</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Learning material delivered simultaneously to up to 30 student devices.</div>
+                        <div class="use-case-content">Water Cycle worksheet delivered simultaneously to 15 student Boox tablets, ready for students to begin work.</div>
                     </div>
                 </div>
             </div>
@@ -357,23 +357,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The student views and completes an assigned worksheet on their E-ink tablet using touch or stylus input.</div>
+                        <div class="use-case-content">The student views and completes the Water Cycle worksheet on their Boox tablet, answering questions using touch input.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Student receives notification that material has been assigned</li>
-                                <li>Student opens the worksheet in the Android application</li>
-                                <li>Student reads through the content</li>
-                                <li>Student uses stylus or touch to annotate or answer questions</li>
-                                <li>Student submits completed responses through the app</li>
+                                <li>Student receives notification on Boox tablet: "New worksheet available"</li>
+                                <li>Student taps to open the Water Cycle worksheet in the Android application</li>
+                                <li>Student reads the first question: "Which process forms clouds?"</li>
+                                <li>Student taps on the answer "Condensation" from the multiple-choice options</li>
+                                <li>Student completes remaining questions and taps "Submit Worksheet"</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Student responses submitted to the teacher dashboard for review.</div>
+                        <div class="use-case-content">Water Cycle worksheet answers submitted to teacher's Windows laptop dashboard over local Wi-Fi for marking and feedback.</div>
                     </div>
                 </div>
             </div>
@@ -394,23 +394,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher monitors class progress and student status in real time during a lesson.</div>
+                        <div class="use-case-content">The teacher monitors student progress on the Water Cycle worksheet in real time during the lesson.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher opens the monitoring dashboard</li>
-                                <li>Dashboard displays anonymised status of each connected device</li>
-                                <li>Teacher identifies students marked as needing help or inactive</li>
-                                <li>Teacher reviews submitted responses and completion rates</li>
-                                <li>Teacher provides targeted support where needed</li>
+                                <li>Teacher views the Classroom dashboard showing all 15 connected tablets</li>
+                                <li>Dashboard displays real-time status: 12 devices show "On Task", 2 show "Needs Help", 1 shows "Disconnected"</li>
+                                <li>Teacher clicks on Student 7's device card which shows "Needs Help" status</li>
+                                <li>Teacher sees Student 7 is stuck on question 3: "What happens during evaporation?"</li>
+                                <li>Teacher walks over to provide individual support while others continue working</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Teacher has a live overview of class engagement and can respond to individual needs without disrupting the lesson.</div>
+                        <div class="use-case-content">Teacher identifies and supports struggling students in real time without disrupting the rest of the class working on their Water Cycle worksheets.</div>
                     </div>
                 </div>
             </div>
@@ -431,23 +431,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The student discreetly signals to the teacher that they need assistance without speaking aloud.</div>
+                        <div class="use-case-content">Student 7 becomes stuck on a Water Cycle question and discreetly requests help without speaking aloud.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Student becomes stuck or needs support during a task</li>
-                                <li>Student taps the help request button on the status bar</li>
-                                <li>System sends an alert to the teacher dashboard</li>
-                                <li>Teacher sees the device flagged on the classroom overview grid</li>
-                                <li>Teacher acknowledges the request</li>
+                                <li>Student 7 is unsure how to answer "What happens during evaporation?" on their Boox tablet</li>
+                                <li>Student taps the "Raise Hand" button on the app's status bar</li>
+                                <li>System sends alert to teacher's Windows laptop dashboard over local Wi-Fi</li>
+                                <li>Teacher sees Student 7's device card change from "On Task" to "Needs Help" with a hand icon</li>
+                                <li>Teacher approaches Student 7 to provide individual support</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Student receives support without having to speak in front of the class, reducing anxiety for neurodiverse learners.</div>
+                        <div class="use-case-content">Student 7 receives help on the evaporation question without speaking in front of the class, reducing anxiety common among neurodiverse learners.</div>
                     </div>
                 </div>
             </div>
