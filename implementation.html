@@ -84,7 +84,6 @@
                     <li>Raise Hand help request</li>
                     <li>Multi-channel networking (HTTP/TCP/UDP)</li>
                     <li>Clean Architecture data and network layers</li>
-                    <li>Kiosk mode</li>
                 </ul>
 
                 <h2 id="frameworks">Frameworks and Libraries</h2>
@@ -419,13 +418,13 @@ END FUNCTION</code></pre>
                 <p>
                     On first launch the student enters their name and taps Pair. The application broadcasts a UDP discovery packet on port 5913 to locate the teacher's Windows application on the local network without requiring manual IP configuration. Once the server responds, a TCP pairing handshake is completed on port 5912 and the device is registered. The screen is deliberately minimal — a single text field and one button — reflecting the principle of reducing cognitive load established in C1.
                 </p>
-                <img src="images/Android-1.png" alt="Device Pairing Screen showing minimal interface with name input and pair button" class="implementation-screenshot-mobile">
+                <img src="images/Android-1v2.png" alt="Device Pairing Screen showing minimal interface with name input and pair button" class="implementation-screenshot-mobile">
 
                 <h3>Worksheet View</h3>
                 <p>
                     Once paired and a material is deployed, the student sees the worksheet displayed in large high-contrast monochromatic text optimised for E-ink rendering. Typography is set at a size appropriate for the target age group with generous line spacing to support students with reading difficulties. A persistent Raise Hand button sits at the bottom right of every content screen, allowing the student to send a discreet help request to the teacher dashboard without interrupting their work.
                 </p>
-                <img src="images/Android-2.png" alt="Worksheet View displaying high-contrast monochromatic text with Raise Hand button" class="implementation-screenshot-mobile">
+                <img src="images/Android-2v2.png" alt="Worksheet View displaying high-contrast monochromatic text with Raise Hand button" class="implementation-screenshot-mobile">
                 <div class="warning-box">
                     <p><strong>⚠</strong> Content transformation buttons (simplify, expand, summarise) are identified as a should-have requirement and are partially implemented. Full delivery is noted in the evaluation section.</p>
                 </div>
@@ -434,7 +433,7 @@ END FUNCTION</code></pre>
                 <p>
                     The quiz view displays a reading passage followed by a question and an answer input field. The student types their response and submits it via HTTP POST to port 5911, where it appears in the teacher's Responses view alongside AI-generated feedback from IBM Granite 4.0.
                 </p>
-                <img src="images/Android-3.png" alt="Quiz View showing reading passage, question, and answer input field" class="implementation-screenshot-mobile">
+                <img src="images/Android-3v2.png" alt="Quiz View showing reading passage, question, and answer input field" class="implementation-screenshot-mobile">
                 <div class="warning-box">
                     <p><strong>⚠</strong> Text-to-speech functionality is integrated into the application architecture but not fully delivered within the project timeline.</p>
                 </div>
