@@ -159,7 +159,8 @@
         resolve this problem, we have utilised a hybrid three-phase push-pull pattern which uses both HTTP and TCP. In
         this pattern, the Windows laptop uses TCP to signal that something is available. When the tablets receive this
         signal, they use HTTP to pull that content. Lastly, a tablet must send an acknowledgment signal via TCP to
-        indicate successful retrieval. This design pattern is repeatedly utilised in material deployment, feedback delivery and
+        indicate successful retrieval. This design pattern is repeatedly utilised in material deployment, feedback
+        delivery and
         configuration refresh mechanisms.</p>
 
       <figure class="doc-figure">
@@ -177,7 +178,10 @@
         <img src="images/architecture-sequence-diagram-retrieve-feedback.svg"
              alt="Architecture sequence diagram for retrieving feedback on Android device" class="architecture-diagram"
              style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
-        <figcaption>The sequence of events for retrieving feedback on an Android device. When the Windows laptop notifies an Android device of new feedback, the Android device obtains a list of feedback IDs and requests each piece of feedback individually.</figcaption>
+        <figcaption>The sequence of events for retrieving feedback on an Android device. When the Windows laptop
+          notifies an Android device of new feedback, the Android device obtains a list of feedback IDs and requests
+          each piece of feedback individually.
+        </figcaption>
       </figure>
 
       <p>In addition to the design pattern above, HTTP is also used to register student names and submit student
@@ -186,16 +190,23 @@
 
       <figure class="doc-figure">
         <img src="images/architecture-sequence-diagram-response-submission.svg"
-             alt="Architecture sequence diagram for student response submission from Android device" class="architecture-diagram"
+             alt="Architecture sequence diagram for student response submission from Android device"
+             class="architecture-diagram"
              style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
-        <figcaption>The sequence of events for submitting a student response from an Android device. Mechanisms for handling duplicate responses and unstable connections are also shown.</figcaption>
+        <figcaption>The sequence of events for submitting a student response from an Android device. Mechanisms for
+          handling duplicate responses and unstable connections are also shown.
+        </figcaption>
       </figure>
 
       <figure class="doc-figure">
         <img src="images/architecture-sequence-diagram-teacher-control-commands.svg"
-             alt="Architecture sequence diagram for teacher control commands to Android devices" class="architecture-diagram"
+             alt="Architecture sequence diagram for teacher control commands to Android devices"
+             class="architecture-diagram"
              style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
-        <figcaption>The sequence of events for teacher control commands sent to Android devices. Teacher control commands include locking a student's screen, unlocking a student's screen, updating an Android tablet's configurations and unpairing an Android device.</figcaption>
+        <figcaption>The sequence of events for teacher control commands sent to Android devices. Teacher control
+          commands include locking a student's screen, unlocking a student's screen, updating an Android tablet's
+          configurations and unpairing an Android device.
+        </figcaption>
       </figure>
 
       <figure class="doc-figure">
