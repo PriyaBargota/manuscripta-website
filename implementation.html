@@ -238,6 +238,20 @@
                     <li><strong>Returning Responses & Feedback:</strong> Completed quizzes and worksheets are submitted back via an HTTP <code>POST /responses</code> payload. Feedback generated subsequently is delivered via the Windows client sending a TCP <code>RETURN_FEEDBACK</code> (0x06) message, triggering the Android client to fetch via HTTP <code>GET /feedback/{deviceId}</code> and confirming receipt with <code>FEEDBACK_ACK</code> (0x13).</li>
                 </ul>
 
+                <h3>Encoding of Materials</h3>
+                <p>
+                    Material content is persisted and transmitted as a markdown-encoded string. The supported language is a constrained CommonMark/GitHub-Flavoured Markdown subset with defined support for headers, emphasis, lists, tables, LaTeX, code blocks, blockquotes and attachment references. Domain-specific behaviours are represented through custom markers, including embedded PDFs, centred blocks and inline question references.
+                </p>
+                <p>
+                    The AI generation pipeline is explicitly grounded in this encoding contract. During both initial generation and selected-content modification, the backend prompt includes instructions to return content in Material Encoding format together with a condensed markdown syntax guide. For worksheet flows, the prompt additionally includes the <code>question-draft</code> syntax so the model can place draft questions at pedagogically appropriate points in the body of the material, rather than appending them out of context.
+                </p>
+                <p>
+                    On material persistence, any <code>question-draft</code> blocks are parsed into concrete <code>QuestionEntity</code> records, assigned UUIDs, and rewritten in content as canonical <code>!!! question id="..."</code> markers. If draft parsing fails, malformed draft markers are removed and surfaced as validation warnings. After AI output is produced, the application validates markdown structure, custom marker structure, attachment references and question references, applies deterministic repairs for common structural issues, and returns unresolved problems as line-level warnings for manual correction in the editor.
+                </p>
+                <p>
+                    Embedded questions are transported and consumed at runtime through a distribution bundle model. When a tablet receives <code>GET /distribution/{deviceId}</code>, the payload contains separate arrays of <code>MaterialEntity</code> and <code>QuestionEntity</code>, so question content is transmitted as first-class entities rather than inlined JSON fragments inside material content. The material body therefore carries references (question markers) while the concrete question objects are resolved from the accompanying questions array. Windows assigns IDs for materials and questions, and Android preserves them, ensuring stable marker-to-entity linkage across edits, sync, and rendering. Student answers are then submitted via <code>POST /responses</code> as <code>ResponseEntity</code> records that reference those question IDs.
+                </p>
+
                 <h3>Communication Flow</h3>
                 <div class="mermaid" style="text-align: center;">
 sequenceDiagram
