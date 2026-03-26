@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Implementation - Manuscripta</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prism-manuscripta.css">
 </head>
 <body>
     <a href="#main" class="sr-only focus-visible">Skip to main content</a>
@@ -198,7 +199,7 @@
                 <p>
                     The project uses a monorepo — both applications live in the same GitHub repository at raphaellith/Manuscripta under separate top-level directories. This allowed both sub-teams to share the API contract and documentation while keeping their CI/CD pipelines independent via path-based triggers.
                 </p>
-                <pre><code>Manuscripta/
+                <pre class="language-none"><code class="language-none">Manuscripta/
 ├── android/          Android student application
 │   └── app/
 │       └── src/main/java/    Java source code
@@ -239,7 +240,7 @@
                 </ul>
 
                 <h3>Communication Flow</h3>
-                <div class="mermaid">
+                <div class="mermaid" style="text-align: center;">
 sequenceDiagram
     participant A as Android Tablet
     participant W as Windows Teacher App
@@ -334,7 +335,7 @@ sequenceDiagram
                 </p>
 
                 <h4>Pseudocode: Material Generation</h4>
-                <pre><code>FUNCTION GenerateMaterial(description, readingAge, materialType, unitCollectionId, sourceDocIds):
+                <pre class="language-pseudocode"><code class="language-pseudocode">FUNCTION GenerateMaterial(description, readingAge, materialType, unitCollectionId, sourceDocIds):
 
     // Model selection
     selectedModel = "qwen3:8b"
@@ -378,7 +379,7 @@ sequenceDiagram
 END FUNCTION</code></pre>
 
                 <h4>Pseudocode: Feedback Generation</h4>
-                <pre><code>FUNCTION GenerateFeedbackAsync(response):
+                <pre class="language-pseudocode"><code class="language-pseudocode">FUNCTION GenerateFeedbackAsync(response):
 
     question = FetchQuestion(response.questionId)
     IF question.markScheme == null: RETURN null
@@ -400,8 +401,19 @@ END FUNCTION</code></pre>
                 <p class="attribution"><em>Built by Priya Bargota and Will Stephen</em></p>
 
                 <p>
-                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The data and network layers achieve 90% instruction coverage, validated by JaCoCo. A number of classes are excluded from coverage reporting because JaCoCo either counted them as generated build files or could not detect that they were being tested. Excluded classes include Android-generated resources (<code>R.class</code>, <code>BuildConfig</code>, <code>Manifest</code>, <code>databinding</code>), Hilt dependency injection artefacts (<code>*_Factory</code>, <code>*_MembersInjector</code>, <code>Hilt_*</code>, <code>*_Impl</code>, <code>*_GeneratedInjector</code>), all UI Activities and Fragments (<code>MainActivity</code>, <code>PairingActivity</code>, <code>ReadingFragment</code>, <code>QuizFragment</code>, <code>WorksheetFragment</code>, <code>FeedbackFragment</code>, <code>TeacherFeedbackFragment</code>), rendering components (<code>MarkdownRenderer</code>, <code>QuestionBlockRenderer</code>, <code>AttachmentImageLoader</code>, custom Views), network and connection managers (<code>TcpSocketManager</code>, <code>HeartbeatManager</code>, <code>PairingManager</code>, <code>ConnectionManager</code>, <code>MulticastLockManager</code>), and application entry points (<code>ManuscriptaApplication</code>, <code>ManuscriptaDatabase</code>, <code>DatabaseModule</code>).
+                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The data and network layers achieve 90% instruction coverage, validated by JaCoCo. A number of classes are excluded from coverage reporting because JaCoCo either counted them as generated build files or could not detect that they were being tested.
                 </p>
+                <details>
+                    <summary>View JaCoCo excluded classes</summary>
+                    <ul>
+                        <li><strong>Android-generated resources:</strong> <code>R.class</code>, <code>BuildConfig</code>, <code>Manifest</code>, <code>databinding</code></li>
+                        <li><strong>Hilt dependency injection artefacts:</strong> <code>*_Factory</code>, <code>*_MembersInjector</code>, <code>Hilt_*</code>, <code>*_Impl</code>, <code>*_GeneratedInjector</code></li>
+                        <li><strong>UI Activities and Fragments:</strong> <code>MainActivity</code>, <code>PairingActivity</code>, <code>ReadingFragment</code>, <code>QuizFragment</code>, <code>WorksheetFragment</code>, <code>FeedbackFragment</code>, <code>TeacherFeedbackFragment</code></li>
+                        <li><strong>Rendering components:</strong> <code>MarkdownRenderer</code>, <code>QuestionBlockRenderer</code>, <code>AttachmentImageLoader</code>, custom Views</li>
+                        <li><strong>Network and connection managers:</strong> <code>TcpSocketManager</code>, <code>HeartbeatManager</code>, <code>PairingManager</code>, <code>ConnectionManager</code>, <code>MulticastLockManager</code></li>
+                        <li><strong>Application entry points:</strong> <code>ManuscriptaApplication</code>, <code>ManuscriptaDatabase</code>, <code>DatabaseModule</code></li>
+                    </ul>
+                </details>
 
                 <h3>Device Pairing Screen</h3>
                 <p>
@@ -610,7 +622,7 @@ END FUNCTION</code></pre>
                 </p>
                 <details>
                     <summary>Show exact text of Android Copilot Instructions</summary>
-                    <pre class="specification-text"><code># Manuscripta Android Client - Copilot Instructions (Cloud)
+                    <pre class="language-none specification-text"><code class="language-none"># Manuscripta Android Client - Copilot Instructions (Cloud)
 
 ## Context Gathering (MANDATORY FIRST STEP)
 
@@ -1020,7 +1032,7 @@ Use British English spelling in all documentation and string literals:
                 </p>
 
                 <h2 id="external-links">External Resources</h2>
-                <div class="resource-cards">
+                <div class="resource-cards" style="justify-content: center;">
                     <!-- GitHub Card -->
                     <a href="https://github.com/raphaellith/Manuscripta" target="_blank" class="resource-card github-card">
                         <div class="resource-icon">
@@ -1080,6 +1092,29 @@ Use British English spelling in all documentation and string literals:
                 fontSize: '15px'
             }
         });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script>
+        // Custom pseudocode language for Prism
+        Prism.languages.pseudocode = {
+            'comment': {
+                pattern: /\/\/.*/,
+                greedy: true
+            },
+            'string': {
+                pattern: /"[^"]*"/,
+                greedy: true
+            },
+            'keyword': /\b(FUNCTION|END FUNCTION|IF|ELSE|NOT|FOR|IN|RETURN|THROW|BREAK|BEGIN|END|WHILE|DO|NULL|AND|OR)\b/,
+            'number': /\b\d+(\.\d+)?(s)?\b/,
+            'function': /\b[A-Z][A-Za-z]+(?=\s*\()/,
+            'operator': /[=<>!+\-*]+|(?:\.\.)/,
+            'punctuation': /[{}[\]();,.]/
+        };
     </script>
 </body>
 
