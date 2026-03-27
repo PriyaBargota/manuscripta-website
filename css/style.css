@@ -2880,8 +2880,8 @@ html {
     background-color: #fafbfc;
 }
 
-/* Citation link styling for bibliography references */
-.doc-content a {
+/* Link styling, including citation links */
+.doc-content p a, .doc-content table a {
   color: inherit;
   text-decoration-color: var(--color-gray-400);
   text-decoration-thickness: 1px;
