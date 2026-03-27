@@ -638,7 +638,8 @@ a.nav-brand:focus-visible {
 
 .features h2,
 .about h2,
-.team h2 {
+.team h2,
+.gallery h2 {
     font-size: 30px;
     text-align: center;
     margin-bottom: 48px;
@@ -761,7 +762,8 @@ a.nav-brand:focus-visible {
     border-radius: 2px;
 }
 
-.problem-solution-grid {
+.about-grid,
+.gallery-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
@@ -839,6 +841,115 @@ a.nav-brand:focus-visible {
     text-align: left;
 }
 
+.partners-block {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: 32px 40px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.partners-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+    margin-bottom: 24px;
+}
+
+.partners-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.partner-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+    filter: grayscale(1);
+}
+
+.partner-logo:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.partner-logo-box {
+    display: none;
+}
+
+.partner-wordmark {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.partner-wordmark--ibm {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #1F70C1;
+    letter-spacing: 3px;
+}
+
+.partner-wordmark--qualcomm {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #3253DC;
+    font-size: 20px;
+}
+
+.partner-wordmark--nas {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #E8000D;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.partner-wordmark--ucl {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #500778;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 26px;
+}
+
+.partner-name {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    letter-spacing: 0.3px;
+}
+
+.partner-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--color-gray-200);
+}
+
+@media (max-width: 768px) {
+    .about-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .partners-row {
+        gap: 24px;
+    }
+
+    .partner-divider {
+        display: none;
+    }
+}
 
 /* ============================================
    VIDEO DEMONSTRATION SECTION
@@ -871,12 +982,11 @@ a.nav-brand:focus-visible {
     max-width: 900px;
     margin: 0 auto;
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 16px;
     box-shadow: var(--shadow-elevated);
-    background-color: var(--bg-surface);
+    background-color: #000;
 }
 
 .video-container iframe {
@@ -885,7 +995,7 @@ a.nav-brand:focus-visible {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border: none;
 }
 
 .about p {
@@ -1041,6 +1151,15 @@ a.nav-brand:focus-visible {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 14px;
 }
+
+/* ============================================
+   GALLERY SECTION
+   ============================================ */
+.gallery {
+  padding: 64px 32px;
+  background-color: var(--bg-secondary);
+}
+
 
 /* ============================================
    DOCUMENTATION PAGES
