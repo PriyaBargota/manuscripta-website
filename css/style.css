@@ -1280,6 +1280,8 @@ a.nav-brand:focus-visible {
     font-size: 14px;
     color: var(--color-gray-500);
     font-style: italic;
+}
+
 /* Keep inline citation links readable without drawing too much attention. */
 .doc-content p a[href^="#ref-"] {
     color: inherit;
@@ -1370,6 +1372,7 @@ a.nav-brand:focus-visible {
     position: fixed;
     bottom: 28px;
     right: 28px;
+    top: auto;
     z-index: 30;
 }
 
@@ -2651,8 +2654,9 @@ html {
     }
 
     .toc-wrapper {
-        bottom: 16px;
+        top: auto;
         right: 16px;
+        bottom: 16px;
     }
 
     .toc-menu {
@@ -2838,7 +2842,7 @@ html {
 /* Implementation screenshots */
 .implementation-screenshot {
     width: 100%;
-    max-width: 100%;
+    max-width: 920px;
     height: auto;
     margin: 24px auto;
     border: 1px solid var(--color-gray-200);
@@ -2848,7 +2852,7 @@ html {
 }
 
 .implementation-screenshot-mobile {
-    max-width: 320px;
+    max-width: 360px;
     height: auto;
     margin: 24px auto;
     border: 1px solid var(--color-gray-200);
@@ -3205,6 +3209,8 @@ html {
 
 .info-callout strong {
     color: #1a5a8a;
+}
+
 /* ============================================
    TESTIMONIALS / FEEDBACK
    ============================================ */
@@ -3299,6 +3305,30 @@ html {
     font-size: 13px;
     color: var(--color-gray-500);
 }
+
+@media (max-width: 900px) {
+        .testimonial-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                padding: 22px;
+        }
+
+        .testimonial-author-wrapper {
+                width: 100%;
+                order: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-right: 0;
+                padding-bottom: 16px;
+        }
+
+        .testimonial-crest {
+                width: 72px;
+                height: 72px;
+        }
+}
+
 /* Link styling, including citation links */
 .doc-content p a, .doc-content table a {
   color: inherit;
@@ -3306,4 +3336,36 @@ html {
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
   transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.doc-content p a:hover,
+.doc-content table a:hover,
+.doc-content li a:hover {
+    color: var(--text-primary);
+    text-decoration-color: var(--color-brand-green);
+}
+
+/* Keep appendix/external links readable without affecting button-like links. */
+.doc-content a:not(.btn):not(.resource-card) {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+/* Ensure large flowcharts and diagrams never overflow the content card. */
+.mermaid,
+.user-flow-diagram {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Improve table readability on dense report pages. */
+.doc-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
