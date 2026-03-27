@@ -71,6 +71,112 @@
                     </a>
                 </div>
 
+                <h2 id="gdpr">GDPR and Data Privacy</h2>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    Manuscripta is designed with privacy by design as a foundational principle. The system operates entirely over a local area network with no cloud connectivity, meaning no student data is ever transmitted to external servers or third parties.
+                </p>
+
+                <h3>Key GDPR Principles Addressed</h3>
+
+                <h4>1. Lawfulness, Fairness and Transparency</h4>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    The system does not collect personally identifiable student data. Students are identified only by anonymised device IDs that cannot be traced back to an individual. Teachers are informed through the application interface that all data remains on the local network. This approach was confirmed as a requirement by project partners including the National Autistic Society and is consistent with UK GDPR Article 5.
+                </p>
+
+                <h4>2. Purpose Limitation</h4>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    Data processed by Manuscripta is used solely for the purpose of delivering educational materials and monitoring classroom engagement during a live session. No data is repurposed, shared or used for any secondary purpose including model training or analytics.
+                </p>
+
+                <h4>3. Data Minimisation</h4>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    The system collects only what is necessary for classroom operation:
+                </p>
+                <table style="width: 100%; margin-bottom: 16px; border-collapse: collapse; font-size: 15px;">
+                    <thead>
+                        <tr style="background-color: var(--accent-light); border-bottom: 2px solid var(--border-color);">
+                            <th style="padding: 12px; text-align: left; border: 1px solid var(--border-color);">Data Type</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid var(--border-color);">Purpose</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid var(--border-color);">Identifiable?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Anonymised device ID</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Identifies which tablet is which</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">No</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Device status (on task, needs help, disconnected)</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Real-time classroom monitoring</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">No</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Student responses to quizzes and polls</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Teacher marking and feedback</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">No</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">AI-generated material content</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">Educational delivery</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color); color: var(--text-secondary);">No</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    No names, photographs, ages or any personally identifiable information are stored at any point.
+                </p>
+
+                <h4>4. Storage Limitation</h4>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    Session data is held in memory during the lesson and cleared when the session ends. Material content saved to the teacher's library is stored in a local SQLite database on the teacher's laptop only. No data is retained on student devices beyond the active session.
+                </p>
+
+                <h4>5. Integrity and Confidentiality</h4>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    All data is processed on the teacher's laptop within the school's local network. No internet connection is required at runtime. AI inference runs locally via Ollama using the Qwen3 and IBM Granite models. No student responses are sent to external AI providers.
+                </p>
+
+                <h4>6. Accountability</h4>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    The teacher retains full control over all data at all times. No student response reaches a student as feedback until the teacher has reviewed and approved it. This oversight mechanism ensures the teacher remains the data controller throughout the session.
+                </p>
+
+                <h3>Privacy Safeguards</h3>
+
+                <h4>Data Handling</h4>
+                <ul style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    <li style="margin-bottom: 8px;"><strong>No Cloud Processing:</strong> Manuscripta operates entirely within the school's local Wi-Fi network. No data leaves the school premises at any point during normal operation.</li>
+                    <li style="margin-bottom: 8px;"><strong>Local Storage:</strong> All persistent data including materials and session records is stored in a SQLite database on the teacher's Windows laptop. No server-side storage or third-party database is used.</li>
+                    <li style="margin-bottom: 8px;"><strong>AI and Privacy:</strong> The on-device AI models process teacher-provided content only. Student responses are never passed to the AI without teacher initiation and review.</li>
+                </ul>
+
+                <h4>User Rights</h4>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    Teachers can delete any material or session data at any time through the application interface. No student login is required and no student account is created, meaning there is no personal data subject to access or deletion requests under UK GDPR.
+                </p>
+
+                <h3>Source Code License</h3>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    The Manuscripta source code was developed as part of the COMP0016 Industry Exchange Network programme at University College London. Per the IXN project agreement signed in December 2025, intellectual property created during the project is assigned to UCL. The repository is available for inspection by project examiners and academic supervisors. Unauthorised commercial use, redistribution or modification without explicit permission from UCL is not permitted.
+                </p>
+                <p style="margin-bottom: 24px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    The software is provided as is without warranty of any kind, express or implied. UCL and the project team accept no liability for any damages arising from use of the software.
+                </p>
+
+                <h3>Legal Contact</h3>
+                <p style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    For data protection or legal enquiries related to this project:
+                </p>
+                <ul style="margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; font-size: 15px;">
+                    <li style="margin-bottom: 8px;"><strong>University Supervisor:</strong> Professor Dean Mohamedally (d.mohamedally@ucl.ac.uk)</li>
+                    <li style="margin-bottom: 8px;"><strong>Module:</strong> COMP0016 Systems Engineering, UCL Computer Science</li>
+                    <li style="margin-bottom: 8px;"><strong>Project Period:</strong> October 2025 to March 2026</li>
+                </ul>
+                <p style="margin-bottom: 40px; color: var(--text-secondary); line-height: 1.6; font-size: 15px; font-style: italic;">
+                    This privacy statement has been prepared by the student project team to the best of our knowledge. We are not legal professionals. Schools deploying Manuscripta should seek independent legal advice to ensure compliance with their own data protection obligations.
+                </p>
+
                 <h2 id="deployment">Deployment Manual</h2>
                 <div style="margin: 24px 0 40px; text-align: center;">
                     <a href="https://github.com/raphaellith/Manuscripta#getting-started" target="_blank" class="btn btn-primary" style="display: inline-flex; min-height: 48px; padding: 0 24px; border-radius: 99px; background: #24292e;">
