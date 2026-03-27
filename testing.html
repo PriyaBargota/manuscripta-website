@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing - Manuscripta</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prism-manuscripta.css">
 </head>
+
 <body>
     <a href="#main" class="sr-only focus-visible">Skip to main content</a>
     <nav class="navbar">
@@ -58,7 +61,8 @@
             <div class="doc-content">
                 <div class="doc-header">
                     <h1>Testing</h1>
-                    <p>Testing strategy, coverage metrics, and quality assurance processes for the Manuscripta platform.</p>
+                    <p>Testing strategy, coverage metrics, and quality assurance processes for the Manuscripta platform.
+                    </p>
                 </div>
 
                 <p>
@@ -97,7 +101,7 @@
                         <tr>
                             <td>User acceptance testing</td>
                             <td>Teacher workflows validated against real classroom scenarios</td>
-                            <td>In-person sessions with 5 teaching professionals</td>
+                            <td>In-person sessions with teaching professionals</td>
                         </tr>
                         <tr>
                             <td>AI output validation</td>
@@ -118,19 +122,27 @@
                 <h2 id="execution">Test Execution Instructions</h2>
 
                 <h3>Android</h3>
-                <pre><code>cd android && ./gradlew test</code></pre>
-                <pre><code>cd android && ./gradlew jacocoTestReport</code></pre>
-                <pre><code>cd android && ./gradlew checkstyle</code></pre>
+                <pre><code class="language-bash"># Unit tests only (integration tests excluded)
+./gradlew testDebugUnitTest
+
+# Include integration tests
+./gradlew testDebugUnitTest -Pintegration</code></pre>
 
                 <h3>Windows</h3>
-                <pre><code>cd windows/ManuscriptaTeacherApp/Main
+                <pre><code class="language-bash">cd windows/ManuscriptaTeacherApp/MainTests
 dotnet test</code></pre>
 
                 <h2 id="android-unit">Android Unit Testing</h2>
                 <p class="attribution"><em>Built and maintained by Priya Bargota and Will Stephen</em></p>
 
                 <p>
-                    The Android test suite consists of 74 test files comprising 21,504 lines of test code, covering every layer of the Clean Architecture stack.
+                    The Android test suite comprises 121 test files covering every layer of the Clean Architecture
+                    stack. The testing philosophy prioritises verifying critical behaviours — the features the system
+                    depends on — rather than chasing arbitrary line counts.
+                </p>
+
+                <p>
+                    The Android test suite is organised into four suites corresponding to the Clean Architecture layers: the network suite covering TCP, UDP and HTTP protocol handlers; the data suite covering Room entities, DAOs and repositories; the domain suite covering mappers and business logic models; and the presentation suite covering ViewModels. Each suite contains tests at the same granularity, allowing failures to be isolated to a specific layer without running the full suite.
                 </p>
 
                 <p>
@@ -148,26 +160,57 @@ dotnet test</code></pre>
                     <tbody>
                         <tr>
                             <td>Instruction coverage</td>
-                            <td>96%</td>
+                            <td>96% (527 of 13,646 missed)</td>
                         </tr>
                         <tr>
                             <td>Branch coverage</td>
-                            <td>93%</td>
+                            <td>90% (138 of 1,452 missed)</td>
                         </tr>
                         <tr>
-                            <td>Classes covered</td>
-                            <td>88</td>
+                            <td>Method coverage</td>
+                            <td>97% (26 of 815 missed)</td>
                         </tr>
                         <tr>
-                            <td>Coverage threshold (CI enforced)</td>
-                            <td>95%</td>
+                            <td>Class coverage</td>
+                            <td>100% (0 of 108 missed)</td>
+                        </tr>
+                        <tr>
+                            <td>CI enforcement threshold</td>
+                            <td>90% line coverage minimum</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <p>
-                    The CI pipeline runs <code>./gradlew jacocoTestReport jacocoTestCoverageVerification</code> on every pull request. Any PR that drops coverage below 95% fails automatically and cannot be merged.
+                    The CI pipeline runs <code>./gradlew jacocoTestReport jacocoTestCoverageVerification</code> on every
+                    pull request. Any PR that drops coverage below the threshold fails automatically and cannot be
+                    merged.
                 </p>
+
+                <img src="images/testing/coverage.png"
+                    alt="JaCoCo HTML coverage report showing per-package breakdown with 96% instruction coverage">
+
+                <h3>JaCoCo Exclusions</h3>
+                <p>
+                    JaCoCo clashed with several dependencies in the Android build, particularly Dagger/Hilt's generated
+                    code. The symptoms were twofold: build files generated by Dagger were being incorrectly tracked as
+                    test candidates, and classes with comprehensive test suites were reporting 0% coverage due to
+                    instrumentation conflicts. To produce accurate metrics, a substantial exclusion list was added to the
+                    Gradle configuration covering:
+                </p>
+                <ul>
+                    <li><strong>Generated code:</strong> Dagger factories (<code>*_Factory</code>), Hilt modules
+                        (<code>*_HiltModules*</code>, <code>Hilt_*</code>), member injectors, and generated
+                        implementations</li>
+                    <li><strong>Android framework classes:</strong> Activities, Fragments, and custom Views that depend
+                        on the Android lifecycle and cannot be meaningfully unit-tested on the JVM</li>
+                    <li><strong>Threading-heavy managers:</strong> <code>TcpSocketManager</code>,
+                        <code>HeartbeatManager</code>, <code>PairingManager</code>, and
+                        <code>ConnectionManager</code> — these are excluded from coverage metrics because their
+                        real-socket and threading behaviour is better validated through integration tests</li>
+                    <li><strong>Standard exclusions:</strong> <code>R.class</code>, <code>BuildConfig</code>,
+                        data binding, and test files themselves</li>
+                </ul>
 
                 <h3>Test Distribution</h3>
                 <table>
@@ -181,73 +224,210 @@ dotnet test</code></pre>
                     <tbody>
                         <tr>
                             <td>Network</td>
-                            <td>Multiple</td>
-                            <td>TCP protocol (13 tests), UDP discovery (4 tests), DTOs (13 tests)</td>
+                            <td>35</td>
+                            <td>TCP protocol (15), UDP discovery (4), DTOs (11), HTTP interceptors (5)</td>
                         </tr>
                         <tr>
                             <td>Data</td>
-                            <td>Multiple</td>
-                            <td>Room DAOs (6 tests), Entities (9 tests), Repositories (4 tests)</td>
+                            <td>22</td>
+                            <td>Room DAOs (6), data models (9), repositories (7)</td>
                         </tr>
                         <tr>
                             <td>Domain</td>
-                            <td>Multiple</td>
-                            <td>Mappers (6 tests), Domain models (3 tests)</td>
+                            <td>14</td>
+                            <td>Mappers (7), domain models (7)</td>
+                        </tr>
+                        <tr>
+                            <td>Presentation</td>
+                            <td>17</td>
+                            <td>ViewModels (7), renderers (7), custom views (3)</td>
+                        </tr>
+                        <tr>
+                            <td>Integration</td>
+                            <td>18</td>
+                            <td>HTTP endpoints (10), TCP scenarios (3), E2E flows (3), UDP (1), infra (1)</td>
+                        </tr>
+                        <tr>
+                            <td>Utils &amp; DI</td>
+                            <td>11</td>
+                            <td>Storage, TTS, connection utilities (7), DI module validation (4)</td>
                         </tr>
                     </tbody>
                 </table>
 
+                <h3>Testing Approach: HeartbeatManager</h3>
                 <p>
-                    The most significant test files are <code>HeartbeatManagerTest</code> (455 lines) and <code>TcpSocketManagerTest</code> (422 lines), which together validate the core networking behaviour the system depends on for real-time classroom control.
+                    The HeartbeatManager illustrates the testing philosophy used across the Android codebase. Rather than
+                    describing what was tested, this section explains <em>why</em> each category of test exists.
                 </p>
-
-                <h3>Example: HeartbeatManager Test</h3>
                 <p>
-                    The heartbeat mechanism is critical — if STATUS_UPDATE packets stop arriving at the Windows application, devices are marked DISCONNECTED after 10 seconds. The test suite validates the 3-second interval, correct opcode transmission, thread safety via AtomicBoolean, and graceful shutdown behaviour.
+                    <strong>What it does:</strong> The HeartbeatManager sends periodic STATUS_UPDATE messages over TCP to
+                    the Windows application, carrying device ID, battery level, current material, and student view
+                    state. It also listens for server-initiated commands — material distribution, feedback return, screen
+                    lock/unlock, and unpair signals — dispatching each to the appropriate callback.
                 </p>
-                <pre><code>// Verifies heartbeat sends STATUS_UPDATE (0x10) at correct interval
-@Test
-public void testHeartbeatSendsStatusUpdate() {
+                <p>
+                    <strong>What must be guaranteed:</strong> If heartbeats stop arriving, the Windows application marks
+                    the device as DISCONNECTED after 10 seconds. A missed heartbeat means a teacher loses visibility of
+                    a student's tablet. Conversely, if an incoming DISTRIBUTE_MATERIAL message is dropped, a student
+                    never receives their lesson. The 60 tests in <code>HeartbeatManagerTest</code> are organised around
+                    these failure modes:
+                </p>
+                <p><strong>Lifecycle correctness:</strong> Heartbeats must stop on disconnect and clean up on
+                    destroy. Premature heartbeats before pairing would be rejected by the server.</p>
+                <pre><code class="language-java">@Test
+public void onConnectionStateChanged_stopsOnDisconnected() {
+    when(mockSocketManager.isConnected()).thenReturn(true);
     heartbeatManager.start();
-    Thread.sleep(3500); // allow one heartbeat cycle
-    verify(tcpSocketManager, atLeastOnce())
-        .send(eq(Opcode.STATUS_UPDATE), any());
+
+    heartbeatManager.onConnectionStateChanged(ConnectionState.DISCONNECTED);
+
+    assertFalse(heartbeatManager.isRunning());
 }</code></pre>
 
-                <h3>Example: RetryInterceptor Test</h3>
-                <p>
-                    The retry policy must retry on 5xx and 408/429 errors but not on other 4xx errors. Tests verify the exponential backoff sequence (1s, 2s, 4s, 8s, 16s, 32s) and the 5-attempt cap.
-                </p>
-                <pre><code>// Verifies exponential backoff doubles on each retry
-@Test
-public void testExponentialBackoff() {
-    long backoff = retryInterceptor.calculateNextBackoff(1000);
-    assertEquals(2000, backoff);
-    backoff = retryInterceptor.calculateNextBackoff(backoff);
-    assertEquals(4000, backoff);
+                <p><strong>Periodic sending:</strong> The configured interval must be respected, and each heartbeat
+                    must carry a fresh device status snapshot. Tests use Mockito's <code>timeout()</code> matcher
+                    rather than <code>Thread.sleep()</code> for deterministic async verification.</p>
+                <pre><code class="language-java">@Test
+public void heartbeat_sendsPeriodically() throws Exception {
+    when(mockSocketManager.isConnected()).thenReturn(true);
+    heartbeatManager.start();
+
+    // Mockito timeout() instead of Thread.sleep() for deterministic testing
+    verify(mockSocketManager, timeout(2000).atLeast(2)).send(any());
+    assertTrue("Expected at least 2 heartbeats",
+        heartbeatManager.getHeartbeatCount() >= 2);
+}</code></pre>
+
+                <p><strong>Message routing:</strong> Each of the five inbound message types must reach its
+                    designated callback and <em>only</em> that callback — a RETURN_FEEDBACK must not trigger the
+                    material handler.</p>
+                <pre><code class="language-java">@Test
+public void onMessageReceived_returnFeedback_doesNotCallMaterialCallback()
+        throws Exception {
+    AtomicBoolean materialCalled = new AtomicBoolean(false);
+    CountDownLatch feedbackLatch = new CountDownLatch(1);
+    heartbeatManager.setMaterialCallback(() -> materialCalled.set(true));
+    heartbeatManager.setFeedbackCallback(feedbackLatch::countDown);
+
+    heartbeatManager.onMessageReceived(new ReturnFeedbackMessage());
+
+    assertTrue(feedbackLatch.await(2, TimeUnit.SECONDS));
+    assertFalse(materialCalled.get());
+}</code></pre>
+
+                <p><strong>Error resilience:</strong> IO exceptions during sending must not crash the heartbeat
+                    loop. The manager catches the error, skips the count increment, and continues.</p>
+                <pre><code class="language-java">@Test
+public void sendHeartbeat_handlesIOException() throws Exception {
+    when(mockSocketManager.isConnected()).thenReturn(true);
+    doThrow(new IOException("Test")).when(mockSocketManager).send(any());
+
+    // Should not throw
+    heartbeatManager.sendHeartbeat();
+
+    assertEquals(0, heartbeatManager.getHeartbeatCount());
+}</code></pre>
+
+                <p><strong>Configuration updates:</strong> Changing the heartbeat interval at runtime must take
+                    effect immediately if the manager is running, but must not auto-start a stopped manager.</p>
+                <pre><code class="language-java">@Test
+public void setConfig_restartsIfRunning() throws Exception {
+    when(mockSocketManager.isConnected()).thenReturn(true);
+    heartbeatManager.start();
+    assertTrue(heartbeatManager.isRunning());
+
+    HeartbeatConfig newConfig = new HeartbeatConfig(2000L, true);
+    heartbeatManager.setConfig(newConfig);
+
+    assertTrue(heartbeatManager.isRunning());
+    assertEquals(2000L, heartbeatManager.getConfig().getIntervalMs());
 }</code></pre>
 
                 <h3>Robolectric Compatibility</h3>
                 <p>
-                    Several adaptations were required to run tests on the JVM via Robolectric rather than a physical device. The RetryInterceptor was removed from the test harness because <code>ConnectivityManager.isConnected()</code> always returns false in Robolectric. A <code>directHandler</code> was added for immediate Runnable dispatch since Robolectric's paused looper mode does not execute <code>Handler.post()</code>. A volatile <code>currentStateSnapshot</code> field was added to PairingManager because <code>LiveData.getValue()</code> returns stale or null values in Robolectric.
+                    Several adaptations were required to run tests on the JVM via Robolectric rather than a physical
+                    device. The RetryInterceptor was removed from the test harness because
+                    <code>ConnectivityManager.isConnected()</code> always returns false in Robolectric. A
+                    <code>directHandler</code> was added for immediate Runnable dispatch since Robolectric's paused
+                    looper mode does not execute <code>Handler.post()</code>. A volatile
+                    <code>currentStateSnapshot</code> field was added to PairingManager because
+                    <code>LiveData.getValue()</code> returns stale or null values in Robolectric.
                 </p>
 
                 <h3>Checkstyle</h3>
                 <p>
-                    The Android codebase uses a custom Checkstyle configuration at <code>android/config/checkstyle/checkstyle.xml</code>. Key rules enforced include a 120-character line length limit, a 150-line method length limit, a maximum of 7 parameters per method, JavaDoc required for all public classes and methods, no wildcard imports, spaces only (no tab characters), and enforcement of equals/hashCode pairs. Checkstyle runs as the first job in the CI pipeline before tests, meaning code style violations are caught before any test execution begins.
+                    The Android codebase uses a custom Checkstyle configuration at
+                    <code>android/config/checkstyle/checkstyle.xml</code>. Key rules enforced include a 120-character
+                    line length limit, a 150-line method length limit, a maximum of 7 parameters per method, JavaDoc
+                    required for all public classes and methods, no wildcard imports, spaces only (no tab characters),
+                    and enforcement of equals/hashCode pairs. Checkstyle runs as the first job in the CI pipeline before
+                    tests, meaning code style violations are caught before any test execution begins.
                 </p>
-
-                <h3>Test Results</h3>
-                <div class="warning-box">
-                    <p><strong>TODO:</strong> Add JaCoCo HTML coverage report screenshot showing 96% instruction coverage and GitHub Actions CI pipeline passing screenshot</p>
-                </div>
 
                 <h2 id="windows-unit">Windows Unit Testing</h2>
                 <p class="attribution"><em>Built and maintained by Raphael Li and Nemo Shu</em></p>
 
                 <p>
-                    The Windows test suite consists of 52 C# test files comprising 12,028 lines of test code, using xUnit as the test framework and Moq for mocking dependencies.
+                    The Windows test suite consists of 52 C# test files using xUnit as the test framework and Moq for
+                    mocking dependencies.
                 </p>
+
+                <h3>Layer-by-Layer Coverage Results (XPlat Code Coverage)</h3>
+                <p>
+                    Testing the Windows application is substantially more challenging than the Android client due to a
+                    heavy reliance on external environments and services (specifically local network UDP/TCP
+                    broadcasting, physical filesystem access, SMTP mail delivery, and external AI runtimes such as
+                    Ollama and ChromaDB). While the core logic, models, and HTTP controllers maintain strong coverage,
+                    the overall average is pulled down by the low-level external and hardware integrations that are
+                    notoriously difficult to automate locally without complex mocking.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Branch Coverage</th>
+                            <th>Classes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Controllers (API Layer)</td>
+                            <td>85.0%</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>Models &amp; Data Context</td>
+                            <td>79.6%</td>
+                            <td>63</td>
+                        </tr>
+                        <tr>
+                            <td>Core Business Services</td>
+                            <td>67.7%</td>
+                            <td>31</td>
+                        </tr>
+                        <tr>
+                            <td>GenAI Services</td>
+                            <td>66.3%</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Network Services</td>
+                            <td>50.6%</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Repositories (Data Access)</td>
+                            <td>37.7%</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Runtime Dependencies</td>
+                            <td>21.5%</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h3>Test Distribution</h3>
                 <table>
@@ -282,60 +462,162 @@ public void testExponentialBackoff() {
                     </tbody>
                 </table>
 
+                <h3>Testing Approach: API Port Configuration</h3>
                 <p>
-                    The entity tests are particularly important because Manuscripta uses polymorphic material entities — ReadingMaterial, WorksheetMaterial and PollMaterial all derive from a common base. Tests verify that the factory methods produce the correct subtype and that entity validation behaves correctly for each.
+                    The port configuration tests illustrate the testing philosophy on the Windows side. Manuscripta uses
+                    four distinct network ports — each serving a different protocol — and misrouting traffic between them
+                    would silently break client-server communication. The tests are organised around verifying the
+                    guarantees specified in two project documents.
+                </p>
+                <p>
+                    <strong>What it does:</strong> The Windows application binds four services to four separate ports:
+                    SignalR on 5910 (frontend communication, per our FrontendWorkflowSpecifications Section 2ZA(8)(b), "The default designated port for SignalR communications shall be 5910."), HTTP REST
+                    on 5911 (material distribution and responses, per API Contract), TCP on 5912 (control
+                    signals), and UDP on 5913 (device discovery). Host-based routing via
+                    <code>RequireHost</code> constrains REST controllers to port 5911 only, while health and SignalR
+                    endpoints remain accessible on any port. These tests verify that the port configuration strictly match to the specification and that the routing rules are correctly enforced, in order to guard against potential misconfigurations that could break client-server communication without obvious errors, which is central to the system's integrity.
+                </p>
+                <p>
+                    <strong>What must be guaranteed:</strong> If a REST API request arrives on the SignalR port, it must
+                    be rejected — otherwise the Android client could silently connect to the wrong service. If the port
+                    values drift from the specification, tablets in the field will fail to discover the server. The tests
+                    fall into three categories:
                 </p>
 
-                <h3>Example: TCP Pairing Service Test</h3>
-                <p>
-                    The following test verifies that the TcpPairingService handles concurrent listener attempts gracefully — a real defensive programming requirement given the service manages live network sockets.
-                </p>
-                <pre><code>[Fact]
-public async Task StartListeningAsync_CalledTwice_LogsWarning()
+                <p><strong>Port contract enforcement:</strong> Each port value must match the specification exactly. A
+                    single-digit drift would break every Android client in the classroom.</p>
+                <pre><code class="language-csharp">/// Verifies NetworkSettings is registered in DI with correct HttpPort.
+/// Per API Contract.md §Ports: HTTP Port = 5911.
+[Fact]
+public void NetworkSettings_HttpPort_Is5911()
 {
-    // Use random port to avoid conflicts with parallel tests
-    var dedicatedOptions = Options.Create(new NetworkSettings
-    {
-        TcpPort = new Random().Next(10000, 60000)
-    });
-    using var dedicatedService = new TcpPairingService(
-        dedicatedOptions, _serviceProvider,
-        _mockLogger.Object, _mockRefreshConfigTracker.Object);
+    using var scope = _factory.Services.CreateScope();
+    var options = scope.ServiceProvider
+        .GetRequiredService&lt;IOptions&lt;NetworkSettings&gt;&gt;();
 
-    using var cts = new CancellationTokenSource();
-    var listenTask1 = dedicatedService.StartListeningAsync(cts.Token);
-    await Task.Delay(100); // Wait for listener to become active
+    Assert.Equal(5911, options.Value.HttpPort);
+}
 
-    // Second call should return immediately without creating a duplicate socket
-    var listenTask2 = dedicatedService.StartListeningAsync(cts.Token);
-    await listenTask2;
+/// Verifies all four ports (SignalR, HTTP, TCP, UDP) are distinct.
+[Fact]
+public void PortConfiguration_AllPortsAreDistinct()
+{
+    using var scope = _factory.Services.CreateScope();
+    var settings = scope.ServiceProvider
+        .GetRequiredService&lt;IOptions&lt;NetworkSettings&gt;&gt;().Value;
 
-    // Verify warning was logged
-    _mockLogger.Verify(
-        x => x.Log(LogLevel.Warning, It.IsAny<EventId>(),
-            It.Is<It.IsAnyType>((v, t) =>
-                v.ToString()!.Contains("already active")),
-            It.IsAny<Exception>(),
-            It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
-        Times.Once);
-
-    cts.Cancel();
+    var ports = new[] {
+        settings.SignalRPort, settings.HttpPort,
+        settings.TcpPort, settings.UdpBroadcastPort
+    };
+    Assert.Equal(4, ports.Distinct().Count());
 }</code></pre>
-                <p>
-                    This test validates real network socket behaviour using an actual TCP listener on a randomly assigned port, verifies defensive programming against duplicate listeners, and demonstrates proper async cancellation and resource disposal patterns.
-                </p>
+
+                <p><strong>Host-based routing isolation:</strong> REST controllers must only respond on the HTTP port.
+                    Accessing them on the SignalR port must return 404 — this prevents the frontend dashboard from
+                    accidentally consuming Android-facing endpoints.</p>
+                <pre><code class="language-csharp">/// REST controllers return 404 when accessed on SignalR port (5910).
+/// In-memory test server simulates port via Host header.
+[Fact]
+public async Task Controllers_ReturnNotFound_OnSignalRPort_InNonTesting()
+{
+    using var client = _factory.CreateClient();
+    var request = new HttpRequestMessage(
+        HttpMethod.Get, $"/api/v1/config/{Guid.NewGuid()}");
+    request.Headers.Host = "localhost:5910";
+
+    var response = await client.SendAsync(request);
+
+    Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+}</code></pre>
+
+                <p><strong>Cross-port accessibility:</strong> Health and SignalR endpoints must remain accessible on any
+                    port. Per FrontendWorkflowSpecifications §2ZA(8)(c), the SignalR port may fall back to 5914–5919 if
+                    5910 is unavailable, so the hub negotiate endpoint cannot be port-restricted.</p>
+                <pre><code class="language-csharp">/// Health endpoint accessible on any port — including fallback ports.
+/// Per FrontendWorkflowSpecifications §2ZA(8)(c): SignalR may bind
+/// to alternative ports 5914-5919 if 5910 is unavailable.
+[Theory]
+[InlineData(5910)]
+[InlineData(5911)]
+[InlineData(5914)]
+public async Task HealthEndpoint_Accessible_OnAnyPort(int port)
+{
+    using var client = _factory.CreateClient();
+    var request = new HttpRequestMessage(HttpMethod.Get, "/");
+    request.Headers.Host = $"localhost:{port}";
+
+    var response = await client.SendAsync(request);
+
+    response.EnsureSuccessStatusCode();
+}</code></pre>
 
                 <h2 id="integration">Integration Testing</h2>
                 <p>
-                    The integration test infrastructure uses an ephemeral SQLite database created fresh per test run, ensuring no state leaks between tests. Network services (UDP broadcast and TCP pairing) start automatically in integration mode. An IntegrationSeedService seeds required device configuration, materials, questions, attachments and feedback on startup. A POST /api/v1/integration/reset endpoint clears all data and re-seeds between test runs.
+                    Integration testing verifies the network-layer interactions between the Android tablet (client) and
+                    the Windows teacher application (server). Because the client drives all test scenarios, the Windows
+                    backend must be actively running and listening on real network sockets.
                 </p>
+
+                <h3>Windows Server Preparation</h3>
                 <p>
-                    A notable issue discovered during integration testing was that all device and entity IDs must be valid UUIDs — the server validates using <code>Guid.TryParse()</code> and previously returned 400 Bad Request for malformed IDs. This was changed to 404 Not Found with a generic message to avoid leaking information about ID validity.
+                    To support live integration testing without altering wire-level protocol behaviours, the Windows
+                    application incorporates a dedicated <strong>integration-test startup mode</strong>. Running
+                    <code>dotnet run --launch-profile Integration</code> activates the following specific test
+                    behaviours:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Network Services Auto-Start:</strong> The UDP broadcast service, TCP pairing listener,
+                        and HTTP REST APIs bind automatically to their default test ports (5913, 5912, and 5911
+                        respectively) on server startup.
+                    </li>
+                    <li>
+                        <strong>Database Isolation:</strong> The system completely bypasses EF Core migrations and
+                        instead creates a clean, ephemeral in-memory SQLite database (<code>MainDbContext</code>) on
+                        each run to prevent test pollution.
+                    </li>
+                    <li>
+                        <strong>Test Data Seeding:</strong> An <code>IntegrationSeedService</code> injects perfectly
+                        formed dummy data into the database. This includes registering a well-known test device (ID:
+                        <code>00000000-0000-0000-0000-000000000001</code>), setting default configurations, and staging
+                        dummy AI materials (worksheets, questions, test attachments) for the tablet to request.
+                    </li>
+                    <li>
+                        <strong>Simulation API:</strong> An internal <code>/api/simulation/</code> endpoint exposes a
+                        webhook that directly issues TCP commands to the client (e.g., <code>LOCK_SCREEN</code>). This
+                        deterministic triggering mechanism allows tests to fully automate server-initiated command
+                        flows. Crucially, the MSBuild conditions in <code>Manuscripta.Main.csproj</code> explicitly
+                        strip the <code>Testing/</code> directory out of the compilation tree during a
+                        <code>Release</code> build, ensuring that these simulation backdoors are
+                        not accessible in the circulated production binaries.
+                    </li>
+                </ul>
+
+                <h3>Android Client Execution</h3>
+                <p>
+                    With the Windows server running in integration mode, the Android integration tests execute via
+                    <code>./gradlew testDebugUnitTest -Pintegration</code>. Integration tests are annotated with
+                    <code>@Category(IntegrationTest.class)</code> and excluded from the default test task — the
+                    <code>-Pintegration</code> flag activates them. These tests perform the real assertions, verifying
+                    that the UDP packets are valid, TCP connections complete successfully, and HTTP REST calls return the
+                    exact expected schemas defined in the API Contract.
+                </p>
+
+                <h3>Manual Integration Testing</h3>
+                <p>
+                    In addition to automated tests, comprehensive manual testing has been conducted between the Windows
+                    application running in deployment mode and a physical Android tablet. This ensures that when the
+                    frontend is fully involved, all systems communicate correctly, maintaining stability and confirming
+                    the correct working order of the two applications in real-world scenarios.
                 </p>
 
                 <h2 id="uat">User Acceptance Testing</h2>
                 <p>
-                    Five teaching professionals tested the Windows application in person, including two teachers from Richard Cloudesley School and three additional teachers from Priya Bargota's personal contacts in the education sector. Testers navigated the full teacher workflow: opening the application, generating AI-powered materials using the content generator, deploying materials to connected E-ink devices, and monitoring student progress from the dashboard.
+                    Teaching professionals from the National Autistic Society tested the Windows application in
+                    person. Testers navigated the full teacher workflow: opening the application, generating
+                    AI-powered materials using the content generator, deploying materials to connected E-ink devices,
+                    and monitoring student progress from the dashboard.
                 </p>
 
                 <table>
@@ -426,12 +708,14 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                 </table>
 
                 <p>
-                    No formal user testing was conducted with students within the project timeline. The planned visit of 127 students to UCL did not proceed. Student-facing testing remains as future work.
+                    No formal user testing was conducted with students within the project timeline. The planned visit of
+                    127 students to UCL did not proceed. Student-facing testing remains as future work.
                 </p>
 
                 <h2 id="compatibility">Device and Platform Compatibility</h2>
                 <p>
-                    Manuscripta was tested across a range of devices and operating system configurations to validate compatibility with the target hardware.
+                    Manuscripta was tested across a range of devices and operating system configurations to validate
+                    compatibility with the target hardware.
                 </p>
 
                 <h3>E-ink Device Compatibility</h3>
@@ -452,12 +736,6 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                             <td>✓ Supported</td>
                         </tr>
                         <tr>
-                            <td>Qualcomm test device</td>
-                            <td>Android tablet</td>
-                            <td>Direct Wi-Fi via Android app</td>
-                            <td>✓ Development and testing device</td>
-                        </tr>
-                        <tr>
                             <td>Kindle Scribe</td>
                             <td>Non-Android E-ink</td>
                             <td>Email PDF workflow via SMTP</td>
@@ -473,59 +751,37 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                 </table>
 
                 <p>
-                    The email-based PDF workflow for non-Android devices was validated during user testing with two Richard Cloudesley School teachers and independently confirmed by Atia Rafiq, whose professional healthcare workflow uses the identical mechanism.
+                    The email-based PDF workflow for non-Android devices was validated during user testing with two
+                    Richard Cloudesley School teachers and independently confirmed by Atia Rafiq, whose professional
+                    healthcare workflow uses the identical mechanism.
                 </p>
 
                 <h3>Android Version Compatibility</h3>
                 <p>
-                    The Android application targets API level 36 and supports a minimum of API level 27 (Android 8.0). This range covers all commercially available Android E-ink tablets from manufacturers including Boox and AiPaper.
+                    The Android application targets API level 36 and supports a minimum of API level 27 (Android 8.0).
+                    This range covers all commercially available Android E-ink tablets from manufacturers including Boox
+                    and AiPaper.
                 </p>
 
                 <h3>Windows Compatibility</h3>
                 <p>
-                    The Windows teacher application was tested on Windows 10 and Windows 11 on both Intel and Qualcomm AI-capable chipsets. On machines without a dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI models locally.
+                    The Windows teacher application was tested on Windows 11 with RTX4050 GPU. On machines without a
+                    dedicated AI chipset, AI generation falls back to CPU inference, which remains functional but
+                    significantly slower. A minimum of 8 GB RAM is required, with 16 GB recommended when running AI
+                    models locally.
                 </p>
 
                 <h2 id="ai-validation">AI Output Post-Processing Validation</h2>
                 <p>
-                    The AI content generation pipeline introduces non-determinism — the same prompt does not always produce identical output. Manuscripta addresses this through a deterministic post-processing pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are normalised to H3, malformed question markers are fixed, and invalid references are removed. The validation function was unit tested to verify it correctly identifies and flags each error type.
+                    The AI content generation pipeline introduces non-determinism — the same prompt does not always
+                    produce identical output. Manuscripta addresses this through a deterministic post-processing
+                    pipeline that runs regardless of model output: unclosed code blocks are closed, headers above H3 are
+                    normalised to H3, malformed question markers are fixed, and invalid references are removed. The
+                    validation function was unit tested to verify it correctly identifies and flags each error type.
                 </p>
-
-                <h2 id="coverage">Test Coverage Summary</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Application</th>
-                            <th>Test Files</th>
-                            <th>Lines of Test Code</th>
-                            <th>Coverage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Android</td>
-                            <td>74</td>
-                            <td>21,504</td>
-                            <td>96% instruction, 93% branch (JaCoCo)</td>
-                        </tr>
-                        <tr>
-                            <td>Windows</td>
-                            <td>52</td>
-                            <td>12,028</td>
-                            <td>Not measured — no coverage tool configured</td>
-                        </tr>
-                        <tr>
-                            <td>Total</td>
-                            <td>126</td>
-                            <td>33,532</td>
-                            <td>—</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2 id="ci-cd">CI/CD and Code Quality</h2>
                 <p>
-                    Pull request peer reviews were conducted as a team norm rather than being enforced via GitHub branch protection rules. This means reviews were voluntary rather than technically required before merging. In retrospect, configuring branch protection to require at least one approving review and passing CI checks before merge would have provided a stronger quality gate, and this is noted as a process improvement for future projects.
+                    Refer to the evaluation section for a detailed analysis of AI output latency, quality and
+                    consistency.
                 </p>
 
                 <h2 id="bugs">Bugs Discovered Through Testing</h2>
@@ -548,12 +804,14 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                         </tr>
                         <tr>
                             <td>#286</td>
-                            <td>MaterialDto deserialised as null due to incorrect @SerializedName("Type") annotation</td>
+                            <td>MaterialDto deserialised as null due to incorrect @SerializedName("Type") annotation
+                            </td>
                             <td>DTO unit tests failed on null field assertions</td>
                         </tr>
                         <tr>
                             <td>#286</td>
-                            <td>Server retained TCP state between test runs, causing 25% flaky failure rate on handRaised test</td>
+                            <td>Server retained TCP state between test runs, causing 25% flaky failure rate on
+                                handRaised test</td>
                             <td>Intermittent CI failures identified the stateful server issue</td>
                         </tr>
                         <tr>
@@ -573,57 +831,20 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
                         </tr>
                         <tr>
                             <td>#295</td>
-                            <td>Refactoring GenerateResponsePdfAsync to call GetAllAsync() caused four tests to fail</td>
-                            <td>Existing mocks expected old per-entity methods, caught the breaking change immediately</td>
+                            <td>Refactoring GenerateResponsePdfAsync to call GetAllAsync() caused four tests to fail
+                            </td>
+                            <td>Existing mocks expected old per-entity methods, caught the breaking change immediately
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <p>
-                    The flaky test in PR #286 is particularly notable — a 25% failure rate on the handRaised acknowledgement test revealed that the Windows integration server was retaining TCP connection state between test runs. The fix required adding a proper state reset between tests, which is now handled by the POST /api/v1/integration/reset endpoint described in the integration testing section.
+                    The flaky test in PR #286 is particularly notable — a 25% failure rate on the handRaised
+                    acknowledgement test revealed that the Windows integration server was retaining TCP connection state
+                    between test runs. The fix required adding a proper state reset between tests, which is now handled
+                    by the POST /api/v1/integration/reset endpoint described in the integration testing section.
                 </p>
-
-                <h2 id="not-tested">What is not tested</h2>
-                <p>
-                    In the interest of transparency, the following areas have no automated test coverage:
-                </p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Gap</th>
-                            <th>Reason</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Performance benchmarks</td>
-                            <td>No load testing suite was implemented</td>
-                            <td>Future work</td>
-                        </tr>
-                        <tr>
-                            <td>30-device simultaneous distribution</td>
-                            <td>Requires physical hardware setup</td>
-                            <td>Future work</td>
-                        </tr>
-                        <tr>
-                            <td>AI output consistency at scale</td>
-                            <td>Requires automated prompt testing suite</td>
-                            <td>Future work</td>
-                        </tr>
-                        <tr>
-                            <td>Android UI layer</td>
-                            <td>Espresso UI tests not yet written</td>
-                            <td>⚠ In progress</td>
-                        </tr>
-                        <tr>
-                            <td>Student user testing</td>
-                            <td>Planned visit did not proceed</td>
-                            <td>Future work</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-        </div>
     </main>
 
     <footer>
@@ -633,5 +854,10 @@ public async Task StartListeningAsync_CalledTwice_LogsWarning()
         </div>
     </footer>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 </body>
+
 </html>
