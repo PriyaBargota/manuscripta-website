@@ -58,7 +58,7 @@
             <div class="doc-content">
 
                 <div class="doc-header">
-                    <h1>Background</h1>
+                    <h1>Requirements</h1>
                     <p>Understanding the project origins, challenges, and approach that shaped Manuscripta's development.</p>
                 </div>
 
@@ -66,10 +66,10 @@
                 <div>
                     <h2>Background</h2>
                     <p>
-                        Manuscripta was proposed by Professor Dean Mohamedally at UCL in collaboration with the National Autistic Society. The project originated from a practical concern raised by specialist SEN schools: students with autism and complex learning needs were struggling to maintain focus when using iPads in the classroom. While iPads offered the accessibility advantages of a large touchscreen and intuitive tap-based navigation, they also introduced significant distractions. Students were able to switch freely between applications, access the internet, and interact with content unrelated to their lessons, undermining the structured, low-stimulus environment that many autistic learners require.
+                        Manuscripta was proposed by Professor Dean Mohamedally at UCL in collaboration with the National Autistic Society. The project originated from a practical concern raised in schools, where students were struggling to maintain focus when using iPads in the classroom. While iPads offered the accessibility advantages of a large touchscreen and intuitive tap-based navigation, they also introduced significant distractions. Students were able to switch freely between applications, access the internet and interact with content unrelated to their lessons, undermining the structured learning environments. This problem was found to be particularly acute in specialist SEN schools, where students with autism and complex learning needs require a low-stimulus, highly structured setting, making the disruptive nature of iPads an even greater barrier to effective pedagogy.
                     </p>
                     <p>
-                        Pen and paper, the natural alternative, was not always suitable either. For some students, the physical demands of handwriting create a barrier to engagement, and paper-based materials offer teachers no means of monitoring student progress or providing timely, adaptive feedback. Schools therefore found themselves caught between two inadequate options: a digital tool that overwhelmed students with sensory input, and an analogue approach that lacked the flexibility and responsiveness of modern educational technology.
+                        Pen and paper, the natural alternative, was not always suitable either. For some students, the physical demands of handwriting hamper engagement, and paper-based materials offer teachers no means of monitoring student progress or providing timely adaptive feedback. Schools therefore found themselves caught between two inadequate options: a digital tool that overwhelmed students with sensory input, and an analogue approach that lacked the flexibility and responsiveness of modern educational technology.
                     </p>
                     <p>
                         The team was given this problem and asked to design and build a solution from first principles. There were no prescribed technologies or interfaces. The scope, architecture and implementation were determined entirely by the team, guided by ongoing input from project partners and stakeholder feedback.
@@ -94,10 +94,10 @@
                 <div>
                     <h2>Our Approach</h2>
                     <p>
-                        Manuscripta addresses these challenges through a two-component system. The teacher application runs on a Windows laptop with an AI-capable chipset and uses IBM Granite, an on-device large language model, to generate educational materials including quizzes, worksheets and polls. The teacher can specify the topic, target age group and reading level, and the model produces content accordingly without any internet connection. Materials are then distributed to student devices over a local area network.
+                        Manuscripta addresses these challenges through a two-component system. The teacher application runs on a Windows laptop with an AI-capable chipset and uses local LLM models such as Qwen and IBM Granite to generate educational materials including quizzes, worksheets and polls. The teacher can specify the topic, target age group and reading level, and the model produces content accordingly without any internet connection. Materials are then distributed to student devices over a local area network.
                     </p>
                     <p>
-                        The student application runs on Android-based E-ink tablets, such as those manufactured by Boox and AiPaper, as well as on Kindle and reMarkable devices supplied by Richard Cloudesley School. The monochromatic, low-refresh display of these devices eliminates the audiovisual stimulation associated with standard tablets, and the application runs in kiosk mode to prevent students from navigating away from their assigned material. Students can annotate worksheets using a stylus, submit answers to quizzes and polls, and raise a discreet help request visible only to the teacher.
+                        The student application runs on Android-based E-ink tablets, such as those manufactured by Boox and AiPaper, as well as on Kindle and reMarkable devices. The monochromatic, low-refresh display of these devices eliminates the audiovisual stimulation associated with standard tablets, and the application runs in kiosk mode to prevent students from navigating away from their assigned material. Students can annotate worksheets using a stylus, submit answers to quizzes and polls, and raise a discreet help request visible only to the teacher.
                     </p>
                     <p>
                         The teacher dashboard provides a live overview of all connected devices, showing each student's status and aggregating quiz and poll responses anonymously. All data remains on the local network and is never transmitted to external servers, ensuring that no personally identifiable student information is stored or processed beyond the classroom.
@@ -106,48 +106,17 @@
 
                 <div class="doc-header">
                     <h1>Project Goals</h1>
-                    <p>The educational, teacher support, and technical objectives driving Manuscripta's development.</p>
                 </div>
 
-                <!-- Student outcomes -->
                 <div>
-                    <h2>Student outcomes</h2>
                     <p>
-                        <strong>Reduce</strong> sensory overload by delivering content on monochromatic E-ink displays, eliminating the bright colours, notifications and unrestricted app access associated with standard tablets
+                        Manuscripta aims to reduce sensory overload for students by delivering content on monochromatic E-ink displays, which eliminates the bright colours, notifications and unrestricted app access associated with standard tablets. The system is designed to improve engagement for quieter or more anxious students by providing a discreet help request feature that alerts the teacher without drawing attention to the individual. It also supports varying reading levels and learning needs through AI-generated content that can be adjusted in complexity on demand.
                     </p>
                     <p>
-                        <strong>Improve</strong> engagement for quieter or more anxious students through a discreet help request feature that alerts the teacher without drawing attention to the individual
+                        For teachers, Manuscripta replaces time-consuming manual worksheet creation with an AI content pipeline that produces tailored quizzes, worksheets and polls using on-device AI models. The platform provides a real-time monitoring dashboard that shows every student's status, help requests, and device health without requiring the teacher to move around the classroom. Additionally, it enables remote classroom controls such as screen lock and session management from a single Windows application.
                     </p>
                     <p>
-                        <strong>Support</strong> varying reading levels and learning needs through AI-generated content that can be adjusted in complexity on demand
-                    </p>
-                </div>
-
-                <!-- Teacher support -->
-                <div>
-                    <h2>Teacher support</h2>
-                    <p>
-                        <strong>Replace</strong> time-consuming manual worksheet creation with an AI content pipeline that produces tailored quizzes, worksheets and polls in seconds using IBM Granite
-                    </p>
-                    <p>
-                        <strong>Provide</strong> a real-time monitoring dashboard showing every student's status, help requests and device health without requiring physical movement around the classroom
-                    </p>
-                    <p>
-                        <strong>Enable</strong> remote classroom controls including screen lock and session management from a single Windows application
-                    </p>
-                </div>
-
-                <!-- Technical -->
-                <div>
-                    <h2>Technical</h2>
-                    <p>
-                        <strong>Demonstrate</strong> a fully on-device AI pipeline integrated into a practical classroom tool with no cloud dependency, using IBM Granite running locally on the teacher's laptop
-                    </p>
-                    <p>
-                        <strong>Design</strong> a low-latency local network protocol capable of serving up to 30 simultaneous E-ink devices
-                    </p>
-                    <p>
-                        <strong>Build</strong> a modular architecture where individual components, including the networking layer and AI pipeline, can be adapted for other educational or assistive technology contexts
+                        From a technical perspective, the project demonstrates a fully on-device AI pipeline integrated into a practical classroom tool with no cloud dependency, using local language models running on the teacher's laptop. The system is designed with a low-latency local network protocol capable of serving up to 30 simultaneous E-ink devices, and features a modular architecture where individual components, including the networking layer and AI pipeline, can be adapted for other educational or assistive technology contexts.
                     </p>
                 </div>
 
@@ -189,11 +158,11 @@
                         <p><strong>A:</strong> This may be useful but not essential, since for smaller class sizes student performance is easier to track.</p>
                     </div>
 
-                    <div class="subcard" style="background: linear-gradient(135deg, #15502E 0%, #1e6b3d 100%); border-left: 4px solid #FFE782; padding: 20px; margin-top: 32px;">
-                        <p style="color: #FFE782; font-weight: 700; font-size: 16px; margin-bottom: 12px;">What we changed:</p>
-                        <p style="color: white; line-height: 1.7;">The data privacy response directly led to our decision to operate entirely over a local network with no cloud storage. The confirmation of stylus and touch input informed our decision to support both interaction modes in the Android application. The emphasis on worksheets and comprehension tasks shaped the material types we prioritised in the AI generation pipeline.</p>
-                        <p style="color: #FFE782; font-weight: 700; font-size: 16px; margin-top: 16px; margin-bottom: 12px;">Impact:</p>
-                        <p style="color: white; line-height: 1.7;">Schools handling sensitive data about vulnerable young people can deploy Manuscripta with confidence that no student information leaves the school premises, ensuring full GDPR compliance without any additional configuration.</p>
+                    <div class="subcard subcard--green" style="padding: 20px; margin-top: 32px;">
+                        <p style="font-weight: 700; font-size: 16px; margin-bottom: 12px;">What we changed</p>
+                        <p style="line-height: 1.7;">The data privacy response directly led to our decision to operate entirely over a local network with no cloud storage. The confirmation of stylus and touch input informed our decision to support both interaction modes in the Android application. The emphasis on worksheets and comprehension tasks shaped the material types we prioritised in the AI generation pipeline.</p>
+                        <p style="font-weight: 700; font-size: 16px; margin-top: 16px; margin-bottom: 12px;">Impact</p>
+                        <p style="line-height: 1.7;">Schools handling sensitive data about vulnerable young people can deploy Manuscripta with confidence that no student information leaves the school premises, ensuring full GDPR compliance without any additional configuration.</p>
                     </div>
                 </div>
 
@@ -209,8 +178,8 @@
 
                     <div class="subcard subcard--green">
                         <p><strong>On-Device AI Requirements</strong></p>
-                        <p>All AI processing must occur locally on the teacher's Windows laptop with no cloud dependency, covering content generation, assessment and future handwriting recognition. IBM Granite was selected as the on-device language model.</p>
-                        <p><strong>What we changed:</strong> The requirement for fully local AI processing narrowed our model selection to on-device options only. IBM Granite was selected over alternatives because it runs entirely on the teacher's laptop without an internet connection, is optimised for Intel and Qualcomm chipsets which our target hardware uses, and is supported by our project partner IBM who provided technical guidance on integration.</p>
+                        <p>All AI processing must occur locally on the teacher's Windows laptop with no cloud dependency, covering content generation, assessment and future handwriting recognition. Qwen was selected as the primary on-device language model, with IBM Granite retained as a fallback for less capable hardware. Both models are managed via Ollama.</p>
+                        <p><strong>How we addressed this:</strong> Fully local AI processing was a core requirement from the outset, narrowing model selection to on-device options only. Qwen was chosen as the primary model for content generation due to its ability to produce well-structured, correctly formatted materials. IBM Granite is retained as a fallback for hardware that cannot support Qwen, and is used for smaller tasks such as generating feedback. Both run entirely on the teacher's laptop via Ollama without an internet connection.</p>
                         <p><strong>Impact:</strong> Teachers can generate personalised content in schools with restricted or no internet access, and the system remains fully functional on a standard school network without any external dependencies.</p>
                     </div>
 
@@ -237,30 +206,29 @@
                 </div>
 
                 <div class="interview-tab-panel" id="interview-3">
-                    <p>Following our demonstration at the showcase event, we received valuable feedback from teachers, industry partners, and academic reviewers that validated our approach and informed our final implementation priorities.</p>
+                    <p>At the project showcase, we demonstrated Manuscripta to teachers, industry partners and academic reviewers. The feedback primarily validated our existing design decisions rather than introducing new requirements.</p>
 
                     <div class="subcard subcard--blue">
-                        <p><strong>Teacher Feedback: E-ink Device Selection</strong></p>
-                        <p>"I'm really glad you've gone with Kindles rather than iPads. Distraction is definitely a big problem with full colour tablets and it's not really possible to lock a student into an app on an iPad. This is exactly the kind of tool teachers actually want." - Teacher, Richard Cloudesley School</p>
-                        <p><strong>What we implemented:</strong> Based on this validation, we committed fully to e-ink tablets as our student device. We implemented kiosk mode on the Android app to lock students into Manuscripta during sessions, and designed the entire UI around a monochrome, low-distraction experience.</p>
-                    </div>
-
-                    <div class="subcard subcard--green">
-                        <p><strong>Teacher Feedback: Auto-marking Control</strong></p>
-                        <p>"Auto-marking is really important, but teachers need control over it before it gets accepted as final. There should be an option to make it manual." - Teacher, Richard Cloudesley School</p>
-                        <p><strong>What we implemented:</strong> We built a marking system where the teacher can review AI-suggested marks before they are finalised, with a manual override option available for every response.</p>
+                        <p><strong>NAS Feedback: Narrative Framing</strong></p>
+                        <p>Mareli Smit of the National Autistic Society highlighted the economic argument for E-ink tablets: a one-off investment in a set of devices replaces the recurring cost of printed textbooks, worksheets and other physical materials. This feedback informed how we positioned the project's value proposition.</p>
+                        <p><strong>Impact:</strong> This reinforced the case for E-ink tablets as a cost-effective long-term alternative to printed materials, particularly in SEN settings where differentiated resources at multiple reading levels would otherwise require significant ongoing expenditure.</p>
                     </div>
 
                     <div class="subcard subcard--orange">
-                        <p><strong>Teacher Feedback: Class-wide Understanding</strong></p>
-                        <p>"Sometimes during a lesson a teacher likes to stop and get an understanding of where all students are. There needs to be a good way of doing this." - Teacher, Richard Cloudesley School</p>
-                        <p><strong>What we implemented:</strong> We built a real-time dashboard with a colour-coded grid showing every student's status, plus poll and quiz response aggregation so teachers can instantly gauge class-wide understanding.</p>
+                        <p><strong>NAS Feedback: Shared Device Model</strong></p>
+                        <p>Mareli Smit recommended that tablets should belong to the class rather than individual students, with devices handed out at the start of each lesson and collected afterwards. This contradicted earlier guidance from Professor Mohamedally on persisting student data across sessions.</p>
+                        <p><strong>What we changed:</strong> We implemented a database wipe on device pairing, giving each student a fresh experience every lesson. This simplifies device management for teachers and avoids privacy concerns around students accessing previous users' work.</p>
+                    </div>
+
+                    <div class="subcard subcard--green">
+                        <p><strong>Showcase Validation</strong></p>
+                        <p>Remaining feedback from attendees validated our core design decisions: the choice of E-ink devices for distraction reduction, the fully local AI processing approach, and the real-time monitoring dashboard.</p>
                     </div>
 
                     <div class="subcard subcard--yellow">
                         <p><strong>Microsoft: Deployment Simplification</strong></p>
                         <p>"Foundry Local bundles all AI into one executable that you can ship with the app. It reduces overhead on setup considerably." - Microsoft Representative</p>
-                        <p><strong>What we implemented:</strong> We took this on board as a recommendation for simplifying deployment of our on-device AI. This informed our approach to packaging the Windows application as a single self-contained installer.</p>
+                        <p><strong>What we considered:</strong> This was evaluated as a potential approach to simplifying deployment. Ultimately, we retained Ollama for model management as it was already integrated into our workflow and supported our two-model architecture. The teacher application includes a guided setup UI that handles dependency installation as a one-off process, which Mareli Smit confirmed would be acceptable for teachers.</p>
                     </div>
 
                     <div class="subcard subcard--blue">
@@ -273,7 +241,7 @@
 
             <h2 id="personas">Personas</h2>
             <p>
-                We developed two personas based on our stakeholder consultations. Jon Kirk was developed from feedback provided by teachers at Richard Cloudesley School, and Tim Jones was developed from insights provided by Marie-Louise Holmberg and Mareli Smith of the National Autistic Society, reflecting characteristics of students with Autism Spectrum Disorder and dyslexia in SEN settings. These personas were used throughout the project to ground design decisions in real user needs.
+                We developed two personas based on our stakeholder consultations. Jon Kirk was developed from feedback provided by teachers consulted during the project, and Tim Jones was developed from insights provided by Marie-Louise Holmberg and Mareli Smit of the National Autistic Society, reflecting characteristics of students with Autism Spectrum Disorder and dyslexia in SEN settings. These personas were used throughout the project to ground design decisions in real user needs.
             </p>
             <p>
                 Jon is preparing a History lesson for a mixed-ability class of 12 students. He uses the Windows application to generate a reading comprehension worksheet at two difficulty levels in under a minute, distributes it to all connected tablets simultaneously, and monitors from his desk which students have started, paused or raised a help request.
@@ -314,24 +282,24 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher generates a worksheet using the on-device AI, specifying subject, topic and target reading level.</div>
+                        <div class="use-case-content">The teacher generates a Water Cycle worksheet using IBM Granite on-device AI, specifying reading age 8 for students aged 12.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher opens the content generator in the Windows application</li>
-                                <li>Teacher selects material type (worksheet, quiz or poll)</li>
-                                <li>Teacher inputs subject topic and target age group via slider</li>
-                                <li>IBM Granite generates the material locally on the teacher's laptop</li>
-                                <li>Teacher reviews and edits the generated content</li>
-                                <li>Teacher saves the material to the content library</li>
+                                <li>Teacher opens Lesson Library in the Windows application and clicks "Create New Worksheet"</li>
+                                <li>Teacher selects material type: Worksheet</li>
+                                <li>Teacher enters topic "Water Cycle", reading age "8 years old", actual age "12 years old", duration "30 minutes"</li>
+                                <li>The on-device AI generates the worksheet locally including questions like "Which process forms clouds?" with options: Evaporation, Condensation, Precipitation</li>
+                                <li>Teacher reviews the generated questions and sees they align with the learning objectives</li>
+                                <li>Teacher manually adds a question: "Describe what happens to water droplets in a cloud"</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">AI-generated material saved to the library and ready for distribution.</div>
+                        <div class="use-case-content">Water Cycle worksheet with age-appropriate language saved to library and ready for distribution to Boox tablets.</div>
                     </div>
                 </div>
             </div>
@@ -352,23 +320,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher distributes a saved material to connected student E-ink tablets over the local network.</div>
+                        <div class="use-case-content">The teacher distributes the Water Cycle worksheet to 15 connected Boox tablets over the local Wi-Fi network.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher selects a material from the content library</li>
-                                <li>Teacher views the list of connected devices on the dashboard</li>
-                                <li>Teacher selects target devices or distributes to all</li>
-                                <li>System pushes content over Wi-Fi to all selected tablets</li>
-                                <li>Students receive the material on their device</li>
+                                <li>Teacher selects "Water Cycle Worksheet" from the lesson library</li>
+                                <li>Teacher opens Classroom dashboard and views 15 connected Boox tablets listed by device name</li>
+                                <li>Teacher selects all 15 devices for deployment</li>
+                                <li>Teacher clicks "Deploy to Devices" and system pushes the worksheet over local Wi-Fi within 5 seconds</li>
+                                <li>All 15 students receive notification on their Boox tablets: "New worksheet available"</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Learning material delivered simultaneously to up to 30 student devices.</div>
+                        <div class="use-case-content">Water Cycle worksheet delivered simultaneously to 15 student Boox tablets, ready for students to begin work.</div>
                     </div>
                 </div>
             </div>
@@ -389,23 +357,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The student views and completes an assigned worksheet on their E-ink tablet using touch or stylus input.</div>
+                        <div class="use-case-content">The student views and completes the Water Cycle worksheet on their Boox tablet, answering questions using touch input.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Student receives notification that material has been assigned</li>
-                                <li>Student opens the worksheet in the Android application</li>
-                                <li>Student reads through the content</li>
-                                <li>Student uses stylus or touch to annotate or answer questions</li>
-                                <li>Student submits completed responses through the app</li>
+                                <li>Student receives notification on Boox tablet: "New worksheet available"</li>
+                                <li>Student taps to open the Water Cycle worksheet in the Android application</li>
+                                <li>Student reads the first question: "Which process forms clouds?"</li>
+                                <li>Student taps on the answer "Condensation" from the multiple-choice options</li>
+                                <li>Student completes remaining questions and taps "Submit Worksheet"</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Student responses submitted to the teacher dashboard for review.</div>
+                        <div class="use-case-content">Water Cycle worksheet answers submitted to teacher's Windows laptop dashboard over local Wi-Fi for marking and feedback.</div>
                     </div>
                 </div>
             </div>
@@ -426,23 +394,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The teacher monitors class progress and student status in real time during a lesson.</div>
+                        <div class="use-case-content">The teacher monitors student progress on the Water Cycle worksheet in real time during the lesson.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher opens the monitoring dashboard</li>
-                                <li>Dashboard displays anonymised status of each connected device</li>
-                                <li>Teacher identifies students marked as needing help or inactive</li>
-                                <li>Teacher reviews submitted responses and completion rates</li>
-                                <li>Teacher provides targeted support where needed</li>
+                                <li>Teacher views the Classroom dashboard showing all 15 connected tablets</li>
+                                <li>Dashboard displays real-time status: 12 devices show "On Task", 2 show "Needs Help", 1 shows "Disconnected"</li>
+                                <li>Teacher clicks on Student 7's device card which shows "Needs Help" status</li>
+                                <li>Teacher sees Student 7 is stuck on question 3: "What happens during evaporation?"</li>
+                                <li>Teacher walks over to provide individual support while others continue working</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Teacher has a live overview of class engagement and can respond to individual needs without disrupting the lesson.</div>
+                        <div class="use-case-content">Teacher identifies and supports struggling students in real time without disrupting the rest of the class working on their Water Cycle worksheets.</div>
                     </div>
                 </div>
             </div>
@@ -463,23 +431,23 @@
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Description:</div>
-                        <div class="use-case-content">The student discreetly signals to the teacher that they need assistance without speaking aloud.</div>
+                        <div class="use-case-content">Student 7 becomes stuck on a Water Cycle question and discreetly requests help without speaking aloud.</div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Student becomes stuck or needs support during a task</li>
-                                <li>Student taps the help request button on the status bar</li>
-                                <li>System sends an alert to the teacher dashboard</li>
-                                <li>Teacher sees the device flagged on the classroom overview grid</li>
-                                <li>Teacher acknowledges the request</li>
+                                <li>Student 7 is unsure how to answer "What happens during evaporation?" on their Boox tablet</li>
+                                <li>Student taps the "Raise Hand" button on the app's status bar</li>
+                                <li>System sends alert to teacher's Windows laptop dashboard over local Wi-Fi</li>
+                                <li>Teacher sees Student 7's device card change from "On Task" to "Needs Help" with a hand icon</li>
+                                <li>Teacher approaches Student 7 to provide individual support</li>
                             </ol>
                         </div>
                     </div>
                     <div class="use-case-row">
                         <div class="use-case-label">Result:</div>
-                        <div class="use-case-content">Student receives support without having to speak in front of the class, reducing anxiety for neurodiverse learners.</div>
+                        <div class="use-case-content">Student 7 receives help on the evaporation question without speaking in front of the class, reducing anxiety common among neurodiverse learners.</div>
                     </div>
                 </div>
             </div>
@@ -506,7 +474,7 @@
                         <div class="use-case-label">Main Flow:</div>
                         <div class="use-case-content">
                             <ol>
-                                <li>Teacher generates and saves a material in the Windows application</li>
+                                <li>Teacher generates a material in the Windows application</li>
                                 <li>Teacher exports the material as a PDF</li>
                                 <li>Teacher sends the PDF to the student's device email address</li>
                                 <li>Student opens the PDF on their E-ink device</li>
@@ -523,7 +491,7 @@
             </div>
 
             <h2 id="user-interactions">User Interactions</h2>
-            <p>This diagram illustrates how teachers and students interact with Manuscripta to complete core tasks: content creation, distribution, learning activities, and real-time monitoring.</p>
+            <p>This diagram below, which uses a worksheet on the water cycle as a sample material, illustrates how the teacher portal and the student's Android app are expected to interact to complete core tasks like content creation, distribution, learning activities and real-time monitoring.</p>
 
             <div class="user-flow-diagram">
                 <div class="user-flow-grid">
@@ -533,32 +501,32 @@
 
                         <div class="user-flow-box">
                             <div class="user-flow-actor user-flow-actor--teacher"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M0 19h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 19l1.5 2h5L16 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                            Open Content Generator
+                            Opens Lesson Library on Windows laptop and clicks "Create New Worksheet"
                         </div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Input Topic, Difficulty Level, Age Group</div>
+                        <div class="user-flow-box">Enters details: Topic "Water Cycle", Reading age "8 years old", Actual age "12 years old", Duration "30 minutes"</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box user-flow-box--highlight">AI Generates Personalised Worksheet</div>
+                        <div class="user-flow-box user-flow-box--highlight">The on-device AI generates a custom worksheet with questions like "Which process forms clouds?" with multiple-choice options: Evaporation, Condensation, Precipitation</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Review &amp; Edit Content</div>
+                        <div class="user-flow-box">Reviews the generated questions and edits if needed using the editor</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                         <div class="user-flow-split">
-                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Re-generate if needed</div>
-                            <div class="user-flow-split-box user-flow-split-box--b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Save to Library</div>
+                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Requests AI to "Add a diagram showing the water cycle stages"</div>
+                            <div class="user-flow-split-box user-flow-split-box--b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Manually adds a question: "Describe what happens to water droplets in a cloud"</div>
                         </div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Select Target Student Devices</div>
+                        <div class="user-flow-box">Selects 15 connected Boox tablets from the device list for deployment</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box user-flow-box--highlight">Distribute via Local Wi-Fi Network</div>
+                        <div class="user-flow-box user-flow-box--highlight">Clicks "Deploy to Devices" — Water Cycle worksheet sent to all 15 tablets via local Wi-Fi</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Monitor Real-Time Progress on Dashboard</div>
+                        <div class="user-flow-box">Monitors real-time tablet statuses on Classroom dashboard (12 "On Task", 2 "Needs Help", 1 "Disconnected")</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                         <div class="user-flow-split">
-                            <div class="user-flow-split-box user-flow-split-box--a">View struggling students</div>
-                            <div class="user-flow-split-box user-flow-split-box--b">Respond to help requests</div>
+                            <div class="user-flow-split-box user-flow-split-box--a">Sees Student 7's hand raised — clicks to view their progress on the evaporation question</div>
+                            <div class="user-flow-split-box user-flow-split-box--b">Views Student 3's answer "Condensation" marked automatically as correct</div>
                         </div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Provide Targeted Support or Hints</div>
+                        <div class="user-flow-box">Uses AI to generate feedback or writes custom response: "Well done! You correctly identified condensation. 3/3 marks."</div>
                     </div>
 
                     <!-- Student flow -->
@@ -567,29 +535,29 @@
 
                         <div class="user-flow-box">
                             <div class="user-flow-actor user-flow-actor--student"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 11.5V17c0 0 2.5 2 6 2s6-2 6-2v-5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M22 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                            Receive Content on E-ink Tablet
+                            Receives notification on Boox tablet: "New worksheet available"
                         </div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Open Assigned Worksheet</div>
+                        <div class="user-flow-box">Taps to open the assigned Water Cycle worksheet</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Read Question on E-ink Display</div>
+                        <div class="user-flow-box">Reads the question on their Boox tablet: "Which process forms clouds?"</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box user-flow-box--highlight">Write Answer Using Stylus</div>
+                        <div class="user-flow-box user-flow-box--highlight">Types or taps "Condensation" using the on-screen keyboard</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box user-flow-box--highlight">Answer Submitted for Review</div>
-                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-split">
-                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Continue to next question</div>
-                            <div class="user-flow-split-box user-flow-split-box--warn">Need help? Press button</div>
+                      <div class="user-flow-split">
+                            <div class="user-flow-split-box user-flow-split-box--a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 15a9 9 0 1 0 .49-3.06" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Moves to next question: "What happens during evaporation?"</div>
+                            <div class="user-flow-split-box user-flow-split-box--warn">Stuck on the question?<br> Taps "Raise Hand" button</div>
                         </div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Complete All Questions</div>
+                        <div class="user-flow-box">Completes all questions in the Water Cycle worksheet</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Submit Worksheet</div>
+                        <div class="user-flow-box">Taps "Submit Worksheet" button</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box user-flow-box--highlight">Submission Sent to Teacher Dashboard</div>
+                        <div class="user-flow-box user-flow-box--highlight">Submission sent to teacher's Windows laptop dashboard over local Wi-Fi</div>
                         <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                        <div class="user-flow-box">Receive Confirmation Message</div>
+                        <div class="user-flow-box">Sees confirmation on tablet: "Worksheet submitted successfully"</div>
+                        <div class="user-flow-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="user-flow-box">Receives feedback from teacher: "Well done! You correctly identified condensation as the process that forms clouds. 3/3 marks."</div>
                     </div>
                 </div>
 
@@ -600,15 +568,15 @@
                     <div class="user-flow-network-cols">
                         <div class="user-flow-network-side">
                             <div class="user-flow-network-side-title">Teacher <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Students</div>
-                            <p>Content Distribution<br>Hints &amp; Assistance<br>Screen Lock Commands</p>
+                            <p>Content distribution<br>Feedback and marks<br>Screen lock and unlock commands</p>
                         </div>
                         <div class="user-flow-network-center">
-                            Local Wi-Fi Network
-                            <span>(No Cloud Storage)</span>
+                            Local Wi-Fi network
+                            <span>(No cloud storage)</span>
                         </div>
                         <div class="user-flow-network-side">
                             <div class="user-flow-network-side-title">Students <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Teacher</div>
-                            <p>Progress Updates<br>Help Requests<br>Completed Submissions</p>
+                            <p>Progress updates<br>Help requests<br>Completed submissions</p>
                         </div>
                     </div>
                 </div>
@@ -620,160 +588,94 @@
 
             <h2 id="moscow">MoSCoW Requirement List</h2>
             <p>
-                Requirements were prioritised using the MoSCoW method, reflecting input from stakeholder interviews with the National Autistic Society and Richard Cloudesley School, and validated against the technical constraints of E-ink hardware and on-device AI processing.
+                Requirements were prioritised using the MoSCoW method, reflecting input from stakeholder interviews with the National Autistic Society and teachers consulted during the project, and validated against the technical constraints of E-ink hardware and on-device AI processing.
             </p>
 
-            <h3>Functional Requirements</h3>
-
             <div class="subcard subcard--green">
                 <h4>Must Have</h4>
+                <h5>Functional Requirements</h5>
                 <ul>
-                    <li>✓ AI-powered content generation for quizzes, worksheets and polls</li>
-                    <li>✓ Hierarchical lesson organisation (Units → Lessons → Materials)</li>
-                    <li>✓ Content distribution to up to 30 E-ink tablets over local Wi-Fi</li>
-                    <li>✓ Real-time monitoring dashboard</li>
-                    <li>✓ Session management (create, start, pause, cancel, end)</li>
-                    <li>✓ Kiosk mode with remote screen locking</li>
-                    <li>✓ Stylus input and annotation on E-ink displays</li>
-                    <li>✓ Interactive quiz, worksheet and poll with immediate feedback</li>
-                    <li>✓ Help request button</li>
-                    <li>✓ Reading level adjustment tools</li>
-                    <li>✓ Offline-first with auto-save and automatic sync</li>
-                    <li>✓ Local network only with no cloud dependencies</li>
-                    <li>✓ Anonymised student IDs and data privacy compliance</li>
+                    <li><strong>MAT1:</strong> The application must provide a Lesson Library to store, manage and organise all generated content.</li>
+                    <li><strong>MAT2/MAT3A:</strong> The Lesson Library must be organised using the hierarchical structure of units, lessons, and materials.</li>
+                    <li><strong>MAT4:</strong> The application must include a search function for teachers to locate materials across all units and lessons.</li>
+                    <li><strong>MAT5:</strong> The application must allow a teacher to generate and store materials using one or more on-device GenAI models.</li>
+                    <li><strong>MAT6:</strong> When creating a new material, the application must prompt the teacher for the material type.</li>
+                    <li><strong>MAT7:</strong> When creating a new material, the application must prompt the teacher for a textual description of the expected content.</li>
+                    <li><strong>MAT8:</strong> When creating a new material, the application must prompt the teacher to upload zero or more source material documents.</li>
+                    <li><strong>MAT12:</strong> After creating a new material, the teacher must be able to modify and refine its contents via an editor.</li>
+                    <li><strong>MAT15:</strong> The application must allow the import and display of static images and PDF documents as lesson materials.</li>
+                    <li><strong>MAT17:</strong> When creating a new material, the system must provide a means for adjusting the text complexity and readability of the generated material.</li>
+                    <li><strong>CON1:</strong> The application must provide a continuously updated dashboard displaying aggregated and anonymised data.</li>
+                    <li><strong>CON2A:</strong> The dashboard must include an overview of the individual statuses of each student tablet.</li>
+                    <li><strong>CON3:</strong> The dashboard must include a panel displaying the number of connected devices.</li>
+                    <li><strong>CON5:</strong> The dashboard must include a panel indicating devices which require attention.</li>
+                    <li><strong>CON6:</strong> The application must include a panel providing device-specific controls.</li>
+                    <li><strong>CON7:</strong> The dashboard must include a chart summarising students’ responses to quizzes or polls.</li>
+                    <li><strong>CON8:</strong> The dashboard must include a panel for launching and delivering a previously created material to all students.</li>
+                    <li><strong>CON10:</strong> The dashboard must support simultaneous differentiation for deployment.</li>
+                    <li><strong>CON11:</strong> The application must allow the teacher to export and save session data to a local file for offline tracking.</li>
+                    <li><strong>CON12:</strong> The dashboard must provide a visual alert when a specific student triggers a "Help" request.</li>
+                    <li><strong>MAT1 (Student):</strong> The application must be able to display all supported material types.</li>
+                    <li><strong>MAT2B (Student):</strong> The application must display feedback as configured by the teacher.</li>
+                    <li><strong>MAT7 (Student):</strong> The application must include a "Raise Hand" button.</li>
+                </ul>
+                <h5>Non-Functional Requirements</h5>
+                <ul>
+                    <li><strong>NET1 (Teacher/Student):</strong> Distribute material content to at least 30 students’ tablets through the same LAN.</li>
+                    <li><strong>NET2 (Teacher/Student):</strong> Receive responses from student tablets over the LAN.</li>
+                    <li><strong>ACC1 (Teacher):</strong> The user interface must be intuitive for teachers with standard computer literacy.</li>
+                    <li><strong>ACC2 (Teacher):</strong> The teacher must be able to configure their application settings and preferences on their laptop.</li>
+                    <li><strong>ACC3A (Teacher):</strong> The teacher must be able to enable and disable accessibility features on a per tablet basis.</li>
+                    <li><strong>SYS1 (Teacher):</strong> The application must be compatible with both Intel and Qualcomm AI chipsets.</li>
+                    <li><strong>SYS3 (Teacher):</strong> The application must be packaged for distribution via the Microsoft Store.</li>
+                    <li><strong>ACC1 (Student):</strong> The application must support tapping, typing, and styluses.</li>
+                    <li><strong>ACC3 (Student):</strong> The application must include a text-to-speech button if enabled.</li>
+                    <li><strong>ACC4 (Student):</strong> The application must have a monochromatic display with minimal audiovisual stimuli.</li>
+                    <li><strong>SYS1 (Student):</strong> The application must be compatible with commercially available e-ink tablets.</li>
+                    <li><strong>System 1-4:</strong> The system must valid user inputs, display clear states, anonymise data, and support 30 concurrent low-latency connections.</li>
                 </ul>
             </div>
 
             <div class="subcard subcard--blue">
                 <h4>Should Have</h4>
+                <h5>Functional Requirements</h5>
                 <ul>
-                    <li>✓ AI text assistance (simplify, expand, summarise)</li>
-                    <li>✓ Adjustable text size and contrast settings for E-ink optimisation</li>
-                    <li>✓ Seamless lesson to quiz navigation</li>
-                    <li>⚠ Rich text editor with tables, equations, images and PDFs: the basic editor is implemented; advanced formatting options including equations and embedded PDFs were not completed within the project timeline</li>
-                    <li>⚠ Text-to-speech functionality: integrated into the Android application architecture but not fully delivered within the project timeline</li>
-                    <li>⚠ Export session data and progress reports: session data is captured and stored locally; export functionality was not completed within the project timeline</li>
-                    <li>⚠ Historical progress tracking across multiple sessions: local data persistence is implemented via Room database; cross-session aggregation and display was not completed within the project timeline</li>
-                    <li>⚠ Differentiated material deployment to specific student groups: whole-class distribution is implemented; targeted group deployment was not completed within the project timeline</li>
-                    <li>⚠ Vocabulary highlighting for key terms: identified as a should-have requirement but not implemented within the project timeline</li>
+                    <li><strong>MAT13:</strong> Each material should be associated with metadata such as deployment status and creation date.</li>
+                    <li><strong>MAT18:</strong> The application should provide the option to mark individual student responses manually or via AI.</li>
+                    <li><strong>MAT19:</strong> The application should provide an optional point system.</li>
+                    <li><strong>CON14:</strong> The dashboard information should be split into two different tabs or sections.</li>
+                    <li><strong>SYS4:</strong> The system should support external devices such as reMarkable and Kindle through an alternative delivery workflow.</li>
+                    <li><strong>MAT9A (Student):</strong> Question feedback should identify correct parts of reasoning and guide towards the right answer.</li>
+                </ul>
+                <h5>Non-Functional Requirements</h5>
+                <ul>
+                    <li><strong>ACC5 (Student):</strong> The application should include animated mascots or avatars to act as learning companions.</li>
                 </ul>
             </div>
 
             <div class="subcard subcard--orange">
                 <h4>Could Have</h4>
+                <h5>Functional Requirements</h5>
                 <ul>
-                    <li>⚠ AI chatbot assistant helping teachers refine content generation prompts: partially explored but not completed within the project timeline</li>
-                    <li>✗ Multi-language support for content generation</li>
-                    <li>✗ Drawing tools for diagram-based questions</li>
-                    <li>✗ Advanced analytics dashboard showing class-wide trends</li>
-                    <li>✗ Parent portal providing anonymised progress summaries</li>
-                    <li>✗ Mobile teacher dashboard app for tablet or smartphone monitoring</li>
-                    <li>✗ Integration with school learning management systems</li>
+                    <li><strong>MAT8 (Student):</strong> The application could support handwriting input.</li>
+                    <li><strong>MAT14:</strong> The application could provide an AI-powered conversational teaching assistance for lesson planning.</li>
+                    <li><strong>CON4:</strong> The dashboard could include a panel displaying the average student’s progress.</li>
+                    <li><strong>CON13:</strong> The dashboard could provide a "Live View" of the current screen of a specific student.</li>
+                </ul>
+                <h5>Non-Functional Requirements</h5>
+                <ul>
+                    <li><strong>SYS2:</strong> The application could be secured through local user authentication.</li>
+                    <li><strong>ACC2 (Student):</strong> The application could support eye gaze control via third-party hardware.</li>
                 </ul>
             </div>
 
             <div class="subcard subcard--yellow">
-                <h4>Won't Have</h4>
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid #ddd;">
-                            <th style="text-align: left; padding: 8px; font-weight: 600;">Requirement</th>
-                            <th style="text-align: left; padding: 8px; font-weight: 600;">Reason</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px;">✗ Cloud-based student data storage or processing</td>
-                            <td style="padding: 8px;">Privacy requirement: all data must remain on the local network</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px;">✗ Social features or student-to-student communication</td>
-                            <td style="padding: 8px;">Distraction avoidance</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px;">✗ Gamification elements such as leaderboards</td>
-                            <td style="padding: 8px;">Reduces anxiety for neurodiverse learners</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px;">✗ Video or multimedia content playback</td>
-                            <td style="padding: 8px;">E-ink hardware limitation and sensory overload concern</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px;">✗ Automated grading or AI assessment of student work</td>
-                            <td style="padding: 8px;">Teacher oversight required</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px;">✗ Biometric authentication or facial recognition</td>
-                            <td style="padding: 8px;">Privacy concerns</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 8px;">✗ Third-party data collection or analytics tracking</td>
-                            <td style="padding: 8px;">GDPR compliance</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>Non-Functional Requirements</h3>
-
-            <div class="subcard subcard--green">
-                <h4>Must Have</h4>
+                <h4>Won't Have (Out of Scope)</h4>
                 <ul>
-                    <li>✓ Content distribution to 30 devices must complete within 10 seconds</li>
-                    <li>✓ Dashboard updates must display with less than 3-second latency</li>
-                    <li>✓ System must comply with GDPR and UK Data Protection Act</li>
-                    <li>✓ Interface must be accessible for students aged 11 to 18 with varying cognitive abilities</li>
-                    <li>✓ E-ink displays must maintain minimum 7:1 contrast ratio for visibility</li>
-                    <li>✓ System must handle network disconnections without data loss</li>
-                    <li>✓ Modular Clean Architecture with separation of data, domain and presentation layers</li>
-                    <li>⚠ Handwriting recognition must respond within 2 seconds: identified during stakeholder interviews with Dean Mohamedally and validated by Atia Rafiq's professional workflow; not completed within the project timeline and documented as future work in the evaluation section</li>
-                </ul>
-            </div>
-
-            <div class="subcard subcard--blue">
-                <h4>Should Have</h4>
-                <ul>
-                    <li>✓ AI content generation should complete within 15 seconds</li>
-                    <li>✓ Modular codebase architecture for easy feature additions post-project</li>
-                    <li>✓ Compatibility with common E-ink tablets including reMarkable, Boox and Kindle Scribe</li>
-                    <li>✓ Minimal teacher training required: under 30 minutes onboarding</li>
-                    <li>⚠ Updates deployable without full system reinstallation: packaging and deployment pipeline was not completed within the project timeline</li>
-                </ul>
-            </div>
-
-            <div class="subcard subcard--orange">
-                <h4>Could Have</h4>
-                <ul>
-                    <li>✗ Handwriting recognition achieving 95% or higher accuracy for clear handwriting</li>
-                    <li>✗ Multi-language interface support beyond English</li>
-                    <li>✗ Usage analytics for schools to assess platform effectiveness</li>
-                </ul>
-            </div>
-
-            <div class="subcard subcard--yellow">
-                <h4>Won't Have</h4>
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid #ddd;">
-                            <th style="text-align: left; padding: 8px; font-weight: 600;">Requirement</th>
-                            <th style="text-align: left; padding: 8px; font-weight: 600;">Reason</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 8px;">✗ WPA3 encryption at application level</td>
-                            <td style="padding: 8px;">Encryption handled at network infrastructure level by the school: out of application scope</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="margin-top: 24px; padding: 16px; background: #f8f7f5; border-radius: 4px;">
-                <p style="font-weight: 600; margin-bottom: 8px;">Key:</p>
-                <ul style="list-style: none; padding: 0;">
-                    <li>✓ Implemented and delivered</li>
-                    <li>⚠ Identified as a requirement but not completed within the project timeline</li>
-                    <li>✗ Not attempted within the project timeline</li>
+                    <li>Any cloud-based functionality.</li>
+                    <li>The collection or management of any personally identifiable student data.</li>
+                    <li>Running GenAI models directly on the E-ink devices.</li>
+                    <li>Performing AI-driven image generation.</li>
                 </ul>
             </div>
 
@@ -786,43 +688,22 @@
                 <div>
                     <h2>Acknowledgements</h2>
                     <p>
-                        The team would like to thank Professor Dean Mohamedally (UCL) for his supervision and guidance throughout the project. We are grateful to Marie-Louise Holmberg and Mareli Smith of the National Autistic Society, and Dan Cooper (SEN specialist), for their input on the needs of autistic learners and their feedback on the system's design. We also thank Atia Rafiq, whose demonstration of E-ink workflows in a professional healthcare context informed our approach to non-Android device support.
+                        The team would like to thank Professor Dean Mohamedally from UCL for his supervision and guidance throughout the project. We are grateful to Marie-Louise Holmberg, Mareli Smit and other teachers from the National Autistic Society for their input on the needs of autistic learners and their feedback on the application design. We also thank Dan Cooper, a speech and language therapist at Richard Cloudesley School, for his input on accessibility requirements for SEN students. We also thank Dr Atia Rafiq, whose demonstration of e-ink workflows in a professional healthcare context informed our approach to non-Android device support.
                     </p>
                 </div>
 
                 <!-- Partners -->
                 <div>
                     <h2>Partners</h2>
-                    <div class="partners-block">
-                        <div class="partners-row">
-                            <div class="partner-logo">
-                                <span class="partner-wordmark partner-wordmark--ibm">IBM</span>
-                                <span class="partner-name sr-only">IBM</span>
-                            </div>
-                            <div class="partner-divider"></div>
-                            <div class="partner-logo">
-                                <span class="partner-wordmark partner-wordmark--qualcomm">Qualcomm</span>
-                                <span class="partner-name sr-only">Qualcomm</span>
-                            </div>
-                            <div class="partner-divider"></div>
-                            <div class="partner-logo">
-                                <span class="partner-wordmark partner-wordmark--nas">NAS</span>
-                                <span class="partner-name sr-only">National Autistic Society</span>
-                            </div>
-                            <div class="partner-divider"></div>
-                            <div class="partner-logo">
-                                <span class="partner-wordmark partner-wordmark--ucl">UCL</span>
-                                <span class="partner-name sr-only">UCL</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 24px;">
-                        <p><strong>IBM</strong>: provided the Granite large language model used for on-device AI content generation in the teacher application, along with technical guidance on model integration.</p>
-                        <p><strong>Qualcomm</strong>: supplied an Android tablet device used during development and testing.</p>
-                        <p><strong>National Autistic Society</strong>: contributed domain expertise on the needs of autistic learners and provided stakeholder feedback through Marie-Louise Holmberg and Mareli Smith.</p>
-                        <p><strong>Richard Cloudesley School</strong>: a specialist SEN school in London that participated in user testing and supplied E-ink devices used during development and evaluation.</p>
-                        <p><strong>UCL</strong>: academic supervision provided by Professor Dean Mohamedally.</p>
-                    </div>
+                    <p>
+                      Partners who contributed to the project include:
+                    </p>
+                    <ul style="margin-top: 24px;">
+                        <li><strong>IBM</strong>, who provided technical guidance on model integration and the Granite language model, used as a fallback model in the teacher application;</li>
+                        <li><strong>Qualcomm</strong>, who supplied an Android tablet device used during development and testing;</li>
+                        <li><strong>National Autistic Society</strong>, who contributed domain expertise on the needs of autistic learners and provided stakeholder feedback through Marie-Louise Holmberg and Mareli Smit; and</li>
+                        <li><strong>UCL</strong>, with academic supervision provided by Professor Dean Mohamedally.</li>
+                    </ul>
                 </div>
 
             </div>
