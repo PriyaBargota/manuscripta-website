@@ -1,0 +1,140 @@
+/*
+ * Prism theme — Manuscripta
+ * Dark-green base derived from the site's brand palette.
+ * Tokens use brand orange, yellow, blue and cream for contrast.
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #e8e6e3;
+    background: none;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+    font-size: 13.5px;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    tab-size: 4;
+    hyphens: none;
+}
+
+pre[class*="language-"] {
+    padding: 20px;
+    margin: 24px 0;
+    overflow: auto;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: #111111;
+}
+
+:not(pre) > code[class*="language-"] {
+    padding: 3px 7px;
+    border-radius: 3px;
+    white-space: normal;
+}
+
+/* Comments — muted green, italic */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6b9b7e;
+    font-style: italic;
+}
+
+/* Punctuation — subdued cream */
+.token.punctuation {
+    color: #b0a992;
+}
+
+/* Namespace — faded */
+.token.namespace {
+    opacity: 0.7;
+}
+
+/* Strings, attribute values — brand yellow */
+.token.string,
+.token.attr-value {
+    color: #FFE782;
+}
+
+/* Keywords, tags — brand orange */
+.token.keyword,
+.token.tag {
+    color: #FF6106;
+}
+
+/* Booleans, numbers, constants — brand blue */
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+    color: #ABD8F9;
+}
+
+/* Functions, class names — warm cream-orange */
+.token.function,
+.token.class-name {
+    color: #ffb870;
+}
+
+/* Operators, entities — light green */
+.token.operator,
+.token.entity,
+.token.url {
+    color: #7ec9a0;
+}
+
+/* Property, attribute name — soft cream */
+.token.property,
+.token.attr-name {
+    color: #e0d4b8;
+}
+
+/* Annotations, decorators — bright green */
+.token.annotation,
+.token.decorator {
+    color: #4eca8b;
+}
+
+/* Types, builtins — brand blue lighter */
+.token.builtin,
+.token.char {
+    color: #8fd4f5;
+}
+
+/* Regex, important — orange-light */
+.token.regex,
+.token.important,
+.token.variable {
+    color: #FEE3DA;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+/* Selection */
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+    background: rgba(29, 107, 60, 0.4);
+}
