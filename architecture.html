@@ -191,8 +191,7 @@
         this pattern, the Windows laptop uses TCP to signal that something is available. When the tablets receive this
         signal, they use HTTP to pull that content. Lastly, a tablet must send an acknowledgment signal via TCP to
         indicate successful retrieval. This design pattern is repeatedly utilised in material deployment, feedback
-        delivery and
-        configuration refresh mechanisms.</p>
+        delivery and configuration refresh mechanisms.</p>
 
       <figure class="doc-figure">
         <img src="images/architecture-sequence-diagram-deploy-material.svg"
@@ -246,6 +245,10 @@
              style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
         <figcaption>The sequence of events for a student raising their hand through their Android device.</figcaption>
       </figure>
+
+      <p>
+        These interactions are discussed in more detail in the Implementation section.
+      </p>
 
       <h2 id="interaction-with-remarkable-and-kindle-clients">Interaction with reMarkable and Kindle clients</h2>
       <p>Manuscripta’s Windows architecture treats reMarkable and Kindle endpoints as external and asynchronous clients
