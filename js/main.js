@@ -566,6 +566,83 @@ document.addEventListener('DOMContentLoaded', function() {
     initDocSections();
 
     // ========================================
+    // 13. WEBSITE REPORT OVERALL CONTRIBUTION
+    // ========================================
+    function initWebsiteReportOverallRow() {
+        const websiteReportHeading = Array.from(document.querySelectorAll('.doc-content h3')).find(function(heading) {
+            return heading.textContent.trim().toLowerCase() === 'website report';
+        });
+        if (!websiteReportHeading) return;
+
+        const table = websiteReportHeading.nextElementSibling;
+        if (!table || table.tagName !== 'TABLE') return;
+
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
+
+        const overallRow = tbody.querySelector('tr[data-overall-row="website-report"]');
+        if (!overallRow) return;
+
+        const overallValueElements = overallRow.querySelectorAll('[data-overall-value]');
+        if (overallValueElements.length === 0) return;
+
+        function parsePercent(text) {
+            const match = String(text).match(/-?\d+(?:\.\d+)?/);
+            if (!match) return null;
+
+            const value = parseFloat(match[0]);
+            return Number.isFinite(value) ? value : null;
+        }
+
+        function recalculateOverall() {
+            const rows = Array.from(tbody.querySelectorAll('tr')).filter(function(row) {
+                return row !== overallRow;
+            });
+
+            const sums = new Array(overallValueElements.length).fill(0);
+            const counts = new Array(overallValueElements.length).fill(0);
+
+            rows.forEach(function(row) {
+                const cells = row.querySelectorAll('td');
+                if (cells.length < overallValueElements.length + 1) return;
+
+                for (let i = 0; i < overallValueElements.length; i++) {
+                    const value = parsePercent(cells[i + 1].textContent);
+                    if (value === null) continue;
+
+                    sums[i] += value;
+                    counts[i] += 1;
+                }
+            });
+
+            overallValueElements.forEach(function(element, index) {
+                const mean = counts[index] ? (sums[index] / counts[index]) : 0;
+                element.textContent = mean.toFixed(2) + '%';
+            });
+        }
+
+        recalculateOverall();
+
+        const observer = new MutationObserver(function(mutations) {
+            const hasExternalChange = mutations.some(function(mutation) {
+                return !overallRow.contains(mutation.target);
+            });
+
+            if (hasExternalChange) {
+                recalculateOverall();
+            }
+        });
+
+        observer.observe(tbody, {
+            subtree: true,
+            childList: true,
+            characterData: true
+        });
+    }
+
+    initWebsiteReportOverallRow();
+
+    // ========================================
     // INTERVIEW TABS
     // ========================================
     document.querySelectorAll('.interview-tab-buttons').forEach(function(buttonGroup) {
