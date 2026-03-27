@@ -131,7 +131,7 @@
                         </tr>
                         <tr>
                             <td>R3</td>
-                            <td>High contrast [3][4]</td>
+                            <td>High contrast [3, 4]</td>
                             <td>Students with reading difficulties and autism are sensitive to visual stimuli and low contrast</td>
                             <td>The E-ink display uses a monochromatic theme with a minimum 7:1 contrast ratio, eliminating colour as a source of visual confusion</td>
                         </tr>
@@ -468,14 +468,14 @@
                 </div>
 
                 <h3>Citations</h3>
-                <ol style="font-size: 14px; line-height: 1.8;">
-                    <li>Findlater and Zhang, "Input Accessibility," ASSETS, ACM, 2020.</li>
-                    <li>Barrientos, "Institutionalization of Adapted Books," AIDE Interdisciplinary Research Journal, 2023.</li>
-                    <li>Shuffrey et al., "Visually Evoked Response Differences," Brain Sciences, 2018.</li>
-                    <li>Martin and Wilkins, "Creating Visually Appropriate Classroom Environments," Intervention in School and Clinic, 2021.</li>
-                    <li>Alarcon-Licona and Loke, "Autistic Children's Use of Technology and Media," IDC, ACM, 2017.</li>
-                    <li>Nally et al., "An Analysis of Reading Abilities in Children with Autism Spectrum Disorders," Research in Autism Spectrum Disorders, 2018.</li>
-                </ol>
+                <div class="citations-list" style="font-size: 14px; line-height: 1.8;">
+                    <p id="ref-1">[1] Findlater and Zhang, "Input Accessibility," ASSETS, ACM, 2020.</p>
+                    <p id="ref-2">[2] Barrientos, "Institutionalization of Adapted Books," AIDE Interdisciplinary Research Journal, 2023.</p>
+                    <p id="ref-3">[3] Shuffrey et al., "Visually Evoked Response Differences," Brain Sciences, 2018.</p>
+                    <p id="ref-4">[4] Martin and Wilkins, "Creating Visually Appropriate Classroom Environments," Intervention in School and Clinic, 2021.</p>
+                    <p id="ref-5">[5] Alarcon-Licona and Loke, "Autistic Children's Use of Technology and Media," IDC, ACM, 2017.</p>
+                    <p id="ref-6">[6] Nally et al., "An Analysis of Reading Abilities in Children with Autism Spectrum Disorders," Research in Autism Spectrum Disorders, 2018.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -487,5 +487,74 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
+    <script>
+      (function () {
+        const content = document.querySelector('.doc-content');
+        const bibliographyHeading = Array.from(document.querySelectorAll('h3, h2, h1')).find(h => h.textContent && h.textContent.trim().toLowerCase().includes('citation'));
+
+        if (!content || !bibliographyHeading) {
+          return;
+        }
+
+        const citationPattern = /\[(\d+(?:\s*,\s*\d+)*)]/g;
+        const paragraphs = Array.from(content.querySelectorAll('p, td'));
+        // Only process paragraphs before the bibliography/citations heading
+        const proseParagraphs = [];
+        for (const p of paragraphs) {
+          if (p.compareDocumentPosition(bibliographyHeading) & Node.DOCUMENT_POSITION_FOLLOWING) {
+            proseParagraphs.push(p);
+          }
+        }
+
+        proseParagraphs.forEach((paragraph) => {
+          const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+          const textNodes = [];
+
+          while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+          }
+
+          textNodes.forEach((textNode) => {
+            const text = textNode.nodeValue;
+
+            if (!text || !citationPattern.test(text)) {
+              citationPattern.lastIndex = 0;
+              return;
+            }
+
+            citationPattern.lastIndex = 0;
+            const fragment = document.createDocumentFragment();
+            let lastIndex = 0;
+            let match;
+
+            while ((match = citationPattern.exec(text)) !== null) {
+              fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+
+              const numbers = match[1].split(',').map((value) => value.trim());
+              fragment.appendChild(document.createTextNode('['));
+
+              numbers.forEach((number, index) => {
+                const link = document.createElement('a');
+                link.href = `#ref-${number}`;
+                link.textContent = number;
+                link.setAttribute('aria-label', `Jump to bibliography reference ${number}`);
+                fragment.appendChild(link);
+
+                if (index < numbers.length - 1) {
+                  fragment.appendChild(document.createTextNode(', '));
+                }
+              });
+
+              fragment.appendChild(document.createTextNode(']'));
+              lastIndex = citationPattern.lastIndex;
+            }
+
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+            textNode.parentNode.replaceChild(fragment, textNode);
+            citationPattern.lastIndex = 0;
+          });
+        });
+      })();
+    </script>
 </body>
 </html>
