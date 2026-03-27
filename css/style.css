@@ -1250,6 +1250,28 @@ a.nav-brand:focus-visible {
     margin-bottom: 16px;
 }
 
+/* Keep inline citation links readable without drawing too much attention. */
+.doc-content p a[href^="#ref-"] {
+    color: inherit;
+    text-decoration-color: var(--color-gray-400);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.doc-content p a[href^="#ref-"]:visited {
+    color: inherit;
+}
+
+.doc-content p a[href^="#ref-"]:hover {
+    color: var(--text-primary);
+    text-decoration-color: var(--color-brand-green);
+}
+
+.doc-content p a[href^="#ref-"]:focus-visible {
+    border-radius: 2px;
+}
+
 .doc-content ul,
 .doc-content ol {
     font-family: 'IBM Plex Sans', sans-serif;
@@ -2913,4 +2935,13 @@ html {
 
 .doc-content table tbody tr:hover {
     background-color: #fafbfc;
+}
+
+/* Link styling, including citation links */
+.doc-content p a, .doc-content table a {
+  color: inherit;
+  text-decoration-color: var(--color-gray-400);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
 }
