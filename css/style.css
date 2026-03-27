@@ -2740,15 +2740,6 @@ html {
         gap: 16px;
     }
 
-    .doc-content table {
-        font-size: 14px;
-    }
-
-    .doc-content table th,
-    .doc-content table td {
-        padding: 10px 12px;
-    }
-
     .doc-content pre {
         font-size: 12px;
         padding: 16px;
@@ -3363,9 +3354,3 @@ html {
     height: auto;
 }
 
-/* Improve table readability on dense report pages. */
-.doc-content table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
