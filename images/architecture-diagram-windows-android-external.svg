@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title">
+    <title id="title">The Windows application may send PDF versions of materials to reMarkable and Kindle clients.</title>
+
+    <defs>
+        <style>
+            .bg { fill: #f8f7f5; }
+            .label { font: 600 18px 'IBM Plex Sans', Arial, sans-serif; fill: #1f2937; }
+            .sub { font: 500 14px 'IBM Plex Sans', Arial, sans-serif; fill: #4b5563; }
+            .arrow-label { font: 600 13px 'IBM Plex Sans', Arial, sans-serif; fill: #15502e; }
+            .server-shell { fill: #e8f3eb; stroke: #15502e; stroke-width: 3; }
+            .server-screen { fill: #ffffff; stroke: #d1d5db; stroke-width: 2; }
+            .tablet-shell { fill: #ffffff; stroke: #6b7280; stroke-width: 2.5; }
+            .tablet-screen { fill: #fbfbfb; stroke: #d1d5db; stroke-width: 1.6; }
+            .pdf-client-shell { fill: #FEE3DA; stroke: #FF6106; stroke-width: 2.5; }
+            .pdf-client-screen { fill: #FFF4EF; stroke: #d1d5db; stroke-width: 1.6; }
+            .line { stroke: #15502e; stroke-width: 3; }
+            .line-pdf { stroke: #FF6106; stroke-width: 3; }
+            .arrow-label-pdf { font: 600 13px 'IBM Plex Sans', Arial, sans-serif; fill: #E55605; }
+        </style>
+
+        <marker id="arrowHeadBi" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto-start-reverse">
+            <path d="M0,0 L10,4 L0,8 z" fill="#15502e" />
+        </marker>
+        <marker id="arrowHeadPdf" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+            <path d="M0,0 L10,4 L0,8 z" fill="#FF6106" />
+        </marker>
+    </defs>
+
+    <rect class="bg" x="0" y="0" width="1200" height="560" />
+
+    <!-- Windows laptop (server) -->
+    <g transform="translate(450 220)">
+        <rect class="server-shell" x="0" y="0" rx="18" ry="18" width="300" height="120" />
+        <text class="label" x="150" y="56" text-anchor="middle">Windows laptop</text>
+        <text class="sub" x="150" y="82" text-anchor="middle">Teacher portal (server)</text>
+    </g>
+
+    <!-- reMarkable and Kindle clients (same icon style, brand color variant) -->
+    <g transform="translate(70 80)">
+        <rect class="pdf-client-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
+        <rect class="pdf-client-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
+        <circle fill="#FF6106" cx="75" cy="156" r="5" />
+        <text class="label" x="75" y="72" text-anchor="middle">reMarkable</text>
+        <text class="sub" x="75" y="96" text-anchor="middle">(client)</text>
+    </g>
+
+    <g transform="translate(70 310)">
+        <rect class="pdf-client-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
+        <rect class="pdf-client-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
+        <circle fill="#FF6106" cx="75" cy="156" r="5" />
+        <text class="label" x="75" y="72" text-anchor="middle">Kindle</text>
+        <text class="sub" x="75" y="96" text-anchor="middle">(client)</text>
+    </g>
+
+    <!-- Android e-ink clients as tablet shapes -->
+    <g transform="translate(980 20)">
+        <rect class="tablet-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
+        <rect class="tablet-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
+        <circle fill="#9ca3af" cx="75" cy="156" r="5" />
+        <text class="label" x="75" y="72" text-anchor="middle">E-ink device</text>
+        <text class="sub" x="75" y="96" text-anchor="middle"><tspan x="75" dy="0">Android student</tspan><tspan x="75" dy="16">application (client)</tspan></text>
+    </g>
+
+    <g transform="translate(980 195)">
+        <rect class="tablet-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
+        <rect class="tablet-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
+        <circle fill="#9ca3af" cx="75" cy="156" r="5" />
+        <text class="label" x="75" y="72" text-anchor="middle">E-ink device</text>
+        <text class="sub" x="75" y="96" text-anchor="middle"><tspan x="75" dy="0">Android student</tspan><tspan x="75" dy="16">application (client)</tspan></text>
+    </g>
+
+    <g transform="translate(980 370)">
+        <rect class="tablet-shell" x="0" y="0" rx="18" ry="18" width="150" height="170" />
+        <rect class="tablet-screen" x="14" y="14" rx="8" ry="8" width="122" height="130" />
+        <circle fill="#9ca3af" cx="75" cy="156" r="5" />
+        <text class="label" x="75" y="72" text-anchor="middle">E-ink device</text>
+        <text class="sub" x="75" y="96" text-anchor="middle"><tspan x="75" dy="0">Android student</tspan><tspan x="75" dy="16">application (client)</tspan></text>
+    </g>
+
+    <!-- Bidirectional arrows and labels -->
+    <line class="line" x1="750" y1="260" x2="980" y2="105" marker-start="url(#arrowHeadBi)" marker-end="url(#arrowHeadBi)" />
+
+    <line class="line" x1="750" y1="280" x2="980" y2="280" marker-start="url(#arrowHeadBi)" marker-end="url(#arrowHeadBi)" />
+    <text class="arrow-label" x="865" y="263" text-anchor="middle">request and response data</text>
+
+    <line class="line" x1="750" y1="300" x2="980" y2="455" marker-start="url(#arrowHeadBi)" marker-end="url(#arrowHeadBi)" />
+
+    <!-- One-way PDFs from Windows laptop to dedicated PDF readers -->
+    <line class="line-pdf" x1="450" y1="255" x2="220" y2="165" marker-end="url(#arrowHeadPdf)" />
+    <text class="arrow-label-pdf" x="336" y="285" text-anchor="middle">Material PDFs</text>
+
+    <line class="line-pdf" x1="450" y1="305" x2="220" y2="395" marker-end="url(#arrowHeadPdf)" />
+</svg>
+
