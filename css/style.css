@@ -66,6 +66,31 @@ video {
     max-width: 100%;
 }
 
+.specification-text {
+    margin-top: 12px;
+}
+
+.specification-text h5 {
+    margin-bottom: 8px;
+}
+
+.specification-text p {
+    margin: 6px 0;
+}
+
+.specification-text .spec-subsection {
+    margin-top: 14px;
+    margin-left: 0;
+}
+
+.specification-text .spec-paragraph {
+    margin-left: 20px;
+}
+
+.specification-text .spec-subparagraph {
+    margin-left: 40px;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Fraunces', 'Georgia', 'Times New Roman', serif;
     font-weight: 600;
@@ -2784,7 +2809,17 @@ html {
     width: 100%;
     max-width: 100%;
     height: auto;
-    margin: 24px 0;
+    margin: 24px auto;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: block;
+}
+
+.implementation-screenshot-mobile {
+    max-width: 320px;
+    height: auto;
+    margin: 24px auto;
     border: 1px solid var(--color-gray-200);
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
