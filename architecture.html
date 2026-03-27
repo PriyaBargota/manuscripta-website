@@ -123,7 +123,8 @@
         four main layers: the model layer, the data layer, the service layer and the controller layer.</p>
       <p>The model layer facilitates the communication between other layers by defining the core application data
         structures. This includes entities, enumeration types, data transfer objects (DTOs), events, mapping types and
-        network message models.</p>
+        network message models. The class diagrams below, for instance, illustrate the relationships between selected
+        entities in the model layer.</p>
       <p>The data layer manages the application’s connection to the database via a database context. It defines how
         model entities are stored, indexed and manipulated, enforcing the long-term and short-term persistence
         rules.</p>
@@ -136,6 +137,36 @@
         TeacherPortalHub for communicating with the Electron frontend, as elucidated in the next section.</p>
       <p>The controller layer exposes the service layer’s functionalities through external-facing REST API endpoints,
         from which HTTP requests are translated into service calls before returning safe responses.</p>
+
+      <figure class="doc-figure">
+        <img src="images/architecture-class-diagram-material-hierarchy.svg"
+             alt="Architecture class diagram showing the material hierarchy in the Windows application."
+             style="max-height:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>A class diagram illustrating the material hierarchy in the Windows application. Each unit collection
+          contains units, each unit contains lessons, each lesson contains materials, and each material is associated
+          with a number of questions and attachments. Source documents can be added to a unit collection.
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="images/architecture-class-diagram-material-question-response-polymorphism.svg"
+             alt="Architecture class diagram showing material, question, and response polymorphism in the Windows application."
+             style="width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>A class diagram illustrating the polymorphism of material, question and responses in the Windows
+          application. As shown, a material can be of type "reading" (a textual material with no questions), "worksheet"
+          (a material containing multiple-choice or written-response questions) or "poll" (a material containing exactly
+          one multiple-choice question).
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="images/architecture-class-diagram-delivery-cycle.svg"
+             alt="Architecture class diagram showing the delivery cycle in the Windows application."
+             style="max-width:300px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>A class diagram illustrating the relationships between materials, questions, responses and device
+          sessions.
+        </figcaption>
+      </figure>
 
       <h2 id="interaction-with-the-android-application">Interaction with the Android application</h2>
       <p>Interaction with the Android application employs separate channels for different communication purposes.</p>
