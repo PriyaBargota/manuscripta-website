@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Implementation - Manuscripta</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prism-manuscripta.css">
 </head>
 <body>
     <a href="#main" class="sr-only focus-visible">Skip to main content</a>
@@ -63,87 +64,27 @@
 
                 <div class="intro-card">
                     <p>
-                        Manuscripta is implemented as two independent but tightly integrated applications built concurrently against a shared API contract. The Windows teacher application was built by <strong>Raphael Li</strong> and <strong>Nemo Shu</strong>. The Android student application was built by <strong>Priya Bargota</strong> and <strong>Will Stephen</strong>.
+                        Manuscripta is implemented as two independent but tightly integrated applications built concurrently against a shared API contract. The Windows teacher application was built by <strong>Raphael Li</strong> and <strong>Nemo Shu</strong>. The Android student application was built by <strong>Will Stephen</strong> and <strong>Priya Bargota</strong>.
                     </p>
                 </div>
 
                 <h2 id="features">Key Features</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Status</th>
-                            <th>Built by</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>AI material generation (Qwen3:8b + Granite fallback)</td>
-                            <td>✓</td>
-                            <td>Raphael Li</td>
-                        </tr>
-                        <tr>
-                            <td>Hierarchical content library</td>
-                            <td>✓</td>
-                            <td>Nemo Shu</td>
-                        </tr>
-                        <tr>
-                            <td>Real-time classroom dashboard</td>
-                            <td>✓</td>
-                            <td>Nemo Shu</td>
-                        </tr>
-                        <tr>
-                            <td>Device pairing and management</td>
-                            <td>✓</td>
-                            <td>Nemo Shu</td>
-                        </tr>
-                        <tr>
-                            <td>AI feedback generation with teacher approval</td>
-                            <td>✓</td>
-                            <td>Raphael Li</td>
-                        </tr>
-                        <tr>
-                            <td>Android device pairing screen</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Worksheet and quiz display</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Raise Hand help request</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Multi-channel networking (HTTP/TCP/UDP)</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Clean Architecture data and network layers</td>
-                            <td>✓</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Content transformation (simplify, expand, summarise)</td>
-                            <td>⚠</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Text-to-speech</td>
-                            <td>⚠</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                        <tr>
-                            <td>Kiosk mode</td>
-                            <td>⚠</td>
-                            <td>Priya Bargota, Will Stephen</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ul>
+                    <li>AI material generation (Qwen3:8b + Granite fallback)</li>
+                    <li>Hierarchical content library</li>
+                    <li>Real-time classroom dashboard</li>
+                    <li>Device pairing and management</li>
+                    <li>AI feedback generation with teacher approval</li>
+                    <li>Rich editor workflow with streaming AI, question and attachment management, and PDF export</li>
+                    <li>Classroom controls with device status, alerts, selection, and deployment tracking</li>
+                    <li>External device support for reMarkable/Kindle pairing, deployment, and per-device PDF overrides</li>
+                    <li>Response review and feedback operations with AI queue controls and response PDF export</li>
+                    <li>Android device pairing screen</li>
+                    <li>Material display</li>
+                    <li>Raise Hand help request</li>
+                    <li>Multi-channel networking (HTTP/TCP/UDP)</li>
+                    <li>Clean Architecture data and network layers</li>
+                </ul>
 
                 <h2 id="frameworks">Frameworks and Libraries</h2>
 
@@ -168,7 +109,7 @@
                             <td>Desktop UI, backend process management</td>
                         </tr>
                         <tr>
-                            <td>Real-time communication</td>
+                            <td>Internal real-time communication</td>
                             <td>SignalR</td>
                             <td>Bidirectional event broadcasting between backend and UI</td>
                         </tr>
@@ -184,7 +125,7 @@
                         </tr>
                         <tr>
                             <td>Vector database</td>
-                            <td>ChromaDB</td>
+                            <td>ChromaDB (Model: nomic-embed-text)</td>
                             <td>RAG pipeline for source document retrieval</td>
                         </tr>
                         <tr>
@@ -243,7 +184,7 @@
                         <tr>
                             <td>Coverage reporting</td>
                             <td>JaCoCo 0.8.12</td>
-                            <td>95% coverage enforcement via CI</td>
+                            <td>90% coverage enforcement via CI</td>
                         </tr>
                         <tr>
                             <td>Code style</td>
@@ -257,121 +198,109 @@
                 <p>
                     The project uses a monorepo — both applications live in the same GitHub repository at raphaellith/Manuscripta under separate top-level directories. This allowed both sub-teams to share the API contract and documentation while keeping their CI/CD pipelines independent via path-based triggers.
                 </p>
-                <pre><code>Manuscripta/
+                <pre class="language-none"><code class="language-none">Manuscripta/
 ├── android/          Android student application
 │   └── app/
 │       └── src/main/java/    Java source code
 ├── windows/          Windows teacher application
 │   └── ManuscriptaTeacherApp/
-│       ├── Main/     ASP.NET Core backend
-│       └── UI/       Electron + React frontend
+│       ├── docs/         System design docs and specification
+│       ├── Main/         ASP.NET Core backend
+│       ├── MainTests/    Integration tests for the backend
+│       └── UI/           Electron + React frontend
 ├── docs/             Project documentation
-├── api-spec/         Shared API contract
 └── README.md</code></pre>
 
-                <h2 id="api-contract">API Contract</h2>
+                
+                                <h2 id="cross-platform-communication">Cross-Platform Communication and Device Pairing</h2>
                 <p>
-                    Because the Windows and Android applications were developed simultaneously by separate sub-teams, a shared API contract was established at the outset and stored in api-spec/ in the monorepo. This contract defined the HTTP endpoints, request and response formats, and TCP message opcodes that both sides agreed to implement independently. Neither team needed to wait for the other before building — the contract served as the integration boundary.
+                    Because the Windows and Android applications were developed simultaneously by separate sub-teams, a shared API contract was established at the outset alongside detailed procedure specifications (<code>Pairing Process Specification</code> and <code>Session Interaction Specification</code>). The two main domains of backend interaction are <strong>device pairing</strong> and <strong>session management</strong>. Both workflows use a dual-socket, asynchronous approach comprising UDP for network discovery, TCP for low-latency signalling, and HTTP REST for bulk data payloads.
                 </p>
 
-                <h3>HTTP Endpoints (port 5911)</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Method</th>
-                            <th>Endpoint</th>
-                            <th>Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>POST</td>
-                            <td>/pair</td>
-                            <td>Device registration and pairing</td>
-                        </tr>
-                        <tr>
-                            <td>GET</td>
-                            <td>/distribution/{deviceId}</td>
-                            <td>Fetch assigned materials for a device</td>
-                        </tr>
-                        <tr>
-                            <td>POST</td>
-                            <td>/responses</td>
-                            <td>Submit a student answer</td>
-                        </tr>
-                        <tr>
-                            <td>GET</td>
-                            <td>/config/{deviceId}</td>
-                            <td>Fetch accessibility configuration</td>
-                        </tr>
-                        <tr>
-                            <td>GET</td>
-                            <td>/feedback/{deviceId}</td>
-                            <td>Retrieve AI-generated feedback</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>TCP Message Opcodes (port 5912)</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Opcode</th>
-                            <th>Name</th>
-                            <th>Direction</th>
-                            <th>Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0x10</td>
-                            <td>STATUS_UPDATE</td>
-                            <td>Client to Server</td>
-                            <td>Heartbeat every 3 seconds</td>
-                        </tr>
-                        <tr>
-                            <td>0x05</td>
-                            <td>DISTRIBUTE_MATERIAL</td>
-                            <td>Server to Client</td>
-                            <td>Trigger material fetch</td>
-                        </tr>
-                        <tr>
-                            <td>0x12</td>
-                            <td>DISTRIBUTE_ACK</td>
-                            <td>Client to Server</td>
-                            <td>Confirm receipt per material</td>
-                        </tr>
-                        <tr>
-                            <td>0x11</td>
-                            <td>HAND_RAISED</td>
-                            <td>Client to Server</td>
-                            <td>Help request signal</td>
-                        </tr>
-                        <tr>
-                            <td>0x01</td>
-                            <td>LOCK_SCREEN</td>
-                            <td>Server to Client</td>
-                            <td>Remote screen lock</td>
-                        </tr>
-                        <tr>
-                            <td>0x02</td>
-                            <td>UNLOCK_SCREEN</td>
-                            <td>Server to Client</td>
-                            <td>Remote screen unlock</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <h3>1. Device Pairing Process</h3>
                 <p>
-                    All device and entity IDs are validated as GUIDs server-side. Invalid IDs return 404 Not Found with a generic message rather than 400 Bad Request, avoiding information leakage to unauthenticated callers.
+                    The pairing procedure occurs entirely on the local network (LAN) to maintain operational security in a classroom setting, avoiding external authentication servers.
                 </p>
+                <ul>
+                    <li><strong>Discovery:</strong> The Windows Teacher App broadcasts a UDP discovery packet on port <code>5913</code> containing its IP address, HTTP port, and TCP port. Android tablets listen for this packet to skip manual IP entry.</li>
+                    <li><strong>Connection:</strong> Upon discovery, the Android tablet establishes a persistent TCP connection on port <code>5912</code>, issuing a <code>PAIRING_REQUEST</code> (0x20). Simultaneously, it calls the <code>POST /pair</code> HTTP endpoint on port <code>5911</code> to formally register its device ID and student name.</li>
+                    <li><strong>Acknowledgement:</strong> The Windows app completes the handshake by sending a TCP <code>PAIRING_ACK</code> (0x21) and an HTTP <code>201 Created</code>. Only fully paired devices are permitted to participate in sessions.</li>
+                </ul>
+
+                <h3>2. Session Interaction & Networking</h3>
+                <p>
+                    A session manages the distribution and life-cycle of materials (like worksheets or quizzes) provided to the tablets. Instead of having tablets repeatedly poll an HTTP server for updates, the architecture uses TCP as an asynchronous event channel.
+                </p>
+                <ul>
+                    <li><strong>Heartbeat Mechanism:</strong> Tablets send a TCP <code>STATUS_UPDATE</code> (0x10) every 3 seconds. To maintain robust connections, if the Windows app receives no heartbeat for 10 seconds, the device is flagged as disconnected on the teacher's dashboard.</li>
+                    <li><strong>Content Distribution:</strong> The Windows app sends a TCP <code>DISTRIBUTE_MATERIAL</code> (0x05) signal. Tablets immediately perform a REST API <code>GET /distribution/{deviceId}</code> request to retrieve the material data (JSON payloads), and respond with a TCP <code>DISTRIBUTE_ACK</code> (0x12) confirming successful retrieval.</li>
+                    <li><strong>Live Control & Help Requests:</strong> Teachers can remotely lock/unlock tablets using TCP opcodes <code>0x01</code> and <code>0x02</code>, which tablet clients automatically acknowledge by modifying their status flags in their ongoing heartbeats. Students can discreetly request help, raising a TCP <code>HAND_RAISED</code> (0x11) signal.</li>
+                    <li><strong>Returning Responses & Feedback:</strong> Completed quizzes and worksheets are submitted back via an HTTP <code>POST /responses</code> payload. Feedback generated subsequently is delivered via the Windows client sending a TCP <code>RETURN_FEEDBACK</code> (0x06) message, triggering the Android client to fetch via HTTP <code>GET /feedback/{deviceId}</code> and confirming receipt with <code>FEEDBACK_ACK</code> (0x13).</li>
+                </ul>
+
+                <h3>Encoding of Materials</h3>
+                <p>
+                    Material content is persisted and transmitted as a markdown-encoded string. The supported language is a constrained CommonMark/GitHub-Flavoured Markdown subset with defined support for headers, emphasis, lists, tables, LaTeX, code blocks, blockquotes and attachment references. Domain-specific behaviours are represented through custom markers, including embedded PDFs, centred blocks and inline question references.
+                </p>
+                <p>
+                    The AI generation pipeline is explicitly grounded in this encoding contract. During both initial generation and selected-content modification, the backend prompt includes instructions to return content in Material Encoding format together with a condensed markdown syntax guide. For worksheet flows, the prompt additionally includes the <code>question-draft</code> syntax so the model can place draft questions at pedagogically appropriate points in the body of the material, rather than appending them out of context.
+                </p>
+                <p>
+                    On material persistence, any <code>question-draft</code> blocks are parsed into concrete <code>QuestionEntity</code> records, assigned UUIDs, and rewritten in content as canonical <code>!!! question id="..."</code> markers. If draft parsing fails, malformed draft markers are removed and surfaced as validation warnings. After AI output is produced, the application validates markdown structure, custom marker structure, attachment references and question references, applies deterministic repairs for common structural issues, and returns unresolved problems as line-level warnings for manual correction in the editor.
+                </p>
+                <p>
+                    Embedded questions are transported and consumed at runtime through a distribution bundle model. When a tablet receives <code>GET /distribution/{deviceId}</code>, the payload contains separate arrays of <code>MaterialEntity</code> and <code>QuestionEntity</code>, so question content is transmitted as first-class entities rather than inlined JSON fragments inside material content. The material body therefore carries references (question markers) while the concrete question objects are resolved from the accompanying questions array. Windows assigns IDs for materials and questions, and Android preserves them, ensuring stable marker-to-entity linkage across edits, sync, and rendering. Student answers are then submitted via <code>POST /responses</code> as <code>ResponseEntity</code> records that reference those question IDs.
+                </p>
+
+                <h3>Communication Flow</h3>
+                <div class="mermaid" style="text-align: center;">
+sequenceDiagram
+    participant A as Android Tablet
+    participant W as Windows Teacher App
+    
+    Note over A,W: 1. Device Discovery & Pairing
+    W->>A: UDP Broadcast (Port 5913): Server IP & Ports
+    A->>W: TCP Connect & PAIRING_REQUEST (0x20)
+    A->>W: HTTP POST /pair 
+    W-->>A: TCP PAIRING_ACK (0x21)
+    W-->>A: HTTP 201 Created
+    
+    Note over A,W: 2. Session Interaction & Heartbeat
+    loop Every 3s
+        A->>W: TCP STATUS_UPDATE (0x10)
+    end
+    
+    Note over A,W: 3. Material Distribution
+    W->>A: TCP DISTRIBUTE_MATERIAL (0x05)
+    A->>W: HTTP GET /distribution/{deviceId}
+    W-->>A: Material JSON Payload
+    A->>W: TCP DISTRIBUTE_ACK (0x12)
+
+    Note over A,W: 4. Student Response & Feedback
+    A->>W: HTTP POST /responses 
+    W-->>A: HTTP 201 Created
+    W->>A: TCP RETURN_FEEDBACK (0x06)
+    A->>W: HTTP GET /feedback/{deviceId}
+    W-->>A: Feedback JSON
+    A->>W: TCP FEEDBACK_ACK (0x13)
+                </div>
+
+                <h2 id="external-devices">External Device Delivery (reMarkable & Kindle)</h2>
+                <p>
+                    In addition to the Android student application, Manuscripta supports delivering materials directly to E-ink devices such as the <strong>reMarkable</strong> tablet and <strong>Amazon Kindle</strong>. This ensures compatibility with existing hardware in schools.
+                </p>
+                <ul>
+                    <li><strong>reMarkable:</strong> Delivery is handled via <code>rmapi</code>, integrating directly with the reMarkable cloud to upload generated worksheets and quizzes as PDFs.</li>
+                    <li><strong>Kindle:</strong> Materials are sent using SMTP via the Kindle "Send to Kindle" email service.</li>
+                </ul>
+
 
                 <h2 id="windows-app">Windows Teacher Application</h2>
                 <p class="attribution"><em>Built by Raphael Li and Nemo Shu</em></p>
 
                 <h3>Application Startup and Process Management</h3>
                 <p>
-                    The Windows application consists of a .NET 10.0 ASP.NET Core backend and a React and Electron frontend. The frontend is solely responsible for spawning, monitoring and terminating the backend as a child process on startup using Node.js child_process.spawn. The backend is published as a self-contained win-x64 executable bundled inside the Electron application, meaning the teacher installs and runs a single application with no separate setup required. If the backend crashes, the frontend detects this via health checks and restarts it automatically with exponential backoff. Dynamic port allocation ensures startup succeeds even if default ports are unavailable.
+                    The Windows application consists of a .NET 10.0 ASP.NET Core backend and a React/Electron frontend. The frontend is responsible for spawning, monitoring and terminating the backend as a child process on startup using Node.js child_process.spawn. The backend is published as a self-contained win-x64 executable bundled inside the Electron application, meaning the teacher installs and runs a single application with no separate setup required. If the backend crashes, the frontend detects this via health checks and restarts it automatically with exponential backoff. Dynamic port allocation ensures startup succeeds even if default ports are unavailable.
                 </p>
 
                 <p>
@@ -419,7 +348,7 @@
                 </p>
 
                 <h4>Pseudocode: Material Generation</h4>
-                <pre><code>FUNCTION GenerateMaterial(description, readingAge, materialType, unitCollectionId, sourceDocIds):
+                <pre class="language-pseudocode"><code class="language-pseudocode">FUNCTION GenerateMaterial(description, readingAge, materialType, unitCollectionId, sourceDocIds):
 
     // Model selection
     selectedModel = "qwen3:8b"
@@ -463,7 +392,7 @@
 END FUNCTION</code></pre>
 
                 <h4>Pseudocode: Feedback Generation</h4>
-                <pre><code>FUNCTION GenerateFeedbackAsync(response):
+                <pre class="language-pseudocode"><code class="language-pseudocode">FUNCTION GenerateFeedbackAsync(response):
 
     question = FetchQuestion(response.questionId)
     IF question.markScheme == null: RETURN null
@@ -479,107 +408,56 @@ END FUNCTION</code></pre>
     RETURN feedbackId
 
 END FUNCTION</code></pre>
-
-                <h3>TCP Networking and Device Management</h3>
-                <p>
-                    The TcpPairingService manages a dual-socket setup: a TCP listener for incoming connections and a concurrent dictionary mapping device IDs to active TcpClient instances. The heartbeat timeout window is 10 seconds — if no STATUS_UPDATE is received from a device within this window, it is marked DISCONNECTED and the teacher dashboard updates in real time via SignalR.
-                </p>
-                <p>
-                    Command queueing uses TaskCompletionSource for async waiting on LOCK and UNLOCK acknowledgements, allowing the Windows application to await confirmation that a command was received before updating the UI.
-                </p>
+                
 
                 <h2 id="android-app">Android Student Application</h2>
                 <p class="attribution"><em>Built by Priya Bargota and Will Stephen</em></p>
 
                 <p>
-                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The backend data and network layers achieve 96% instruction coverage and 93% branch coverage across 88 classes, validated by JaCoCo.
+                    The Android application is written in Java and follows Clean Architecture with three strictly separated layers. Dependency injection is handled by Hilt throughout. The data and network layers achieve 90% instruction coverage, validated by JaCoCo. A number of classes are excluded from coverage reporting because JaCoCo either counted them as generated build files or could not detect that they were being tested.
                 </p>
+                <details>
+                    <summary>View JaCoCo excluded classes</summary>
+                    <ul>
+                        <li><strong>Android-generated resources:</strong> <code>R.class</code>, <code>BuildConfig</code>, <code>Manifest</code>, <code>databinding</code></li>
+                        <li><strong>Hilt dependency injection artefacts:</strong> <code>*_Factory</code>, <code>*_MembersInjector</code>, <code>Hilt_*</code>, <code>*_Impl</code>, <code>*_GeneratedInjector</code></li>
+                        <li><strong>UI Activities and Fragments:</strong> <code>MainActivity</code>, <code>PairingActivity</code>, <code>ReadingFragment</code>, <code>QuizFragment</code>, <code>WorksheetFragment</code>, <code>FeedbackFragment</code>, <code>TeacherFeedbackFragment</code></li>
+                        <li><strong>Rendering components:</strong> <code>MarkdownRenderer</code>, <code>QuestionBlockRenderer</code>, <code>AttachmentImageLoader</code>, custom Views</li>
+                        <li><strong>Network and connection managers:</strong> <code>TcpSocketManager</code>, <code>HeartbeatManager</code>, <code>PairingManager</code>, <code>ConnectionManager</code>, <code>MulticastLockManager</code></li>
+                        <li><strong>Application entry points:</strong> <code>ManuscriptaApplication</code>, <code>ManuscriptaDatabase</code>, <code>DatabaseModule</code></li>
+                    </ul>
+                </details>
 
                 <h3>Device Pairing Screen</h3>
                 <p>
                     On first launch the student enters their name and taps Pair. The application broadcasts a UDP discovery packet on port 5913 to locate the teacher's Windows application on the local network without requiring manual IP configuration. Once the server responds, a TCP pairing handshake is completed on port 5912 and the device is registered. The screen is deliberately minimal — a single text field and one button — reflecting the principle of reducing cognitive load established in C1.
                 </p>
-                <img src="images/Android-1.png" alt="Device Pairing Screen showing minimal interface with name input and pair button" class="implementation-screenshot">
+                <img src="images/Android-1v2.png" alt="Device Pairing Screen showing minimal interface with name input and pair button" class="implementation-screenshot-mobile">
 
                 <h3>Worksheet View</h3>
                 <p>
                     Once paired and a material is deployed, the student sees the worksheet displayed in large high-contrast monochromatic text optimised for E-ink rendering. Typography is set at a size appropriate for the target age group with generous line spacing to support students with reading difficulties. A persistent Raise Hand button sits at the bottom right of every content screen, allowing the student to send a discreet help request to the teacher dashboard without interrupting their work.
                 </p>
-                <img src="images/Android-2.png" alt="Worksheet View displaying high-contrast monochromatic text with Raise Hand button" class="implementation-screenshot">
-                <div class="warning-box">
-                    <p><strong>⚠</strong> Content transformation buttons (simplify, expand, summarise) are identified as a should-have requirement and are partially implemented. Full delivery is noted in the evaluation section.</p>
-                </div>
+                <img src="images/Android-2v2.png" alt="Worksheet View displaying high-contrast monochromatic text with Raise Hand button" class="implementation-screenshot-mobile">
 
                 <h3>Quiz View</h3>
                 <p>
                     The quiz view displays a reading passage followed by a question and an answer input field. The student types their response and submits it via HTTP POST to port 5911, where it appears in the teacher's Responses view alongside AI-generated feedback from IBM Granite 4.0.
                 </p>
-                <img src="images/Android-3.png" alt="Quiz View showing reading passage, question, and answer input field" class="implementation-screenshot">
-                <div class="warning-box">
-                    <p><strong>⚠</strong> Text-to-speech functionality is integrated into the application architecture but not fully delivered within the project timeline.</p>
-                </div>
+                <img src="images/Android-3v2.png" alt="Quiz View showing reading passage, question, and answer input field" class="implementation-screenshot-mobile">
 
-                <h3>Clean Architecture Implementation</h3>
+<h3>Clean Architecture Implementation</h3>
                 <p>
                     The data layer contains Room entities, DAOs and Retrofit DTOs. Entities are immutable with a single constructor, making them suitable only for Room persistence and preventing accidental mutation. The domain layer contains corresponding domain models with convenience constructors and input validation that throws immediately on invalid state. Bidirectional mappers convert between entities and domain models, keeping Room annotations entirely out of business logic. The presentation layer uses ViewModels and LiveData, ensuring the UI reacts to state changes without directly accessing data sources.
                 </p>
 
-                <h3>Multi-Channel Networking</h3>
-
-                <h4>Pseudocode: Connection and Heartbeat</h4>
-                <pre><code>ON app start:
-    UDP.Broadcast(DISCOVERY_PACKET, port=5913)
-    WAIT for server response
-
-ON server found:
-    TCP.Connect(serverIP, port=5912)
-    TCP.Send(PAIRING_REQUEST, deviceId, studentName)
-    WAIT for PAIRING_ACK
-
-ON material deployed (TCP signal 0x05 received):
-    HTTP.GET("/distribution/{deviceId}", port=5911)
-    FOR each material downloaded:
-        TCP.Send(DISTRIBUTE_ACK, deviceId + 0x00 + materialId)
-    UI.DisplayMaterial()
-
-EVERY 3 seconds:
-    TCP.Send(STATUS_UPDATE 0x10, deviceId, status, batteryLevel, currentMaterialId)
-
-ON Raise Hand tapped:
-    TCP.Send(HAND_RAISED 0x11, deviceId)
-    UI.ShowConfirmation()
-
-ON answer submitted:
-    HTTP.POST("/responses", deviceId, questionId, answerText)
-    LocalDB.Save(response, synced=true)</code></pre>
-
-                <h4>Pseudocode: Retry with Exponential Backoff</h4>
-                <pre><code>FUNCTION SyncResponse(response):
-    attempts = 0
-    backoff = 1 second
-
-    WHILE attempts < 5:
-        TRY:
-            result = HTTP.POST("/responses", response)
-            IF result == 201:
-                MarkSynced(response)
-                RETURN success
-        CATCH NetworkException:
-            WAIT(backoff)
-            backoff = MIN(backoff * 2, 32 seconds)
-            attempts++
-
-    LocalDB.Save(response, synced=false)  // queue for later sync
-
-END FUNCTION</code></pre>
-
                 <h3>CI/CD Pipeline</h3>
                 <p>
-                    The Android application uses GitHub Actions for continuous integration. The workflow triggers on pull requests to any path within android/ and runs two jobs sequentially. The first job runs Checkstyle to enforce code style across the entire codebase. The second job runs the full JaCoCo test suite and enforces 100% unit test coverage — the build fails if coverage drops below this threshold. Coverage reports are uploaded as artifacts and posted as comments on pull requests automatically.
+                    The Android application uses GitHub Actions for continuous integration. The workflow triggers on pull requests to any path within android/ and runs two jobs sequentially. The first job runs Checkstyle to enforce code style across the entire codebase. The second job runs the full JaCoCo test suite enforcing 90% unit test coverage — the build fails if coverage drops below this threshold. Coverage reports are uploaded as artifacts and posted as comments on pull requests automatically.
                 </p>
-                <div class="warning-box">
-                    <p><strong>⚠</strong> A Windows CI/CD pipeline was not implemented within the project timeline. The Windows application is built and packaged manually using Electron Forge.</p>
-                </div>
+                <p>
+                    Similarly, a CI/CD pipeline was implemented for the Windows application to automate backend builds and tests, as well as packaging through GitHub Actions using Electron Forge.
+                </p>
 
                 <h2 id="decisions">Key Implementation Decisions</h2>
                 <table>
@@ -611,47 +489,555 @@ END FUNCTION</code></pre>
                             <td>Prevents accidental mutations during persistence, enforces clean separation from domain models</td>
                         </tr>
                         <tr>
-                            <td>404 for invalid GUIDs</td>
-                            <td>Avoids leaking information about ID validity to unauthenticated callers, aligns with RESTful practice</td>
-                        </tr>
-                        <tr>
-                            <td>100% Android unit test coverage enforced by CI</td>
+                            <td>90% Android unit test coverage enforced by CI</td>
                             <td>Ensures every data and network layer component is independently verifiable, supporting the clean architecture goal</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h2 id="video">Video Demo</h2>
-                <div class="warning-box">
-                    <p><strong>TODO:</strong> Record and add 8-minute demonstration video showcasing both applications</p>
-                </div>
-
-                <p><strong>Video Requirements (8 minutes):</strong></p>
-                <ul>
-                    <li><strong>1 min</strong> — Project intro: what Manuscripta is, who it is for, why E-ink and on-device AI</li>
-                    <li><strong>2 min</strong> — Windows app: Library hierarchy, AI material generation (show actual generation), deploy to device</li>
-                    <li><strong>1 min</strong> — Classroom view: device grid, Lock All, pairing flow, Kindle device</li>
-                    <li><strong>1 min</strong> — Responses view: student answer, AI feedback from Granite, teacher editing and sending</li>
-                    <li><strong>2 min</strong> — Android app: pairing screen, worksheet on E-ink device, quiz with Raise Hand button</li>
-                    <li><strong>1 min</strong> — Architecture and closing: system end-to-end, 96% test coverage, local network only</li>
-                </ul>
-
-                <p><strong>Recording Guidelines:</strong></p>
-                <ul>
-                    <li>Use 1080p resolution or higher</li>
-                    <li>Clear narration, no background music</li>
-                    <li>Show AI generation working live (cut/speed up if needed)</li>
-                    <li>Record Android on actual E-ink tablet, not emulator</li>
-                    <li>Label each section clearly while narrating</li>
-                    <li>Record in quiet environment</li>
-                    <li>Keep under 10 minutes total</li>
-                </ul>
-
-                <h2 id="github">GitHub Repository</h2>
+                <h2 id="ai-agents">Use of AI Agents in Development</h2>
+                <h3>Windows Application</h3>
                 <p>
-                    View the complete source code on GitHub:
-                    <a href="https://github.com/raphaellith/Manuscripta" target="_blank">Manuscripta Repository</a>
+                    The Windows application follows a specification-anchored development workflow in which formal specifications and the codebase are treated as co-equal sources of truth. Specifications are intentionally drafted in a legalistic style, with explicit structure and dense cross-reference patterns, so that each document is internally coherent and can be interpreted with minimal ambiguity. In practice, these specifications serve two roles: they function as executable intent for coding agents, and they provide a stable benchmark for review agents during pull request evaluation. Generated code is encouraged to include specification point references, improving traceability between implementation decisions and documented requirements.
                 </p>
+                <p>
+                    Google Antigravity and GitHub Copilot were the two primary agent harnesses used throughout implementation. Antigravity's planning workflow proved especially effective at translating high-level requirements into concrete implementation steps and exposing underspecified or easily misread clauses before code generation. However, strict usage limits on higher-capability models reduced its availability during sustained development, so GitHub Copilot agents were frequently used as a practical fallback, typically with more explicit manual prompting. To preserve consistency across both harnesses, we defined an AI Coding Constitution requiring agents to prioritise specification compliance and to propose specification amendments only when explicitly authorised. A condensed version of this constitution was embedded directly in agent instructions.
+                </p>
+                <p>
+                    GitHub Copilot Review Agents were also used periodically to review pull requests. In early iterations, we observed a recurring tendency for review agents to recommend changing specifications to accommodate non-compliant code, which we interpret as an optimisation towards the lowest-effort resolution path. In response, we clarified coding-agent and review-agent responsibilities in the AI Coding Constitution and reinforced these constraints in review instructions, so that specification changes are suggested only when no proportionate implementation-level remedy is viable.
+                </p>
+                <p>
+                    In summary, AI agents were integrated as disciplined contributors within a specification-first engineering process rather than as autonomous code generators. Their strongest value came from plan synthesis, consistency checking, and review acceleration, while constitutional guardrails were essential to keep optimisation pressure aligned with documented intent. This combination enabled faster iteration without weakening requirement fidelity, and it established a repeatable workflow for specification-driven AI-assisted development.
+                </p>
+
+                <h4>Case Study: Frontend Workflow Specifications Section 4C (Editor Modal)</h4>
+                <p>
+                    We present an example of our specification style. Section 4C was especially useful for AI agents because it decomposed one UI feature into enforceable obligations with clear sequencing and cross-references. Instead of abstract guidance, the specification defines concrete behavioural rules for autosave timing, streaming AI interactions, validation display, question editing constraints, attachment lifecycle management, and orphan clean-up. For coding agents, this reduced ambiguity during implementation. For review agents, the numbered clauses provided a point-by-point compliance checklist, making it easier to identify behavioural regressions and to justify comments against explicit intent.
+                </p>
+                <details>
+                    <summary>Show exact text of FrontendWorkflowSpecifications Section 4C (collapsed by default)</summary>
+                    <article class="specification-text">
+                        <h5>Section 4C - Editor Modal</h5>
+
+                        <p class="spec-subsection"><strong>(1) Core Functionalities</strong></p>
+                        <p>The front end shall provide a uniform editor modal for editing all types of materials on a what-you-see-is-what-you-get basis. It shall support —</p>
+                        <p class="spec-paragraph">(a) rendering and editing of all language features specified in the Material Encoding Specification.</p>
+                        <p class="spec-paragraph">(b) [Deleted.]</p>
+                        <p class="spec-paragraph">(c) rendering, insertion, editing, relocation and deletion of embedded questions.</p>
+                        <p class="spec-paragraph">(d) rendering, insertion, relocation and deletion of PDF, PNG and JPEG attachments.</p>
+
+                        <p class="spec-subsection"><strong>(2) Additional Functionalities</strong></p>
+                        <p>The editor modal shall provide means through which the user can —</p>
+                        <p class="spec-paragraph">(a) invoke the AI assistant to make changes to the material, by selecting the locations of the content they want to modify, and describing the changes they want to make. When invoking the AI assistant —</p>
+                        <p class="spec-subparagraph">(i) the frontend shall capture the selected content and the user's instruction.</p>
+                        <p class="spec-subparagraph">(ii) the frontend shall invoke <code>ModifyContent</code> (NetworkingAPISpec Section 1(1)(i)(iv)) via <code>TeacherPortalHub</code>, passing the material's <code>id</code>, <code>materialType</code>, <code>title</code>, <code>readingAge</code>, and <code>actualAge</code> alongside the selected content and instruction.</p>
+                        <p class="spec-subparagraph">(iii) on receiving the generation result, the frontend shall replace the user's selection in the editor with the content. If the result contains validation warnings, the frontend shall display them as specified in Section 4C(7).</p>
+                        <p class="spec-subparagraph">(iv) Whilst the modification is in progress, the frontend shall display a streaming generation view in accordance with Section 4B(2)(a1), showing the AI's chain-of-thought and the progressively generated replacement content.</p>
+                        <p class="spec-subparagraph">(v) The streaming generation view for content modification shall not replace the user's existing content until the final <code>GenerationResult</code> is received. An interim preview may be shown adjacent to or overlaid on the selected content.</p>
+                        <p class="spec-paragraph">(b) modify the reading age and actual age metadata of the material.</p>
+                        <p class="spec-paragraph">(b1) modify the per-material PDF export settings — line pattern type, line spacing preset, and font size preset. The frontend shall display a description informing the user that these settings override the global defaults for this material, but may in turn be overridden by per-device settings configured on external devices. This shall be provided in means of dropdowns, and each dropdown shall —</p>
+                        <p class="spec-subparagraph">(i) include a "Default" option that maps to null (i.e., the global default from <code>PdfExportSettingsEntity</code> is used), and display the current global default value for the teacher's reference (e.g., "Default (Ruled)", "Default (Medium)");</p>
+                        <p class="spec-subparagraph">(ii) include options for each enum value of the respective type (<code>LinePatternType</code>, <code>LineSpacingPreset</code>, <code>FontSizePreset</code>);</p>
+                        <p class="spec-subparagraph">(iii) display "Default (...)" when the per-material override is null;</p>
+                        <p class="spec-subparagraph">(iv) when the user selects a specific value, set it as a per-material override; and</p>
+                        <p class="spec-subparagraph">(v) be auto-saved with the existing 1-second debounce mechanism like other material properties.</p>
+                        <p class="spec-paragraph">(c) undo and redo changes to the material.</p>
+
+                        <p class="spec-subsection"><strong>(2A) LaTeX Formatting</strong></p>
+                        <p>The frontend shall disable rich text formatting (bold, italic, underline) in paragraphs containing inline or block LaTeX nodes. When a LaTeX node is inserted into a paragraph, any existing formatting marks in that paragraph shall be removed.</p>
+                        <p>[Explanatory Note: Pursuitant to Material Conversion Specifications, Section 3A(6)(a), LaTeX and markdown formatting may not coexist in the same paragraph.]</p>
+
+                        <p class="spec-subsection"><strong>(3) Saving Content</strong></p>
+                        <p>The editor modal shall —</p>
+                        <p class="spec-paragraph">(a) automatically save any changes to the material (not including embedded questions) by calling the appropriate update endpoint, as specified in Section 1(1)(d)(ii) of the Networking API Specification, at most one second after each change.</p>
+                        <p class="spec-paragraph">(a1) strip any syntax or tags that is not permitted per Material Encoding Specification Section 1(4) from the material content before saving, preserving only the visible text content within such tags. This includes —</p>
+                        <p class="spec-subparagraph">(i) hyperlinks.</p>
+                        <p class="spec-paragraph">(b) provide a "save" button when creating or editing an embedded question. When it is clicked —</p>
+                        <p class="spec-subparagraph">(i) in the case of a question whose ID is known by a question reference defined in Section 4(4) of the Material Encoding Specification, update the question entity by calling the appropriate update endpoint in Section 1(1)(d1)(ii) of the Networking API Specification.</p>
+                        <p class="spec-subparagraph">(ii) in the case of a question whose ID has not been assigned, create the question entity using the appropriate create endpoint in Section 1(1)(d1)(i) of the Networking API Specification, obtain the Guid generated, and create an appropriate question reference using that Guid.</p>
+                        <p class="spec-paragraph">(b1) only enable the button specified in subsection (b) when —</p>
+                        <p class="spec-subparagraph">(i) in the case of editing an existing question, there has been a change; and</p>
+                        <p class="spec-subparagraph">(ii) all mandatory fields of the question, as defined in the Validation Rules, have been filled.</p>
+                        <p class="spec-paragraph">(c) provide a delete button for embedded questions. When it is clicked —</p>
+                        <p class="spec-subparagraph">(i) [DELETED]</p>
+                        <p class="spec-subparagraph">(ii) remove the question reference in the material.</p>
+                        <p>However, this button shall not be provided when the material is a poll. [Explanatory note: this is because polls must have exactly one multiple choice question]</p>
+                        <p class="spec-paragraph">(d) not allow the user to delete questions through any other means than the delete button specified in paragraph (c).</p>
+
+                        <p class="spec-subsection"><strong>(3A) Editing Questions</strong></p>
+                        <p>The frontend shall —</p>
+                        <p class="spec-paragraph">(a) collect the following information regarding the question the user wishes to edit:</p>
+                        <p class="spec-subparagraph">(i) the question type, per Section 2B(1)(b) of the Validation Rules;</p>
+                        <p class="spec-subparagraph">(ii) the question text, per Section 2B(1)(c) of the Validation Rules; and</p>
+                        <p class="spec-subparagraph">(iii) an optional maximum score, per Section 2B(2)(c) of the Validation Rules.</p>
+                        <p class="spec-paragraph">(b) in the case of a multiple choice question, collect the following additional information:</p>
+                        <p class="spec-subparagraph">(i) the options, per Section 2B(2)(a) of the Validation Rules;</p>
+                        <p class="spec-subparagraph">(ii) the correct option, per Section 2B(2)(b) of the Validation Rules;</p>
+                        <p>and clearly indicate that the correct field is optional, and by selecting an option, the user indicates that automarking should be enabled for that question.</p>
+                        <p class="spec-paragraph">(c) in the case of a short answer question, collect whether the user wishes to enable automarking for that question, and if so, collect the means by which the answer should be marked —</p>
+                        <p class="spec-subparagraph">(i) in the case of exact match, collect the expected answer, and subsequently store that as <code>CorrectAnswer</code> per Section 2B(2)(b) of the Validation Rules when saved; or</p>
+                        <p class="spec-subparagraph">(ii) in the case of AI-marking, collect a mark scheme, and subsequently store that as <code>MarkScheme</code> per Section 2E(1)(a) of the Additional Validation Rules when saved.</p>
+
+                        <p class="spec-subsection"><strong>(4) Handling attachments</strong></p>
+                        <p>The editor modal shall —</p>
+                        <p class="spec-paragraph">(a) provide an "attach" button adding attachments to the material. When it is clicked —</p>
+                        <p class="spec-subparagraph">(i) prompt the user to upload an attachment file.</p>
+                        <p class="spec-subparagraph">(ii) create an attachment entity using the uploaded file's base name and extension, by calling <code>Task CreateAttachment(AttachmentEntity newAttachmentEntity)</code>, as defined in Section 1(1)(l)(i) of the Networking API Specification.</p>
+                        <p class="spec-subparagraph">(iii) create and save a copy of the uploaded attachment file to the directory <code>%AppData%\ManuscriptaTeacherApp\Attachments</code>. This copy's file base name must match the UUID of the attachment entity created in (ii). Its file extension must match that of the attachment file originally uploaded in (i).</p>
+                        <p class="spec-subparagraph">(iv) insert the attachment into the material at the point indicated by the caret's current position.</p>
+                        <p class="spec-paragraph">(a1) when the attachment entity is successfully created by the virtue of subparagraph (a)(ii), but the copy of the file cannot be saved as suggested by subparagraph (a)(iii), remove the attachment entity created in (ii) by calling the deletion endpoint specified in Section 1(1)(l)(iii) of the Networking API Specification.</p>
+                        <p class="spec-paragraph">(b) provide a "delete" button for attachments. When it is clicked —</p>
+                        <p class="spec-subparagraph">(i) [DELETED]</p>
+                        <p class="spec-subparagraph">(ii) remove the attachment reference in the material.</p>
+                        <p class="spec-paragraph">(c) not allow the user to delete attachments through any other means than the delete button specified in paragraph (b).</p>
+                        <p class="spec-paragraph">(d) support —</p>
+                        <p class="spec-subparagraph">(i) drag-and-drop of attachments, of all supported types, into the editor modal.</p>
+                        <p class="spec-subparagraph">(ii) copy-paste of images into the editor modal. These images may be introduced along with text.</p>
+                        <p class="spec-paragraph">Attachments added in a manner specified in this paragraph shall be handled in the same manner as attachments added through the "attach" button, as specified in paragraphs (a)(ii-iv) and (a1).</p>
+
+                        <p class="spec-subsection"><strong>(5) Initiation of Orphan Removal on Entry or Exit</strong></p>
+                        <p>The frontend shall, when the editor modal is entered or exited —</p>
+                        <p class="spec-paragraph">(a) retrieve all attachments and questions associated with the material, by calling <code>Task&lt;List&lt;AttachmentEntity&gt;&gt; GetAttachmentsUnderMaterial(Guid materialId)</code> and <code>Task&lt;List&lt;QuestionEntity&gt;&gt; GetQuestionsUnderMaterial(Guid materialId)</code>, as defined in Section 1(1)(l)(ii) and Section 1(1)(d)(ii) of the Networking API Specification.</p>
+                        <p class="spec-paragraph">(b) identify all attachments and questions that are not referenced in the material, and —</p>
+                        <p class="spec-subparagraph">(i) delete such attachment entity(ies) using the deletion endpoint specified in Section 1(1)(l)(iii) of the Networking API Specification, and delete the copy(ies) of corresponding attachment file(s) from the data directory.</p>
+                        <p class="spec-subparagraph">(ii) delete such question(s) using the deletion endpoint specified in Section 1(1)(d1)(iv) of the Networking API Specification.</p>
+
+                        <p class="spec-subsection"><strong>(6) Initiation of Orphan Removal on Discovery of Orphaned Attachment Entities</strong></p>
+                        <p>The frontend shall, on discovery of an attachment entity whose corresponding attachment file does not exist in the data directory when attempting to render the attachment —</p>
+                        <p class="spec-paragraph">(a) remove any attachment reference which references such attachment entity.</p>
+                        <p class="spec-paragraph">(b) delete such attachment entity using the deletion endpoint specified in Section 1(1)(l)(iii) of the Networking API Specification.</p>
+
+                        <p class="spec-subsection"><strong>(7) Displaying Validation Warnings</strong></p>
+                        <p>When the editor modal receives content with validation warnings (per GenAISpec Section 3G) —</p>
+                        <p class="spec-paragraph">(a) the frontend shall display a warning banner indicating issues require attention.</p>
+                        <p class="spec-paragraph">(b) the frontend shall highlight or annotate the affected lines where line numbers are available.</p>
+                        <p class="spec-paragraph">(c) the frontend shall provide a list view of all warnings with descriptions.</p>
+                    </article>
+                </details>
+
+                <h3>Android Application</h3>
+                <p>
+                    The Android sub-team adopted a broadly similar specification-anchored workflow. All agent interactions were grounded in the shared <code>/docs</code> directory, which served as the single source of project context across both sub-teams. Each agent harness that interacted with the Android codebase — whether Antigravity, GitHub Copilot, or Claude Code — was configured with instruction files (<code>claude.md</code>, <code>.github/copilot-instructions.md</code>, and equivalent) that directed it to read the documentation directory on startup and gather project context before generating any code. These instruction files also contained the directory layout, coding standards (including Checkstyle configuration), and testing methodologies — ensuring that agents operated within the same constraints applied to human contributors.
+                </p>
+                <p>
+                    Google Antigravity, GitHub Copilot, and Claude Code were used throughout implementation. All generated code was manually reviewed and validated by Will, with one exception: the Android UI layer (<code>Activities</code>, <code>Fragments</code>, and rendering components) received less rigorous manual oversight due to time constraints — a trade-off discussed further under <em>AI Agent Limitations</em> below.
+                </p>
+
+                <h4>Android Copilot Instructions</h4>
+                <p>
+                    Below is the content of the <code>.github/copilot-instructions.md</code> file used by the GitHub Copilot agents on the Android sub-team. Note that this file was not substantially updated towards the final stages of the project, as the team shifted predominantly towards using Claude Code over Copilot.
+                </p>
+                <details>
+                    <summary>Show exact text of Android Copilot Instructions</summary>
+                    <pre class="language-none specification-text"><code class="language-none"># Manuscripta Android Client - Copilot Instructions (Cloud)
+
+## Context Gathering (MANDATORY FIRST STEP)
+
+Before any implementation work, read relevant documentation in `/docs/`:
+
+### Core Documentation
+| Document | Description | Authority |
+|----------|-------------|-----------|
+| `Project Specification.md` | Requirements referenced as `SECx` (e.g., `MAT1`, `CON2A`) | Requirements source |
+| `API Contract.md` | HTTP/TCP/UDP protocols, binary message formats, data models | Network implementation |
+| `Validation Rules.md` | Entity validation, field constraints, ID generation policy | Data model definitions |
+| `Pairing Process.md` | Pairing phases between Windows and Android devices | **Overrides API Contract on conflicts** |
+| `Session Interaction.md` | Heartbeat mechanism, material distribution, session lifecycle | Runtime behaviour |
+
+### Reference Documentation
+| Document | Description |
+|----------|-------------|
+| `Android System Design.md` | System architecture audit with ERD, sequence diagrams, state machines |
+| `Github Conventions.md` | Branch naming, PR/issue conventions, documentation versioning |
+
+### Source Files
+- Implementation: `/android/app/src/main/java/com/manuscripta/student/`
+
+---
+
+## Documentation Philosophy (CRITICAL)
+
+All code changes **must adhere** to the documentation in `/docs/`. These documents are the source of truth.
+
+### Document Adherence Auditing
+Before completing any task:
+1. Read all relevant documentation in `/docs/`
+2. Verify your implementation conforms to documented rules
+3. When in doubt, documentation takes precedence over existing code patterns
+4. Pay particular attention to:
+   - `Validation Rules.md` — entity field requirements and constraints
+   - `API Contract.md` — network protocol compliance
+   - `Project Specification.md` — requirement codes (cite `SECx` in commits/PRs)
+
+### Documentation Conventions
+Per `Github Conventions.md`:
+- Reference requirements using codes like `MAT1`, `CON2A` with the specification version
+- Reference API endpoints with subheading name and API Contract version
+- Use UK English spelling throughout (e.g., "colour", "behaviour", "summarise")
+
+---
+
+## Code Review Philosophy
+
+When reviewing code or responding to PR comments:
+1. **Examine validity** — Determine if suggested changes address genuine concerns
+2. **Check documentation compliance** — Does the code adhere to `/docs/` specifications?
+3. **Assess impact** — Consider breaking changes, performance implications, maintainability
+4. **Be constructive** — Provide actionable feedback with clear rationale
+
+Do not make changes solely to appease reviewers; ensure all changes are technically justified.
+
+---
+
+## Architecture Overview
+
+### Clean Architecture Layers
+```
+data/             → Persistence and network layer
+  ├── local/      → Room database (ManuscriptaDatabase), DAOs
+  ├── model/      → Entity classes (*Entity.java), enums
+  └── repository/ → Repository implementations
+domain/           → Business logic layer
+  ├── mapper/     → Bidirectional Entity↔Domain mappers (static utility classes)
+  └── model/      → Domain models (validation in constructors, factory methods)
+di/               → Hilt dependency injection modules
+  ├── DatabaseModule   → Database, DAOs
+  ├── NetworkModule    → OkHttpClient, Retrofit, ApiService
+  ├── SocketModule     → TcpSocketManager, UdpDiscoveryManager
+  └── RepositoryModule → Repository bindings, FileStorageManager
+network/          → Networking layer
+  ├── tcp/        → TCP socket management, message encoding/decoding, pairing
+  ├── udp/        → UDP discovery for Windows server detection
+  └── ApiService  → Retrofit API interface
+ui/               → Activities, ViewModels, Views
+utils/            → Utility classes
+  ├── Constants         → App-wide constants
+  ├── Result            → Generic result wrapper for success/error states
+  ├── UiState           → UI state management utilities
+  ├── FileStorageManager    → File I/O operations
+  └── MulticastLockManager  → WiFi multicast lock handling
+```
+
+### Model Layer Separation
+| Layer | Suffix | Purpose | Annotations |
+|-------|--------|---------|-------------|
+| Entity | `*Entity.java` | Room persistence | `@Entity`, `@PrimaryKey` |
+| Domain | `*.java` | Business logic, factory methods | None |
+| DTO | `*Dto.java` | Network serialisation | JSON annotations |
+
+### DTO Naming Convention (CRITICAL)
+**The API Contract and Validation Rules are authoritative for JSON field naming.**
+
+Per `Validation Rules.md` §1(6): Field names in DTOs use **PascalCase** (e.g., `MaterialType`, `VocabularyTerms`).
+
+```java
+// Correct - PascalCase per Validation Rules
+@SerializedName("MaterialType")
+private String materialType;
+
+// Incorrect - camelCase does NOT match API Contract
+@SerializedName("materialType")
+private String materialType;
+```
+
+### Entity ID Contract (CRITICAL)
+Per `docs/API Contract.md` §4.1:
+- **Materials/Questions**: IDs assigned by Windows server, Android must preserve them
+- **Responses/Sessions**: IDs assigned by Android client using `UUID.randomUUID().toString()`
+
+---
+
+## Code Style Rules (Checkstyle Enforced)
+
+### Formatting
+- **Line length**: Maximum 120 characters (imports/packages exempt)
+- **Method length**: Maximum 150 lines
+- **Parameters**: Maximum 7 per method
+- **Indentation**: 4 spaces, no tabs
+- **Braces**: Required for all control statements, K&R style (`{` on same line)
+
+### Naming Conventions
+- Classes: `PascalCase` (e.g., `MaterialEntity`, `MaterialMapper`)
+- Methods/variables: `camelCase`
+- Constants: `SCREAMING_SNAKE_CASE`
+- Packages: lowercase only
+
+### Imports
+- No wildcard imports (`import java.util.*` ✗)
+- Remove unused imports
+- No redundant imports
+
+### Javadoc Requirements
+All public classes, methods, and fields require Javadoc:
+```java
+/**
+ * Brief description of the class/method.
+ *
+ * @param paramName Description of parameter
+ * @return Description of return value
+ * @throws ExceptionType When this exception is thrown
+ */
+```
+
+---
+
+## Library-Specific Patterns
+
+### Room (Database)
+```java
+// Entity pattern - use @NonNull for required fields, final for immutability
+@Entity(tableName = "materials")
+public class MaterialEntity {
+    @PrimaryKey @NonNull private final String id;
+    @NonNull private final MaterialType type;
+    // Constructor with all fields, getters only (no setters for immutability)
+}
+
+// Foreign keys with cascade delete and index
+@Entity(
+    tableName = "responses",
+    foreignKeys = @ForeignKey(
+        entity = QuestionEntity.class,
+        parentColumns = "id", childColumns = "questionId",
+        onDelete = ForeignKey.CASCADE
+    ),
+    indices = @Index("questionId")
+)
+
+// DAO pattern - use OnConflictStrategy.REPLACE for upserts
+@Dao
+public interface MaterialDao {
+    @Query("SELECT * FROM materials WHERE id = :id")
+    MaterialEntity getById(String id);
+    
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(MaterialEntity material);
+}
+```
+
+### Hilt (Dependency Injection)
+```java
+// Application class
+@HiltAndroidApp
+public class ManuscriptaApplication extends Application { }
+
+// Module pattern - @Singleton for app-wide instances
+@Module
+@InstallIn(SingletonComponent.class)
+public class DatabaseModule {
+    @Provides @Singleton
+    public ManuscriptaDatabase provideDatabase(@ApplicationContext Context context) { }
+}
+```
+
+### Retrofit (Networking)
+```java
+// API interface pattern
+public interface ApiService {
+    @GET("/materials/{id}")
+    Call<MaterialResponse> getMaterial(@Path("id") String materialId);
+    
+    @POST("/responses")
+    Call<Void> submitResponse(@Body ResponseRequest request);
+}
+```
+
+### Domain Mappers (Static Utility Classes)
+```java
+public class MaterialMapper {
+    private MaterialMapper() {
+        throw new AssertionError("Utility class should not be instantiated");
+    }
+    
+    @NonNull
+    public static Material toDomain(@NonNull MaterialEntity entity) { }
+    
+    @NonNull
+    public static MaterialEntity toEntity(@NonNull Material domain) { }
+}
+```
+
+### Domain Models (Validation in Constructor)
+```java
+public class Material {
+    public Material(@NonNull String id, ...) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("Material id cannot be null or empty");
+        }
+        // Assign fields
+    }
+}
+```
+
+---
+
+## Testing Patterns
+
+### Coverage Threshold
+**Minimum line coverage: 95%** — Tests should validate meaningful behaviour, not chase 100% coverage through implementation mirroring.
+
+### Behaviour-Driven Testing (MANDATORY)
+Tests must verify **expected behaviour and outcomes**, not mirror implementation details:
+
+#### What to Test
+- **Correct outputs** for valid inputs (the "happy path")
+- **Edge cases** and boundary conditions
+- **Error handling** — correct exceptions for invalid inputs
+- **State transitions** — observable state changes after operations
+- **Contract compliance** — does the class fulfil its documented responsibilities?
+
+#### What NOT to Do
+- ❌ Do NOT write tests that simply call each method and assert the return matches a hardcoded value copied from the implementation
+- ❌ Do NOT test private methods or internal state via reflection
+- ❌ Do NOT use `setAccessible(true)` to bypass access controls
+- ❌ Do NOT write tests that would pass even if the implementation were completely wrong
+- ❌ Do NOT aim for 100% coverage by testing trivial getters/setters without meaningful assertions
+
+#### Test Quality Checklist
+Before considering a test complete, ask:
+1. Would this test **fail if the implementation had a bug**?
+2. Does this test verify **what the code should do**, not how it does it?
+3. Is the test **independent of implementation details** that might change during refactoring?
+4. Does the test document **expected behaviour** that another developer could understand?
+
+### Public API Testing
+All tests must interact with classes through their **public API only**:
+- Set up state using public methods (`startDiscovery()`, `connect()`, etc.)
+- Verify outcomes using public methods (`isRunning()`, `getResult()`, etc.)
+- If a scenario cannot be tested via public APIs, consider whether the test is necessary or if the class design needs improvement
+
+### DAO Tests (Robolectric + In-Memory Database)
+```java
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 28, manifest = Config.NONE)
+public class MaterialDaoTest {
+    private ManuscriptaDatabase database;
+    
+    @Before
+    public void setUp() {
+        Context context = ApplicationProvider.getApplicationContext();
+        database = Room.inMemoryDatabaseBuilder(context, ManuscriptaDatabase.class)
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build();
+    }
+    
+    @After
+    public void tearDown() {
+        if (database != null) database.close();
+    }
+}
+```
+
+### Mapper Tests (Given-When-Then Pattern)
+```java
+@Test
+public void testToDomain() {
+    // Given
+    MaterialEntity entity = new MaterialEntity(...);
+    // When
+    Material domain = MaterialMapper.toDomain(entity);
+    // Then
+    assertEquals(entity.getId(), domain.getId());
+}
+```
+
+---
+
+## Build & Verification (MANDATORY)
+
+**Work is only complete when all checks pass.**
+
+### Primary Verification Command
+```bash
+cd android
+./gradlew checkstyle jacocoTestReport jacocoTestCoverageVerification
+```
+
+This command runs all verification tasks (unit tests, Checkstyle, coverage) and will fail if any check fails. Always use this as the single source of truth for build and verification.
+
+### Individual Commands
+```bash
+cd android
+./gradlew testDebugUnitTest      # Run unit tests
+./gradlew checkstyle             # Run style checks
+./gradlew jacocoTestReport       # Generate coverage report
+./gradlew assembleDebug          # Build debug APK
+```
+
+---
+
+## Known Environment Issues (CRITICAL)
+
+### AGP Version (Android Gradle Plugin)
+- **Do NOT downgrade AGP**: The project uses AGP version **8.13.1**.
+- **Ignore Errors**: If you encounter environment errors related to this version (e.g., "network requests to Google seem to be blocked"), **ignore them**. These are false positives specific to the agent environment.
+- **Action**: Do NOT revert to an older version (e.g., 8.1.1) under any circumstances.
+- **False Reasoning**: Do NOT assume that reverting the AGP version is a valid fix for network/build issues in this environment. The build will pass in CI.
+
+---
+
+## UK English
+
+Use British English spelling in all documentation and string literals:
+- ✓ "colour", "behaviour", "summarise", "organise", "licence"
+- ✗ "color", "behavior", "summarize", "organize", "license"
+
+---
+
+## Rules
+
+1. **Git commands**: Only use read-only Git commands (e.g., `git status`, `git log`, `git diff`). Do not use write commands (e.g., `git commit`, `git push`) unless explicitly instructed.
+
+2. **Issue updates**: When updating GitHub issues, read existing issues with the `android` label for writing/style reference. Always use UK English.
+
+3. **Branch conventions**: Per `Github Conventions.md`:
+   - Feature branches: `android/{category}/{issue-number}-{description}`
+   - Integration branch: `android/dev`
+   - Stable branch: `main`
+
+4. **PR conventions**: 
+   - Title format: `[Android] Brief description`
+   - Reference relevant requirement codes (e.g., `MAT1`, `CON2A`)
+   - Request review from Android subteam member
+</code></pre>
+                </details>
+
+                <h4>Project Management and Issue Decomposition</h4>
+                <p>
+                    At the start of the project, agents were used to decompose the systems architecture into a structured set of parent issues, each containing a set of child issues. This decomposition was performed in several stages, deliberately limiting the scope of each individual agent task to reduce the risk of compounding errors. The resulting plan was audited and validated manually before any development began.
+                </p>
+                <p>
+                    The goal of this decomposition was to digest the full development effort into smaller, independently buildable and verifiable units of work, with each issue mapping directly onto a single pull request. Issues were deployed to the GitHub repository with clear dependency mappings, enabling parallelised code generation across multiple agent sessions without merge conflicts or duplicated effort.
+                </p>
+
+                <h4>Review Workflow</h4>
+                <p>
+                    GitHub Copilot Review Agents were used to perform initial review passes on all pull requests before human review was requested. Pull requests were iterated against the review agent until its comments ran clear, at which point the PR was passed to a team member for manual review. This practice saved significant time and identified a large number of small bugs and inconsistencies across the development process. The review agent had full project context and access to the team's coding standards via the Copilot instructions document, and therefore helped enforce those standards consistently across all contributions.
+                </p>
+
+                <h4>Case Study: Integration Testing with GitHub Copilot Agent</h4>
+                <p>
+                    When integration testing between the Android and Windows applications, the GitHub Copilot coding agent running Claude Opus 4.6 proved invaluable. Will generated a suite of integration test cases targeting the Android client and tasked the agent with executing each test, identifying integration bugs, applying fixes, and re-running the tests until all cases passed.
+                </p>
+                <p>
+                    The agent ran the Android integration test suite against a headless, integration-test-flagged instance of the Windows server. Running in integration test mode, the server automatically initiated discovery, removing the need to trigger pairing via the frontend. Crucially, the agent was instructed to treat the API contract defined in <code>/docs</code> as ground truth and as the tiebreaker for any behavioural discrepancies between the two applications.
+                </p>
+                <p>
+                    This agent session ran for approximately six hours and identified all subtle inconsistencies and bugs in the communications between the two systems. The resulting fixes were merged in <a href="https://github.com/raphaellith/Manuscripta/pull/286" target="_blank">PR #286</a>. Notably, most of the agent's time was spent running tests and verifying changes, as well as exploring the problem space — the actual lines of code changed were well within the range of straightforward human manual verification.
+                </p>
+                <p>
+                    After the agent-based integration tests completed, the team conducted manual end-to-end verification in a single group meeting session. This follow-up identified cases in which the agent had resolved test case failures without addressing the underlying feature behaviour — the tests passed, but the feature itself was not doing what was intended. This reinforced the importance of human judgement in validating not just correctness against test specifications, but fitness for purpose.
+                </p>
+
+                <h4>AI Agent Limitations</h4>
+                <p>
+                    One of the core limitations discovered when working in this agent-assisted fashion was that it fundamentally shifted where the bottlenecks in development occurred. Code generation became functionally free — low cost in terms of both effort and time. As a result, the bottleneck moved away from writing code and towards code review. This led to situations in which pull requests sat in review for extended periods, and to imbalances between team members caused by the asymmetry between the time required to generate a large number of PRs and the time required to verify, digest, and integrate them into the codebase.
+                </p>
+                <p>
+                    There is a further risk associated with insufficient review of generated code, as was the case for the UI layer: when no team member holds a clear mental model of what the different classes are doing, it becomes significantly more difficult to identify bugs, make informed architectural decisions, and — more broadly — understand the boundaries of what the codebase can and cannot be adapted to deliver.
+                </p>
+
             </div>
         </div>
     </main>
@@ -663,5 +1049,57 @@ END FUNCTION</code></pre>
         </div>
     </footer>
     <script src="js/main.js"></script>
+    
+
+            <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            fontFamily: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            themeVariables: {
+                fontFamily: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                actorBkg: '#15502E',
+                actorTextColor: '#FFFFFF',
+                actorLineColor: '#0D3B1F',
+                signalColor: '#4B5563',
+                signalTextColor: '#4B5563',
+                noteBkgColor: '#FEE3DA',
+                noteTextColor: '#15502E',
+                noteBorderColor: '#FF6106',
+                lineColor: '#FF6106',
+                labelBoxBkgColor: '#FEE3DA',
+                labelBoxBorderColor: '#FF6106',
+                labelTextColor: '#15502E',
+                loopTextColor: '#15502E',
+                messageTextColor: '#4B5563',
+                fontSize: '15px'
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script>
+        // Custom pseudocode language for Prism
+        Prism.languages.pseudocode = {
+            'comment': {
+                pattern: /\/\/.*/,
+                greedy: true
+            },
+            'string': {
+                pattern: /"[^"]*"/,
+                greedy: true
+            },
+            'keyword': /\b(FUNCTION|END FUNCTION|IF|ELSE|NOT|FOR|IN|RETURN|THROW|BREAK|BEGIN|END|WHILE|DO|NULL|AND|OR)\b/,
+            'number': /\b\d+(\.\d+)?(s)?\b/,
+            'function': /\b[A-Z][A-Za-z]+(?=\s*\()/,
+            'operator': /[=<>!+\-*]+|(?:\.\.)/,
+            'punctuation': /[{}[\]();,.]/
+        };
+    </script>
 </body>
+
 </html>

@@ -1,425 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Architecture - Manuscripta</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Architecture - Manuscripta</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <a href="#main" class="sr-only focus-visible">Skip to main content</a>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
+<a href="#main" class="sr-only focus-visible">Skip to main content</a>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">
                 <span class="quill-icon">
                     <img src="images/quill.JPG" alt="Quill">
                 </span>
-                <h1>Manuscripta</h1>
-            </a>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="requirements.html">Requirements</a>
-                </li>
-                <li class="nav-item">
-                    <a href="research.html">Research</a>
-                </li>
-                <li class="nav-item">
-                    <a href="design.html">UI Design</a>
-                </li>
-                <li class="nav-item">
-                    <a href="architecture.html" class="active">System Architecture</a>
-                </li>
-                <li class="nav-item">
-                    <a href="implementation.html">Implementation</a>
-                </li>
-                <li class="nav-item">
-                    <a href="testing.html">Testing</a>
-                </li>
-                <li class="nav-item">
-                    <a href="evaluation.html">Evaluation</a>
-                </li>
-                <li class="nav-item">
-                    <a href="appendices.html">Appendices</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+      <h1>Manuscripta</h1>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="requirements.html">Requirements</a>
+      </li>
+      <li class="nav-item">
+        <a href="research.html">Research</a>
+      </li>
+      <li class="nav-item">
+        <a href="design.html">UI Design</a>
+      </li>
+      <li class="nav-item">
+        <a href="architecture.html" class="active">System Architecture</a>
+      </li>
+      <li class="nav-item">
+        <a href="implementation.html">Implementation</a>
+      </li>
+      <li class="nav-item">
+        <a href="testing.html">Testing</a>
+      </li>
+      <li class="nav-item">
+        <a href="evaluation.html">Evaluation</a>
+      </li>
+      <li class="nav-item">
+        <a href="appendices.html">Appendices</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-    <main id="main">
-        <div class="doc-layout">
-            <div class="doc-content">
-                <div class="doc-header">
-                    <h1>System Architecture</h1>
-                    <p>Technical architecture, system design, and implementation details for Manuscripta's dual-app platform.</p>
-                </div>
+<main id="main">
+  <div class="doc-layout">
+    <div class="doc-content">
+      <div class="doc-header">
+        <h1>System Architecture</h1>
+        <p>Technical architecture and system design for our platform.</p>
+      </div>
 
-                <h2 id="overview">System Overview</h2>
-                <p>
-                    Manuscripta is a distributed client-server system consisting of two applications: a Windows teacher application acting as the server, and Android student applications acting as clients. All communication occurs exclusively over a local area network with no cloud dependency, ensuring full GDPR compliance and data privacy for students in SEN school environments.
-                </p>
-                <p>
-                    The architecture prioritises three properties simultaneously: low latency for real-time classroom control, offline capability so student work is never lost during network interruptions, and clean separation of concerns to enable independent testing of each layer. These priorities directly reflect requirements gathered from stakeholder interviews with the National Autistic Society and Richard Cloudesley School.
-                </p>
-                <p>
-                    The Windows application was built by Raphael Li and Nemo Shu. The Android application was built by Priya Bargota and Will Stephen.
-                </p>
+      <h2 id="high-level-system-overview">High-level system overview</h2>
+      <p>
+        At its core, Manuscripta is a distributed client-server system consisting of two interdependent applications.
+        The Windows application, which displays a teacher portal, runs on the teacher’s laptop and acts as a central
+        server. Meanwhile, the Android application, which guides student learning, runs on each student’s e-ink display
+        and acts as a client. Under this system, multiple clients may connect to the same server at a time. This
+        bidirectional communication occurs exclusively over a local area network with no cloud dependency. This
+        architecture, which facilitates a clean separation of concerns, centralises the storage and management of data,
+        including those associated with lesson materials and tablet configurations, into the teacher’s laptop, thus
+        ensuring data integrity and consistency.
+      </p>
+      <figure class="doc-figure">
+        <img src="images/architecture-diagram-windows-android.svg"
+             alt="One Windows laptop connected bidirectionally to three Android e-ink devices with request and response data arrows.">
+        <figcaption>The Windows and Android applications exhibit a server-client relationship.</figcaption>
+      </figure>
+      <p>
+        In addition to this bidirectional communication, the platform supports unidirectional communication from the
+        Windows laptop to both reMarkable or Kindle clients, on which our custom Android application cannot be installed
+        and run. In these cases, the teacher may transmit the PDF version of a chosen lesson material to any number of
+        specified clients. The PDF transmission to reMarkable and Kindle clients is carried out via the reMarkable cloud
+        and via email respectively. As this is a one-way transmission, no responses of any kind may be returned to the
+        teacher’s laptop.
+      </p>
+      <figure class="doc-figure">
+        <img src="images/architecture-diagram-windows-android-external.svg"
+             alt="Windows laptop connected bidirectionally to three Android e-ink devices and one-way to reMarkable and Kindle clients via Material PDF arrows.">
+        <figcaption>The Windows application may send PDF versions of materials to reMarkable and Kindle clients.
+        </figcaption>
+      </figure>
 
-                <div style="text-align: center; margin: 32px 0;">
-                    <img src="images/architecture-diagram.png" alt="System Architecture Diagram" style="max-width: 100%; height: auto;">
-                    <p style="font-size: 14px; color: var(--text-secondary); margin-top: 8px;"><em>Figure 1: System Architecture Overview</em></p>
-                </div>
+      <h2 id="windows-application">Windows application</h2>
+      <p>The Windows teacher portal is a whole-stack web application consisting of a frontend and a backend. At runtime,
+        the frontend is responsible for starting and supervising the backend process.</p>
+      <p>The Windows application uses a layered architecture with clear separation of concerns across backend, frontend,
+        and testing components. The backend is an ASP.NET Core service that owns business rules, persistence, and device
+        networking; the frontend is an Electron + React client that acts as the teacher-facing interface; and
+        bidirectional runtime communication is handled primarily through SignalR.</p>
 
-                <h2 id="windows">Windows Teacher Application</h2>
-                <p>
-                    The Windows application consists of two tightly coordinated components: a .NET 10.0 ASP.NET Core backend and a React and Electron frontend.
-                </p>
-                <p>
-                    The frontend is solely responsible for starting, monitoring and terminating the backend as a child process using Node.js child_process.spawn. The backend is published as a self-contained win-x64 executable bundled within the Electron application as an extraResource. This means the teacher installs and runs a single Electron application — the backend starts automatically, with health checks and exponential backoff restart handled transparently. Dynamic port allocation ensures the application starts even if default ports are unavailable.
-                </p>
-                <p>
-                    The backend exposes a SignalR hub at /TeacherPortalHub on port 5910, enabling real-time bidirectional communication between the backend and the frontend. The frontend subscribes to events including UpdateDeviceStatus, HandRaised, DistributionFailed and RefreshResponses, meaning the teacher dashboard updates automatically without any manual refresh. Classroom control actions including PairDevices, DeployMaterial, LockDevices and CreateFeedback are all dispatched through this hub.
-                </p>
+      <h3 id="data-persistence">Data persistence</h3>
+      <p>For the purposes of our application, data storage is classified into two categories: long-term persistence and
+        short-term persistence.</p>
+      <p>Long-term persisted data are stored in a database in the user’s application settings folder. Specifically, the
+        backend deterministically assumes a default database location on startup, creating the directory if it does not
+        already exist. Long-term persistence allows data to be retrievable via SQLite and Entity Framework Core (EF
+        Core) across application restarts. Examples of long-term persisted data include unit collections, units,
+        lessons, materials, questions, source document metadata, attachment metadata, configuration defaults, PDF export
+        defaults, external device metadata and email credential records.</p>
+      <p>On the contrary, short-term persisted data is intentionally volatile. As they are only valid for the current
+        application run, these data are stored in an in-memory database. Examples of short-term persisted data include
+        student responses, sessions, feedback lifecycle data, paired device registry, live device status cache and
+        per-device configuration overrides.</p>
+      <p>On startup, the backend proactively performs orphan cleanup for attachment files and external-device
+        configuration files, reconciling filesystem state with database state. Likewise, the frontend is responsible for
+        removing orphaned attachments and questions when the material editor is used or when broken attachment links are
+        discovered. This ensures strong consistency across relational data and sidecar file storage.</p>
 
-                <h3>Database Schema</h3>
-                <p>The database uses SQLite via Entity Framework Core, with the following schema:</p>
-                <table class="issue-table">
-                    <thead>
-                        <tr>
-                            <th>Table</th>
-                            <th>Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>UnitCollections</td>
-                            <td>Top-level content organisation</td>
-                        </tr>
-                        <tr>
-                            <td>Units</td>
-                            <td>Groups of related lessons</td>
-                        </tr>
-                        <tr>
-                            <td>Lessons</td>
-                            <td>Individual lesson containers</td>
-                        </tr>
-                        <tr>
-                            <td>Materials</td>
-                            <td>Generated content items (worksheets, quizzes, polls)</td>
-                        </tr>
-                        <tr>
-                            <td>Questions</td>
-                            <td>Individual questions within materials</td>
-                        </tr>
-                        <tr>
-                            <td>Attachments</td>
-                            <td>Files attached to materials</td>
-                        </tr>
-                        <tr>
-                            <td>SourceDocuments</td>
-                            <td>Uploaded reference documents for AI generation</td>
-                        </tr>
-                        <tr>
-                            <td>PairedDevices</td>
-                            <td>Registered student tablets</td>
-                        </tr>
-                        <tr>
-                            <td>DeviceStatuses</td>
-                            <td>Live connection and battery state per device</td>
-                        </tr>
-                        <tr>
-                            <td>Sessions</td>
-                            <td>Active classroom sessions</td>
-                        </tr>
-                        <tr>
-                            <td>Responses</td>
-                            <td>Student answers to questions</td>
-                        </tr>
-                        <tr>
-                            <td>Feedback</td>
-                            <td>AI-generated feedback on student responses</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <h3 id="backend-layers">Backend layers</h3>
+      <p>To ensure a separation of concerns with maintainability and testability, the Windows backend is organised into
+        four main layers: the model layer, the data layer, the service layer and the controller layer.</p>
+      <p>The model layer facilitates the communication between other layers by defining the core application data
+        structures. This includes entities, enumeration types, data transfer objects (DTOs), events, mapping types and
+        network message models. The class diagrams below, for instance, illustrate the relationships between selected
+        entities in the model layer.</p>
+      <p>The data layer manages the application’s connection to the database via a database context. It defines how
+        model entities are stored, indexed and manipulated, enforcing the long-term and short-term persistence
+        rules.</p>
+      <p>The backend business logic is implemented in the service layer, where long-term persisted data from EF Core is
+        bridged with short-term persisted data from memory. This layer coordinates creation, retrieval, update, delete
+        (CRUD) and other operations on model entities, with corresponding domain restraints and lifecycle rules to
+        validate cascading and orphan-related behaviour. Moreover, this layer provides runtime integration survices
+        including PDF generation, file handling, external-device deployment, email dispatch, AI generation or embedding
+        workflows, dependency availability checks and background initialisation tasks. The service layer also includes a
+        TeacherPortalHub for communicating with the Electron frontend, as elucidated in the next section.</p>
+      <p>The controller layer exposes the service layer’s functionalities through external-facing REST API endpoints,
+        from which HTTP requests are translated into service calls before returning safe responses.</p>
 
-                <h3>AI Integration</h3>
-                <p>
-                    Material generation uses a two-model approach running entirely on the teacher's laptop via Ollama. Qwen3:8b is selected as the primary model for material generation because IBM Granite struggled to produce correctly formatted materials, particularly those containing questions. Qwen3 runs in reasonable time on the teacher's Windows laptop and produces well-structured output. IBM Granite 4.0 is retained as a fallback for hardware that cannot support Qwen3, and is used for smaller tasks such as generating feedback on student responses.
-                </p>
-                <p>
-                    For source document processing, ChromaDB is used as a vector database implementing a standard RAG pipeline. Source documents such as textbooks can easily exceed the context window of local language models when passed directly. ChromaDB solves this by chunking documents into embeddings that are stored and retrieved selectively, meaning only the most relevant passages are passed to the model during generation.
-                </p>
-                <p>
-                    Runtime dependencies including Ollama, ChromaDB and rmapi are managed through a centralised RuntimeDependencyManager system. An abstract base class provides a generic detection and installation pattern, with each dependency subclassing from it. This means new dependencies can be added without duplicating management logic.
-                </p>
-                <p>
-                    Content delivery to non-Android E-ink devices is handled through two additional integrations: rmapi for reMarkable tablets and SMTP for Kindle email delivery, supporting the parallel delivery workflow validated with domain expert Atia Rafiq.
-                </p>
+      <figure class="doc-figure">
+        <img src="images/architecture-class-diagram-material-hierarchy.svg"
+             alt="Architecture class diagram showing the material hierarchy in the Windows application."
+             style="max-height:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>A class diagram illustrating the material hierarchy in the Windows application. Each unit collection
+          contains units, each unit contains lessons, each lesson contains materials, and each material is associated
+          with a number of questions and attachments. Source documents can be added to a unit collection.
+        </figcaption>
+      </figure>
 
-                <h2 id="android">Android Student Application</h2>
-                <p>
-                    The Android application follows Clean Architecture, dividing the codebase into three strictly separated layers.
-                </p>
-                <p>
-                    The presentation layer contains MainActivity and MainViewModel, using ViewBinding and LiveData to ensure the UI reacts automatically to state changes without directly accessing data sources. The domain layer contains business logic and bidirectional mappers between Room entities and domain models. Entities are immutable with a single constructor, suitable only for Room persistence, while domain models include convenience constructors and input validation that throws exceptions immediately on invalid state. The data layer contains repository implementations, Room DAOs and network DTOs.
-                </p>
+      <figure class="doc-figure">
+        <img src="images/architecture-class-diagram-material-question-response-polymorphism.svg"
+             alt="Architecture class diagram showing material, question, and response polymorphism in the Windows application."
+             style="width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>A class diagram illustrating the polymorphism of material, question and responses in the Windows
+          application. As shown, a material can be of type "reading" (a textual material with no questions), "worksheet"
+          (a material containing multiple-choice or written-response questions) or "poll" (a material containing exactly
+          one multiple-choice question).
+        </figcaption>
+      </figure>
 
-                <h3>Android Database Schema</h3>
-                <table class="issue-table">
-                    <thead>
-                        <tr>
-                            <th>Entity</th>
-                            <th>Key Fields</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MaterialEntity</td>
-                            <td>id, type, title, content, timestamp</td>
-                        </tr>
-                        <tr>
-                            <td>QuestionEntity</td>
-                            <td>id, materialId (FK), questionText, questionType, options, correctAnswer</td>
-                        </tr>
-                        <tr>
-                            <td>ResponseEntity</td>
-                            <td>id, questionId (FK), selectedAnswer, isCorrect, timestamp, synced</td>
-                        </tr>
-                        <tr>
-                            <td>SessionEntity</td>
-                            <td>id, materialId, startTime, endTime, status (RECEIVED→ACTIVE→COMPLETED)</td>
-                        </tr>
-                        <tr>
-                            <td>DeviceStatusEntity</td>
-                            <td>deviceId, status, batteryLevel, lastUpdated</td>
-                        </tr>
-                        <tr>
-                            <td>FeedbackEntity</td>
-                            <td>id, materialId, content, approved, timestamp</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <figure class="doc-figure">
+        <img src="images/architecture-class-diagram-delivery-cycle.svg"
+             alt="Architecture class diagram showing the delivery cycle in the Windows application."
+             style="max-width:300px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>A class diagram illustrating the relationships between materials, questions, responses and device
+          sessions.
+        </figcaption>
+      </figure>
 
-                <h2 id="network">Network Layer</h2>
-                <p>
-                    The Android application uses three communication channels simultaneously, each chosen for specific reasons:
-                </p>
+      <h2 id="interaction-with-the-android-application">Interaction with the Android application</h2>
+      <p>Interaction with the Android application employs separate channels for different communication purposes.</p>
+      <p>Before any meaningful communication can occur, student tablets must first locate the teacher’s Windows machine
+        on the local network through UDP broadcasting. The teacher application continuously announces its presence on
+        the network, broadcasting its IP address and the ports on which it is listening. When a tablet receives
+        these broadcasts, it extracts the connection details and pairs with the laptop. Using UDP allows the broadcasted
+        information to reach all devices on the network simultaneously with no prior connection and minimal
+        overhead. The pairing process is shown in the sequence diagram below.</p>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-android-pairing.svg"
+             alt="Architecture sequence diagram for Android pairing" class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The sequence of events for pairing an Android device with the Windows application.</figcaption>
+      </figure>
+      <p>After initial pairing is established, the primary communication channel transitions to a mixture of HTTP and
+        TCP.</p>
+      <p>When a new piece of information is made available to students, it is impractical for the Windows laptop to
+        directly transmit it to student tablets via TCP, as this protocol is optimised for control signals rather than
+        bulk data transfer. Using HTTP requests for this is similarly unfeasible as it requires client initiation. To
+        resolve this problem, we have utilised a hybrid three-phase push-pull pattern which uses both HTTP and TCP. In
+        this pattern, the Windows laptop uses TCP to signal that something is available. When the tablets receive this
+        signal, they use HTTP to pull that content. Lastly, a tablet must send an acknowledgment signal via TCP to
+        indicate successful retrieval. This design pattern is repeatedly utilised in material deployment, feedback
+        delivery and configuration refresh mechanisms.</p>
 
-                <table class="issue-table">
-                    <thead>
-                        <tr>
-                            <th>Channel</th>
-                            <th>Port</th>
-                            <th>Protocol</th>
-                            <th>Rationale</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>HTTP via Retrofit</td>
-                            <td>5911</td>
-                            <td>REST</td>
-                            <td>Material distribution and response submission involve large payloads — REST is reliable and well-suited to text-heavy content</td>
-                        </tr>
-                        <tr>
-                            <td>TCP via Java Sockets</td>
-                            <td>5912</td>
-                            <td>Binary</td>
-                            <td>Control signals such as screen lock and material distribution require guaranteed delivery and low latency</td>
-                        </tr>
-                        <tr>
-                            <td>UDP via DatagramSocket</td>
-                            <td>5913</td>
-                            <td>Broadcast</td>
-                            <td>Device discovery uses broadcast so tablets can locate the teacher's laptop without manual IP configuration</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-deploy-material.svg"
+             alt="Architecture sequence diagram for deploying materials to Android devices" class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The sequence of events for deploying a lesson material to an Android device. Android devices
+          must report their status, including whether the student is engaged, whether the device is low on battery and
+          whether the screen is locked, to the Windows laptop every 3 seconds. Each attachment in the material is
+          retrieved from the laptop individually.
+        </figcaption>
+      </figure>
 
-                <h3>HTTP Layer</h3>
-                <p>
-                    The HTTP layer uses a chain of three OkHttp interceptors applied in a specific order: authentication first (stamps a device ID header on every request so the server identifies the tablet), logging second (tracks all requests and responses with timing metrics), and error handling last (standardises error responses after all modifications). A RetryInterceptor sits at the front of the chain so every retry passes through all three interceptors, ensuring auth headers are re-applied and errors are logged on each attempt. The retry policy retries on 5xx errors and 408 and 429 responses, but not on other 4xx errors since permanent client errors will not resolve with retries.
-                </p>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-retrieve-feedback.svg"
+             alt="Architecture sequence diagram for retrieving feedback on Android device" class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The sequence of events for retrieving feedback on an Android device. When the Windows laptop
+          notifies an Android device of new feedback, the Android device obtains a list of feedback IDs and requests
+          each piece of feedback individually.
+        </figcaption>
+      </figure>
 
-                <h3>TCP Layer</h3>
-                <p>
-                    The TCP layer is coordinated by HeartbeatManager, which acts as a single source of truth for all TCP message dispatch. HeartbeatManager owns DISTRIBUTE_MATERIAL and RETURN_FEEDBACK dispatch, sitting between TcpSocketManager and the repositories. This prevents direct coupling between the network layer and the data layer.
-                </p>
-                <p>
-                    The binary TCP message format uses a 1-byte opcode followed by a variable-length operand:
-                </p>
+      <p>In addition to the design pattern above, HTTP is also used to register student names and submit student
+        responses. Meanwhile, TCP is used for real-time remote-control signals like locking tablet screens, updating
+        tablet statuses and sending raise-hand messages. These are illustrated in the sequence diagrams below.</p>
 
-                <table class="issue-table">
-                    <thead>
-                        <tr>
-                            <th>Opcode</th>
-                            <th>Name</th>
-                            <th>Direction</th>
-                            <th>Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0x10</td>
-                            <td>STATUS_UPDATE</td>
-                            <td>Client → Server</td>
-                            <td>Heartbeat every 3 seconds</td>
-                        </tr>
-                        <tr>
-                            <td>0x05</td>
-                            <td>DISTRIBUTE_MATERIAL</td>
-                            <td>Server → Client</td>
-                            <td>Trigger material fetch</td>
-                        </tr>
-                        <tr>
-                            <td>0x12</td>
-                            <td>DISTRIBUTE_ACK</td>
-                            <td>Client → Server</td>
-                            <td>Confirm receipt per material</td>
-                        </tr>
-                        <tr>
-                            <td>0x11</td>
-                            <td>HAND_RAISED</td>
-                            <td>Client → Server</td>
-                            <td>Help request signal</td>
-                        </tr>
-                        <tr>
-                            <td>0x01</td>
-                            <td>LOCK_SCREEN</td>
-                            <td>Server → Client</td>
-                            <td>Remote screen lock</td>
-                        </tr>
-                        <tr>
-                            <td>0x02</td>
-                            <td>UNLOCK_SCREEN</td>
-                            <td>Server → Client</td>
-                            <td>Remote screen unlock</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-response-submission.svg"
+             alt="Architecture sequence diagram for student response submission from Android device"
+             class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The sequence of events for submitting a student response from an Android device. Mechanisms for
+          handling duplicate responses and unstable connections are also shown.
+        </figcaption>
+      </figure>
 
-                <p>
-                    Acknowledgements are sent per material rather than per batch. This allows the Windows dashboard to display the exact distribution state of each individual material to the teacher, rather than a single batch confirmation.
-                </p>
-                <p>
-                    The heartbeat interval is 3 seconds. The Windows application marks a device as disconnected after 10 seconds of silence. The Android application unpairs after 60 seconds of no acknowledgements.
-                </p>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-teacher-control-commands.svg"
+             alt="Architecture sequence diagram for teacher control commands to Android devices"
+             class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The sequence of events for teacher control commands sent to Android devices. Teacher control
+          commands include locking a student's screen, unlocking a student's screen, updating an Android tablet's
+          configurations and unpairing an Android device.
+        </figcaption>
+      </figure>
 
-                <h2 id="patterns">Design Patterns</h2>
-                <table class="issue-table">
-                    <thead>
-                        <tr>
-                            <th>Pattern</th>
-                            <th>Where Used</th>
-                            <th>Rationale</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Clean Architecture</td>
-                            <td>Android</td>
-                            <td>Separation of data, domain and presentation layers enforces testability — domain models can be tested without mocking Room, achieving 96% instruction coverage</td>
-                        </tr>
-                        <tr>
-                            <td>Repository Pattern</td>
-                            <td>Android and Windows</td>
-                            <td>Abstracts all data access behind interfaces, providing a single source of truth and enabling mocking for unit tests</td>
-                        </tr>
-                        <tr>
-                            <td>MVVM</td>
-                            <td>Android UI</td>
-                            <td>Decouples ViewModels from Activities, ensuring UI logic can be tested independently of Android framework classes</td>
-                        </tr>
-                        <tr>
-                            <td>Observer Pattern</td>
-                            <td>LiveData (Android), SignalR (Windows)</td>
-                            <td>Real-time UI updates without polling — frontend subscribes to backend events and reacts automatically</td>
-                        </tr>
-                        <tr>
-                            <td>Strategy Pattern</td>
-                            <td>SyncEngine (DefaultSyncEngine, NetworkSyncEngine)</td>
-                            <td>Swappable sync implementations allow offline and online sync behaviour to be substituted without changing calling code</td>
-                        </tr>
-                        <tr>
-                            <td>Process Lifecycle Management</td>
-                            <td>Electron frontend managing .NET backend</td>
-                            <td>Single executable deployment — frontend spawns, monitors and restarts backend transparently with exponential backoff</td>
-                        </tr>
-                        <tr>
-                            <td>Dependency Injection</td>
-                            <td>Hilt on Android, built-in DI on .NET</td>
-                            <td>Loose coupling between components enables independent testing and substitution of implementations</td>
-                        </tr>
-                        <tr>
-                            <td>Chain of Responsibility</td>
-                            <td>OkHttp interceptor chain</td>
-                            <td>Auth, logging and error handling applied in guaranteed order with clear separation of each concern</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <figure class="doc-figure">
+        <img src="images/architecture-sequence-diagram-raise-hand.svg"
+             alt="Architecture sequence diagram for raise hand event from Android device" class="architecture-diagram"
+             style="max-width:700px; width:100%; height:auto; display:block; margin:auto;">
+        <figcaption>The sequence of events for a student raising their hand through their Android device.</figcaption>
+      </figure>
 
-                <h2 id="api">API Contract</h2>
-                <p>
-                    The HTTP REST API runs on port 5911. Key endpoints:
-                </p>
+      <p>
+        These interactions are discussed in more detail in the Implementation section.
+      </p>
 
-                <table class="issue-table">
-                    <thead>
-                        <tr>
-                            <th>Method</th>
-                            <th>Endpoint</th>
-                            <th>Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>POST</td>
-                            <td>/pair</td>
-                            <td>Device registration and pairing</td>
-                        </tr>
-                        <tr>
-                            <td>GET</td>
-                            <td>/distribution/{deviceId}</td>
-                            <td>Fetch assigned materials</td>
-                        </tr>
-                        <tr>
-                            <td>POST</td>
-                            <td>/responses</td>
-                            <td>Submit student answer</td>
-                        </tr>
-                        <tr>
-                            <td>GET</td>
-                            <td>/config/{deviceId}</td>
-                            <td>Fetch tablet configuration</td>
-                        </tr>
-                        <tr>
-                            <td>GET</td>
-                            <td>/feedback/{deviceId}</td>
-                            <td>Retrieve feedback on responses</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <h2 id="interaction-with-remarkable-and-kindle-clients">Interaction with reMarkable and Kindle clients</h2>
+      <p>Manuscripta’s Windows architecture treats reMarkable and Kindle endpoints as external and asynchronous clients
+        rather than classroom-native ones. This is because while Android tablets participate in direct classroom control
+        and live status loops, external devices are integrated through cloud-mediated dispatch channels that do not
+        support screen locking, instant acknowledgements or direct TCP control semantics. Hence, our system does not try
+        to force a real-time classroom protocol onto devices that are designed for delayed sync and store-and-forward
+        workflows.</p>
+      <p>For reMarkable, communication is built around the runtime dependency rmapi, with a token-based pairing flow. A
+        one-time code is collected, the backend validates rmapi availability, and rmapi authentication writes a
+        device-specific configuration file under the application data directory. Thereafter, each reMarkable device is
+        effectively represented by a persisted entity plus its corresponding rmapi config artifact, which supports
+        independent authentication domains per device.</p>
+      <p>Communication with Kindle tablets is email-centric and relies on SMTP credential availability. Pairing captures
+        the Kindle destination address semantics, while deployment uses Amazon’s Send to Kindle service to send PDFs as
+        email attachments. Email credentials are stored in a single-record repository and encrypted at rest, with DPAPI
+        on Windows and a development fallback for non-Windows environments.</p>
+      <p>Overall, the material delivery process is architected as a two-phase pipeline where a PDF version of the
+        material is generated before being dispatched. Generation of PDF takes into account the configuration settings
+        associated with the device, the material as well as the global defaults.</p>
+    </div>
+  </div>
+</main>
 
-                <p>
-                    All device and entity IDs are validated as GUIDs server-side. Invalid IDs return 404 Not Found with a generic message rather than 400 Bad Request, avoiding information leakage about ID validity to unauthenticated callers.
-                </p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025-2026 Manuscripta Team - UCL Computer Science</p>
-            <p>Systems Engineering Project</p>
-        </div>
-    </footer>
-    <script src="js/main.js"></script>
+<footer>
+  <div class="container">
+    <p>&copy; 2025-2026 Manuscripta Team - UCL Computer Science</p>
+    <p>Systems Engineering Project</p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
 </body>
 </html>
